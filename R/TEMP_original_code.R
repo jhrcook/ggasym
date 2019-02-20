@@ -101,24 +101,4 @@ make_statsig_heatmaps <- function(st_tib) {
         make_statsig_heatmaps_plotting()
 }
 
-# TODO: add feature for diagonal
 
-
-
-
-
-# #### ---- Proof-of-Concept ---- ####
-
-# tib <- matrix(c(NA,1,2,3,6,NA,4,5,4,5,NA,6,3,2,1,NA), nrow = 4) %>%
-#     melt()
-# colnames(tib) <- c("col", "row", "val")
-# tib <- tib %>%
-#     mutate(top_tri = ifelse(col > row, val, NA),
-#            bot_tri = ifelse(col < row, val, NA))
-
-# ggplot(tib, aes(x = col, y = row)) +
-#     geom_tile(aes(fill = bot_tri)) +
-#     scale_fill_gradient(low = "dodgerblue", high = "tomato", na.value = NA) +
-#     new_scale_fill() +
-#     geom_tile(aes(fill = top_tri)) +
-#     scale_fill_gradient(low = "purple", high = "green", na.value = NA)
