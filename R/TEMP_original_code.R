@@ -1,17 +1,5 @@
 
-# prepares the tibble needed for geom_tile
-prepare_asymmetic_tibble <- function(tib) {
-    all_levels <- sort(unique(c(tib$g1, tib$g2)))
-    mod_tib <- bind_rows(tib,
-                         col_swap(tib, g1, g2)) %>%
-        arrange(g1, g2) %>%
-        mutate(g1 = factor(g1, levels = all_levels),
-               g2 = factor(g2, levels = all_levels),
-               estimate = ifelse(factor_is_greater(g2, g1), estimate, NA),
-               log10_pval = ifelse(factor_is_greater(g1, g2), log10_pval, NA),
-               diag_val = ifelse(g1 == g2, 1, NA))
-    return(mod_tib)
-}
+
 
 
 
