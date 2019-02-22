@@ -3,3 +3,4 @@
 ^\.Rproj\.user$
 ^R/TEMP_original_code.R$
 ^R/plotting_for_vignette.R$
+^README\.Rmd$
