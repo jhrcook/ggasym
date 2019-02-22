@@ -83,7 +83,19 @@ col_swap <- function(.data, .x, .y) {
 #'
 #' prepare_asymmetric_tibble(tib, a, b, val_1, val_2)
 #'
-#' # TODO: add in result once complete
+#' #> # A tibble: 10 x 4
+#' #>    a     b     val_1 val_2
+#' #>    <fct> <fct> <dbl> <dbl>
+#' #>  1 A     J      0.7  NA
+#' #>  2 B     K      0.05 NA
+#' #>  3 C     L      0.14 NA
+#' #>  4 D     M      0.6  NA
+#' #>  5 E     N      0.83 NA
+#' #>  6 J     A     NA     0.78
+#' #>  7 K     B     NA     0.25
+#' #>  8 L     C     NA     0.74
+#' #>  9 M     D     NA     0.26
+#' #> 10 N     E     NA     0.16
 #'
 #' @importFrom rlang := !!
 #' @importFrom magrittr %>%
@@ -91,6 +103,8 @@ col_swap <- function(.data, .x, .y) {
 prepare_asymmetric_tibble <- function(.data, .x, .y, .tl, .br) {
     .x <- rlang::enquo(.x)
     .y <- rlang::enquo(.y)
+    .tl <- rlang::enquo(.tl)
+    .br <- rlang::enquo(.br)
     x_vals <- rlang::eval_tidy(.x, .data)
     y_vals <- rlang::eval_tidy(.y, .data)
     all_levels <- sort(unique(c(x_vals, y_vals)))
@@ -99,8 +113,7 @@ prepare_asymmetric_tibble <- function(.data, .x, .y, .tl, .br) {
         dplyr::arrange(!!.x, !!.y) %>%
         dplyr::mutate(!!.x := factor(!!.x, levels = all_levels),
                       !!.y := factor(!!.y, levels = all_levels),
-                      !!.tl := ifelse(factor_is_greater(!!.x, !!.y), !!.tl, NA),
-                      !!.br := ifelse(factor_is_greater(!!.x, !!.y), !!.br, NA),
-                      .diag_val = ifelse(!!.x == !!.y, 1, NA))
+                      !!.tl := ifelse(factor_is_greater(!!.y, !!.x), !!.tl, NA),
+                      !!.br := ifelse(factor_is_greater(!!.x, !!.y), !!.br, NA))
     return(mod_tib)
 }

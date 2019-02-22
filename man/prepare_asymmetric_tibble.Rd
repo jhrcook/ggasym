@@ -42,6 +42,18 @@ tib
 
 prepare_asymmetric_tibble(tib, a, b, val_1, val_2)
 
-# TODO: add in result once complete
+#> # A tibble: 10 x 4
+#>    a     b     val_1 val_2
+#>    <fct> <fct> <dbl> <dbl>
+#>  1 A     J      0.7  NA
+#>  2 B     K      0.05 NA
+#>  3 C     L      0.14 NA
+#>  4 D     M      0.6  NA
+#>  5 E     N      0.83 NA
+#>  6 J     A     NA     0.78
+#>  7 K     B     NA     0.25
+#>  8 L     C     NA     0.74
+#>  9 M     D     NA     0.26
+#> 10 N     E     NA     0.16
 
 }
