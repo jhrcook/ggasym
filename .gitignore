@@ -37,3 +37,4 @@ Temporary Items
 inst/doc
 .Rproj.user/
 data-raw/*.rds
+.Rhistory
