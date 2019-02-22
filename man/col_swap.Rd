@@ -18,6 +18,9 @@ The same tibble with the values in columns \code{.x} and \code{.y} swapped
 Copy a tibble, but flip .x and .y
 }
 \examples{
+library(dplyr)
+library(magrittr)
+
 tib <- tibble(col_a = c(1:5),
               col_b = LETTERS[1:5],
               not_changed = runif(5))

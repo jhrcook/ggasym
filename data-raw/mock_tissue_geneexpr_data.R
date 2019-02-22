@@ -4,7 +4,7 @@
 library(magrittr)
 library(tidyverse)
 
-ori_tib <- readRDS("stats_tib.rds")  # load my real data
+ori_tib <- readRDS("data-raw/stats_tib.rds")  # load my real data
 
 # get all KRAS alleles
 all_kras_alleles <- ori_tib %>%
@@ -14,15 +14,15 @@ all_kras_alleles <- ori_tib %>%
     unique()
 
 # make a dict of allele => gene
-allele_to_gene <- paste("gene", LETTERS[1:length(all_kras_alleles)])
-names(allele_to_gene) <- all_kras_alleles
+allele_to_tissue <- paste("tissue", LETTERS[1:length(all_kras_alleles)])
+names(allele_to_tissue) <- all_kras_alleles
 
 # replace all alleles with the gene
 mod_tib <- ori_tib
-for (i in 1:length(allele_to_gene)) {
-    allele <- names(allele_to_gene)[[i]]
-    gene <- allele_to_gene[[i]]
-    mod_tib %<>% mutate(comparison = str_replace_all(comparison, allele, gene))
+for (i in 1:length(allele_to_tissue)) {
+    allele <- names(allele_to_tissue)[[i]]
+    tissue <- allele_to_tissue[[i]]
+    mod_tib %<>% mutate(comparison = str_replace_all(comparison, allele, tissue))
 }
 
 # select only relevant columns
@@ -31,4 +31,4 @@ mod_tib %<>%
 
 # rename to a better variable name and save to data directory
 enrichment_data <- mod_tib
-save(list = c("enrichment_data"), file = "../data/enrichment_example.RData")
+save(list = c("enrichment_data"), file = "data/enrichment_example.RData")

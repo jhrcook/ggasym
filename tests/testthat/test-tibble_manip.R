@@ -1,5 +1,6 @@
 context("Tibble manipulations")
 library(dplyr)
+library(tibble)
 
 test_that("columns are swapped", {
     start_tib <- tibble(col_a = c(1:5),

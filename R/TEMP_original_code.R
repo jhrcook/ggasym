@@ -44,3 +44,24 @@ make_statsig_heatmaps <- function(st_tib) {
 }
 
 
+#' Returns a tibble of the diagonal of a hypothetical symmetrix matrix
+#'
+#' Returns a tibble where everything is the same except that the two selected
+#' columns are set equal. It is used to set diagonal values
+#'
+#' @param .data a tibble
+#' @param .x,.y the \emph{x} and \emph{y} column names of the hypothetical
+#'     matrix
+#' @param ... column names to group by
+#' @return a tibble where everything is the same except that the two selected
+#'     columns are set equal
+#' @examples
+#' "NOT USED"
+# add_diag_rows <- function(.data, .x, .y, ...) {
+#     all_vals <- unique(c(tib$g1, tib$g2))
+#     diag_tib <- tib %>%
+#         slice(1:length(all_vals)) %>%
+#         mutate(g1 = all_vals,
+#                g2 = all_vals)
+#     return(diag_tib)
+# }

@@ -2,4 +2,7 @@
 
 export(col_swap)
 export(geom_asymat)
-export(prepare_asymmetic_tibble)
+export(prepare_asymmetric_tibble)
+importFrom(magrittr,"%>%")
+importFrom(rlang,"!!")
+importFrom(rlang,":=")

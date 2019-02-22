@@ -1,5 +1,14 @@
-
-# return is factor a is greater than factor b (a and b are same-length vectors)
+#' Determine the level of a value in a vector of type \code{factor}
+#'
+#' @param x vectors of type \code{factor}
+#' @return a vector holding the corresponding level of the input factors
+#' @examples
+#' first <- factor(c("J", "O", "S", "H"), LETTERS)
+#' which_level(first)
+#' #> [1] 10 15 19  8
+which_level <- function(x) {
+    purrr::map_int(x, ~ str_which(levels(x), as.character(.x)))
+}
 
 
 #' Determines if the level of a is greater than that of b
@@ -22,17 +31,4 @@ factor_is_greater <- function(a, b) {
     return(ai > bi)
 }
 
-
-
-#' Determine the level of a value in a vector of type \code{factor}
-#'
-#' @param x vectors of type \code{factor}
-#' @return a vector holding the corresponding level of the input factors
-#' @examples
-#' first <- factor(c("J", "O", "S", "H"), LETTERS)
-#' which_level(first)
-#' #> [1] 10 15 19  8
-which_level <- function(x) {
-    map_int(x, ~ str_which(levels(x), as.character(.x)))
-}
 

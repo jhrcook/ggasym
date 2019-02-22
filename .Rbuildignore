@@ -1,4 +1,5 @@
 ^data-raw$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-./R/TEMP_origial_code.R
+^R/TEMP_original_code.R$
+^R/plotting_for_vignette.R$
