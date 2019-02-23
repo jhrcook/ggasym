@@ -16,4 +16,4 @@ for the top-left and bottom-right triangles. It operates within the
 Grammar of Graphics paradigm implemented in ggplot.
 
 Checkout the documentation and vignettes at the pkgdown website
-<https://jhrcook.github.io/ggasym/>
+[https://jhrcook.github.io/ggasym/](https://jhrcook.github.io/ggasym/index.html)
