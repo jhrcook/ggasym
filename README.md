@@ -1,7 +1,5 @@
-ggasym
-================
-Joshua H. Cook
-2/20/2019
+
+# ggasym
 
 [![License: GPL
 v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
@@ -16,3 +14,6 @@ v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/li
 This package plots a symmetric matrix with two different fill aesthetics
 for the top-left and bottom-right triangles. It operates within the
 Grammar of Graphics paradigm implemented in ggplot.
+
+Checkout the documentation and vignettes at the pkgdown website
+<https://jhrcook.github.io/ggasym/>
