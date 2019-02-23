@@ -38,3 +38,4 @@ inst/doc
 .Rproj.user/
 data-raw/*.rds
 .Rhistory
+.Rproj.user

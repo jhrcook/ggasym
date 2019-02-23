@@ -20,8 +20,6 @@ first <- c("J", "O", "S", "H")
 last <- c("C", "O", "O", "K")
 first <- factor(first, LETTERS)
 last <- factor(last, LETTERS)
-
 factor_is_greater(first, last)
 
-#> [1]  TRUE FALSE  TRUE FALSE
 }

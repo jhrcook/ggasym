@@ -18,5 +18,5 @@ Determine the level of a value in a vector of type \code{factor}
 \examples{
 first <- factor(c("J", "O", "S", "H"), LETTERS)
 which_level(first)
-#> [1] 10 15 19  8
+
 }
