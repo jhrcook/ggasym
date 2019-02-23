@@ -2,10 +2,10 @@
 % Please edit documentation in R/geom_asymmat.R
 \name{geom_asymmat}
 \alias{geom_asymmat}
-\title{Generate an asymmetric matrix with different fill values for top-left
-    and bottom-right triangles}
+\title{Asymmetrically filled symmetric matrix (using ggplot)}
 \usage{
-geom_asymmat(.data, x, y, fill_tl, fill_br)
+geom_asymmat(.data, x, y, fill_tl, fill_br, color_tl = NA,
+  color_br = NA, lab_tl = NULL, lab_br = NULL)
 }
 \arguments{
 \item{.data}{data table}
@@ -13,6 +13,12 @@ geom_asymmat(.data, x, y, fill_tl, fill_br)
 \item{x, y}{x and y-axes column names}
 
 \item{fill_tl, fill_br}{column names for top-left and bottom-right fill}
+
+\item{color_tl, color_br}{colors for the lines; use \code{NA} for no color}
+
+\item{lab_tl, lab_br}{labels for the scales; use \code{NULL} (default) to use
+the column name (ie. \code{fill_tl} or \code{fill_br}) or empty strings
+(\code{""}) for no label}
 }
 \value{
 a ggplot object of an asymmetrically-colored \code{x} x \code{y}
@@ -20,5 +26,6 @@ a ggplot object of an asymmetrically-colored \code{x} x \code{y}
     \code{fill_br} coloring the bottom-left triangle.
 }
 \description{
-TODO: add description
+Generate an asymmetric matrix with different fill values for top-left
+    and bottom-right triangles as a \code{ggplot} object
 }

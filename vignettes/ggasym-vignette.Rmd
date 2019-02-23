@@ -16,4 +16,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-*In progress*
+```{r, warning=FALSE, message=FALSE}
+library(dplyr)
+library(ggplot2)
+library(stringr)
+library(ggasym)
+```
+
+** TODO: simple example with pointless data **

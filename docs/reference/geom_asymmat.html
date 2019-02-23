@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Generate an asymmetric matrix with different fill values for top-left
-    and bottom-right triangles — geom_asymmat • ggasym</title>
+<title>Asymmetrically filled symmetric matrix (using ggplot) — geom_asymmat • ggasym</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -31,10 +30,10 @@
 
 
 
-<meta property="og:title" content="Generate an asymmetric matrix with different fill values for top-left
-    and bottom-right triangles — geom_asymmat" />
+<meta property="og:title" content="Asymmetrically filled symmetric matrix (using ggplot) — geom_asymmat" />
 
-<meta property="og:description" content="TODO: add description" />
+<meta property="og:description" content="Generate an asymmetric matrix with different fill values for top-left
+    and bottom-right triangles as a ggplot object" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -88,6 +87,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/enrichment_example.html">Plotting statistical significance and difference in values</a>
+    </li>
+    <li>
       <a href="../articles/ggasym-vignette.html">ggasym</a>
     </li>
   </ul>
@@ -116,19 +118,20 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Generate an asymmetric matrix with different fill values for top-left
-    and bottom-right triangles</h1>
+    <h1>Asymmetrically filled symmetric matrix (using ggplot)</h1>
     <small class="dont-index">Source: <a href='https://github.com/jhrcook/ggasym/blob/master/R/geom_asymmat.R'><code>R/geom_asymmat.R</code></a></small>
     <div class="hidden name"><code>geom_asymmat.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>TODO: add description</p>
+    <p>Generate an asymmetric matrix with different fill values for top-left
+    and bottom-right triangles as a <code>ggplot</code> object</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>geom_asymmat</span>(<span class='no'>.data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>fill_tl</span>, <span class='no'>fill_br</span>)</pre>
+    <pre class="usage"><span class='fu'>geom_asymmat</span>(<span class='no'>.data</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>fill_tl</span>, <span class='no'>fill_br</span>, <span class='kw'>color_tl</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>color_br</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>lab_tl</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>lab_br</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -144,6 +147,16 @@
     <tr>
       <th>fill_tl, fill_br</th>
       <td><p>column names for top-left and bottom-right fill</p></td>
+    </tr>
+    <tr>
+      <th>color_tl, color_br</th>
+      <td><p>colors for the lines; use <code>NA</code> for no color</p></td>
+    </tr>
+    <tr>
+      <th>lab_tl, lab_br</th>
+      <td><p>labels for the scales; use <code>NULL</code> (default) to use
+the column name (ie. <code>fill_tl</code> or <code>fill_br</code>) or empty strings
+(<code>""</code>) for no label</p></td>
     </tr>
     </table>
     
