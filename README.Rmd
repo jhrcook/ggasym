@@ -1,7 +1,4 @@
 ---
-title: "ggasym"
-author: "Joshua H. Cook"
-date: "2/20/2019"
 output: github_document
 ---
 
@@ -10,6 +7,8 @@ knitr::opts_chunk$set(echo = TRUE,
                       collapse = TRUE,
                       comment = "#>")
 ```
+
+# ggasym
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 ![CRAN_Release_Badge](http://www.r-pkg.org/badges/version/ggasym)
