@@ -18,10 +18,13 @@ Imports:
     magrittr (>= 1.5.0),
     purrr (>= 0.3.0),
     rlang (>= 0.3.0),
-    tibble(>= 2.0.0)
+    tibble (>= 2.0.0),
+    stringr
 RoxygenNote: 6.1.1
 Suggests: 
     knitr,
     rmarkdown,
-    testthat
+    testthat,
+    spelling
 VignetteBuilder: knitr
+Language: en-US

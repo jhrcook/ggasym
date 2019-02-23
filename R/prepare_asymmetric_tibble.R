@@ -36,14 +36,14 @@
 #' #> 4 D         4       0.937
 #' #> 5 E         5       0.850
 #'
-#' @importFrom rlang := !!
+#' @importFrom rlang := !! enquo eval_tidy
 #' @importFrom magrittr %>%
 #' @export col_swap
 col_swap <- function(.data, .x, .y) {
-    .x <- rlang::enquo(.x)
-    .y <- rlang::enquo(.y)
-    y_new <- rlang::eval_tidy(.x, .data)
-    x_new <- rlang::eval_tidy(.y, .data)
+    .x <- enquo(.x)
+    .y <- enquo(.y)
+    y_new <- eval_tidy(.x, .data)
+    x_new <- eval_tidy(.y, .data)
     dplyr::mutate(.data,
            !!.x := x_new,
            !!.y := y_new)
@@ -97,16 +97,16 @@ col_swap <- function(.data, .x, .y) {
 #' #>  9 M     D     NA     0.26
 #' #> 10 N     E     NA     0.16
 #'
-#' @importFrom rlang := !!
+#' @importFrom rlang := !! enquo eval_tidy
 #' @importFrom magrittr %>%
 #' @export prepare_asymmetric_tibble
 prepare_asymmetric_tibble <- function(.data, .x, .y, .tl, .br) {
-    .x <- rlang::enquo(.x)
-    .y <- rlang::enquo(.y)
-    .tl <- rlang::enquo(.tl)
-    .br <- rlang::enquo(.br)
-    x_vals <- rlang::eval_tidy(.x, .data)
-    y_vals <- rlang::eval_tidy(.y, .data)
+    .x <- enquo(.x)
+    .y <- enquo(.y)
+    .tl <- enquo(.tl)
+    .br <- enquo(.br)
+    x_vals <- eval_tidy(.x, .data)
+    y_vals <- eval_tidy(.y, .data)
     all_levels <- sort(unique(c(x_vals, y_vals)))
     mod_tib <- dplyr::bind_rows(.data,
                          col_swap(.data, !!.x, !!.y)) %>%

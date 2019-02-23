@@ -30,3 +30,4 @@
 #' #>  9 Activating Invasion and Metastasis tissue E-tissue A  -0.0992    9.98e- 1
 #' #> 10 Activating Invasion and Metastasis tissue F-tissue A  -1.09      3.78e- 7
 #' #>  # … with 156 more rows
+"enrichment_data"
