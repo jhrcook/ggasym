@@ -7,7 +7,6 @@
 #' @examples
 #' first <- factor(c("J", "O", "S", "H"), LETTERS)
 #' which_level(first)
-#' #> [1] 10 15 19  8
 #'
 #' @export which_level
 which_level <- function(x) {
@@ -28,8 +27,6 @@ which_level <- function(x) {
 #' last <- factor(last, LETTERS)
 #'
 #' factor_is_greater(first, last)
-#'
-#' #> [1]  TRUE FALSE  TRUE FALSE
 #'
 #'@export factor_is_greater
 factor_is_greater <- function(a, b) {

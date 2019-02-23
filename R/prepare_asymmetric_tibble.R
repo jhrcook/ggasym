@@ -4,8 +4,8 @@
 #' @param .x,.y Column names to swap
 #' @return The same tibble with the values in columns \code{.x} and \code{.y} swapped
 #' @examples
-#' library(dplyr)
-#' library(magrittr)
+#' suppressMessages(library(dplyr))
+#' suppressMessages(library(magrittr))
 #'
 #' tib <- tibble(col_a = c(1:5),
 #'               col_b = LETTERS[1:5],
@@ -13,28 +13,10 @@
 #'
 #' tib
 #'
-#' #> # A tibble: 5 x 3
-#' #>   col_a col_b not_changed
-#' #>   <int> <chr>       <dbl>
-#' #> 1     1 A           0.904
-#' #> 2     2 B           0.603
-#' #> 3     3 C           0.632
-#' #> 4     4 D           0.937
-#' #> 5     5 E           0.850
-#'
 #' switched_ab <- tib %>%
 #'     col_swap(col_a, col_b)
 #'
 #' switched_ab
-#'
-#' #> # A tibble: 5 x 3
-#' #>   col_a col_b not_changed
-#' #>   <chr> <int>       <dbl>
-#' #> 1 A         1       0.904
-#' #> 2 B         2       0.603
-#' #> 3 C         3       0.632
-#' #> 4 D         4       0.937
-#' #> 5 E         5       0.850
 #'
 #' @importFrom rlang := !! enquo eval_tidy
 #' @importFrom magrittr %>%
@@ -72,30 +54,7 @@ col_swap <- function(.data, .x, .y) {
 #'
 #' tib
 #'
-#' #> # A tibble: 5 x 4
-#' #>   a     b     val_1 val_2
-#' #>   <chr> <chr> <dbl> <dbl>
-#' #> 1 A     J      0.7   0.78
-#' #> 2 B     K      0.05  0.25
-#' #> 3 C     L      0.14  0.74
-#' #> 4 D     M      0.6   0.26
-#' #> 5 E     N      0.83  0.16
-#'
 #' prepare_asymmetric_tibble(tib, a, b, val_1, val_2)
-#'
-#' #> # A tibble: 10 x 4
-#' #>    a     b     val_1 val_2
-#' #>    <fct> <fct> <dbl> <dbl>
-#' #>  1 A     J      0.7  NA
-#' #>  2 B     K      0.05 NA
-#' #>  3 C     L      0.14 NA
-#' #>  4 D     M      0.6  NA
-#' #>  5 E     N      0.83 NA
-#' #>  6 J     A     NA     0.78
-#' #>  7 K     B     NA     0.25
-#' #>  8 L     C     NA     0.74
-#' #>  9 M     D     NA     0.26
-#' #> 10 N     E     NA     0.16
 #'
 #' @importFrom rlang := !! enquo eval_tidy
 #' @importFrom magrittr %>%

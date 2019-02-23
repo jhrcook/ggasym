@@ -18,8 +18,8 @@ The same tibble with the values in columns \code{.x} and \code{.y} swapped
 Copy a tibble, but flip .x and .y
 }
 \examples{
-library(dplyr)
-library(magrittr)
+suppressMessages(library(dplyr))
+suppressMessages(library(magrittr))
 
 tib <- tibble(col_a = c(1:5),
               col_b = LETTERS[1:5],
@@ -27,27 +27,9 @@ tib <- tibble(col_a = c(1:5),
 
 tib
 
-#> # A tibble: 5 x 3
-#>   col_a col_b not_changed
-#>   <int> <chr>       <dbl>
-#> 1     1 A           0.904
-#> 2     2 B           0.603
-#> 3     3 C           0.632
-#> 4     4 D           0.937
-#> 5     5 E           0.850
-
 switched_ab <- tib \%>\%
     col_swap(col_a, col_b)
 
 switched_ab
-
-#> # A tibble: 5 x 3
-#>   col_a col_b not_changed
-#>   <chr> <int>       <dbl>
-#> 1 A         1       0.904
-#> 2 B         2       0.603
-#> 3 C         3       0.632
-#> 4 D         4       0.937
-#> 5 E         5       0.850
 
 }

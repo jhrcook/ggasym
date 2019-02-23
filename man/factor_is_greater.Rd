@@ -23,6 +23,4 @@ last <- factor(last, LETTERS)
 
 factor_is_greater(first, last)
 
-#> [1]  TRUE FALSE  TRUE FALSE
-
 }
