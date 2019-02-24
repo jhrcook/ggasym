@@ -53,6 +53,16 @@ We can now plot by passing the data table to `geom_asymmat`, returning a ggplot 
 geom_asymmat(enrich_data, tissue_1, tissue_2, estimate, neg_log10)
 ```
 
+```{r}
+ ggplot(enrich_data) +
+    geom_tile(aes(x = tissue_1, y = tissue_2, fill = estimate)) +
+    scale_fill_gradient(low = "dodgerblue", high = "tomato") +
+    ggnewscale::new_scale_fill() +
+    geom_tile(aes(x = tissue_2, y = tissue_1, fill = neg_log10)) +
+    scale_fill_gradient(low = "white", high = "green")
+```
+
+
 These 4 arguments are the only ones required, but the plot can be improved by passing values for the `color_tl/br` to color the lines between the tiles and `lab_tl/br` to label the scales for the top and bottom coloring schemes.
 
 ```{r}
