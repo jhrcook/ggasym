@@ -1,0 +1,41 @@
+---
+title: "Testing"
+author: "Joshua H. Cook"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+library(tidyverse)
+library(ggasym)
+library(scales)
+```
+
+
+
+## Experimenting with the current build
+
+```{r}
+j <- ggplot(mpg) +
+    geom_asymmat(aes(x = manufacturer, y = class,
+                     fill_tl = cty, fill_br = hwy)) +
+    scale_fill_tl_gradient(low = "green", high = "red") +
+    scale_fill_br_gradient(low = "blue", high = "orange")
+
+plot(j)
+
+j$layers[[1]]$geom_params
+j$layers[[2]]$geom_params
+```
+
