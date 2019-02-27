@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 ```{r}
 library(tidyverse)
-library(ggasym)
+# library(ggasym)
 library(scales)
 ```
 
@@ -31,8 +31,6 @@ library(scales)
 ### TODO
 
 *The following code chunk works!*
-
-
 
 ```{r}
 j <- ggplot(mpg) +
