@@ -74,6 +74,12 @@
 #     scale_color_viridis_c(option = "A")
 #
 #
+# g4 <- ggplot(mapping = aes(x, y)) +
+#     geom_contour(data = topography, aes(z = z, color = stat(level))) +
+#     geom_point(data = measurements, size = 3, aes(color = thing)) +
+#     scale_color_viridis_c(option = "A")
+#
+#
 # bump_aes_scale <- function(scale, new_aes) {
 #     # browser()
 #     old_aes <- scale$aesthetics[remove_new(scale$aesthetics) %in% new_aes]

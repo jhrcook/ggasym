@@ -9,3 +9,6 @@
 ^R/plotting_for_vignette.R$
 ^README\.Rmd$
 ^R/playground.R$
+^R/prepare_asymmetric_tibble.R$
+^vignettes/enrichment_example.Rmd$
+^vignettes/testing.Rmd$

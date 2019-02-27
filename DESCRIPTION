@@ -21,7 +21,8 @@ Imports:
     purrr (>= 0.3.0),
     rlang (>= 0.3.0),
     stringr (>= 1.4.0),
-    tibble (>= 2.0.0)
+    tibble (>= 2.0.0),
+    scales
 RoxygenNote: 6.1.1
 Suggests: 
     knitr,
@@ -31,3 +32,10 @@ Suggests:
 VignetteBuilder: knitr
 Language: en-US
 BugReports: https://github.com/jhrcook/ggasym/issues
+Collate:
+    'data.R'
+    'geom_asymmat.R'
+    'ggasym.R'
+    'scale_continuous_asym.R'
+    'utils.R'
+    'scale_gradient.R'

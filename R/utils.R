@@ -34,5 +34,3 @@ factor_is_greater <- function(a, b) {
     bi <- which_level(b)
     return(ai > bi)
 }
-
-
