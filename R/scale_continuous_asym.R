@@ -29,7 +29,6 @@ continuous_scale_asym <- function(aesthetics,
                            na.value = na.value,
                            guide = guide, ...)
     cs <- add_extras_to_colorscale(cs, aesthetics)
-
     return(cs)
 }
 

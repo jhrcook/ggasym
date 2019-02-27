@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Determines if the level of a is greater than that of b — factor_is_greater • ggasym</title>
+<title>Gradient colour scales for top-left triangle in geom_asymmat — scale_fill_tl_gradient • ggasym</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,14 @@
 
 
 
-<meta property="og:title" content="Determines if the level of a is greater than that of b — factor_is_greater" />
+<meta property="og:title" content="Gradient colour scales for top-left triangle in geom_asymmat — scale_fill_tl_gradient" />
 
-<meta property="og:description" content="Determines if the level of a is greater than that of b" />
+<meta property="og:description" content="This dictates a gradient color scheme for the top-left
+    (tl) of a geom_asymmat ggplot geom.
+    scale\_\*\_tl\_gradient creates a two colour gradient (low-high),
+    scale\_\*\_tl\_gradient2 creates a diverging colour gradient
+    (low-mid-high), scale\_\*\_tl\_gradientn creates a n-colour
+    gradient." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -114,48 +119,71 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Determines if the level of a is greater than that of b</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jhrcook/ggasym/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
-    <div class="hidden name"><code>factor_is_greater.Rd</code></div>
+    <h1>Gradient colour scales for top-left triangle in geom_asymmat</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jhrcook/ggasym/blob/master/R/scale_gradient.R'><code>R/scale_gradient.R</code></a></small>
+    <div class="hidden name"><code>scale_fill_tl_gradient.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Determines if the level of a is greater than that of b</p>
+    <p>This dictates a gradient color scheme for the top-left
+    (<code>tl</code>) of a <code>geom_asymmat</code> ggplot geom.
+    <code>scale\_\*\_tl\_gradient</code> creates a two colour gradient (low-high),
+    <code>scale\_\*\_tl\_gradient2</code> creates a diverging colour gradient
+    (low-mid-high), <code>scale\_\*\_tl\_gradientn</code> creates a n-colour
+    gradient.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>factor_is_greater</span>(<span class='no'>a</span>, <span class='no'>b</span>)</pre>
+    <pre class="usage"><span class='fu'>scale_fill_tl_gradient</span>(<span class='no'>...</span>, <span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"#132B43"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"#56B1F7"</span>,
+  <span class='kw'>space</span> <span class='kw'>=</span> <span class='st'>"Lab"</span>, <span class='kw'>na.value</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>, <span class='kw'>guide</span> <span class='kw'>=</span> <span class='st'>"colourbar"</span>,
+  <span class='kw'>aesthetics</span> <span class='kw'>=</span> <span class='st'>"fill_tl"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>a, b</th>
-      <td><p>Two same-length, same-leveled vectors of type <code>factor</code></p></td>
+      <th>...</th>
+      <td><p>arguments passed on to <code>continuous_scale_asym</code></p></td>
+    </tr>
+    <tr>
+      <th>low, high</th>
+      <td><p>the colors to represent low and high values</p></td>
+    </tr>
+    <tr>
+      <th>space</th>
+      <td><p>colour space in which to calculate gradient. Must be "Lab" -
+other values are deprecated.</p></td>
+    </tr>
+    <tr>
+      <th>na.value</th>
+      <td><p>color of missing (<code>NA</code>) values</p></td>
+    </tr>
+    <tr>
+      <th>guide</th>
+      <td><p>Type of legend. Use "colourbar" for continuous colour bar, or
+"legend" for discrete colour legend.</p></td>
+    </tr>
+    <tr>
+      <th>aesthetics</th>
+      <td><p>Character string or vector of character strings listing
+the name(s) of the aesthetic(s) that this scale works with. For now,
+leave the default alone, though I plan to reinstate the standard ggplot
+system here, eventually.</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>a single boolean vector of type <code>logical</code></p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>first</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"J"</span>, <span class='st'>"O"</span>, <span class='st'>"S"</span>, <span class='st'>"H"</span>)
-<span class='no'>last</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"C"</span>, <span class='st'>"O"</span>, <span class='st'>"O"</span>, <span class='st'>"K"</span>)
-<span class='no'>first</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/factor'>factor</a></span>(<span class='no'>first</span>, <span class='no'>LETTERS</span>)
-<span class='no'>last</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/factor'>factor</a></span>(<span class='no'>last</span>, <span class='no'>LETTERS</span>)
-<span class='fu'>factor_is_greater</span>(<span class='no'>first</span>, <span class='no'>last</span>)</div><div class='output co'>#&gt; [1]  TRUE FALSE  TRUE FALSE</div><div class='input'>
+    <pre class="examples"><div class='input'># vignette("ggasym")
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-      
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 

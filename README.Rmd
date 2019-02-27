@@ -12,7 +12,6 @@ knitr::opts_chunk$set(echo = TRUE,
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 ![CRAN_Release_Badge](http://www.r-pkg.org/badges/version/ggasym)
-![]([![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)])
 
 
 **author: Joshua H. Cook**
