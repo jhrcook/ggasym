@@ -11,4 +11,12 @@ GeomAsymmat
 \description{
 A ggproto object for the ggasym package and used by \code{geom_asymmat}
 }
+\section{Warning}{
+
+This \code{GeomAsymmat} is very much still in development and warrant to change
+    without notice. Use at your own risk. If dependent on \code{GeomAsymmat}
+    it is advisable to include tests with a cached version to test for
+    equivalence.
+}
+
 \keyword{datasets}

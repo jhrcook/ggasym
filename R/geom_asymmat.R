@@ -39,7 +39,20 @@
 #'     \code{fill_br} coloring the bottom-left triangle.
 #'
 #' @examples
-#' print("TODO")
+#' library(tibble)
+#' library(ggplot2)
+#' tib <- tibble(g1 = c("A", "A", "B"),
+#'               g2 = c("B", "C", "C"),
+#'               val_1 = c(1, 2, 3),
+#'               val_2 = c(-1, 0, 1))
+#'
+#' tib
+#'
+#' ggplot(tib) +
+#' geom_asymmat(aes(x = g1, y = g2, fill_tl = val_1, fill_br = val_2)) +
+#'     scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue") +
+#'     scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
+#'     labs(fill_tl =  "top-left fill", fill_br = "bottom-right fill")
 #'
 #' @importFrom stringr str_detect
 #' @import ggplot2
@@ -92,6 +105,12 @@ geom_asymmat <- function(mapping = NULL, data = NULL,
 #'
 #' A ggproto object for the ggasym package and used by \code{geom_asymmat}
 #'
+#' @section Warning:
+#' This \code{GeomAsymmat} is very much still in development and warrant to change
+#'     without notice. Use at your own risk. If dependent on \code{GeomAsymmat}
+#'     it is advisable to include tests with a cached version to test for
+#'     equivalence.
+#'
 #' @import ggplot2
 #' @export GeomAsymmat
 GeomAsymmat <- ggproto(
@@ -112,9 +131,9 @@ GeomAsymmat <- ggproto(
     draw_panel = function(self, data, panel_params, coord) {
         # what I add to add the scaled fill_tl/br to `fill`
         # TODO: I have removed the error by defaulting to `NA`, but still need
-        # to figure out how the default blue is called
-
-        # TODO: make this check its own function
+        #   to figure out how the default blue is called
+        # TODO: this needs to be a better check that they are colors
+        #   make the check it's own function
         if (all(is.character(data$fill_tl))) {
             data$fill <- data$fill_tl
         } else if (all(is.character(data$fill_br))) {
@@ -164,6 +183,7 @@ GeomAsymmat <- ggproto(
     draw_key = draw_key_polygon
 )
 
+
 # built-in to ggplot2, but not exported
 ggname <- function(prefix, grob) {
     grob$name <- grid::grobName(grob, prefix)
@@ -178,4 +198,3 @@ rect_to_poly <- function(xmin, xmax, ymin, ymax) {
         x = c(xmin, xmax, xmax, xmin, xmin)
     )
 }
-
