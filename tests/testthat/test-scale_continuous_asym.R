@@ -14,5 +14,34 @@ test_that("get core aesthetic name", {
     expect_equal(get_core_aes("colour_br"), "colour")
 })
 
-# add tests for other functions after fixing bug that throws error is a tl/br
-# fill is not assigned
+test_that("fill_tl/br values populate properly", {
+    tib <- data.frame(grp1 = c("A", "A", "B"),
+                  grp2 = c("B", "C", "C"),
+                  val_1 = c(1, 2, NA),
+                  val_2 = c(-1, 0, 1))
+    g1 <- ggplot(tib) +
+        geom_asymmat(aes(x = grp1, y = grp2, fill_tl = val_1, fill_br = val_2)) +
+        scale_fill_tl_gradient(low = "lightpink", high = "red", na.value = "green")
+    g2 <- g1 +
+        scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue")
+
+    g1_build <- ggplot2::ggplot_build(g1)
+    g2_build <- ggplot2::ggplot_build(g2)
+
+    expect_equal(g1$scales$n(), 1)
+    expect_true(g1$scales$has_scale("fill_tl"))
+    expect_false(g1$scales$has_scale("fill_br"))
+    expect_equal(g2$scales$n(), 2)
+    expect_true(g2$scales$has_scale("fill_tl"))
+    expect_true(g2$scales$has_scale("fill_br"))
+
+    expect_equal(g1_build$data[[1]]$fill_tl, c("#FFB6C1", "#FF0000", "green"))
+    expect_equal(g1_build$data[[1]]$fill_br, c(NA, NA, NA))
+    expect_equal(g1_build$data[[2]]$fill_tl, c(NA, NA, NA))
+    expect_equal(g1_build$data[[2]]$fill_br, c(-1, 0, 1))
+    expect_equal(g2_build$data[[1]]$fill_tl, c("#FFB6C1", "#FF0000", "green"))
+    expect_equal(g2_build$data[[1]]$fill_br, c(NA, NA, NA))
+    expect_equal(g2_build$data[[2]]$fill_tl, c(NA, NA, NA))
+    expect_equal(g2_build$data[[2]]$fill_br, c("#BFEFFF", "#86BEFF", "#1E90FF"))
+})
+
