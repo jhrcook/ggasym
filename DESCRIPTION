@@ -1,7 +1,7 @@
 Package: ggasym
 Type: Package
 Title: Asymmetric Matrix Plotting in ggplot
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: person(c("Joshua", "H"), "Cook", email = "joshuacook0023@gmail.com",
     role = c("aut", "cre"),
     comment = c(ORCID = "0000-0001-9815-6879"))
