@@ -40,3 +40,14 @@ ggplot(tib) +
     labs(fill_tl =  "top-left fill", fill_br = "bottom-right fill")
 ```
 
+The following are tests of unintended uses of the `geom`. Right now, they will not fail and throw an error, but I want a default fill to be used, instead. I need to figure out how they do that in ggplot2.
+
+```{r}
+ggplot(tib) +
+    geom_asymmat(aes(x = g1, y = g2, fill_tl = val_1, fill_br = val_2))
+
+ggplot(tib) +
+    geom_tile(aes(x = g1, y = g2), fill = "grey20")
+
+```
+

@@ -45,5 +45,9 @@ add_extras_to_colorscale <- function(cs, aesthetics) {
 
 # gets the original aesthetic (colour, color, or fill)
 get_core_aes <- function(aesthetics) {
-    stringr::str_extract(aesthetics, "fill|color|colour")
+    a <- stringr::str_extract(aesthetics, "fill|color|colour")
+    if (is.na(a)) {
+        warning(paste("core aesthetic not found; input:", aesthetics))
+    }
+    return(a)
 }

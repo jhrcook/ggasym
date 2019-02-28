@@ -111,10 +111,16 @@ GeomAsymmat <- ggproto(
 
     draw_panel = function(self, data, panel_params, coord) {
         # what I add to add the scaled fill_tl/br to `fill`
-        if (!all(is.na(data$fill_tl))) {
+        # TODO: I have removed the error by defaulting to `NA`, but still need
+        # to figure out how the default blue is called
+
+        # TODO: make this check its own function
+        if (all(is.character(data$fill_tl))) {
             data$fill <- data$fill_tl
-        } else if (!all(is.na(data$fill_br))) {
+        } else if (all(is.character(data$fill_br))) {
             data$fill <- data$fill_br
+        } else {
+            data$fill <- NA
         }
 
         if (!coord$is_linear()) {
