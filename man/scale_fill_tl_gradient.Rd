@@ -29,9 +29,9 @@ system here, eventually.}
 \description{
 This dictates a gradient color scheme for the top-left
     (\code{tl}) of a \code{geom_asymmat} ggplot geom.
-    \code{scale\_\*\_tl\_gradient} creates a two colour gradient (low-high),
-    \code{scale\_\*\_tl\_gradient2} creates a diverging colour gradient
-    (low-mid-high), \code{scale\_\*\_tl\_gradientn} creates a n-colour
+    \code{scale_*_tl_gradient} creates a two colour gradient (low-high),
+    \code{scale_*_tl_gradient2} creates a diverging colour gradient
+    (low-mid-high), \code{scale_*_tl_gradientn} creates a n-colour
     gradient.
 }
 \examples{

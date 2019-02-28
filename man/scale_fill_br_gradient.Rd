@@ -11,7 +11,9 @@ scale_fill_br_gradient(..., low = "#132B43", high = "#56B1F7",
 \arguments{
 \item{...}{arguments passed on to \code{continuous_scale_asym}}
 
-\item{low, high}{the colors to represent low and high values}
+\item{low}{the colors to represent low and high values}
+
+\item{high}{the colors to represent low and high values}
 
 \item{space}{colour space in which to calculate gradient. Must be "Lab" -
 other values are deprecated.}
@@ -29,9 +31,9 @@ system here, eventually.}
 \description{
 This dictates a gradient color scheme for the bottom-right
     (\code{br}) of a \code{geom_asymmat} ggplot geom.
-    \code{scale\_\*\_tl\_gradient} creates a two colour gradient (low-high),
-    \code{scale\_\*\_tl\_gradient2} creates a diverging colour gradient
-    (low-mid-high), \code{scale\_\*\_tl\_gradientn} creates a n-colour
+    \code{scale_*_br_gradient} creates a two colour gradient (low-high),
+    \code{scale_*_br_gradient2} creates a diverging colour gradient
+    (low-mid-high), \code{scale_*_br_gradientn} creates a n-colour
     gradient.
 }
 \examples{
