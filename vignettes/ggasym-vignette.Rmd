@@ -22,7 +22,17 @@ library(ggplot2)
 library(ggasym)
 ```
 
-Below is a simple example of how this package can be used.
+`ggasym` (pronounced "gg-awesome") is a package that offers a new geom, `geom_asymmat` (for "asymmetric matrix"), for the plotting of two fill or color aesthetics on a symmetric matrix. This is likely to be of most use for multi-way statistical tests of multiple groups. Thus, a matrix can be formed of each group along the x and y-axes and the top-left and bottom-right triangles can be filled for the difference in mean values and p-values respectively.
+
+Below, I begin with a simple example to show how easy `geom_asymmat` is to use for anyone familiar with ggplot2. In another vignette (in progress), I show how the results from a multi-way statistical test can be displayed using `ggasym` and the wrapper function *[insert name of stats test wrapper function here]*.
+
+For information on using ggplot2, start [here](https://ggplot2.tidyverse.org/index.html).
+
+---
+
+## Basic Example
+
+`tib` is a simple tibble object showing two values, `val_1` and `val_2`, for each comparison of the three groups "A", "B", and "C".
 
 ```{r}
 tib <- tibble(g1 = c("A", "A", "B"),
@@ -32,6 +42,8 @@ tib <- tibble(g1 = c("A", "A", "B"),
 tib
 ```
 
+This data is then plotted with two different fill values, one for the top-left (`tl`) triangle and the other for the bottom-right (`br`) triangle. To demonstrate the complete incorporation of normal ggplot2 conventions, the labels for the color scales can be declared like normal using the `labs` function.
+
 ```{r}
 ggplot(tib) +
     geom_asymmat(aes(x = g1, y = g2, fill_tl = val_1, fill_br = val_2)) +
@@ -40,14 +52,4 @@ ggplot(tib) +
     labs(fill_tl =  "top-left fill", fill_br = "bottom-right fill")
 ```
 
-The following are tests of unintended uses of the `geom`. Right now, they will not fail and throw an error, but I want a default fill to be used, instead. I need to figure out how they do that in ggplot2.
-
-```{r}
-ggplot(tib) +
-    geom_asymmat(aes(x = g1, y = g2, fill_tl = val_1, fill_br = val_2))
-
-ggplot(tib) +
-    geom_tile(aes(x = g1, y = g2), fill = "grey20")
-
-```
-
+*TODO: show off the other scale features.*
