@@ -1,6 +1,6 @@
 #' Gradient colour scales for top-left or bottom-right triangle in geom_asymmat
 #'
-#' @description This dictates a gradient color scheme for the top-left
+#' @description This dictates a gradient colour scheme for the top-left
 #'     (\code{tl}) or  bottom_right (\code{br}) of a \code{geom_asymmat} ggplot geom.
 #'     \code{scale_*_tl/br_gradient} creates a two colour gradient (low-high),
 #'     \code{scale_*_tl/br_gradient2} creates a diverging colour gradient
@@ -154,7 +154,3 @@ scale_fill_br_gradientn <- function(..., colours,
                           guide = guide,
                           ...)
 }
-
-# TODO: need to add color wrappers and a few remaining fill functions
-# such as: scale_colour_viridis_d, scale_colour_grey, scale_fill_hue
-#    scale_fill_brewer, scale_fill_distiller

@@ -1,5 +1,26 @@
 context("test-geom_asymmat")
 
+test_that("x and y in data are organized properly", {
+    df <- data.frame(x = c(1, 9, 2, 5),
+                     y = c(2, 1, 3, 5),
+                     other_values = c(1,2,3,4))
+    good_params_tl <- list(which_triangle = "tl", other_param = "none")
+    good_params_br <- list(which_triangle = "br", other_param = "none")
+    bad_params <- list(which_triangle = "bad", other_param = "none")
+    df_tl <- data.frame(x = c(1, 1, 2, 5),
+                        y = c(2, 9, 3, 5),
+                        other_values = c(1,2,3,4))
+    df_br <- data.frame(x = c(2, 9, 3, 5),
+                        y = c(1, 1, 2, 5),
+                        other_values = c(1,2,3,4))
+
+    expect_equal(organize_xy(df, good_params_tl), df_tl)
+    expect_equal(organize_xy(df, good_params_br), df_br)
+    expect_equal(organize_xy(df, bad_params), df)
+    expect_equal(organize_xy(df, c()), df)
+})
+
+
 test_that("geom_asymmat works", {
     tib <- data.frame(grp1 = c("A", "A", "B"),
                       grp2 = c("B", "C", "C"),

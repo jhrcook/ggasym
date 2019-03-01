@@ -13,3 +13,4 @@
 ^vignettes/enrichment_example.Rmd$
 ^vignettes/testing.Rmd$
 ^pkgdown$
+^README_files$

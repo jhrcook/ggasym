@@ -45,4 +45,38 @@ test_that("scale_fill_tl/br_gradient values populate properly", {
     expect_equal(g2_build$data[[2]]$fill_br, c("#BFEFFF", "#86BEFF", "#1E90FF"))
 })
 
+
+test_that("scale_fill_tl/br_gradient2 values populate properly", {
+    tib <- data.frame(grp1 = c("A", "A", "A", "B", "B", "C"),
+                      grp2 = c("B", "C", "D", "C", "D", "D"),
+                      val_1 = c(1, 2, NA, 0, 10, 5),
+                      val_2 = c(-2, -1, 0, 1, 2, 3))
+    g1 <- ggplot(tib) +
+        geom_asymmat(aes(x = grp1, y = grp2, fill_tl = val_1, fill_br = val_2)) +
+        scale_fill_tl_gradient2(low = "lightpink", mid = "white", high = "red",
+                                na.value = "green")
+    g2 <- g1 +
+        scale_fill_br_gradient2(low = "lightblue1",
+                                mid = "grey50",
+                                high = "dodgerblue")
+
+    g1_build <- ggplot2::ggplot_build(g1)
+    g2_build <- ggplot2::ggplot_build(g2)
+
+    expect_equal(g1$scales$n(), 1)
+    expect_true(g1$scales$has_scale("fill_tl"))
+    expect_false(g1$scales$has_scale("fill_br"))
+    expect_equal(g2$scales$n(), 2)
+    expect_true(g2$scales$has_scale("fill_tl"))
+    expect_true(g2$scales$has_scale("fill_br"))
+
+    expect_equal(g1_build$data[[1]]$fill_tl, c("#FFECE5", "#FFD9CB", "green", "#FFFFFF", "#FF0000", "#FF9E81"))
+    expect_equal(g1_build$data[[1]]$fill_br, rep(NA, nrow(tib)))
+    expect_equal(g1_build$data[[2]]$fill_tl, rep(NA, nrow(tib)))
+    expect_equal(g1_build$data[[2]]$fill_br, tib$val_2)
+    expect_equal(g2_build$data[[1]]$fill_tl,  c("#FFECE5", "#FFD9CB", "green", "#FFFFFF", "#FF0000", "#FF9E81"))
+    expect_equal(g2_build$data[[1]]$fill_br, rep(NA, nrow(tib)))
+    expect_equal(g2_build$data[[2]]$fill_tl, rep(NA, nrow(tib)))
+    expect_equal(g2_build$data[[2]]$fill_br, c("#AAC8D3", "#95A3A8", "#7F7F7F", "#7584A9", "#5F8AD3", "#1E90FF"))
+})
 # TODO: repeat for other fills

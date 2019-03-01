@@ -66,7 +66,7 @@ colours vector. See \code{rescale()} for a convenience function to map an
 arbitrary range to between 0 and 1.}
 }
 \description{
-This dictates a gradient color scheme for the top-left
+This dictates a gradient colour scheme for the top-left
     (\code{tl}) or  bottom_right (\code{br}) of a \code{geom_asymmat} ggplot geom.
     \code{scale_*_tl/br_gradient} creates a two colour gradient (low-high),
     \code{scale_*_tl/br_gradient2} creates a diverging colour gradient

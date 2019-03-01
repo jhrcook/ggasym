@@ -207,6 +207,7 @@ rect_to_poly <- function(xmin, xmax, ymin, ymax) {
 
 # swap x and y if necessary for top-left and bottom-right
 organize_xy <- function(data, params) {
+    if (!any(names(params) == "which_triangle")) return(data)
     if (params$which_triangle == "tl") {
         .new_x <- ifelse(data$x <= data$y, data$x, data$y)
         .new_y <- ifelse(data$x <= data$y, data$y, data$x)
