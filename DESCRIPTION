@@ -38,4 +38,4 @@ Collate:
     'ggasym.R'
     'scale_continuous_asym.R'
     'utils.R'
-    'scale_gradient.R'
+    scale_fill_gradient.R
