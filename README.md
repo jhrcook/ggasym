@@ -1,9 +1,8 @@
 
-# ggasym
+ggasym <img src="man/figures/logo.png" align="right" alt="" width="120" />
+==========================================================================
 
-[![License: GPL
-v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version/ggasym)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) ![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version/ggasym)
 
 **author: Joshua H. Cook**
 
@@ -11,9 +10,6 @@ v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/li
 
 **Asymmetric Matrix Plotting in ggplot**
 
-This package plots a symmetric matrix with two different fill aesthetics
-for the top-left and bottom-right triangles. It operates within the
-Grammar of Graphics paradigm implemented in ggplot.
+This package plots a symmetric matrix with two different fill aesthetics for the top-left and bottom-right triangles. It operates within the Grammar of Graphics paradigm implemented in ggplot.
 
-Checkout the documentation and vignettes at the pkgdown website
-[https://jhrcook.github.io/ggasym/](https://jhrcook.github.io/ggasym/index.html)
+Checkout the documentation and vignettes at the pkgdown website [https://jhrcook.github.io/ggasym/](https://jhrcook.github.io/ggasym/index.html)
