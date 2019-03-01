@@ -33,8 +33,12 @@
 #'     than combining with them. This is most useful for helper functions that
 #'     define both data and aesthetics and shouldn't inherit behaviour from the
 #'     default plot specification, e.g. \code{borders()}.
+#' @param rearrange_xy This parameter controls whether \code{geom_asymmat} can
+#'     rearrange \code{x} and \code{y} such that the lower level is along
+#'     \code{x} for top-left and along \code{y} for bottom-right. This behavior
+#'     is demonstrated in the vignette (\code{vignette("ggasym")})
 #'
-#' @return a ggplot object of an asymmetrically-colored \code{x} x \code{y}
+#' @return A ggplot object of an asymmetrically-colored \eqn{x \times y}
 #'     matrix with \code{fill_tl} data coloring the top-left triangle and
 #'     \code{fill_br} coloring the bottom-left triangle.
 #'
@@ -62,13 +66,13 @@ geom_asymmat <- function(mapping = NULL, data = NULL,
                          ...,
                          na.rm = FALSE,
                          show.legend = NA,
-                         inherit.aes = TRUE) {
+                         inherit.aes = TRUE,
+                         rearrange_xy = TRUE) {
     # open mapping and pass fill_tl as fill to tl layer and fill_br to br layer
     mapping_1 <- mapping[!str_detect(names(mapping), "fill_br")]
     mapping_2 <- mapping[!str_detect(names(mapping), "fill_tl")]
     names(mapping_2)[[1]] <- "y"
     names(mapping_2)[[2]] <- "x"
-
     new_layer1 <- layer(
         data = data,
         mapping = mapping_1,
@@ -80,6 +84,7 @@ geom_asymmat <- function(mapping = NULL, data = NULL,
         params = list(
             na.rm = na.rm,
             which_triangle = "tl",
+            rearrange_xy = rearrange_xy,
             ...
         )
     )
@@ -94,6 +99,7 @@ geom_asymmat <- function(mapping = NULL, data = NULL,
         params = list(
             na.rm = na.rm,
             which_triangle = "br",
+            rearrange_xy = rearrange_xy,
             ...
         )
     )
@@ -115,9 +121,11 @@ geom_asymmat <- function(mapping = NULL, data = NULL,
 GeomAsymmat <- ggproto(
     "GeomAsymmat",
     GeomRect,
-    extra_params = c("na.rm", "which_triangle"),
+    extra_params = c("na.rm", "which_triangle", "rearrange_xy"),
 
     setup_data = function(data, params) {
+        # rearrange x and y for ggasym
+        if (params$rearrange_xy) data <- organize_xy(data, params)
         data$width <- data$width %||% params$width %||% resolution(data$x, FALSE)
         data$height <- data$height %||% params$height %||% resolution(data$y, FALSE)
         transform(data,
@@ -195,4 +203,20 @@ rect_to_poly <- function(xmin, xmax, ymin, ymax) {
         y = c(ymax, ymax, ymin, ymin, ymax),
         x = c(xmin, xmax, xmax, xmin, xmin)
     )
+}
+
+# swap x and y if necessary for top-left and bottom-right
+organize_xy <- function(data, params) {
+    if (params$which_triangle == "tl") {
+        .new_x <- ifelse(data$x <= data$y, data$x, data$y)
+        .new_y <- ifelse(data$x <= data$y, data$y, data$x)
+        data$x <- .new_x
+        data$y <- .new_y
+    } else if (params$which_triangle == "br") {
+        .new_x <- ifelse(data$x >= data$y, data$x, data$y)
+        .new_y <- ifelse(data$x >= data$y, data$y, data$x)
+        data$x <- .new_x
+        data$y <- .new_y
+    }
+    return(data)
 }

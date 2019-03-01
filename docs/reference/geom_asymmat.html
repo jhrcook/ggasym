@@ -129,7 +129,7 @@
 
     <pre class="usage"><span class='fu'>geom_asymmat</span>(<span class='kw'>mapping</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
   <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>inherit.aes</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>inherit.aes</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rearrange_xy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -188,11 +188,18 @@ than combining with them. This is most useful for helper functions that
 define both data and aesthetics and shouldn't inherit behaviour from the
 default plot specification, e.g. <code>borders()</code>.</p></td>
     </tr>
+    <tr>
+      <th>rearrange_xy</th>
+      <td><p>This parameter controls whether <code>geom_asymmat</code> can
+rearrange <code>x</code> and <code>y</code> such that the lower level is along
+<code>x</code> for top-left and along <code>y</code> for bottom-right. This behavior
+is demonstrated in the vignette (<code>vignette("ggasym")</code>)</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a ggplot object of an asymmetrically-colored <code>x</code> x <code>y</code>
+    <p>A ggplot object of an asymmetrically-colored \(x \times y\)
     matrix with <code>fill_tl</code> data coloring the top-left triangle and
     <code>fill_br</code> coloring the bottom-left triangle.</p>
     
