@@ -16,6 +16,7 @@ set.seed(0)
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 ![CRAN_Release_Badge](http://www.r-pkg.org/badges/version/ggasym)
+[![Travis build status](https://travis-ci.org/jhrcook/ggasym.svg?branch=master)](https://travis-ci.org/jhrcook/ggasym)
 
 
 **author: Joshua H. Cook**
