@@ -9,6 +9,7 @@ knitr::opts_chunk$set(echo = TRUE,
 library(tibble)
 library(ggasym)
 library(ggplot2)
+set.seed(0)
 ```
 
 # ggasym <img src="man/figures/logo.png" align="right" alt="" width="120" />
@@ -63,5 +64,23 @@ ggplot(tib) +
     geom_asymmat(aes(x = g1, y = g2, fill_tl = val_1, fill_br = val_2)) +
     scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
     scale_fill_br_gradient2(low = "tomato", mid = "white", high = "dodgerblue")
+```
+
+Since the new geom is a normal ggplot2 object, it can be introduced into a standard ggplot2 workflow. Note that the labels can be adjusted like normal using the `labs` function and using the `fill_tl` and `fill_br` arguments.
+
+```{r}
+ggplot(tib) +
+    geom_asymmat(aes(x = g1, y = g2, fill_tl = log(val_1), fill_br = val_2)) +
+    scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
+    scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue") +
+    labs(fill_tl = "top-left fill", fill_br = "bottom-right fill",
+         title = "Example of ggasym") +
+    theme_bw() +
+    theme(axis.title = element_blank(),
+          plot.title = element_text(hjust = 0.5),
+          panel.background = element_rect(fill = "grey70"),
+          panel.grid = element_blank()) +
+    scale_x_discrete(expand = c(0, 0)) +
+    scale_y_discrete(expand = c(0, 0))
 ```
 

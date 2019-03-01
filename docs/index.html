@@ -125,6 +125,21 @@
 <span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_tl_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightpink"</span>, <span class="dt">high =</span> <span class="st">"tomato"</span>) <span class="op">+</span>
 <span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_br_gradient2</a></span>(<span class="dt">low =</span> <span class="st">"tomato"</span>, <span class="dt">mid =</span> <span class="st">"white"</span>, <span class="dt">high =</span> <span class="st">"dodgerblue"</span>)</code></pre></div>
 <p><img src="index_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
+<p>Since the new geom is a normal ggplot2 object, it can be introduced into a standard ggplot2 workflow. Note that the labels can be adjusted like normal using the <code>labs</code> function and using the <code>fill_tl</code> and <code>fill_br</code> arguments.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(tib) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw">aes</span>(<span class="dt">x =</span> g1, <span class="dt">y =</span> g2, <span class="dt">fill_tl =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(val_<span class="dv">1</span>), <span class="dt">fill_br =</span> val_<span class="dv">2</span>)) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_tl_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightpink"</span>, <span class="dt">high =</span> <span class="st">"tomato"</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_br_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightblue1"</span>, <span class="dt">high =</span> <span class="st">"dodgerblue"</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">labs</span>(<span class="dt">fill_tl =</span> <span class="st">"top-left fill"</span>, <span class="dt">fill_br =</span> <span class="st">"bottom-right fill"</span>,
+         <span class="dt">title =</span> <span class="st">"Example of ggasym"</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.title =</span> <span class="kw">element_blank</span>(),
+          <span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>),
+          <span class="dt">panel.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">"grey70"</span>),
+          <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()) <span class="op">+</span>
+<span class="st">    </span><span class="kw">scale_x_discrete</span>(<span class="dt">expand =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">scale_y_discrete</span>(<span class="dt">expand =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">0</span>))</code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 </div>
 </div>
   </div>
