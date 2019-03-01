@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r, warning=FALSE, message=FALSE}
+library(dplyr)
 library(tibble)
 library(ggplot2)
 library(ggasym)
@@ -75,11 +76,47 @@ ggplot(tib) +
     scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue") +
     labs(fill_tl = "top-left fill", fill_br = "bottom-right fill",
          title = "Example of ggasym") +
+    theme_bw() +
     theme(axis.title = element_blank(),
           plot.title = element_text(hjust = 0.5),
-          panel.background = element_rect(fill = "grey50"),
+          panel.background = element_rect(fill = "grey70"),
           panel.grid = element_blank()) +
     scale_x_discrete(expand = c(0, 0)) +
     scale_y_discrete(expand = c(0, 0))
 ```
 
+### Facetting
+
+If you have multiple categories, facetting works as expected.
+
+```{r}
+ftib <- bind_rows(tib, tib) %>%
+    mutate(k = c(rep("Group 1", 10), rep("Group 2", 10)))
+ftib[1:5, ]
+```
+
+```{r}
+ggplot(ftib) +
+    geom_asymmat(aes(x = g1, y = g2, fill_tl = val_1, fill_br = val_2)) +
+    scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
+    scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue") +
+    labs(fill_tl = "top-left fill", fill_br = "bottom-right fill",
+         title = "Example of ggasym") +
+    theme_bw() +
+    theme(axis.title = element_blank(),
+          plot.title = element_text(hjust = 0.5),
+          panel.background = element_rect(fill = "grey70"),
+          panel.grid = element_blank()) +
+    scale_x_discrete(expand = c(0, 0)) +
+    scale_y_discrete(expand = c(0, 0)) +
+    facet_grid(. ~ k)
+```
+
+---
+
+**To try:** 
+
+* what happens if you switch to polar coords?
+* `coord_flip()`
+* use the `fill` aesthetic
+* try a bunch of wrong input

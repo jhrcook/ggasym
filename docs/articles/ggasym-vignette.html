@@ -92,36 +92,110 @@
 
     
     
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tibble)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tibble)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggasym)</code></pre></div>
 <p><code>ggasym</code> (pronounced “gg-awesome”) is a package that offers a new geom, <code>geom_asymmat</code> (for “asymmetric matrix”), for the plotting of two fill or color aesthetics on a symmetric matrix. This is likely to be of most use for multi-way statistical tests of multiple groups. Thus, a matrix can be formed of each group along the x and y-axes and the top-left and bottom-right triangles can be filled for the difference in mean values and p-values respectively.</p>
 <p>Below, I begin with a simple example to show how easy <code>geom_asymmat</code> is to use for anyone familiar with ggplot2. In another vignette (in progress), I show how the results from a multi-way statistical test can be displayed using <code>ggasym</code> and the wrapper function <em>[insert name of stats test wrapper function here]</em>.</p>
 <p>For information on using ggplot2, start <a href="https://ggplot2.tidyverse.org/index.html">here</a>.</p>
 <hr>
-<div id="basic-example" class="section level2">
+<div id="general-use" class="section level2">
 <h2 class="hasAnchor">
-<a href="#basic-example" class="anchor"></a>Basic Example</h2>
+<a href="#general-use" class="anchor"></a>General Use</h2>
 <p><code>tib</code> is a simple tibble object showing two values, <code>val_1</code> and <code>val_2</code>, for each comparison of the three groups “A”, “B”, and “C”.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tib &lt;-<span class="st"> </span><span class="kw"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span>(<span class="dt">g1 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>),
-              <span class="dt">g2 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"C"</span>),
-              <span class="dt">val_1 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),
-              <span class="dt">val_2 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>))
-tib
-<span class="co">#&gt; # A tibble: 3 x 4</span>
-<span class="co">#&gt;   g1    g2    val_1 val_2</span>
-<span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 A     B         1    -1</span>
-<span class="co">#&gt; 2 A     C         2     0</span>
-<span class="co">#&gt; 3 B     C         3     1</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tib &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">tibble</a></span>(<span class="dt">g1 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"B"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>),
+              <span class="dt">g2 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"E"</span>),
+              <span class="dt">val_1 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">1</span>),
+              <span class="dt">val_2 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">3</span>))
+tib[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, ]
+<span class="co">#&gt; # A tibble: 5 x 4</span>
+<span class="co">#&gt;   g1    g2    val_1  val_2</span>
+<span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 A     B         1  0.534</span>
+<span class="co">#&gt; 2 A     C         2 -0.834</span>
+<span class="co">#&gt; 3 A     D         3 -0.234</span>
+<span class="co">#&gt; 4 A     E         4  3.84 </span>
+<span class="co">#&gt; 5 B     C         5 -3.92</span></code></pre></div>
+<div id="scale-fill-gradient" class="section level3">
+<h3 class="hasAnchor">
+<a href="#scale-fill-gradient" class="anchor"></a>Scale fill gradient</h3>
 <p>This data is then plotted with two different fill values, one for the top-left (<code>tl</code>) triangle and the other for the bottom-right (<code>br</code>) triangle. To demonstrate the complete incorporation of normal ggplot2 conventions, the labels for the color scales can be declared like normal using the <code>labs</code> function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(tib) <span class="op">+</span>
 <span class="st">    </span><span class="kw"><a href="../reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> g1, <span class="dt">y =</span> g2, <span class="dt">fill_tl =</span> val_<span class="dv">1</span>, <span class="dt">fill_br =</span> val_<span class="dv">2</span>)) <span class="op">+</span>
-<span class="st">    </span><span class="kw"><a href="../reference/scale_gradient.html">scale_fill_br_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightblue1"</span>, <span class="dt">high =</span> <span class="st">"dodgerblue"</span>) <span class="op">+</span>
 <span class="st">    </span><span class="kw"><a href="../reference/scale_gradient.html">scale_fill_tl_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightpink"</span>, <span class="dt">high =</span> <span class="st">"tomato"</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">fill_tl =</span>  <span class="st">"top-left fill"</span>, <span class="dt">fill_br =</span> <span class="st">"bottom-right fill"</span>)</code></pre></div>
+<span class="st">    </span><span class="kw"><a href="../reference/scale_gradient.html">scale_fill_br_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightblue1"</span>, <span class="dt">high =</span> <span class="st">"dodgerblue"</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">fill_tl =</span> <span class="st">"top-left fill"</span>, <span class="dt">fill_br =</span> <span class="st">"bottom-right fill"</span>)</code></pre></div>
 <p><img src="ggasym-vignette_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
-<p><em>TODO: show off the other scale features.</em></p>
+</div>
+<div id="scale-fill-gradient-with-a-midpoint" class="section level3">
+<h3 class="hasAnchor">
+<a href="#scale-fill-gradient-with-a-midpoint" class="anchor"></a>Scale fill gradient with a midpoint</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(tib) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="../reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> g1, <span class="dt">y =</span> g2, <span class="dt">fill_tl =</span> val_<span class="dv">1</span>, <span class="dt">fill_br =</span> val_<span class="dv">2</span>)) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="../reference/scale_gradient.html">scale_fill_tl_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightpink"</span>, <span class="dt">high =</span> <span class="st">"tomato"</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="../reference/scale_gradient.html">scale_fill_br_gradient2</a></span>(<span class="dt">low =</span> <span class="st">"gold"</span>, <span class="dt">high =</span> <span class="st">"dodgerblue"</span>, <span class="dt">mid =</span> <span class="st">"white"</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">fill_tl =</span>  <span class="st">"top-left fill"</span>, <span class="dt">fill_br =</span> <span class="st">"bottom-right fill"</span>)</code></pre></div>
+<p><img src="ggasym-vignette_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
+</div>
+<div id="adjusting-theme-and-other-elements" class="section level3">
+<h3 class="hasAnchor">
+<a href="#adjusting-theme-and-other-elements" class="anchor"></a>Adjusting theme and other elements</h3>
+<p>Since <code>geom_asymmat</code> is just like a normal ggplot geom, it can be integrated into a normal ggplot assembly pipeline. Here is an example where I change the x and y-axes, add a background color, remove the gridlines, and add a title center-justified. I also demonstrate the full integration by passing <code><a href="https://www.rdocumentation.org/packages/base/topics/Log">log(val_1)</a></code> to the <code>fill_tl</code> aesthetic.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(tib) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="../reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> g1, <span class="dt">y =</span> g2, <span class="dt">fill_tl =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(val_<span class="dv">1</span>), <span class="dt">fill_br =</span> val_<span class="dv">2</span>)) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="../reference/scale_gradient.html">scale_fill_tl_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightpink"</span>, <span class="dt">high =</span> <span class="st">"tomato"</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="../reference/scale_gradient.html">scale_fill_br_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightblue1"</span>, <span class="dt">high =</span> <span class="st">"dodgerblue"</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">fill_tl =</span> <span class="st">"top-left fill"</span>, <span class="dt">fill_br =</span> <span class="st">"bottom-right fill"</span>,
+         <span class="dt">title =</span> <span class="st">"Example of ggasym"</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">axis.title =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span>(),
+          <span class="dt">plot.title =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>),
+          <span class="dt">panel.background =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span>(<span class="dt">fill =</span> <span class="st">"grey70"</span>),
+          <span class="dt">panel.grid =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span>()) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_x_discrete</a></span>(<span class="dt">expand =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="dt">expand =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">0</span>))</code></pre></div>
+<p><img src="ggasym-vignette_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
+</div>
+<div id="facetting" class="section level3">
+<h3 class="hasAnchor">
+<a href="#facetting" class="anchor"></a>Facetting</h3>
+<p>If you have multiple categories, facetting works as expected.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ftib &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span>(tib, tib) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">k =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="st">"Group 1"</span>, <span class="dv">10</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="st">"Group 2"</span>, <span class="dv">10</span>)))
+ftib[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, ]
+<span class="co">#&gt; # A tibble: 5 x 5</span>
+<span class="co">#&gt;   g1    g2    val_1  val_2 k      </span>
+<span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  </span>
+<span class="co">#&gt; 1 A     B         1  0.534 Group 1</span>
+<span class="co">#&gt; 2 A     C         2 -0.834 Group 1</span>
+<span class="co">#&gt; 3 A     D         3 -0.234 Group 1</span>
+<span class="co">#&gt; 4 A     E         4  3.84  Group 1</span>
+<span class="co">#&gt; 5 B     C         5 -3.92  Group 1</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(ftib) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="../reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> g1, <span class="dt">y =</span> g2, <span class="dt">fill_tl =</span> val_<span class="dv">1</span>, <span class="dt">fill_br =</span> val_<span class="dv">2</span>)) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="../reference/scale_gradient.html">scale_fill_tl_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightpink"</span>, <span class="dt">high =</span> <span class="st">"tomato"</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="../reference/scale_gradient.html">scale_fill_br_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightblue1"</span>, <span class="dt">high =</span> <span class="st">"dodgerblue"</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">fill_tl =</span> <span class="st">"top-left fill"</span>, <span class="dt">fill_br =</span> <span class="st">"bottom-right fill"</span>,
+         <span class="dt">title =</span> <span class="st">"Example of ggasym"</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">axis.title =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span>(),
+          <span class="dt">plot.title =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>),
+          <span class="dt">panel.background =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span>(<span class="dt">fill =</span> <span class="st">"grey70"</span>),
+          <span class="dt">panel.grid =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span>()) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_x_discrete</a></span>(<span class="dt">expand =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="dt">expand =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span>(. <span class="op">~</span><span class="st"> </span>k)</code></pre></div>
+<p><img src="ggasym-vignette_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
+<hr>
+<p><strong>To try:</strong></p>
+<ul>
+<li>what happens if you switch to polar coords?</li>
+<li><code><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip()</a></code></li>
+<li>use the <code>fill</code> aesthetic</li>
+<li>try a bunch of wrong input</li>
+</ul>
+</div>
 </div>
   </div>
 
@@ -130,7 +204,7 @@ tib
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#basic-example">Basic Example</a></li>
+<li><a href="#general-use">General Use</a></li>
       </ul>
 </div>
       </div>

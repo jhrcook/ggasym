@@ -14,7 +14,7 @@ test_that("get core aesthetic name", {
     expect_equal(get_core_aes("colour_br"), "colour")
 })
 
-test_that("fill_tl/br values populate properly", {
+test_that("scale_fill_tl/br_gradient values populate properly", {
     tib <- data.frame(grp1 = c("A", "A", "B"),
                   grp2 = c("B", "C", "C"),
                   val_1 = c(1, 2, NA),
@@ -45,3 +45,4 @@ test_that("fill_tl/br values populate properly", {
     expect_equal(g2_build$data[[2]]$fill_br, c("#BFEFFF", "#86BEFF", "#1E90FF"))
 })
 
+# TODO: repeat for other fills

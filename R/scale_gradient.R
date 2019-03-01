@@ -154,3 +154,7 @@ scale_fill_br_gradientn <- function(..., colours,
                           guide = guide,
                           ...)
 }
+
+# TODO: need to add color wrappers and a few remaining fill functions
+# such as: scale_colour_viridis_d, scale_colour_grey, scale_fill_hue
+#    scale_fill_brewer, scale_fill_distiller

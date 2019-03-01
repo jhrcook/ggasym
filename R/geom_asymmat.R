@@ -63,12 +63,12 @@ geom_asymmat <- function(mapping = NULL, data = NULL,
                          na.rm = FALSE,
                          show.legend = NA,
                          inherit.aes = TRUE) {
+    # open mapping and pass fill_tl as fill to tl layer and fill_br to br layer
     mapping_1 <- mapping[!str_detect(names(mapping), "fill_br")]
     mapping_2 <- mapping[!str_detect(names(mapping), "fill_tl")]
     names(mapping_2)[[1]] <- "y"
     names(mapping_2)[[2]] <- "x"
-    # browser()
-    # open mapping and pass fill_tl as fill to tl layer and fill_br to br layer
+
     new_layer1 <- layer(
         data = data,
         mapping = mapping_1,
@@ -97,7 +97,6 @@ geom_asymmat <- function(mapping = NULL, data = NULL,
             ...
         )
     )
-    # browser()
     return(list(new_layer1, new_layer2))
 }
 
@@ -119,7 +118,6 @@ GeomAsymmat <- ggproto(
     extra_params = c("na.rm", "which_triangle"),
 
     setup_data = function(data, params) {
-        # browser()
         data$width <- data$width %||% params$width %||% resolution(data$x, FALSE)
         data$height <- data$height %||% params$height %||% resolution(data$y, FALSE)
         transform(data,
