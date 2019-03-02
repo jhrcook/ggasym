@@ -2,9 +2,7 @@
 ggasym <img src="man/figures/logo.png" align="right" alt="" width="120" />
 ==========================================================================
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) ![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version/ggasym)
-
-[![Travis build status](https://travis-ci.org/jhrcook/ggasym.svg?branch=master)](https://travis-ci.org/jhrcook/ggasym) [![Coverage status](https://codecov.io/gh/jhrcook/ggasym/branch/master/graph/badge.svg)](https://codecov.io/github/jhrcook/ggasym?branch=master)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) ![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version/ggasym) [![Travis build status](https://travis-ci.org/jhrcook/ggasym.svg?branch=master)](https://travis-ci.org/jhrcook/ggasym) [![Coverage status](https://codecov.io/gh/jhrcook/ggasym/branch/master/graph/badge.svg)](https://codecov.io/github/jhrcook/ggasym?branch=master)
 
 **author: Joshua H. Cook**
 
@@ -76,3 +74,9 @@ ggplot(tib) +
 ```
 
 ![](README_files/figure-markdown_github/unnamed-chunk-5-1.png)
+
+------------------------------------------------------------------------
+
+I would like to thank the team behind ggplot2 for creating a flexible and powerful package for the R community.
+
+Logo made with <a href="https://www.designevo.com/en/" title="Free Online Logo Maker">DesignEvo</a>
