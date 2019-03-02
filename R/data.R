@@ -34,13 +34,13 @@
 #'     Significant body weight gain was observed after 4 weeks. Results provide
 #'     insight into the effect of high fat diets on metabolism in the liver."
 #'
-#' @format \code{moexpr_data} is a tibble (18,596 x 49)
+#' @format
+#' \code{moexpr_data} is a tibble (18,596 x 49)
 #' \describe{
 #'     \item{gene}{gene name for the row}
 #'     \item{GSM994790 ... GSM994837}{expression data for each mouse}
 #' }
-#'
-#' #' @format \code{mouse_diet} is a tibble (48 x 2)
+#' \code{mouse_diet} is a tibble (48 x 2)
 #' \describe{
 #'     \item{mouse}{the ID of the mouse}
 #'     \item{diet}{the level of fat in the diet}

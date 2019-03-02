@@ -10,8 +10,7 @@
     \item{gene}{gene name for the row}
     \item{GSM994790 ... GSM994837}{expression data for each mouse}
 }
-
-#' @format \code{mouse_diet} is a tibble (48 x 2)
+\code{mouse_diet} is a tibble (48 x 2)
 \describe{
     \item{mouse}{the ID of the mouse}
     \item{diet}{the level of fat in the diet}
