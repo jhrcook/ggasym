@@ -1,0 +1,46 @@
+reference:
+- title: Geom
+  desc: >
+    This is the geom introduced by the ggasym package to plot two fill values
+    in a symmetric matrix.
+  contents:
+  - '`geom_asymmat`'
+  - '`GeomAsymmat`'
+  - '`ggasym`'
+
+- title: Fill gradients
+  desc: >
+    Use these functions to declare the fill gradients for the top-left and
+    bottom-right triangles of the matrix.
+  contents:
+  - '`scale_gradient`'
+  - '`continuous_scale_asym`'
+
+- title: Data
+  desc: >
+    These are the data used in the vignettes.
+  contents:
+  - '`enrichment_data`'
+  - '`moexpr_data`'
+
+- title: Utilities
+  desc: >
+    These are functions that are not likely to present any use to the user and
+    may be removed without notice (ie. are experimental)
+  contents:
+  - '`factor_is_greater`'
+  - '`which_level`'
+
+articles:
+- title: Basic use
+  desc: >
+    This vignettes gives a general overview of using `geom_asymmat` in a
+    ggplot2 assembly pipeline (spoiler alert: it's really easy!)
+  contents:
+  - '`ggasym-vignette`'
+
+- title: Examples of ggasym
+  desc: >
+    These vignettes provide examples of using ggasym in real analyses.
+  contents:
+  - '`gene-coexpression`'
