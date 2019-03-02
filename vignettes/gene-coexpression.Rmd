@@ -1,0 +1,29 @@
+---
+title: "Gene Coexpression"
+author: "Joshua H. Cook"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+In this vignette, I demonstrate how `ggasym` can be used to show gene coexpression data.
+
+## Introduction
+
+*(Anybody familliar with general molecular biology can skip the Introduction.)*
+
+Genes in an organism's genome are expressed to produce RNA which can have a function of its own and/or be used to create protein. Each cell expresses the thousands of genes at different rates, controlling the function of the cell. Often, biologists are interested in the levels to understand differences between two or more biological groups (such as normal and tumor cells). Further, measuring *coexpression*, that is the degree to which the expression of two genes covary from sample to sample, suggests an interaction between the two genes' functions.
+
+## Data Preparation
+
+I began by reading in the gene expression data of the livers of mice fed a high fat diet for up to 24 weeks (GEO GDS6248). I prepared the downloaded data before hand to keep this vignette simple, but you can see what I did on this package's GitHub repository at "data-raw/prepare_mouse_gene_expr.R". 
