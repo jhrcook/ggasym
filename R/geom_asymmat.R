@@ -205,6 +205,7 @@ rect_to_poly <- function(xmin, xmax, ymin, ymax) {
     )
 }
 
+
 # swap x and y if necessary for top-left and bottom-right
 organize_xy <- function(data, params) {
     if (!any(names(params) == "which_triangle")) return(data)

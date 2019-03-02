@@ -47,8 +47,8 @@
 #' }
 #'
 #' @examples
-#' mouse_diet
 #' moexpr_data
+#' mouse_diet
 #'
 #' @source \url{https://www.ncbi.nlm.nih.gov/sites/GDSbrowser/}
 "moexpr_data"

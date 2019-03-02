@@ -21,6 +21,14 @@ test_that("x and y in data are organized properly", {
 })
 
 
+test_that("rect to poly works", {
+    df <- data.frame(y = c(1, 1, 0, 0, 1),
+                     x = c(0, 1, 1, 0, 0))
+    expect_equal(dim(rect_to_poly(0, 1, 0, 1)), c(5, 2))
+    expect_equal(rect_to_poly(0, 1, 0, 1), df)
+})
+
+
 test_that("geom_asymmat works", {
     tib <- data.frame(grp1 = c("A", "A", "B"),
                       grp2 = c("B", "C", "C"),

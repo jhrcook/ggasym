@@ -39,8 +39,8 @@ This data was obtained from the Gene Expression Omnibus (GEO) under DataSet
     insight into the effect of high fat diets on metabolism in the liver."
 }
 \examples{
-mouse_diet
 moexpr_data
+mouse_diet
 
 }
 \keyword{datasets}
