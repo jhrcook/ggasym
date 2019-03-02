@@ -20,7 +20,7 @@ In this vignette, I demonstrate how `ggasym` can be used to show gene coexpressi
 
 ## Introduction
 
-*(Anybody familliar with general molecular biology can skip the Introduction.)*
+*(Anybody familiar with general molecular biology can skip the Introduction.)*
 
 Genes in an organism's genome are expressed to produce RNA which can have a function of its own and/or be used to create protein. Each cell expresses the thousands of genes at different rates, controlling the function of the cell. Often, biologists are interested in the levels to understand differences between two or more biological groups (such as normal and tumor cells). Further, measuring *coexpression*, that is the degree to which the expression of two genes covary from sample to sample, suggests an interaction between the two genes' functions.
 

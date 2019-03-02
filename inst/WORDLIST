@@ -4,11 +4,17 @@ behaviour
 Benjamini
 br
 Catalogue
+coexpression
+Coexpression
 colour
 colourbar
 colours
+covary
+DataSet
+expr
 facetting
 Facetting
+GDS
 GeomAsymmat
 gg
 ggplot
