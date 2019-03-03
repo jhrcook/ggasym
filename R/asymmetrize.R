@@ -104,7 +104,7 @@ add_missing_combinations <- function(.data, .x, .y) {
 
     if (nrow(all_combs) == 0) return(.data)
 
-    data_cp <- make_na_df(.data, n_rows = nrow(all_combs)) %>%
+    data_cp <- make_fill_df(.data, n_rows = nrow(all_combs)) %>%
         dplyr::mutate(!!.x := all_combs$Var1,
                       !!.y := all_combs$Var2)
 
@@ -132,8 +132,10 @@ add_missing_combinations <- function(.data, .x, .y) {
 #' make_na_df(df, 5)
 #'
 #' @importFrom magrittr %>%
-#' @export make_na_df
-make_na_df <- function(df, n_rows = 1, fill_val = NA) {
+#' @export make_fill_df
+make_fill_df <- function(df, n_rows = 1, fill_val = NA) {
+    if (ncol(df) < 1) stop("df must have at least 1 column")
+    if (n_rows < 1) stop("must request at least one row")
     na_df <- df %>% dplyr::slice(1) %>% dplyr::mutate_all(function(i) fill_val)
     na_df <- dplyr::bind_rows(purrr::map(seq_len(n_rows), ~ na_df))
     return(na_df)

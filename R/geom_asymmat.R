@@ -228,7 +228,7 @@ organize_xy <- function(data, params) {
 check_all_combinations <- function(data) {
     if(!identical(data, add_missing_combinations(data, x, y))) {
         stop(paste("All combinations not present in data.\n",
-                   "Use \"symmetrise(data, x, y)\" to fix."))
+                   "Use \"asymmetrize(data, x, y)\" to fix."))
     }
     invisible(TRUE)
 }
