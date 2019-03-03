@@ -6,7 +6,7 @@
 \usage{
 geom_asymmat(mapping = NULL, data = NULL, stat = "identity",
   position = "identity", ..., na.rm = FALSE, show.legend = NA,
-  inherit.aes = TRUE, rearrange_xy = TRUE)
+  inherit.aes = TRUE)
 }
 \arguments{
 \item{mapping}{Set of aesthetic mappings created by aes() or aes_(). If

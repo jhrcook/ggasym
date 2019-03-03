@@ -66,8 +66,7 @@ geom_asymmat <- function(mapping = NULL, data = NULL,
                          ...,
                          na.rm = FALSE,
                          show.legend = NA,
-                         inherit.aes = TRUE,
-                         rearrange_xy = TRUE) {
+                         inherit.aes = TRUE) {
     # open mapping and pass fill_tl as fill to tl layer and fill_br to br layer
     # browser()
     mapping_1 <- mapping[!str_detect(names(mapping), "fill_br")]
@@ -85,7 +84,6 @@ geom_asymmat <- function(mapping = NULL, data = NULL,
         params = list(
             na.rm = na.rm,
             which_triangle = "tl",
-            rearrange_xy = rearrange_xy,
             ...
         )
     )
@@ -100,7 +98,6 @@ geom_asymmat <- function(mapping = NULL, data = NULL,
         params = list(
             na.rm = na.rm,
             which_triangle = "br",
-            rearrange_xy = rearrange_xy,
             ...
         )
     )
@@ -122,11 +119,12 @@ geom_asymmat <- function(mapping = NULL, data = NULL,
 GeomAsymmat <- ggproto(
     "GeomAsymmat",
     GeomRect,
-    extra_params = c("na.rm", "which_triangle", "rearrange_xy"),
+    extra_params = c("na.rm", "which_triangle"),
 
     setup_data = function(data, params) {
         # rearrange x and y for ggasym
-        if (params$rearrange_xy) data <- organize_xy(data, params)
+        check_all_combinations(data)
+        data <- organize_xy(data, params)
         data$width <- data$width %||% params$width %||% resolution(data$x, FALSE)
         data$height <- data$height %||% params$height %||% resolution(data$y, FALSE)
         transform(data,
@@ -211,15 +209,26 @@ rect_to_poly <- function(xmin, xmax, ymin, ymax) {
 organize_xy <- function(data, params) {
     if (!any(names(params) == "which_triangle")) return(data)
     if (params$which_triangle == "tl") {
-        .new_x <- ifelse(data$x <= data$y, data$x, data$y)
-        .new_y <- ifelse(data$x <= data$y, data$y, data$x)
-        data$x <- .new_x
-        data$y <- .new_y
+        data <- data %>% dplyr::filter(data$x <= data$y)
+        # .new_x <- ifelse(data$x <= data$y, data$x, data$y)
+        # .new_y <- ifelse(data$x <= data$y, data$y, data$x)
+        # data$x <- .new_x
+        # data$y <- .new_y
     } else if (params$which_triangle == "br") {
-        .new_x <- ifelse(data$x >= data$y, data$x, data$y)
-        .new_y <- ifelse(data$x >= data$y, data$y, data$x)
-        data$x <- .new_x
-        data$y <- .new_y
+        data <- data %>% dplyr::filter(data$x >= data$y)
+        # .new_x <- ifelse(data$x >= data$y, data$x, data$y)
+        # .new_y <- ifelse(data$x >= data$y, data$y, data$x)
+        # data$x <- .new_x
+        # data$y <- .new_y
     }
     return(data)
+}
+
+# check that data is symmetric
+check_all_combinations <- function(data) {
+    if(!identical(data, add_missing_combinations(data, x, y))) {
+        stop(paste("All combinations not present in data.\n",
+                   "Use \"symmetrise(data, x, y)\" to fix."))
+    }
+    invisible(TRUE)
 }
