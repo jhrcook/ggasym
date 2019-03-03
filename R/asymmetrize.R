@@ -25,8 +25,23 @@
 asymmetrize <- function(.data, .x, .y) {
     .x <- enquo(.x)
     .y <- enquo(.y)
-    new_data <- dplyr::bind_rows(.data, swap_cols(.data, !!.x, !!.y))
-    new_data <- add_missing_combinations(new_data, !!.x, !!.y)
+    .x_data <- eval_tidy(.x, .data)
+    .y_data <- eval_tidy(.y, .data)
+    if (class(.x_data) == "factor" | class(.y_data) == "factor") {
+        data_levels <- organize_levels(.x_data, .y_data)
+        .data <- .data %>%
+            dplyr::mutate(!!.x := as.character(!!.x),
+                          !!.y := as.character(!!.y))
+    }
+    new_data <- dplyr::bind_rows(.data, swap_cols(.data, !!.x, !!.y)) %>%
+        add_missing_combinations(!!.x, !!.y)
+
+    if (!is.null(data_levels)) {
+        new_data <- new_data %>%
+            dplyr::mutate(!!.x := factor(!!.x, levels = data_levels),
+                          !!.y := factor(!!.y, levels = data_levels))
+    }
+
     return(new_data)
 }
 
@@ -95,6 +110,18 @@ add_missing_combinations <- function(.data, .x, .y) {
     .x_data <- eval_tidy(.x, .data)
     .y_data <- eval_tidy(.y, .data)
 
+    # handle levels if x or y is a factor
+    if (class(.x_data) == "factor" | class(.y_data) == "factor") {
+        data_levels <- organize_levels(.x_data, .y_data)
+        .data <- .data %>%
+            dplyr::mutate(!!.x := as.character(!!.x),
+                          !!.y := as.character(!!.y))
+        .x_data <- as.character(.x_data)
+        .y_data <- as.character(.y_data)
+    } else {
+        data_levels <- NULL
+    }
+
     current_combs <- paste(.x_data, .y_data, sep = "_")
 
     all_vals <- unique(c(.x_data, .y_data))
@@ -102,13 +129,25 @@ add_missing_combinations <- function(.data, .x, .y) {
         dplyr::mutate(comb = paste(Var1, Var2, sep = "_")) %>%
         dplyr::filter(!(comb %in% current_combs))
 
-    if (nrow(all_combs) == 0) return(.data)
 
-    data_cp <- make_fill_df(.data, n_rows = nrow(all_combs)) %>%
-        dplyr::mutate(!!.x := all_combs$Var1,
-                      !!.y := all_combs$Var2)
+    if (nrow(all_combs) > 0) {
+        data_cp <- make_fill_df(.data, n_rows = nrow(all_combs)) %>%
+            dplyr::mutate(!!.x := all_combs$Var1,
+                          !!.y := all_combs$Var2)
 
-    return(dplyr::bind_rows(.data, data_cp))
+        new_data <- dplyr::bind_rows(.data, data_cp)
+    } else {
+        new_data <- .data
+    }
+
+    # if necessary, reinstate levels
+    if (!is.null(data_levels)) {
+        new_data <- new_data %>%
+            dplyr::mutate(!!.x := factor(!!.x, levels = data_levels),
+                          !!.y := factor(!!.y, levels = data_levels))
+    }
+
+    return(new_data)
 }
 
 
@@ -139,4 +178,51 @@ make_fill_df <- function(df, n_rows = 1, fill_val = NA) {
     na_df <- df %>% dplyr::slice(1) %>% dplyr::mutate_all(function(i) fill_val)
     na_df <- dplyr::bind_rows(purrr::map(seq_len(n_rows), ~ na_df))
     return(na_df)
+}
+
+#' Decides on the levels of factors x and y
+#'
+#' @description Organizes the levels to use for the two inputs. This is useful
+#'     for when one wants to merge two vectors that are factors. Ideally, they
+#'     have the same levels, in which case those are returned. If they have
+#'     overlapping levels, then the levels are merged and sorted (using
+#'     \code{sort}). Otherwise, the levels are dropped (returning \code{NULL})
+#'
+#' @param x,y Two factor vectors
+#' @param ... passed to \code{sort}; see \code{?sort} for options
+#'
+#' @return vector of levels or \code{NULL} for no levels
+#'
+#' @examples
+#' set.seed(0)
+#' a <- factor(sample(LETTERS, 5), levels = LETTERS)
+#' b <- factor(sample(LETTERS, 5), levels = LETTERS)
+#'
+#' a
+#'
+#' b
+#'
+#' organize_levels(a, b)
+#'
+organize_levels <- function(x, y, ...) {
+    x_levels <- levels(x)
+    y_levels <- levels(y)
+    if (is.null(x_levels) | is.null(y_levels)) {
+        # at leat x or y has no levels
+        message("x and/or y have no levels, both coerced to char")
+        return(NULL)
+    } else if (identical(x_levels, y_levels)) {
+        # identical levels
+        return(x_levels)
+    } else if (identical(intersect(x_levels, y_levels), character(0))) {
+        # no overlap in levels
+        message("completely different levels for x and y, coerced to char")
+        return(NULL)
+    } else if (length(intersect(x_levels, y_levels)) >= 1) {
+        # partial overlap in levels
+        message("partial overlap of levels, merging levels of x and y")
+        return(sort(unique(c(x_levels, y_levels)), ...))
+    } else {
+        stop("Unforeseen condition in organizing levels --> open an Issue")
+    }
 }
