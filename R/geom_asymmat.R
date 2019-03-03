@@ -69,10 +69,11 @@ geom_asymmat <- function(mapping = NULL, data = NULL,
                          inherit.aes = TRUE,
                          rearrange_xy = TRUE) {
     # open mapping and pass fill_tl as fill to tl layer and fill_br to br layer
+    # browser()
     mapping_1 <- mapping[!str_detect(names(mapping), "fill_br")]
     mapping_2 <- mapping[!str_detect(names(mapping), "fill_tl")]
-    names(mapping_2)[[1]] <- "y"
-    names(mapping_2)[[2]] <- "x"
+    # names(mapping_2)[[1]] <- "y"
+    # names(mapping_2)[[2]] <- "x"
     new_layer1 <- layer(
         data = data,
         mapping = mapping_1,
