@@ -76,15 +76,26 @@ This dictates a gradient colour scheme for the top-left
 \examples{
 library(tibble)
 library(ggplot2)
-tib <- tibble(g1 = c("A", "A", "B"),
-              g2 = c("B", "C", "C"),
-              val_1 = c(1, 2, 3),
-              val_2 = c(-1, 0, 1))
+set.seed(0)
+tib <- tibble(g1 = c("A", "A", "A", "B", "B", "C"),
+              g2 = c("B", "C", "D", "C", "D", "D"),
+              val_1 = c(1:6),
+              val_2 = sample(-10:10, 6))
 
-tib
+g <- ggplot(tib) +
+    geom_asymmat(aes(x = g1, y = g2, fill_tl = val_1, fill_br = val_2))
 
-ggplot(tib) +
-geom_asymmat(aes(x = g1, y = g2, fill_tl = val_1, fill_br = val_2)) +
-    scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
-    labs(fill_tl = "top-left fill")
+g + scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
+    scale_fill_br_gradient(low = "lightblue", high = "dodgerblue")
+
+g + scale_fill_tl_gradient2(low = "dodgerblue",
+                            mid = "white",
+                            high = "tomato") +
+    scale_fill_br_gradient2(low = "seagreen4",
+                            mid = "white",
+                            high = "orange")
+
+g + scale_fill_tl_gradientn(colours = terrain.colors(10)) +
+    scale_fill_br_gradientn(colours = heat.colors(10))
+
 }

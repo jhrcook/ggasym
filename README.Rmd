@@ -45,6 +45,7 @@ And load the package with the standard `library` function.
 library(ggasym)
 ```
 
+## Basic Usage
 
 Here is an example of a basic example. 
 
