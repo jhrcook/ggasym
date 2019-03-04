@@ -16,14 +16,15 @@ test_that("get core aesthetic name", {
 
 test_that("scale_fill_tl/br_gradient values populate properly", {
     tib <- data.frame(grp1 = c("A", "A", "B"),
-                  grp2 = c("B", "C", "C"),
-                  val_1 = c(1, 2, NA),
-                  val_2 = c(-1, 0, 1))
+                      grp2 = c("B", "C", "C"),
+                      val_1 = c(1, 2, NA),
+                      val_2 = c(-1, 0, 1))
+    tib <- asymmetrise(tib, grp1, grp2)
     g1 <- ggplot(tib) +
         geom_asymmat(aes(x = grp1, y = grp2, fill_tl = val_1, fill_br = val_2)) +
         scale_fill_tl_gradient(low = "lightpink", high = "red", na.value = "green")
     g2 <- g1 +
-        scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue")
+        scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue", na.value = "orange")
 
     g1_build <- ggplot2::ggplot_build(g1)
     g2_build <- ggplot2::ggplot_build(g2)
@@ -51,7 +52,8 @@ test_that("scale_fill_tl/br_gradient2 values populate properly", {
                       grp2 = c("B", "C", "D", "C", "D", "D"),
                       val_1 = c(1, 2, NA, 0, 10, 5),
                       val_2 = c(-2, -1, 0, 1, 2, 3))
-    g1 <- ggplot(tib) +
+    atib <- asymmetrise(tib, grp1, grp2)
+    g1 <- ggplot(atib) +
         geom_asymmat(aes(x = grp1, y = grp2, fill_tl = val_1, fill_br = val_2)) +
         scale_fill_tl_gradient2(low = "lightpink", mid = "white", high = "red",
                                 na.value = "green")
@@ -86,7 +88,8 @@ test_that("scale_fill_tl/br_gradientn values populate properly", {
                       grp2 = c("B", "C", "D", "C", "D", "D"),
                       val_1 = c(1, 2, NA, 0, 10, 5),
                       val_2 = c(-2, -1, 0, 1, 2, 3))
-    g1 <- ggplot(tib) +
+    atib <- asymmetrise(tib, grp1, grp2)
+    g1 <- ggplot(atib) +
         geom_asymmat(aes(x = grp1, y = grp2, fill_tl = val_1, fill_br = val_2)) +
         scale_fill_tl_gradientn(colours = terrain.colors(10))
     g2 <- g1 +

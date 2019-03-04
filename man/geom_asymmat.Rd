@@ -6,7 +6,7 @@
 \usage{
 geom_asymmat(mapping = NULL, data = NULL, stat = "identity",
   position = "identity", ..., na.rm = FALSE, show.legend = NA,
-  inherit.aes = TRUE, rearrange_xy = TRUE)
+  inherit.aes = TRUE)
 }
 \arguments{
 \item{mapping}{Set of aesthetic mappings created by aes() or aes_(). If
@@ -46,11 +46,6 @@ display.}
 than combining with them. This is most useful for helper functions that
 define both data and aesthetics and shouldn't inherit behaviour from the
 default plot specification, e.g. \code{borders()}.}
-
-\item{rearrange_xy}{This parameter controls whether \code{geom_asymmat} can
-rearrange \code{x} and \code{y} such that the lower level is along
-\code{x} for top-left and along \code{y} for bottom-right. This behavior
-is demonstrated in the vignette (\code{vignette("ggasym")})}
 }
 \value{
 A ggplot object of an asymmetrically-colored \eqn{x \times y}
@@ -71,6 +66,7 @@ tib <- tibble(g1 = c("A", "A", "B"),
 
 tib
 
+tib <- asymmetrise(tib, g1, g2)
 ggplot(tib) +
 geom_asymmat(aes(x = g1, y = g2, fill_tl = val_1, fill_br = val_2)) +
     scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue") +

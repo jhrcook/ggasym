@@ -7,12 +7,12 @@ test_that("x and y in data are organized properly", {
     good_params_tl <- list(which_triangle = "tl", other_param = "none")
     good_params_br <- list(which_triangle = "br", other_param = "none")
     bad_params <- list(which_triangle = "bad", other_param = "none")
-    df_tl <- data.frame(x = c(1, 1, 2, 5),
-                        y = c(2, 9, 3, 5),
-                        other_values = c(1,2,3,4))
-    df_br <- data.frame(x = c(2, 9, 3, 5),
-                        y = c(1, 1, 2, 5),
-                        other_values = c(1,2,3,4))
+    df_tl <- data.frame(x = c(1, 2),
+                        y = c(2, 3),
+                        other_values = c(1,3))
+    df_br <- data.frame(x = c(9),
+                        y = c(1),
+                        other_values = c(2))
 
     expect_equal(organize_xy(df, good_params_tl), df_tl)
     expect_equal(organize_xy(df, good_params_br), df_br)
@@ -30,13 +30,12 @@ test_that("rect to poly works", {
 
 
 test_that("geom_asymmat works", {
-    tib <- data.frame(grp1 = c("A", "A", "B"),
-                      grp2 = c("B", "C", "C"),
-                      val_1 = c(1, 2, NA),
-                      val_2 = c(-1, 0, 1))
+    tib <- data.frame(grp1 = c(rep("A", 3), rep("B", 3), rep("C", 3)),
+                      grp2 = c(rep(c("A", "B", "C"), 3)),
+                      val_1 = c(4, 3, 2, 1, NA, 1, 2, 3, 4),
+                      val_2 = c(-4, -3, -2, -1, 0, 1, 2, 3, 4))
     g_asymmat <- ggplot(tib) +
         geom_asymmat(aes(x = grp1, y = grp2, fill_tl = val_1, fill_br = val_2))
-    g_asymmat_build <- ggplot_build(g_asymmat)
     g_tile <- ggplot(tib) +
         geom_tile(aes(x = grp1, y = grp2, fill = val_1))
 
@@ -45,8 +44,5 @@ test_that("geom_asymmat works", {
     expect_true(all(c("fill_tl", "fill_br") %in% names(g_asymmat$labels)))
     expect_true(all(c("val_1", "val_2") %in% unlist(g_asymmat$labels)))
 
-    expect_equal(g_asymmat_build$data[[1]]$fill_tl, tib$val_1)
-    expect_equal(g_asymmat_build$data[[1]]$fill_br, c(NA, NA, NA))
-    expect_equal(g_asymmat_build$data[[2]]$fill_tl, c(NA, NA, NA))
-    expect_equal(g_asymmat_build$data[[2]]$fill_br, tib$val_2)
+    expect_silent(ggplot_build(g_asymmat))
 })
