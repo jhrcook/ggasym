@@ -46,3 +46,11 @@ test_that("geom_asymmat works", {
 
     expect_silent(ggplot_build(g_asymmat))
 })
+
+test_that("successfully check that data is properly formatted", {
+    df <- data.frame(x = LETTERS[1:3],
+                     y = LETTERS[1:3],
+                     other_vals = c(1:3))
+    expect_error(check_all_combinations(df))
+    expect_true(check_all_combinations(asymmetrise(df, x, y)))
+})
