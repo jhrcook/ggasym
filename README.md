@@ -39,6 +39,7 @@ tib <- tibble(g1 = c("A", "A", "A", "A", "B", "B", "B", "C", "C", "D"),
               g2 = c("B", "C", "D", "E", "C", "D", "E", "D", "E", "E"),
               val_1 = seq(1, 10, 1),
               val_2 = rnorm(10, mean = 0, sd = 3))
+tib <- asymmetrise(tib, g1, g2)
 ggplot(tib) +
     geom_asymmat(aes(x = g1, y = g2, fill_tl = val_1, fill_br = val_2)) +
     scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
@@ -53,7 +54,7 @@ The new aesthetics `fill_tl` and `fill_br` behave just like the normal `fill`, e
 ggplot(tib) +
     geom_asymmat(aes(x = g1, y = g2, fill_tl = val_1, fill_br = val_2)) +
     scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
-    scale_fill_br_gradient2(low = "tomato", mid = "white", high = "dodgerblue")
+    scale_fill_br_gradient2(low = "orange", mid = "white", high = "dodgerblue")
 ```
 
 ![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)
