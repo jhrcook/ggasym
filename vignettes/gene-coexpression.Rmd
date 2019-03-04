@@ -32,7 +32,7 @@ library(purrr)
 
 *(Anybody familiar with general molecular biology can skip the Introduction.)*
 
-Genes in an organism's genome are expressed to produce RNA which can have a function of their own and/or be used to create protein. Each cell expresses the thousands of genes at different rates, controlling the function of the cell. Often, biologists are interested in the levels to understand differences between two or more biological groups (such as normal and tumor cells). Further, measuring *correlation*, that is the simillarity in the change of expression of two genes across samples, suggests an interaction between the two genes' functions.
+Genes in an organism's genome are expressed to produce RNA which can have a function of their own and/or be used to create protein. Each cell expresses the thousands of genes at different rates, controlling the function of the cell. Often, biologists are interested in the levels to understand differences between two or more biological groups (such as normal and tumor cells). Further, measuring *correlation*, that is the similarity in the change of expression of two genes across samples, suggests an interaction between the two genes' functions.
 
 ## Data Preparation
 
@@ -54,7 +54,7 @@ moexpr_data
 
 ## Correlation
 
-I next wanted to find the correlation of each gene compared against the others across mice. For that, I used the `cor.test` function. I initated `cov_tib` with two columns containing each gene-to-gene comparison.
+I next wanted to find the correlation of each gene compared against the others across mice. For that, I used the `cor.test` function. I initiated `cov_tib` with two columns containing each gene-to-gene comparison.
 
 ```{r cor_calc}
 # calculate the correlation between gene x and gene y
@@ -67,14 +67,14 @@ moexpr_correlation <- function(x, y, expr_data) {
 cov_tib <- as_tibble(expand.grid(moexpr_data$gene, moexpr_data$gene)) %>%
     dplyr::rename(gene_a = "Var1", gene_b = "Var2") %>%
     filter(gene_a != gene_b) %>%
-    sample_n(1000) %>%
+    sample_n(100) %>%
     mutate(gene_cor = map2(gene_a, gene_b, moexpr_correlation,
                            expr_data = moexpr_data),
            pearson_rho = map_dbl(gene_cor, ~ .x$estimate),
            p_val = map_dbl(gene_cor, ~ .x$p.value))
 ```
 
-To limit the number of false positives, I used the Benjamini-Hochberg FDR corrected p-value (a.k.a. q-value), then only kept the genes with a value below $0.05$, deeming those as "ssignificantly" correlated. I also only kept the genes with Pearson $\rho$ correlation values above $0.7$ or below $-0.7$ (this is an arbitrary cut-off to narrow down the genes being inspect).
+To limit the number of false positives, I used the Benjamini-Hochberg FDR corrected p-value (a.k.a. q-value), then only kept the genes with a value below $0.05$, deeming those as "significantly" correlated. I also only kept the genes with Pearson $\rho$ correlation values above $0.7$ or below $-0.7$ (this is an arbitrary cut-off to narrow down the genes being inspect).
 
 ```{r p_corection}
 cov_tib <- cov_tib %>%
@@ -84,10 +84,11 @@ cov_tib <- cov_tib %>%
 
 ## Plotting the Results
 
-Finally, I can plot the results in a symmetrix matrix using `geom_asymmat`. I will use the $-log_{10}(\text{q-value})$ and Pearson $\rho$ to fill the top-left and bottom-right triangle, respectively.
+Finally, I can plot the results in a symmetric matrix using `geom_asymmat`. I will use the $-log_{10}(\text{q-value})$ and Pearson $\rho$ to fill the top-left and bottom-right triangle, respectively.
 
 ```{r plot}
-ggplot(cov_tib, aes(x = gene_a, y = gene_b)) +
+asym_cov_tib <- asymmetrise(cov_tib, gene_a, gene_b)
+ggplot(asym_cov_tib, aes(x = gene_a, y = gene_b)) +
     geom_asymmat(aes(fill_tl = -log10(q_val), fill_br = pearson_rho)) +
     scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
     scale_fill_br_gradient2(low = "dodgerblue", high = "red")

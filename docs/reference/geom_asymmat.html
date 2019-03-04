@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggasym</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9002</span>
       </span>
     </div>
 
@@ -141,7 +141,7 @@
 
     <pre class="usage"><span class='fu'>geom_asymmat</span>(<span class='kw'>mapping</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stat</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
   <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"identity"</span>, <span class='no'>...</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>inherit.aes</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rearrange_xy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>inherit.aes</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -200,13 +200,6 @@ than combining with them. This is most useful for helper functions that
 define both data and aesthetics and shouldn't inherit behaviour from the
 default plot specification, e.g. <code>borders()</code>.</p></td>
     </tr>
-    <tr>
-      <th>rearrange_xy</th>
-      <td><p>This parameter controls whether <code>geom_asymmat</code> can
-rearrange <code>x</code> and <code>y</code> such that the lower level is along
-<code>x</code> for top-left and along <code>y</code> for bottom-right. This behavior
-is demonstrated in the vignette (<code>vignette("ggasym")</code>)</p></td>
-    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -230,6 +223,7 @@ is demonstrated in the vignette (<code>vignette("ggasym")</code>)</p></td>
 #&gt; </span><span style='color: #555555;'>1</span><span> A     B         1    -</span><span style='color: #BB0000;'>1</span><span>
 #&gt; </span><span style='color: #555555;'>2</span><span> A     C         2     0
 #&gt; </span><span style='color: #555555;'>3</span><span> B     C         3     1</div><div class='input'>
+<span class='no'>tib</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='asymmetrize.html'>asymmetrise</a></span>(<span class='no'>tib</span>, <span class='no'>g1</span>, <span class='no'>g2</span>)
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>tib</span>) +
 <span class='fu'>geom_asymmat</span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>g1</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>g2</span>, <span class='kw'>fill_tl</span> <span class='kw'>=</span> <span class='no'>val_1</span>, <span class='kw'>fill_br</span> <span class='kw'>=</span> <span class='no'>val_2</span>)) +
     <span class='fu'><a href='scale_gradient.html'>scale_fill_br_gradient</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"lightblue1"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"dodgerblue"</span>) +

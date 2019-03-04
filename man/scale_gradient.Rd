@@ -81,7 +81,7 @@ tib <- tibble(g1 = c("A", "A", "A", "B", "B", "C"),
               g2 = c("B", "C", "D", "C", "D", "D"),
               val_1 = c(1:6),
               val_2 = sample(-10:10, 6))
-
+tib <- asymmetrise(tib, g1, g2)
 g <- ggplot(tib) +
     geom_asymmat(aes(x = g1, y = g2, fill_tl = val_1, fill_br = val_2))
 

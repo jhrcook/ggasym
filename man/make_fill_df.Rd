@@ -26,6 +26,6 @@ df <- data.frame(col_a = c("A", "B"),
                  col_b = c("C", "D"))
 df
 
-make_na_df(df, 5)
+make_fill_df(df, 5)
 
 }

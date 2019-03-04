@@ -4,13 +4,12 @@ behaviour
 Benjamini
 br
 Catalogue
-coexpression
 Coexpression
 colour
 colourbar
 colours
-covary
 DataSet
+DesignEvo
 expr
 facetting
 Facetting
@@ -23,9 +22,11 @@ github
 gridlines
 Hochberg
 https
+ie
 io
 jhrcook
 pkgdown
+RData
 repo
 tibble
 tl

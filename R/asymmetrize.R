@@ -16,8 +16,7 @@
 #'                  untouched = c(1, 2))
 #' df
 #'
-#' asymmetrize(df)
-#'
+#' asymmetrize(df, a, b)
 #'
 #' @importFrom rlang enquo eval_tidy !! :=
 #' @importFrom magrittr %>%
@@ -32,6 +31,8 @@ asymmetrize <- function(.data, .x, .y) {
         .data <- .data %>%
             dplyr::mutate(!!.x := as.character(!!.x),
                           !!.y := as.character(!!.y))
+    } else {
+        data_levels <- NULL
     }
     new_data <- dplyr::bind_rows(.data, swap_cols(.data, !!.x, !!.y)) %>%
         add_missing_combinations(!!.x, !!.y)
@@ -168,7 +169,7 @@ add_missing_combinations <- function(.data, .x, .y) {
 #'                  col_b = c("C", "D"))
 #' df
 #'
-#' make_na_df(df, 5)
+#' make_fill_df(df, 5)
 #'
 #' @importFrom magrittr %>%
 #' @export make_fill_df
@@ -204,6 +205,7 @@ make_fill_df <- function(df, n_rows = 1, fill_val = NA) {
 #'
 #' organize_levels(a, b)
 #'
+#'@export organize_levels
 organize_levels <- function(x, y, ...) {
     x_levels <- levels(x)
     y_levels <- levels(y)

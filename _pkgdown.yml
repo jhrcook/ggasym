@@ -7,6 +7,7 @@ reference:
   - '`geom_asymmat`'
   - '`GeomAsymmat`'
   - '`ggasym`'
+  - '`asymmetrize`'
 
 - title: Fill gradients
   desc: >
@@ -28,8 +29,13 @@ reference:
     These are functions that are not likely to present any use to the user and
     may be removed without notice (ie. are experimental)
   contents:
+  - '`add_missing_combinations`'
   - '`factor_is_greater`'
+  - '`make_fill_df`'
+  - '`organize_levels`'
+  - '`swap_cols`'
   - '`which_level`'
+
 
 articles:
 - title: Basic use

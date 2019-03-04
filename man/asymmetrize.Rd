@@ -29,7 +29,6 @@ df <- data.frame(a = c("A", "B"),
                  untouched = c(1, 2))
 df
 
-asymmetrize(df)
-
+asymmetrize(df, a, b)
 
 }

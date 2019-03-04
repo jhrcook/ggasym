@@ -28,6 +28,7 @@
 #'
 #' tib
 #'
+#' tib <- asymmetrise(tib, g1, g2)
 #' ggplot(tib) +
 #' geom_asymmat(aes(x = g1, y = g2, fill_tl = val_1, fill_br = val_2)) +
 #'     scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue") +

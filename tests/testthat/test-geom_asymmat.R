@@ -7,12 +7,12 @@ test_that("x and y in data are organized properly", {
     good_params_tl <- list(which_triangle = "tl", other_param = "none")
     good_params_br <- list(which_triangle = "br", other_param = "none")
     bad_params <- list(which_triangle = "bad", other_param = "none")
-    df_tl <- data.frame(x = c(1, 2, 5),
-                        y = c(2, 3, 5),
-                        other_values = c(1,3,4))
-    df_br <- data.frame(x = c(9, 5),
-                        y = c(1, 5),
-                        other_values = c(2,4))
+    df_tl <- data.frame(x = c(1, 2),
+                        y = c(2, 3),
+                        other_values = c(1,3))
+    df_br <- data.frame(x = c(9),
+                        y = c(1),
+                        other_values = c(2))
 
     expect_equal(organize_xy(df, good_params_tl), df_tl)
     expect_equal(organize_xy(df, good_params_br), df_br)
