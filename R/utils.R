@@ -34,10 +34,3 @@ factor_is_greater <- function(a, b) {
     bi <- which_level(b)
     return(ai > bi)
 }
-
-
-# not exported from ggplot2
-# if (`a` is not null) then `a`, else `b`
-"%||%" <- function(a, b) {
-    if (!is.null(a)) a else b
-}

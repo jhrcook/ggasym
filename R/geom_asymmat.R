@@ -111,6 +111,7 @@ geom_asymmat <- function(mapping = NULL, data = NULL,
 #'     it is advisable to include tests with a cached version to test for
 #'     equivalence.
 #'
+#' @importFrom rlang %||%
 #' @import ggplot2
 #' @export GeomAsymmat
 GeomAsymmat <- ggproto(
