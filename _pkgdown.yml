@@ -30,7 +30,10 @@ reference:
     may be removed without notice (ie. are experimental)
   contents:
   - '`add_missing_combinations`'
+  - '`bind_missing_combs`'
   - '`factor_is_greater`'
+  - '`get_other_combs`'
+  - '`is_grouped`'
   - '`make_fill_df`'
   - '`organize_levels`'
   - '`swap_cols`'

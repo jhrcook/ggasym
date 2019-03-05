@@ -103,12 +103,12 @@
     
     
 <p>In this vignette, I demonstrate how <code>ggasym</code> can be used to show gene correlation data.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggasym)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tibble)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(magrittr)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(purrr)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggasym)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tibble)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(magrittr)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(purrr)</a></code></pre></div>
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
@@ -121,82 +121,82 @@
 <p>I have gene expression (from a microarray) data of the livers of 48 mice, half of which were fed a high-fat diet (making two groups: “High” and “Normal”). I want to find genes that correlated in their change in expression across the samples.</p>
 <p>I began by reading in the gene expression data of the livers of mice fed a high fat diet for up to 24 weeks (GEO GDS6248). I prepared the downloaded data before hand to keep this vignette simple, but you can see what I did on this package’s GitHub repository at “data-raw/prepare_mouse_gene_expr.R”. The major filtration step I completed beforehand was to keep only the top 25% most variable genes to prevent domination of the correlation analysis by genes with little to no change in expression (and to decrease the size of the RData file).</p>
 <p>We can access the data table containing the diets of each mouse in the <code>mouse_diet</code> tibble.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mouse_diet
-<span class="co">#&gt; # A tibble: 48 x 2</span>
-<span class="co">#&gt;    mouse_id  diet  </span>
-<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt; </span>
-<span class="co">#&gt;  1 GSM994790 Normal</span>
-<span class="co">#&gt;  2 GSM994791 Normal</span>
-<span class="co">#&gt;  3 GSM994792 Normal</span>
-<span class="co">#&gt;  4 GSM994793 Normal</span>
-<span class="co">#&gt;  5 GSM994794 Normal</span>
-<span class="co">#&gt;  6 GSM994795 Normal</span>
-<span class="co">#&gt;  7 GSM994796 Normal</span>
-<span class="co">#&gt;  8 GSM994797 Normal</span>
-<span class="co">#&gt;  9 GSM994798 Normal</span>
-<span class="co">#&gt; 10 GSM994799 Normal</span>
-<span class="co">#&gt; # … with 38 more rows</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">mouse_diet</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt; # A tibble: 48 x 2</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt;    mouse_id  diet  </span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt; </span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt;  1 GSM994790 Normal</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt;  2 GSM994791 Normal</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt;  3 GSM994792 Normal</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt;  4 GSM994793 Normal</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt;  5 GSM994794 Normal</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt;  6 GSM994795 Normal</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt;  7 GSM994796 Normal</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt;  8 GSM994797 Normal</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt;  9 GSM994798 Normal</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt; 10 GSM994799 Normal</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; # … with 38 more rows</span></a></code></pre></div>
 <p>And the gene expression data is held in the tibble <code>moexpr_data</code>. The first column holds the gene name and all of the other columns are the gene expression for each mouse.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">moexpr_data
-<span class="co">#&gt; # A tibble: 4,649 x 49</span>
-<span class="co">#&gt;    gene  GSM994790 GSM994791 GSM994792 GSM994793 GSM994794 GSM994795</span>
-<span class="co">#&gt;    &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 Aacs       8.82      8.55      9.06     10.5      10.7       9.26</span>
-<span class="co">#&gt;  2 Aadac      8.29      8.71      8.48      8.58      8.33      8.35</span>
-<span class="co">#&gt;  3 Aadat      8.47      8.33      8.37      8.21      8.21      8.13</span>
-<span class="co">#&gt;  4 Aagab      9.93      9.93     10.1       9.96     10.1      10.0 </span>
-<span class="co">#&gt;  5 Aamdc      9.57      9.55     10.0       9.89     10.3      10.3 </span>
-<span class="co">#&gt;  6 Aard       7.48      7.47      7.77      7.99      8.00      8.05</span>
-<span class="co">#&gt;  7 Aars      11.7      11.7      11.8      11.8      11.9      11.8 </span>
-<span class="co">#&gt;  8 Aars…      8.86      8.78      8.99      8.67      8.82      8.60</span>
-<span class="co">#&gt;  9 Aasdh      9.38      9.49      9.32      9.46      9.51      9.59</span>
-<span class="co">#&gt; 10 Aass       9.31      9.81      9.51      8.23      8.33      8.70</span>
-<span class="co">#&gt; # … with 4,639 more rows, and 42 more variables: GSM994796 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   GSM994797 &lt;dbl&gt;, GSM994798 &lt;dbl&gt;, GSM994799 &lt;dbl&gt;, GSM994800 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   GSM994801 &lt;dbl&gt;, GSM994802 &lt;dbl&gt;, GSM994803 &lt;dbl&gt;, GSM994804 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   GSM994805 &lt;dbl&gt;, GSM994806 &lt;dbl&gt;, GSM994807 &lt;dbl&gt;, GSM994808 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   GSM994809 &lt;dbl&gt;, GSM994810 &lt;dbl&gt;, GSM994811 &lt;dbl&gt;, GSM994812 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   GSM994813 &lt;dbl&gt;, GSM994814 &lt;dbl&gt;, GSM994815 &lt;dbl&gt;, GSM994816 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   GSM994817 &lt;dbl&gt;, GSM994818 &lt;dbl&gt;, GSM994819 &lt;dbl&gt;, GSM994820 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   GSM994821 &lt;dbl&gt;, GSM994822 &lt;dbl&gt;, GSM994823 &lt;dbl&gt;, GSM994824 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   GSM994825 &lt;dbl&gt;, GSM994826 &lt;dbl&gt;, GSM994827 &lt;dbl&gt;, GSM994828 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   GSM994829 &lt;dbl&gt;, GSM994830 &lt;dbl&gt;, GSM994831 &lt;dbl&gt;, GSM994832 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   GSM994833 &lt;dbl&gt;, GSM994834 &lt;dbl&gt;, GSM994835 &lt;dbl&gt;, GSM994836 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   GSM994837 &lt;dbl&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">moexpr_data</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt; # A tibble: 4,649 x 49</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt;    gene  GSM994790 GSM994791 GSM994792 GSM994793 GSM994794 GSM994795</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt;    &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt;  1 Aacs       8.82      8.55      9.06     10.5      10.7       9.26</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt;  2 Aadac      8.29      8.71      8.48      8.58      8.33      8.35</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt;  3 Aadat      8.47      8.33      8.37      8.21      8.21      8.13</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt;  4 Aagab      9.93      9.93     10.1       9.96     10.1      10.0 </span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt;  5 Aamdc      9.57      9.55     10.0       9.89     10.3      10.3 </span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt;  6 Aard       7.48      7.47      7.77      7.99      8.00      8.05</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt;  7 Aars      11.7      11.7      11.8      11.8      11.9      11.8 </span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt;  8 Aars…      8.86      8.78      8.99      8.67      8.82      8.60</span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt;  9 Aasdh      9.38      9.49      9.32      9.46      9.51      9.59</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; 10 Aass       9.31      9.81      9.51      8.23      8.33      8.70</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt; # … with 4,639 more rows, and 42 more variables: GSM994796 &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt; #   GSM994797 &lt;dbl&gt;, GSM994798 &lt;dbl&gt;, GSM994799 &lt;dbl&gt;, GSM994800 &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="co">#&gt; #   GSM994801 &lt;dbl&gt;, GSM994802 &lt;dbl&gt;, GSM994803 &lt;dbl&gt;, GSM994804 &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="co">#&gt; #   GSM994805 &lt;dbl&gt;, GSM994806 &lt;dbl&gt;, GSM994807 &lt;dbl&gt;, GSM994808 &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="co">#&gt; #   GSM994809 &lt;dbl&gt;, GSM994810 &lt;dbl&gt;, GSM994811 &lt;dbl&gt;, GSM994812 &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="co">#&gt; #   GSM994813 &lt;dbl&gt;, GSM994814 &lt;dbl&gt;, GSM994815 &lt;dbl&gt;, GSM994816 &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="co">#&gt; #   GSM994817 &lt;dbl&gt;, GSM994818 &lt;dbl&gt;, GSM994819 &lt;dbl&gt;, GSM994820 &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb3-22" data-line-number="22"><span class="co">#&gt; #   GSM994821 &lt;dbl&gt;, GSM994822 &lt;dbl&gt;, GSM994823 &lt;dbl&gt;, GSM994824 &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="co">#&gt; #   GSM994825 &lt;dbl&gt;, GSM994826 &lt;dbl&gt;, GSM994827 &lt;dbl&gt;, GSM994828 &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="co">#&gt; #   GSM994829 &lt;dbl&gt;, GSM994830 &lt;dbl&gt;, GSM994831 &lt;dbl&gt;, GSM994832 &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="co">#&gt; #   GSM994833 &lt;dbl&gt;, GSM994834 &lt;dbl&gt;, GSM994835 &lt;dbl&gt;, GSM994836 &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="co">#&gt; #   GSM994837 &lt;dbl&gt;</span></a></code></pre></div>
 </div>
 <div id="correlation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#correlation" class="anchor"></a>Correlation</h2>
 <p>I next wanted to find the correlation of each gene compared against the others across mice. For that, I used the <code>cor.test</code> function. I initiated <code>cov_tib</code> with two columns containing each gene-to-gene comparison.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculate the correlation between gene x and gene y</span>
-moexpr_correlation &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, expr_data) {
-    x_data &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(expr_data, gene <span class="op">==</span><span class="st"> </span>x) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/select">select</a></span>(<span class="op">-</span>gene) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/unlist">unlist</a></span>()
-    y_data &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(expr_data, gene <span class="op">==</span><span class="st"> </span>y) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/select">select</a></span>(<span class="op">-</span>gene) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/unlist">unlist</a></span>()
-    <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor.test">cor.test</a></span>(x_data, y_data)
-}
-
-cov_tib &lt;-<span class="st"> </span><span class="kw"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/expand.grid">expand.grid</a></span>(moexpr_data<span class="op">$</span>gene, moexpr_data<span class="op">$</span>gene)) <span class="op">%&gt;%</span>
-<span class="st">    </span>dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/select">rename</a></span>(<span class="dt">gene_a =</span> <span class="st">"Var1"</span>, <span class="dt">gene_b =</span> <span class="st">"Var2"</span>) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(gene_a <span class="op">!=</span><span class="st"> </span>gene_b) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/sample">sample_n</a></span>(<span class="dv">100</span>) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/mutate">mutate</a></span>(<span class="dt">gene_cor =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span>(gene_a, gene_b, moexpr_correlation,
-                           <span class="dt">expr_data =</span> moexpr_data),
-           <span class="dt">pearson_rho =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span>(gene_cor, <span class="op">~</span><span class="st"> </span>.x<span class="op">$</span>estimate),
-           <span class="dt">p_val =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span>(gene_cor, <span class="op">~</span><span class="st"> </span>.x<span class="op">$</span>p.value))</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># calculate the correlation between gene x and gene y</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">moexpr_correlation &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, expr_data) {</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">    x_data &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(expr_data, gene <span class="op">==</span><span class="st"> </span>x) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span>gene) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/unlist">unlist</a></span>()</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">    y_data &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(expr_data, gene <span class="op">==</span><span class="st"> </span>y) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span>gene) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/unlist">unlist</a></span>()</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">    <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor.test">cor.test</a></span>(x_data, y_data)</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">}</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">cov_tib &lt;-<span class="st"> </span><span class="kw"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/expand.grid">expand.grid</a></span>(moexpr_data<span class="op">$</span>gene, moexpr_data<span class="op">$</span>gene)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="st">    </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="dt">gene_a =</span> <span class="st">"Var1"</span>, <span class="dt">gene_b =</span> <span class="st">"Var2"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(gene_a <span class="op">!=</span><span class="st"> </span>gene_b) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_n</a></span>(<span class="dv">100</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">gene_cor =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span>(gene_a, gene_b, moexpr_correlation,</a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">                           <span class="dt">expr_data =</span> moexpr_data),</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14">           <span class="dt">pearson_rho =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span>(gene_cor, <span class="op">~</span><span class="st"> </span>.x<span class="op">$</span>estimate),</a>
+<a class="sourceLine" id="cb4-15" data-line-number="15">           <span class="dt">p_val =</span> <span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span>(gene_cor, <span class="op">~</span><span class="st"> </span>.x<span class="op">$</span>p.value))</a></code></pre></div>
 <p>To limit the number of false positives, I used the Benjamini-Hochberg FDR corrected p-value (a.k.a. q-value), then only kept the genes with a value below <span class="math inline">\(0.05\)</span>, deeming those as “significantly” correlated. I also only kept the genes with Pearson <span class="math inline">\(\rho\)</span> correlation values above <span class="math inline">\(0.7\)</span> or below <span class="math inline">\(-0.7\)</span> (this is an arbitrary cut-off to narrow down the genes being inspect).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cov_tib &lt;-<span class="st"> </span>cov_tib <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/mutate">mutate</a></span>(<span class="dt">q_val =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/p.adjust">p.adjust</a></span>(p_val, <span class="dt">method =</span> <span class="st">"BH"</span>)) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(q_val <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.05</span> <span class="op">&amp;</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/MathFun">abs</a></span>(pearson_rho) <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.7</span>)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">cov_tib &lt;-<span class="st"> </span>cov_tib <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">q_val =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/p.adjust">p.adjust</a></span>(p_val, <span class="dt">method =</span> <span class="st">"BH"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(q_val <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.05</span> <span class="op">&amp;</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/MathFun">abs</a></span>(pearson_rho) <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.7</span>)</a></code></pre></div>
 </div>
 <div id="plotting-the-results" class="section level2">
 <h2 class="hasAnchor">
 <a href="#plotting-the-results" class="anchor"></a>Plotting the Results</h2>
 <p>Finally, I can plot the results in a symmetric matrix using <code>geom_asymmat</code>. I will use the <span class="math inline">\(-log_{10}(\text{q-value})\)</span> and Pearson <span class="math inline">\(\rho\)</span> to fill the top-left and bottom-right triangle, respectively.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">asym_cov_tib &lt;-<span class="st"> </span><span class="kw"><a href="../reference/asymmetrize.html">asymmetrise</a></span>(cov_tib, gene_a, gene_b)
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(asym_cov_tib, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> gene_a, <span class="dt">y =</span> gene_b)) <span class="op">+</span>
-<span class="st">    </span><span class="kw"><a href="../reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">fill_tl =</span> <span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log10</a></span>(q_val), <span class="dt">fill_br =</span> pearson_rho)) <span class="op">+</span>
-<span class="st">    </span><span class="kw"><a href="../reference/scale_gradient.html">scale_fill_tl_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightpink"</span>, <span class="dt">high =</span> <span class="st">"tomato"</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw"><a href="../reference/scale_gradient.html">scale_fill_br_gradient2</a></span>(<span class="dt">low =</span> <span class="st">"dodgerblue"</span>, <span class="dt">high =</span> <span class="st">"red"</span>)</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">asym_cov_tib &lt;-<span class="st"> </span><span class="kw"><a href="../reference/asymmetrise.html">asymmetrise</a></span>(cov_tib, gene_a, gene_b)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(asym_cov_tib, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> gene_a, <span class="dt">y =</span> gene_b)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="../reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">fill_tl =</span> <span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log10</a></span>(q_val), <span class="dt">fill_br =</span> pearson_rho)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="../reference/scale_gradient.html">scale_fill_tl_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightpink"</span>, <span class="dt">high =</span> <span class="st">"tomato"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/scale_gradient.html">scale_fill_br_gradient2</a></span>(<span class="dt">low =</span> <span class="st">"dodgerblue"</span>, <span class="dt">high =</span> <span class="st">"red"</span>)</a></code></pre></div>
 <p><img src="gene-coexpression_files/figure-html/plot-1.png" width="700"></p>
 </div>
   </div>

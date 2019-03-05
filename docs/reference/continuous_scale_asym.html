@@ -198,7 +198,7 @@ see <code><a href='https://ggplot2.tidyverse.org/reference/continuous_scale.html
 #&gt; </span><span style='color: #555555;'>1</span><span> A     B         1    -</span><span style='color: #BB0000;'>1</span><span>
 #&gt; </span><span style='color: #555555;'>2</span><span> A     C         2     0
 #&gt; </span><span style='color: #555555;'>3</span><span> B     C         3     1</div><div class='input'>
-<span class='no'>tib</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='asymmetrize.html'>asymmetrise</a></span>(<span class='no'>tib</span>, <span class='no'>g1</span>, <span class='no'>g2</span>)
+<span class='no'>tib</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='asymmetrise.html'>asymmetrise</a></span>(<span class='no'>tib</span>, <span class='no'>g1</span>, <span class='no'>g2</span>)
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>tib</span>) +
 <span class='fu'><a href='geom_asymmat.html'>geom_asymmat</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>g1</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>g2</span>, <span class='kw'>fill_tl</span> <span class='kw'>=</span> <span class='no'>val_1</span>, <span class='kw'>fill_br</span> <span class='kw'>=</span> <span class='no'>val_2</span>)) +
     <span class='fu'><a href='scale_gradient.html'>scale_fill_br_gradient</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"lightblue1"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"dodgerblue"</span>) +

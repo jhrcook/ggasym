@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Swap columns in a data.frame — swap_cols • ggasym</title>
+<title>Add the missing combinations of x and y — bind_missing_combs • ggasym</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,9 +37,11 @@
 
 
 
-<meta property="og:title" content="Swap columns in a data.frame — swap_cols" />
+<meta property="og:title" content="Add the missing combinations of x and y — bind_missing_combs" />
 
-<meta property="og:description" content="Swap columns .x and .y in .data." />
+<meta property="og:description" content="Adds rows to the input data table to include any combinations
+    of .x and .y that are not already present. All other
+    columns (if any) are set to NA" />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -126,50 +128,58 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Swap columns in a data.frame</h1>
+    <h1>Add the missing combinations of x and y</h1>
     <small class="dont-index">Source: <a href='https://github.com/jhrcook/ggasym/blob/master/R/asymmetrize.R'><code>R/asymmetrize.R</code></a></small>
-    <div class="hidden name"><code>swap_cols.Rd</code></div>
+    <div class="hidden name"><code>bind_missing_combs.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Swap columns <code>.x</code> and <code>.y</code> in <code>.data</code>.</p>
+    <p>Adds rows to the input data table to include any combinations
+    of <code>.x</code> and <code>.y</code> that are not already present. All other
+    columns (if any) are set to <code>NA</code></p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>swap_cols</span>(<span class='no'>.data</span>, <span class='no'>.x</span>, <span class='no'>.y</span>)</pre>
+    <pre class="usage"><span class='fu'>bind_missing_combs</span>(<span class='no'>.data</span>, <span class='no'>.x</span>, <span class='no'>.y</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>a data.frame (or tibble) object</p></td>
+      <td><p>input data table</p></td>
     </tr>
     <tr>
       <th>.x, .y</th>
-      <td><p>column names to switch</p></td>
+      <td><p>names of the columns for which to add missing comparisons</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a data.frame (or tibble) object with <code>.x</code> and <code>.y</code> swapped</p>
+    <p>a data table with the new rows</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>a</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"A"</span>, <span class='st'>"B"</span>),
-                 <span class='kw'>b</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"C"</span>, <span class='st'>"D"</span>),
-                 <span class='kw'>untouched</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>))
+                 <span class='kw'>b</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"C"</span>, <span class='st'>"A"</span>),
+                 <span class='kw'>untouched</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>),
+                 <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='no'>df</span></div><div class='output co'>#&gt;   a b untouched
 #&gt; 1 A C         1
-#&gt; 2 B D         2</div><div class='input'>
-<span class='fu'>swap_cols</span>(<span class='no'>df</span>, <span class='no'>a</span>, <span class='no'>b</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 2 x 3</span><span>
-#&gt;   a     b     untouched
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> C     A             1
-#&gt; </span><span style='color: #555555;'>2</span><span> D     B             2</div><div class='input'>
-</div></span></pre>
+#&gt; 2 B A         2</div><div class='input'>
+<span class='fu'>bind_missing_combs</span>(<span class='no'>df</span>, <span class='no'>a</span>, <span class='no'>b</span>)</div><div class='output co'>#&gt;   a b untouched
+#&gt; 1 A C         1
+#&gt; 2 B A         2
+#&gt; 3 A A        NA
+#&gt; 4 C A        NA
+#&gt; 5 A B        NA
+#&gt; 6 B B        NA
+#&gt; 7 C B        NA
+#&gt; 8 B C        NA
+#&gt; 9 C C        NA</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
