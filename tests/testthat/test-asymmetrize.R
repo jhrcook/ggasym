@@ -46,13 +46,18 @@ test_that("adding all combinations", {
 
 
 test_that("columns are swapped",  {
-    df <- data.frame(x = c("A", "B", "B", "A"),
-                     y = c("A", "B", "A", "B"),
-                     val = c(1, 2, NA, NA))
-    df_swapped <- data.frame(x = c("A", "B", "A", "B"),
-                             y = c("A", "B", "B", "A"),
-                             val = c(1, 2, NA, NA))
+    df <- data.frame(x = c(LETTERS[1:4]),
+                     y = c(letters[10:13]),
+                     val = c(1, 2, NA, NA),
+                     grp = c(1, 1, 2, 2))
+    grouped_df <- dplyr::group_by(df, grp)
+    df_swapped <- data.frame(x = c(letters[10:13]),
+                             y = c(LETTERS[1:4]),
+                             val = c(1, 2, NA, NA),
+                             grp = c(1, 1, 2, 2))
     expect_equal(swap_cols(df, x, y), df_swapped)
+    expect_equal(swap_cols(grouped_df, x, y),
+                 dplyr::group_by(df_swapped, grp))
 })
 
 
@@ -73,3 +78,8 @@ test_that("data frame is asymmeterized", {
     expect_equal(asymmetrise(df_char, a, b), a_df)
     expect_equal(asymmetrize(df_char, a, b), a_df)
 })
+
+
+# TESTS TO ADD:
+#  asymmetrise/ze obeys groups
+#  `get_other_combs`

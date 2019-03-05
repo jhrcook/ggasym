@@ -19,9 +19,10 @@ Imports:
     magrittr (>= 1.5.0),
     purrr (>= 0.3.0),
     rlang (>= 0.3.0),
+    scales (>= 1.0.0),
     stringr (>= 1.4.0),
     tibble (>= 2.0.0),
-    scales
+    tidyr (>= 0.8.0)
 RoxygenNote: 6.1.1
 Suggests: 
     knitr,

@@ -63,7 +63,7 @@ ggplot(tib, aes(x = g1, y = g2)) +
 ggplot(tib, aes(x = g1, y = g2)) +
     geom_asymmat(aes(fill_tl = val_1, fill_br = val_2)) +
     scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
-    scale_fill_br_gradient2(low = "gold", high = "dodgerblue", mid = "white") +
+    scale_fill_br_gradient2(low = "orange", high = "dodgerblue", mid = "white") +
     labs(fill_tl =  "top-left fill", fill_br = "bottom-right fill")
 ```
 
@@ -89,16 +89,27 @@ ggplot(tib, aes(x = g1, y = g2)) +
 
 ### Facetting
 
-If you have multiple categories, facetting works as expected.
+If you have multiple categories, facetting works as expected. The only difference is in the preparation of the data table: you must `group_by` the value(s) you will facet by before passing to `asymmetrise`. This is shown below.
 
 ```{r facetting_setup}
-ftib <- bind_rows(tib, tib) %>%
-    mutate(k = c(rep("Group 1", nrow(tib)), rep("Group 2", nrow(tib))))
-ftib[1:5, ]
+tib <- tibble(g1 = rep(c("A", "A", "B"), 2),
+              g2 = rep(c("B", "C", "C"), 2),
+              val_1 = seq(1, 6),
+              val_2 = rnorm(6),
+              grps = c(1, 1, 1, 2, 2, 2))
+tib
 ```
 
+Grouping first by `grps`, the tibble is asymmetrized.
+
+```{r grouped_asymm}
+tib <- tib %>% group_by(grps) %>% asymmetrise(g1, g2)
+tib
+```
+
+
 ```{r facetting_plot}
-ggplot(ftib) +
+ggplot(tib) +
     geom_asymmat(aes(x = g1, y = g2, fill_tl = val_1, fill_br = val_2)) +
     scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
     scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue") +
@@ -111,6 +122,6 @@ ggplot(ftib) +
           panel.grid = element_blank()) +
     scale_x_discrete(expand = c(0, 0)) +
     scale_y_discrete(expand = c(0, 0)) +
-    facet_grid(. ~ k)
+    facet_grid(. ~ grps)
 ```
 

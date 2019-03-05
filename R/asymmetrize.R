@@ -12,20 +12,21 @@
 #' @examples
 #'
 #' df <- data.frame(a = c("A", "B"),
-#'                  b = c("C", "D"),
+#'                  b = c("C", "A"),
 #'                  untouched = c(1, 2))
 #' df
 #'
-#' asymmetrize(df, a, b)
+#' asymmetrise(df, a, b)
 #'
 #' @importFrom rlang enquo eval_tidy !! :=
 #' @importFrom magrittr %>%
-#' @export asymmetrize
-asymmetrize <- function(.data, .x, .y) {
+#' @export asymmetrise
+asymmetrise <- function(.data, .x, .y) {
     .x <- enquo(.x)
     .y <- enquo(.y)
     .x_data <- eval_tidy(.x, .data)
     .y_data <- eval_tidy(.y, .data)
+
     if (class(.x_data) == "factor" | class(.y_data) == "factor") {
         data_levels <- organize_levels(.x_data, .y_data)
         .data <- .data %>%
@@ -47,9 +48,9 @@ asymmetrize <- function(.data, .x, .y) {
 }
 
 
-#' @rdname asymmetrize
-#' @export asymmetrise
-asymmetrise <- asymmetrize
+#' @rdname asymmetrise
+#' @export asymmetrize
+asymmetrize <- asymmetrise
 
 
 #' Swap columns in a data.frame
@@ -73,6 +74,8 @@ asymmetrise <- asymmetrize
 #' @importFrom magrittr %>%
 #' @export swap_cols
 swap_cols <- function(.data, .x, .y) {
+    groups <- dplyr::groups(.data)
+    .data <- dplyr::ungroup(.data)
     .x <- enquo(.x)
     .y <- enquo(.y)
     .x_data <- eval_tidy(.x, .data)
@@ -80,14 +83,15 @@ swap_cols <- function(.data, .x, .y) {
     new_data <- .data %>%
         dplyr::mutate(!!.x := .y_data,
                       !!.y := .x_data)
-    return(new_data)
+    return(dplyr::group_by(new_data, !!!groups))
 }
 
 
 #' Add missing combinations of x and y to a data.frame
 #'
 #' @description Add rows to \code{.data} to complete all combinations of
-#'     columns \code{.x} and \code{.y}.
+#'     columns \code{.x} and \code{.y}. Importantly, this function aknowledges
+#'     any groups created by \code{dplyr::group_by}.
 #'
 #' @param .data a data.frame (or tibble) object
 #' @param .x,.y column names to make combinations of
@@ -123,22 +127,18 @@ add_missing_combinations <- function(.data, .x, .y) {
         data_levels <- NULL
     }
 
-    current_combs <- paste(.x_data, .y_data, sep = "_")
-
-    all_vals <- unique(c(.x_data, .y_data))
-    all_combs <- expand.grid(all_vals, all_vals, stringsAsFactors = FALSE) %>%
-        dplyr::mutate(comb = paste(Var1, Var2, sep = "_")) %>%
-        dplyr::filter(!(comb %in% current_combs))
-
-
-    if (nrow(all_combs) > 0) {
-        data_cp <- make_fill_df(.data, n_rows = nrow(all_combs)) %>%
-            dplyr::mutate(!!.x := all_combs$Var1,
-                          !!.y := all_combs$Var2)
-
-        new_data <- dplyr::bind_rows(.data, data_cp)
+    if (is_grouped(.data)) {
+        # call function over all groups
+        # purrr::nest() %>% mutate(data = my_function(data)
+        new_data <- .data %>%
+            tidyr::nest(.key = ".grp_nest") %>%
+            dplyr::mutate(.grp_nest = purrr::map(.grp_nest,
+                    function(df) {
+                        new_df <- bind_missing_combs(df, !!.x, !!.y)
+                    })) %>%
+            tidyr::unnest()
     } else {
-        new_data <- .data
+        new_data <- bind_missing_combs(.data, !!.x, !!.y)
     }
 
     # if necessary, reinstate levels
@@ -151,6 +151,67 @@ add_missing_combinations <- function(.data, .x, .y) {
     return(new_data)
 }
 
+#' Add the missing combinations of x and y
+#'
+#' @description Adds rows to the input data table to include any combinations
+#'     of \code{.x} and \code{.y} that are not already present. All other
+#'     columns (if any) are set to \code{NA}
+#'
+#' @param .data input data table
+#' @param .x,.y names of the columns for which to add missing comparisons
+#'
+#' @return a data table with the new rows
+#'
+#' @examples
+#' df <- data.frame(a = c("A", "B"),
+#'                  b = c("C", "A"),
+#'                  untouched = c(1, 2),
+#'                  stringsAsFactors = FALSE)
+#' df
+#'
+#' bind_missing_combs(df, a, b)
+#'
+#' @export bind_missing_combs
+bind_missing_combs <- function(.data, .x, .y)  {
+    .x <- enquo(.x)
+    .y <- enquo(.y)
+    others_combs <- get_other_combs(eval_tidy(.x, .data),
+                                    eval_tidy(.y, .data))
+    if (nrow(others_combs) > 0) {
+        data_cp <- make_fill_df(.data, n_rows = nrow(others_combs)) %>%
+            dplyr::mutate(!!.x := others_combs$Var1,
+                          !!.y := others_combs$Var2)
+
+        new_data <- dplyr::bind_rows(.data, data_cp)
+    } else {
+        new_data <- .data
+    }
+    return(new_data)
+}
+
+#' Get all combinations of values between two vectors
+#'
+#' @description Get all combinations of the values in vectors x and y that
+#'     aren't already there.
+#'
+#' @param x,y two vectors
+#'
+#' @return data.frame of other posibble combinations stored in \code{Var1} and
+#'     \code{Var2} for \code{x} and \code{y}, respectively
+#'
+#' @examples
+#' get_other_combs(LETTERS[1:2], LETTERS[1:2])
+#'
+#' @export get_other_combs
+get_other_combs <- function(x, y) {
+    current_combs <- paste(x, y, sep = "_")
+    all_vals <- unique(c(x, y))
+    all_combs <- expand.grid(all_vals, all_vals, stringsAsFactors = FALSE) %>%
+        dplyr::mutate(comb = paste(Var1, Var2, sep = "_")) %>%
+        dplyr::filter(!(comb %in% current_combs)) %>%
+        dplyr::select(-comb)
+    return(all_combs)
+}
 
 #' Make a data.frame of all a single value
 #'
@@ -180,6 +241,7 @@ make_fill_df <- function(df, n_rows = 1, fill_val = NA) {
     na_df <- dplyr::bind_rows(purrr::map(seq_len(n_rows), ~ na_df))
     return(na_df)
 }
+
 
 #' Decides on the levels of factors x and y
 #'
@@ -227,4 +289,25 @@ organize_levels <- function(x, y, ...) {
     } else {
         stop("Unforeseen condition in organizing levels --> open an Issue")
     }
+}
+
+
+#' Is a data table grouped?
+#'
+#' @description Determines if the input data.frame or tibble is grouped
+#'     (using \code{dplyr::group_by}
+#'
+#' @param .data input \code{data.frame} or \code{tibble}
+#'
+#' @return boolean
+#'
+#' @examples
+#' df <- data.frame(x = c(1:5), g = c(1,1,2,2,2))
+#' is_grouped(df)
+#'
+#' is_grouped(dplyr::group_by(df, g))
+#'
+#' @export is_grouped
+is_grouped <- function(.data) {
+    !is.null(dplyr::groups(.data))
 }
