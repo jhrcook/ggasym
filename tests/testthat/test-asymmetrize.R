@@ -57,13 +57,19 @@ test_that("columns are swapped",  {
 
 
 test_that("data frame is asymmeterized", {
-    df <- data.frame(a = c("A", "B"),
-                     b = c("C", "D"))
+    df_factors <- data.frame(a = c("A", "B"),
+                             b = c("C", "D"))
+    df_char <- data.frame(a = c("A", "B"),
+                          b = c("C", "D"),
+                          stringsAsFactors = FALSE)
     a_df <- data.frame(a = c("A", "B", "C", "D", "A", "B", "D", "A", "B", "C",
                              "B", "C", "D", "A", "C", "D"),
                        b = c("C", "D", "A", "B", "A", "A", "A", "B", "B", "B",
                              "C", "C", "C", "D", "D", "D"),
                        stringsAsFactors = FALSE)
-    expect_equal(asymmetrise(df, a, b), a_df)
-    expect_equal(asymmetrize(df, a, b), a_df)
+    expect_equal(asymmetrise(df_factors, a, b), a_df)
+    expect_equal(asymmetrize(df_factors, a, b), a_df)
+
+    expect_equal(asymmetrise(df_char, a, b), a_df)
+    expect_equal(asymmetrize(df_char, a, b), a_df)
 })
