@@ -20,15 +20,34 @@ a data table with new rows for the added comparisons
 }
 \description{
 This function prepares input data for \code{geom_asymmat} by
-    adding in any missing comparisons to be plotted.
+    adding in any missing comparisons to be plotted. Note that this function
+    observes groups created with the \code{dplyr::group_by} function. For
+    the ggasym package, this is useful for when you want to facet the plot:
+    before "asymmetrizing" the data table, use \code{dplyr::group_by},
+    passing the column name you wish to later facet by. This functionality
+    is demonstrated in the second example, below.
 }
+\section{Warning}{
+
+This function does it's best when \code{x} or \code{y} are factors. If they
+    have the same levels, then they are maintained. If the levels partially
+    overlap, they are merged. Otherwise, the values are turned into
+    characters and all levels dropped. If you are using factors, save
+    yourself the headache and make both columns factors with the desired
+    levels.
+}
+
 \examples{
 
-df <- data.frame(a = c("A", "B"),
-                 b = c("C", "A"),
-                 untouched = c(1, 2))
+df <- data.frame(a = c("A", "B", "C"),
+                 b = c("C", "A", "B"),
+                 untouched = c(1, 2, 3),
+                 grouping_value = c("group1", "group1", "group2"))
 df
 
 asymmetrise(df, a, b)
+
+grouped_df <- dplyr::group_by(df, grouping_value)
+asymmetrise(grouped_df, a, b)
 
 }

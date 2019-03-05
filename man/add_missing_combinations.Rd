@@ -16,8 +16,8 @@ a data.frame (or tibble) with additional columns
 }
 \description{
 Add rows to \code{.data} to complete all combinations of
-    columns \code{.x} and \code{.y}. Importantly, this function aknowledges
-    any groups created by \code{dplyr::group_by}.
+    columns \code{.x} and \code{.y}. Importantly, this function observes and
+    maintains any groups created by \code{dplyr::group_by}.
 }
 \examples{
 df <- data.frame(a = c("A", "B"),

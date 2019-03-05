@@ -10,7 +10,7 @@ get_other_combs(x, y)
 \item{x, y}{two vectors}
 }
 \value{
-data.frame of other posibble combinations stored in \code{Var1} and
+data.frame of other possible combinations stored in \code{Var1} and
     \code{Var2} for \code{x} and \code{y}, respectively
 }
 \description{

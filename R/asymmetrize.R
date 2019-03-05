@@ -1,7 +1,12 @@
 #' Add all missing comparisons between two columns
 #'
 #' @description This function prepares input data for \code{geom_asymmat} by
-#'     adding in any missing comparisons to be plotted.
+#'     adding in any missing comparisons to be plotted. Note that this function
+#'     observes groups created with the \code{dplyr::group_by} function. For
+#'     the ggasym package, this is useful for when you want to facet the plot:
+#'     before "asymmetrizing" the data table, use \code{dplyr::group_by},
+#'     passing the column name you wish to later facet by. This functionality
+#'     is demonstrated in the second example, below.
 #'
 #' @param .data a tidy \code{data.frame} or \code{tibble}
 #' @param .x,.y the data to add all comparisons between (ie. will be the
@@ -11,12 +16,25 @@
 #'
 #' @examples
 #'
-#' df <- data.frame(a = c("A", "B"),
-#'                  b = c("C", "A"),
-#'                  untouched = c(1, 2))
+#' df <- data.frame(a = c("A", "B", "C"),
+#'                  b = c("C", "A", "B"),
+#'                  untouched = c(1, 2, 3),
+#'                  grouping_value = c("group1", "group1", "group2"),
+#'                  stringsAsFactors = FALSE)
 #' df
 #'
 #' asymmetrise(df, a, b)
+#'
+#' grouped_df <- dplyr::group_by(df, grouping_value)
+#' asymmetrise(grouped_df, a, b)
+#'
+#' @section Warning:
+#' This function does it's best when \code{x} or \code{y} are factors. If they
+#'     have the same levels, then they are maintained. If the levels partially
+#'     overlap, they are merged. Otherwise, the values are turned into
+#'     characters and all levels dropped. If you are using factors, save
+#'     yourself the headache and make both columns factors with the desired
+#'     levels.
 #'
 #' @importFrom rlang enquo eval_tidy !! :=
 #' @importFrom magrittr %>%
@@ -90,8 +108,8 @@ swap_cols <- function(.data, .x, .y) {
 #' Add missing combinations of x and y to a data.frame
 #'
 #' @description Add rows to \code{.data} to complete all combinations of
-#'     columns \code{.x} and \code{.y}. Importantly, this function aknowledges
-#'     any groups created by \code{dplyr::group_by}.
+#'     columns \code{.x} and \code{.y}. Importantly, this function observes and
+#'     maintains any groups created by \code{dplyr::group_by}.
 #'
 #' @param .data a data.frame (or tibble) object
 #' @param .x,.y column names to make combinations of
@@ -196,7 +214,7 @@ bind_missing_combs <- function(.data, .x, .y)  {
 #'
 #' @param x,y two vectors
 #'
-#' @return data.frame of other posibble combinations stored in \code{Var1} and
+#' @return data.frame of other possible combinations stored in \code{Var1} and
 #'     \code{Var2} for \code{x} and \code{y}, respectively
 #'
 #' @examples
