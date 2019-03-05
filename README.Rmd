@@ -35,35 +35,35 @@ Checkout the documentation and vignettes at the pkgdown website
 
 You can download and install from the GitHub repo.
 
-```{r, eval = FALSE}
+```{r devtools_download, eval = FALSE}
 devtools::install_github("jhrcook/ggasym")
 ```
 
 And load the package with the standard `library` function.
 
-```{r}
+```{r load_lib}
 library(ggasym)
 ```
 
 ## Basic Usage
 
-Here is an example of a basic example. 
+Here is a basic example. `tib` is a "tibble" (ie. fancy "data.frame") of comparisons between groups "A" through "E". There are two values to be plotted, `val_1` and `val_2`, that hold data on the comparison between `g1` and `g2`. `tib` is first passed to `asymmetrise` to fill in all the missing combinations between `g1` and `g2` such that the symmetric matrix can be built. All added values take the value `NA`. The modified data table is finally passed to `ggplot` and `geom_asymmat` is added on.
 
-```{r}
+```{r example1}
 tib <- tibble(g1 = c("A", "A", "A", "A", "B", "B", "B", "C", "C", "D"),
               g2 = c("B", "C", "D", "E", "C", "D", "E", "D", "E", "E"),
               val_1 = seq(1, 10, 1),
               val_2 = rnorm(10, mean = 0, sd = 3))
 tib <- asymmetrise(tib, g1, g2)
-ggplot(tib) +
-    geom_asymmat(aes(x = g1, y = g2, fill_tl = val_1, fill_br = val_2)) +
+ggplot(tib, aes(x = g1, y = g2)) +
+    geom_asymmat(aes(fill_tl = val_1, fill_br = val_2)) +
     scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
     scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue")
 ```
 
 The new aesthetics `fill_tl` and `fill_br` behave just like the normal `fill`, except that they correspond to the top-left ("tl") and bottom-right ("br") triangles of the matrix, respectively. This package also includes analogous functions for scaling the fill colors such as `scale_fill_tl_gradient2` and `scale_fill_br_gradientn` that operate just as expected when using ggplot2.
 
-```{r}
+```{r example2}
 ggplot(tib) +
     geom_asymmat(aes(x = g1, y = g2, fill_tl = val_1, fill_br = val_2)) +
     scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
@@ -72,7 +72,7 @@ ggplot(tib) +
 
 Since the new geom is a normal ggplot2 object, it can be introduced into a standard ggplot2 workflow. Note that the labels can be adjusted like normal using the `labs` function and using the `fill_tl` and `fill_br` arguments.
 
-```{r}
+```{r example3}
 ggplot(tib) +
     geom_asymmat(aes(x = g1, y = g2, fill_tl = log(val_1), fill_br = val_2)) +
     scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
