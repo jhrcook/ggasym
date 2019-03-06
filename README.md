@@ -2,7 +2,7 @@
 ggasym <a href="https://jhrcook.github.io/ggasym/index.html"> <img src="man/figures/logo.png" align="right" alt="" width="120" /> </a>
 ======================================================================================================================================
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version/ggasym)](https://jhrcook.github.io/ggasym/index.html) [![Travis build status](https://travis-ci.org/jhrcook/ggasym.svg?branch=master)](https://travis-ci.org/jhrcook/ggasym) [![Coverage status](https://codecov.io/gh/jhrcook/ggasym/branch/master/graph/badge.svg)](https://codecov.io/github/jhrcook/ggasym?branch=master)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version/ggasym)](https://jhrcook.github.io/ggasym/index.html) [![Travis build status](https://travis-ci.org/jhrcook/ggasym.svg?branch=diagonal)](https://travis-ci.org/jhrcook/ggasym) [![Coverage status](https://codecov.io/gh/jhrcook/ggasym/branch/master/graph/badge.svg)](https://codecov.io/github/jhrcook/ggasym?branch=diagonal)
 
 ggasym (pronounced "gg-awesome") plots a symmetric matrix with two different fill aesthetics for the top-left and bottom-right triangles. It operates within the Grammar of Graphics paradigm implemented in [ggplot2](https://ggplot2.tidyverse.org).
 
