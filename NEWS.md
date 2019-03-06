@@ -1,3 +1,7 @@
+# ggasym 0.0.0.9003
+
+* The "asymmetrization" preparation step down includes the abilty to use `dplyr::group_by` to maintain a column(s) that will be used for facetting.
+
 # ggasym 0.0.0.9002
 
 * The `asymmetrise` function was included to prepare the input table before handing to ggplot2. This was necessary after I realized my previous version would not work if you passed the aesthetics for `x` and `y` to `ggplot()` before adding to `geom_asymmat()`.
@@ -8,4 +12,4 @@
 
 # ggasym 0.0.0.9000
 
-* `pkgdown` website began - `ggasym` not yet functional.
+* `pkgdown` website begun - `ggasym` not yet functional.

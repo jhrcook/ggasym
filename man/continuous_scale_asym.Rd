@@ -24,9 +24,6 @@ for more info.}
 \item{...}{other input is passed on to \code{ggplot2::continuous_scale()};
 see \code{?ggplot2::continuous_scale} for complete documentation}
 }
-\value{
-a scales object \code{FINISH THIS}
-}
 \description{
 This is a this wrapper around \code{continuous_scale()} from
     the ggplot2 package. It is generally best to call this function

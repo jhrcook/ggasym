@@ -16,8 +16,6 @@
 #' @param ... other input is passed on to \code{ggplot2::continuous_scale()};
 #'     see \code{?ggplot2::continuous_scale} for complete documentation
 #'
-#' @return a scales object \code{FINISH THIS}
-#'
 #' @examples
 #' library(tibble)
 #' library(ggplot2)
