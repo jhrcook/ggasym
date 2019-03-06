@@ -47,7 +47,8 @@
 #'                             high = "tomato") +
 #'     scale_fill_br_gradient2(low = "seagreen4",
 #'                             mid = "white",
-#'                             high = "orange")
+#'                             high = "orange") +
+#'
 #'
 #' g + scale_fill_tl_gradientn(colours = terrain.colors(10)) +
 #'     scale_fill_br_gradientn(colours = heat.colors(10))
@@ -78,6 +79,21 @@ scale_fill_br_gradient <- function(..., low = "#132B43", high = "#56B1F7",
                                    na.value = "grey50",
                                    guide = "colourbar",
                                    aesthetics = "fill_br") {
+    continuous_scale_asym(aesthetics = aesthetics,
+                          scale_name = "gradient",
+                          palette = scales::seq_gradient_pal(low, high, space),
+                          na.value = na.value,
+                          guide = guide, ...)
+}
+
+
+#' @rdname scale_gradient
+#' @export scale_fill_diag_gradient
+scale_fill_diag_gradient <- function(..., low = "#132B43", high = "#56B1F7",
+                                     space = "Lab",
+                                     na.value = "grey50",
+                                     guide = "colourbar",
+                                     aesthetics = "fill_diag") {
     continuous_scale_asym(aesthetics = aesthetics,
                           scale_name = "gradient",
                           palette = scales::seq_gradient_pal(low, high, space),
@@ -125,6 +141,26 @@ scale_fill_br_gradient2 <- function(...,
                           rescaler = mid_rescaler(mid = midpoint))
 }
 
+#' @rdname scale_gradient
+#' @export scale_fill_diag_gradient2
+scale_fill_diag_gradient2 <- function(...,
+                                      low = scales::muted("red"),
+                                      mid = "white",
+                                      high = scales::muted("blue"),
+                                      midpoint = 0,
+                                      space = "Lab",
+                                      na.value = "grey50",
+                                      guide = "colourbar",
+                                      aesthetics = "fill_diag") {
+    continuous_scale_asym(aesthetics = aesthetics,
+                          scale_name = "gradient2",
+                          palette = scales::div_gradient_pal(low, mid, high, space),
+                          na.value = na.value,
+                          guide = guide, ...,
+                          rescaler = mid_rescaler(mid = midpoint))
+}
+
+
 # not exported from ggplot2
 mid_rescaler <- function(mid) {
     function(x, to = c(0, 1), from = range(x, na.rm = TRUE)) {
@@ -160,6 +196,24 @@ scale_fill_br_gradientn <- function(..., colours,
                                     guide = "colourbar",
                                     aesthetics = "fill_br",
                                     colors) {
+    colours <- if (missing(colours)) colors else colours
+    continuous_scale_asym(aesthetics, "gradientn",
+                          scales::gradient_n_pal(colours, values, space),
+                          na.value = na.value,
+                          guide = guide,
+                          ...)
+}
+
+
+#' @rdname scale_gradient
+#' @export scale_fill_diag_gradientn
+scale_fill_diag_gradientn <- function(..., colours,
+                                      values = NULL,
+                                      space = "Lab",
+                                      na.value = "grey50",
+                                      guide = "colourbar",
+                                      aesthetics = "fill_diag",
+                                      colors) {
     colours <- if (missing(colours)) colors else colours
     continuous_scale_asym(aesthetics, "gradientn",
                           scales::gradient_n_pal(colours, values, space),
