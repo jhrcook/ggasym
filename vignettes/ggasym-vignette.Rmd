@@ -33,53 +33,76 @@ For information on using ggplot2, start [here](https://ggplot2.tidyverse.org/ind
 
 ---
 
-## General Use
+## Basic Usage
 
-`tib` is a "tibble" (ie. fancy "data.frame") of comparisons between groups "A" through "E". There are two values to be plotted, `val_1` and `val_2`, that hold data on the comparison between `g1` and `g2`. `tib` is first passed to `asymmetrise` to fill in all the missing combinations between `g1` and `g2` such that the symmetric matrix can be built. All added values take the value `NA`. Here, `asymmetrise` added the rows where `g1` and `g2` are equal, thus will fill the diagonal. I will set these values to `val_3`.
+Here is a basic example. `tib` is a "tibble" (ie. fancy "data.frame") of comparisons between groups "A" through "E". There are two values to be plotted, `val_1` and `val_2`, that hold data on the comparison between `g1` and `g2`. `tib` is first passed to `asymmetrise` to fill in all the missing combinations between `g1` and `g2` such that the symmetric matrix can be built. All added values take the value `NA`. The modified data table is finally passed to `ggplot` and `geom_asymmat` is added on. Here, `asymmetrise` added the rows where `g1` and `g2` are equal, thus will fill the diagonal. I will set these values to `val_3`.
 
-```{r basic_example_setup}
+```{r example1}
 tib <- tibble(g1 = c("A", "A", "A", "A", "B", "B", "B", "C", "C", "D"),
               g2 = c("B", "C", "D", "E", "C", "D", "E", "D", "E", "E"),
               val_1 = seq(1, 10, 1),
               val_2 = rnorm(10, mean = 0, sd = 3))
 tib <- asymmetrise(tib, g1, g2)
 tib$val_3 <- runif(nrow(tib))
-tib[1:5, ]
-```
-
-### Scale fill gradient
-
-This data is then plotted with two different fill values, one for the top-left (`tl`) triangle and the other for the bottom-right (`br`) triangle. To demonstrate the complete incorporation of normal ggplot2 conventions, the labels for the color scales can be declared like normal using the `labs` function.
-
-```{r basic_example_plot}
 ggplot(tib, aes(x = g1, y = g2)) +
     geom_asymmat(aes(fill_tl = val_1, fill_br = val_2, fill_diag = val_3)) +
     scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
     scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue") +
-    scale_fill_diag_gradient(low = "yellow", high = "orange") +
-    labs(fill_tl = "top-left fill", fill_br = "bottom-right fill", fill_diag = "diagonal fill")
+    scale_fill_diag_gradient(low = "yellow", high = "orange3")
 ```
 
-### Scale fill gradient with a midpoint
+The new aesthetics `fill_tl`, `fill_br`, and `fill_diag` behave just like the normal `fill`, except that they correspond to the top-left ("tl") and bottom-right ("br") triangles of the matrix, respectively. This package also includes analogous functions for scaling the fill colors such as `scale_fill_tl_gradient2` and `scale_fill_br_gradientn` that operate just as expected when using ggplot2.
 
-```{r fill_gradient2_demo}
+```{r example2}
 ggplot(tib, aes(x = g1, y = g2)) +
-    geom_asymmat(aes(fill_tl = val_1, fill_br = val_2)) +
+    geom_asymmat(aes(fill_tl = val_1, fill_br = val_2, fill_diag = val_3)) +
     scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
-    scale_fill_br_gradient2(low = "orange", high = "dodgerblue", mid = "white") +
-    labs(fill_tl =  "top-left fill", fill_br = "bottom-right fill")
+    scale_fill_br_gradient2(low = "orange", mid = "white", high = "dodgerblue") +
+    scale_fill_diag_gradientn(colors = rainbow(25))
 ```
 
-### Adjusting theme and other elements
+Of note, with three colorbars, it may be useful to control their position. This can be done just like normal in ggplot by passing the correct values to the `guide` paramter in `scale_fill_*_gradient` ([original documentation](https://ggplot2.tidyverse.org/reference/guide_colourbar.html)). Below are a few of the options where I put the pars horizontal, adjust the ordering, and put the title above each.
 
-Since `geom_asymmat` is just like a normal ggplot geom, it can be integrated into a normal ggplot assembly pipeline. Here is an example where I change the x and y-axes, add a background color, remove the gridlines, and add a title center-justified. I also demonstrate the full integration by passing `log(val_1)` to the  `fill_tl` aesthetic.
-
-```{r additional_ggplot}
+```{r}
 ggplot(tib, aes(x = g1, y = g2)) +
-    geom_asymmat(aes(fill_tl = log(val_1), fill_br = val_2)) +
-    scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
-    scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue") +
-    labs(fill_tl = "top-left fill", fill_br = "bottom-right fill",
+    geom_asymmat(aes(fill_tl = val_1, fill_br = val_2, fill_diag = val_3)) +
+    scale_fill_tl_gradient(low = "lightpink", high = "tomato",
+                           guide = guide_colourbar(direction = "horizontal",
+                                                   order = 1,
+                                                   title.position = "top")) +
+    scale_fill_br_gradient2(low = "orange", mid = "white", high = "dodgerblue",
+                           guide = guide_colourbar(direction = "horizontal",
+                                                   order = 3,
+                                                   title.position = "top")) +
+    scale_fill_diag_gradientn(colors = rainbow(25),
+                           guide = guide_colourbar(direction = "horizontal",
+                                                   order = 2,
+                                                   title.position = "top"))
+```
+
+
+Since the new geom is a normal ggplot2 object, it can be introduced into a standard ggplot2 workflow. Note that the labels can be adjusted like normal using the `labs` function and using the `fill_tl` and `fill_br` arguments.
+
+```{r example3}
+ggplot(tib, aes(x = g1, y = g2)) +
+    geom_asymmat(aes(fill_tl = log(val_1),
+                     fill_br = val_2,
+                     fill_diag = val_3)) +
+    scale_fill_tl_gradient(low = "lightpink", high = "tomato",
+                           guide = guide_colourbar(direction = "horizontal",
+                                                   order = 1,
+                                                   title.position = "top")) +
+    scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue",
+                           guide = guide_colourbar(direction = "horizontal",
+                                                   order = 3,
+                                                   title.position = "top")) +
+    scale_fill_diag_gradient(low = "white", high = "black",
+                           guide = guide_colourbar(direction = "horizontal",
+                                                   order = 2,
+                                                   title.position = "top")) +
+    labs(fill_tl = "top-left fill",
+         fill_br = "bottom-right fill",
+         fill_diag = "diagonal fill",
          title = "Example of ggasym") +
     theme_bw() +
     theme(axis.title = element_blank(),
@@ -89,6 +112,7 @@ ggplot(tib, aes(x = g1, y = g2)) +
     scale_x_discrete(expand = c(0, 0)) +
     scale_y_discrete(expand = c(0, 0))
 ```
+
 
 ### Facetting
 
@@ -103,21 +127,36 @@ tib <- tibble(g1 = rep(c("A", "A", "B"), 2),
 tib
 ```
 
-Grouping first by `grps`, the tibble is asymmetrized.
+Grouping first by `grps`, the tibble is asymmetrized. I then added values to the diagonal.
 
 ```{r grouped_asymm}
-tib <- tib %>% group_by(grps) %>% asymmetrise(g1, g2)
-tib
+tib <- tib %>% group_by(grps) %>% asymmetrise(g1, g2) %>% ungroup()
+tib <- tib %>% mutate(val_3 = ifelse(g1 == g2, runif(nrow(tib)), NA))
+tib[1:10, ]
 ```
 
 
 ```{r facetting_plot}
-ggplot(tib) +
-    geom_asymmat(aes(x = g1, y = g2, fill_tl = val_1, fill_br = val_2)) +
-    scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
-    scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue") +
-    labs(fill_tl = "top-left fill", fill_br = "bottom-right fill",
-         title = "Example of ggasym") +
+ggplot(tib, aes(x = g1, y = g2)) +
+    geom_asymmat(aes(fill_tl = log(val_1),
+                     fill_br = val_2,
+                     fill_diag = val_3)) +
+    scale_fill_tl_gradient(low = "lightpink", high = "tomato",
+                           guide = guide_colourbar(direction = "horizontal",
+                                                   order = 1,
+                                                   title.position = "top")) +
+    scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue",
+                           guide = guide_colourbar(direction = "horizontal",
+                                                   order = 3,
+                                                   title.position = "top")) +
+    scale_fill_diag_gradient(low = "white", high = "black",
+                           guide = guide_colourbar(direction = "horizontal",
+                                                   order = 2,
+                                                   title.position = "top")) +
+    labs(fill_tl = "top-left fill",
+         fill_br = "bottom-right fill",
+         fill_diag = "diagonal fill",
+         title = "Example of facetting with ggasym") +
     theme_bw() +
     theme(axis.title = element_blank(),
           plot.title = element_text(hjust = 0.5),
@@ -127,4 +166,5 @@ ggplot(tib) +
     scale_y_discrete(expand = c(0, 0)) +
     facet_grid(. ~ grps)
 ```
+
 
