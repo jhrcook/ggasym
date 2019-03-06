@@ -33,14 +33,15 @@ test_that("geom_asymmat works", {
     tib <- data.frame(grp1 = c(rep("A", 3), rep("B", 3), rep("C", 3)),
                       grp2 = c(rep(c("A", "B", "C"), 3)),
                       val_1 = c(4, 3, 2, 1, NA, 1, 2, 3, 4),
-                      val_2 = c(-4, -3, -2, -1, 0, 1, 2, 3, 4))
+                      val_2 = c(-4, -3, -2, -1, 0, 1, 2, 3, 4),
+                      val_3 = c(1:9))
     g_asymmat <- ggplot(tib) +
         geom_asymmat(aes(x = grp1, y = grp2, fill_tl = val_1, fill_br = val_2))
     g_tile <- ggplot(tib) +
         geom_tile(aes(x = grp1, y = grp2, fill = val_1))
 
     expect_equal(class(g_asymmat), class(g_tile))
-    expect_equal(length(g_asymmat$layers), 2)
+    expect_equal(length(g_asymmat$layers), 3)
     expect_true(all(c("fill_tl", "fill_br") %in% names(g_asymmat$labels)))
     expect_true(all(c("val_1", "val_2") %in% unlist(g_asymmat$labels)))
 
