@@ -4,10 +4,13 @@
 \alias{scale_gradient}
 \alias{scale_fill_tl_gradient}
 \alias{scale_fill_br_gradient}
+\alias{scale_fill_diag_gradient}
 \alias{scale_fill_tl_gradient2}
 \alias{scale_fill_br_gradient2}
+\alias{scale_fill_diag_gradient2}
 \alias{scale_fill_tl_gradientn}
 \alias{scale_fill_br_gradientn}
+\alias{scale_fill_diag_gradientn}
 \title{Gradient colour scales for top-left or bottom-right triangle in geom_asymmat}
 \usage{
 scale_fill_tl_gradient(..., low = "#132B43", high = "#56B1F7",
@@ -18,6 +21,10 @@ scale_fill_br_gradient(..., low = "#132B43", high = "#56B1F7",
   space = "Lab", na.value = "grey50", guide = "colourbar",
   aesthetics = "fill_br")
 
+scale_fill_diag_gradient(..., low = "#132B43", high = "#56B1F7",
+  space = "Lab", na.value = "grey50", guide = "colourbar",
+  aesthetics = "fill_diag")
+
 scale_fill_tl_gradient2(..., low = scales::muted("red"), mid = "white",
   high = scales::muted("blue"), midpoint = 0, space = "Lab",
   na.value = "grey50", guide = "colourbar", aesthetics = "fill_tl")
@@ -26,12 +33,21 @@ scale_fill_br_gradient2(..., low = scales::muted("red"), mid = "white",
   high = scales::muted("blue"), midpoint = 0, space = "Lab",
   na.value = "grey50", guide = "colourbar", aesthetics = "fill_br")
 
+scale_fill_diag_gradient2(..., low = scales::muted("red"),
+  mid = "white", high = scales::muted("blue"), midpoint = 0,
+  space = "Lab", na.value = "grey50", guide = "colourbar",
+  aesthetics = "fill_diag")
+
 scale_fill_tl_gradientn(..., colours, values = NULL, space = "Lab",
   na.value = "grey50", guide = "colourbar", aesthetics = "fill_tl",
   colors)
 
 scale_fill_br_gradientn(..., colours, values = NULL, space = "Lab",
   na.value = "grey50", guide = "colourbar", aesthetics = "fill_br",
+  colors)
+
+scale_fill_diag_gradientn(..., colours, values = NULL, space = "Lab",
+  na.value = "grey50", guide = "colourbar", aesthetics = "fill_diag",
   colors)
 }
 \arguments{
@@ -93,7 +109,8 @@ g + scale_fill_tl_gradient2(low = "dodgerblue",
                             high = "tomato") +
     scale_fill_br_gradient2(low = "seagreen4",
                             mid = "white",
-                            high = "orange")
+                            high = "orange") +
+
 
 g + scale_fill_tl_gradientn(colours = terrain.colors(10)) +
     scale_fill_br_gradientn(colours = heat.colors(10))
