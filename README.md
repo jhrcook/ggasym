@@ -98,7 +98,7 @@ ggplot(tib, aes(x = g1, y = g2)) +
                            guide = guide_colourbar(direction = "horizontal",
                                                    order = 3,
                                                    title.position = "top")) +
-    scale_fill_diag_gradient(low = "white", high = "black",
+    scale_fill_diag_gradient(low = "grey80", high = "grey20",
                            guide = guide_colourbar(direction = "horizontal",
                                                    order = 2,
                                                    title.position = "top")) +
@@ -181,7 +181,7 @@ ggplot(tib, aes(x = g1, y = g2)) +
                            guide = guide_colourbar(direction = "horizontal",
                                                    order = 3,
                                                    title.position = "top")) +
-    scale_fill_diag_gradient(low = "white", high = "black",
+    scale_fill_diag_gradient(low = "grey80", high = "grey20",
                            guide = guide_colourbar(direction = "horizontal",
                                                    order = 2,
                                                    title.position = "top")) +
