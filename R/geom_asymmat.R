@@ -66,8 +66,9 @@ geom_asymmat <- function(mapping = NULL, data = NULL,
                          inherit.aes = TRUE) {
     # open mapping and pass fill_tl as fill to tl layer and fill_br to br layer
     # browser()
-    mapping_1 <- mapping[!str_detect(names(mapping), "fill_br")]
-    mapping_2 <- mapping[!str_detect(names(mapping), "fill_tl")]
+    mapping_1 <- mapping[!str_detect(names(mapping), "fill_br|fill_diag")]
+    mapping_2 <- mapping[!str_detect(names(mapping), "fill_tl|fill_diag")]
+    mapping_3 <- mapping[!str_detect(names(mapping), "fill_tl|fill_br")]
     # names(mapping_2)[[1]] <- "y"
     # names(mapping_2)[[2]] <- "x"
     new_layer1 <- layer(
@@ -98,7 +99,21 @@ geom_asymmat <- function(mapping = NULL, data = NULL,
             ...
         )
     )
-    return(list(new_layer1, new_layer2))
+    new_layer3 <- layer(
+        data = data,
+        mapping = mapping_3,
+        stat = stat,
+        geom = GeomAsymmat,
+        position = position,
+        show.legend = show.legend,
+        inherit.aes = inherit.aes,
+        params = list(
+            na.rm = na.rm,
+            which_triangle = "diag",
+            ...
+        )
+    )
+    return(list(new_layer1, new_layer2, new_layer3))
 }
 
 #' GeomAsymmat
@@ -141,6 +156,8 @@ GeomAsymmat <- ggproto(
             data$fill <- data$fill_tl
         } else if (all(is.character(data$fill_br))) {
             data$fill <- data$fill_br
+        } else if (all(is.character(data$fill_diag))) {
+            data$fill <- data$fill_diag
         } else {
             data$fill <- NA
         }
@@ -177,7 +194,7 @@ GeomAsymmat <- ggproto(
         }
     },
 
-    default_aes = aes(fill_tl = NA, fill_br = NA,
+    default_aes = aes(fill_tl = NA, fill_br = NA, fill_diag = NA,
                       colour = NA, size = 0.1, linetype = 1,
                       alpha = NA, width = NA, height = NA),
 
@@ -218,6 +235,8 @@ organize_xy <- function(data, params) {
         # .new_y <- ifelse(data$x >= data$y, data$y, data$x)
         # data$x <- .new_x
         # data$y <- .new_y
+    } else if (params$which_triangle == "diag") {
+        data <- data %>% dplyr::filter(data$x == data$y)
     }
     return(data)
 }
