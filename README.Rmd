@@ -7,6 +7,8 @@ library(knitr)
 knitr::opts_chunk$set(echo = TRUE,
                       collapse = TRUE,
                       comment = "#>")
+library(dplyr)
+library(magrittr)
 library(tibble)
 library(ggasym)
 library(ggplot2)
@@ -86,6 +88,45 @@ ggplot(tib) +
           panel.grid = element_blank()) +
     scale_x_discrete(expand = c(0, 0)) +
     scale_y_discrete(expand = c(0, 0))
+```
+
+
+### Facetting
+
+If you have multiple categories, facetting works as expected. The only difference is in the preparation of the data table: you must `group_by` the value(s) you will facet by before passing to `asymmetrise`. This is shown below.
+
+```{r facetting_setup}
+tib <- tibble(g1 = rep(c("A", "A", "B"), 2),
+              g2 = rep(c("B", "C", "C"), 2),
+              val_1 = seq(1, 6),
+              val_2 = rnorm(6),
+              grps = c(1, 1, 1, 2, 2, 2))
+tib
+```
+
+Grouping first by `grps`, the tibble is asymmetrized.
+
+```{r grouped_asymm}
+tib <- tib %>% group_by(grps) %>% asymmetrise(g1, g2)
+tib
+```
+
+
+```{r facetting_plot}
+ggplot(tib) +
+    geom_asymmat(aes(x = g1, y = g2, fill_tl = val_1, fill_br = val_2)) +
+    scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
+    scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue") +
+    labs(fill_tl = "top-left fill", fill_br = "bottom-right fill",
+         title = "Example of ggasym") +
+    theme_bw() +
+    theme(axis.title = element_blank(),
+          plot.title = element_text(hjust = 0.5),
+          panel.background = element_rect(fill = "grey70"),
+          panel.grid = element_blank()) +
+    scale_x_discrete(expand = c(0, 0)) +
+    scale_y_discrete(expand = c(0, 0)) +
+    facet_grid(. ~ grps)
 ```
 
 ---

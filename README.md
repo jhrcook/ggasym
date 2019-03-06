@@ -79,6 +79,76 @@ ggplot(tib) +
 
 ![](README_files/figure-markdown_github/example3-1.png)
 
+### Facetting
+
+If you have multiple categories, facetting works as expected. The only difference is in the preparation of the data table: you must `group_by` the value(s) you will facet by before passing to `asymmetrise`. This is shown below.
+
+``` r
+tib <- tibble(g1 = rep(c("A", "A", "B"), 2),
+              g2 = rep(c("B", "C", "C"), 2),
+              val_1 = seq(1, 6),
+              val_2 = rnorm(6),
+              grps = c(1, 1, 1, 2, 2, 2))
+tib
+#> # A tibble: 6 x 5
+#>   g1    g2    val_1  val_2  grps
+#>   <chr> <chr> <int>  <dbl> <dbl>
+#> 1 A     B         1  0.764     1
+#> 2 A     C         2 -0.799     1
+#> 3 B     C         3 -1.15      1
+#> 4 A     B         4 -0.289     2
+#> 5 A     C         5 -0.299     2
+#> 6 B     C         6 -0.412     2
+```
+
+Grouping first by `grps`, the tibble is asymmetrized.
+
+``` r
+tib <- tib %>% group_by(grps) %>% asymmetrise(g1, g2)
+tib
+#> # A tibble: 18 x 5
+#> # Groups:   grps [2]
+#>     grps g1    g2    val_1   val_2
+#>    <dbl> <chr> <chr> <int>   <dbl>
+#>  1     1 A     B         1   0.764
+#>  2     1 A     C         2  -0.799
+#>  3     1 B     C         3  -1.15 
+#>  4     1 B     A         1   0.764
+#>  5     1 C     A         2  -0.799
+#>  6     1 C     B         3  -1.15 
+#>  7     1 A     A        NA  NA    
+#>  8     1 B     B        NA  NA    
+#>  9     1 C     C        NA  NA    
+#> 10     2 A     B         4  -0.289
+#> 11     2 A     C         5  -0.299
+#> 12     2 B     C         6  -0.412
+#> 13     2 B     A         4  -0.289
+#> 14     2 C     A         5  -0.299
+#> 15     2 C     B         6  -0.412
+#> 16     2 A     A        NA  NA    
+#> 17     2 B     B        NA  NA    
+#> 18     2 C     C        NA  NA
+```
+
+``` r
+ggplot(tib) +
+    geom_asymmat(aes(x = g1, y = g2, fill_tl = val_1, fill_br = val_2)) +
+    scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
+    scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue") +
+    labs(fill_tl = "top-left fill", fill_br = "bottom-right fill",
+         title = "Example of ggasym") +
+    theme_bw() +
+    theme(axis.title = element_blank(),
+          plot.title = element_text(hjust = 0.5),
+          panel.background = element_rect(fill = "grey70"),
+          panel.grid = element_blank()) +
+    scale_x_discrete(expand = c(0, 0)) +
+    scale_y_discrete(expand = c(0, 0)) +
+    facet_grid(. ~ grps)
+```
+
+![](README_files/figure-markdown_github/facetting_plot-1.png)
+
 ------------------------------------------------------------------------
 
 I would like to thank the team behind [ggplot2](https://ggplot2.tidyverse.org) for creating a flexible and powerful package for the R community.

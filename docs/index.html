@@ -148,10 +148,70 @@ tib &lt;-<span class="st"> </span><span class="kw"><a href="reference/asymmetris
 <span class="st">    </span><span class="kw">scale_x_discrete</span>(<span class="dt">expand =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span>
 <span class="st">    </span><span class="kw">scale_y_discrete</span>(<span class="dt">expand =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">0</span>))</code></pre></div>
 <p><img src="index_files/figure-html/example3-1.png" width="700"></p>
+<div id="facetting" class="section level3">
+<h3 class="hasAnchor">
+<a href="#facetting" class="anchor"></a>Facetting</h3>
+<p>If you have multiple categories, facetting works as expected. The only difference is in the preparation of the data table: you must <code>group_by</code> the value(s) you will facet by before passing to <code>asymmetrise</code>. This is shown below.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tib &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">g1 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>), <span class="dv">2</span>),
+              <span class="dt">g2 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"C"</span>), <span class="dv">2</span>),
+              <span class="dt">val_1 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dv">1</span>, <span class="dv">6</span>),
+              <span class="dt">val_2 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">6</span>),
+              <span class="dt">grps =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>))
+tib
+<span class="co">#&gt; # A tibble: 6 x 5</span>
+<span class="co">#&gt;   g1    g2    val_1  val_2  grps</span>
+<span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt; &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 A     B         1  0.764     1</span>
+<span class="co">#&gt; 2 A     C         2 -0.799     1</span>
+<span class="co">#&gt; 3 B     C         3 -1.15      1</span>
+<span class="co">#&gt; 4 A     B         4 -0.289     2</span>
+<span class="co">#&gt; 5 A     C         5 -0.299     2</span>
+<span class="co">#&gt; 6 B     C         6 -0.412     2</span></code></pre></div>
+<p>Grouping first by <code>grps</code>, the tibble is asymmetrized.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tib &lt;-<span class="st"> </span>tib <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(grps) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/asymmetrise.html">asymmetrise</a></span>(g1, g2)
+tib
+<span class="co">#&gt; # A tibble: 18 x 5</span>
+<span class="co">#&gt; # Groups:   grps [2]</span>
+<span class="co">#&gt;     grps g1    g2    val_1   val_2</span>
+<span class="co">#&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt;   &lt;dbl&gt;</span>
+<span class="co">#&gt;  1     1 A     B         1   0.764</span>
+<span class="co">#&gt;  2     1 A     C         2  -0.799</span>
+<span class="co">#&gt;  3     1 B     C         3  -1.15 </span>
+<span class="co">#&gt;  4     1 B     A         1   0.764</span>
+<span class="co">#&gt;  5     1 C     A         2  -0.799</span>
+<span class="co">#&gt;  6     1 C     B         3  -1.15 </span>
+<span class="co">#&gt;  7     1 A     A        NA  NA    </span>
+<span class="co">#&gt;  8     1 B     B        NA  NA    </span>
+<span class="co">#&gt;  9     1 C     C        NA  NA    </span>
+<span class="co">#&gt; 10     2 A     B         4  -0.289</span>
+<span class="co">#&gt; 11     2 A     C         5  -0.299</span>
+<span class="co">#&gt; 12     2 B     C         6  -0.412</span>
+<span class="co">#&gt; 13     2 B     A         4  -0.289</span>
+<span class="co">#&gt; 14     2 C     A         5  -0.299</span>
+<span class="co">#&gt; 15     2 C     B         6  -0.412</span>
+<span class="co">#&gt; 16     2 A     A        NA  NA    </span>
+<span class="co">#&gt; 17     2 B     B        NA  NA    </span>
+<span class="co">#&gt; 18     2 C     C        NA  NA</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(tib) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw">aes</span>(<span class="dt">x =</span> g1, <span class="dt">y =</span> g2, <span class="dt">fill_tl =</span> val_<span class="dv">1</span>, <span class="dt">fill_br =</span> val_<span class="dv">2</span>)) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_tl_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightpink"</span>, <span class="dt">high =</span> <span class="st">"tomato"</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_br_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightblue1"</span>, <span class="dt">high =</span> <span class="st">"dodgerblue"</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">labs</span>(<span class="dt">fill_tl =</span> <span class="st">"top-left fill"</span>, <span class="dt">fill_br =</span> <span class="st">"bottom-right fill"</span>,
+         <span class="dt">title =</span> <span class="st">"Example of ggasym"</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.title =</span> <span class="kw">element_blank</span>(),
+          <span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>),
+          <span class="dt">panel.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">"grey70"</span>),
+          <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()) <span class="op">+</span>
+<span class="st">    </span><span class="kw">scale_x_discrete</span>(<span class="dt">expand =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">scale_y_discrete</span>(<span class="dt">expand =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>grps)</code></pre></div>
+<p><img src="index_files/figure-html/facetting_plot-1.png" width="700"></p>
 <hr>
 <p>I would like to thank the team behind <a href="https://ggplot2.tidyverse.org">ggplot2</a> for creating a flexible and powerful package for the R community.</p>
 <div>
 Logo made with <a href="https://www.designevo.com/en/" title="Free Online Logo Maker">DesignEvo</a>
+</div>
 </div>
 </div>
 </div>

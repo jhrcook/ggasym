@@ -93,7 +93,7 @@
       <h1>ggasym</h1>
                         <h4 class="author">Joshua H. Cook</h4>
             
-            <h4 class="date">2019-03-05</h4>
+            <h4 class="date">2019-03-06</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jhrcook/ggasym/blob/master/vignettes/ggasym-vignette.Rmd"><code>vignettes/ggasym-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>ggasym-vignette.Rmd</code></div>
@@ -103,6 +103,7 @@
     
     
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(magrittr)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tibble)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggasym)</code></pre></div>
@@ -113,12 +114,12 @@
 <div id="general-use" class="section level2">
 <h2 class="hasAnchor">
 <a href="#general-use" class="anchor"></a>General Use</h2>
-<p><code>tib</code> is a simple tibble object showing two values, <code>val_1</code> and <code>val_2</code>, for each comparison of the three groups “A”, “B”, and “C”.</p>
+<p><code>tib</code> is a “tibble” (ie. fancy “data.frame”) of comparisons between groups “A” through “E”. There are two values to be plotted, <code>val_1</code> and <code>val_2</code>, that hold data on the comparison between <code>g1</code> and <code>g2</code>. <code>tib</code> is first passed to <code>asymmetrise</code> to fill in all the missing combinations between <code>g1</code> and <code>g2</code> such that the symmetric matrix can be built. All added values take the value <code>NA</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tib &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">tibble</a></span>(<span class="dt">g1 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"B"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>),
               <span class="dt">g2 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"E"</span>),
               <span class="dt">val_1 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">1</span>),
               <span class="dt">val_2 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">3</span>))
-tib &lt;-<span class="st"> </span><span class="kw"><a href="../reference/asymmetrise.html">asymmetrize</a></span>(tib, g1, g2)
+tib &lt;-<span class="st"> </span><span class="kw"><a href="../reference/asymmetrise.html">asymmetrise</a></span>(tib, g1, g2)
 tib[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, ]
 <span class="co">#&gt; # A tibble: 5 x 4</span>
 <span class="co">#&gt;   g1    g2    val_1  val_2</span>

@@ -19,6 +19,7 @@ set.seed(0)
 
 ```{r load_libraries, warning=FALSE, message=FALSE}
 library(dplyr)
+library(magrittr)
 library(tibble)
 library(ggplot2)
 library(ggasym)
@@ -34,14 +35,14 @@ For information on using ggplot2, start [here](https://ggplot2.tidyverse.org/ind
 
 ## General Use
 
-`tib` is a simple tibble object showing two values, `val_1` and `val_2`, for each comparison of the three groups "A", "B", and "C".
+`tib` is a "tibble" (ie. fancy "data.frame") of comparisons between groups "A" through "E". There are two values to be plotted, `val_1` and `val_2`, that hold data on the comparison between `g1` and `g2`. `tib` is first passed to `asymmetrise` to fill in all the missing combinations between `g1` and `g2` such that the symmetric matrix can be built. All added values take the value `NA`.
 
 ```{r basic_example_setup}
 tib <- tibble(g1 = c("A", "A", "A", "A", "B", "B", "B", "C", "C", "D"),
               g2 = c("B", "C", "D", "E", "C", "D", "E", "D", "E", "E"),
               val_1 = seq(1, 10, 1),
               val_2 = rnorm(10, mean = 0, sd = 3))
-tib <- asymmetrize(tib, g1, g2)
+tib <- asymmetrise(tib, g1, g2)
 tib[1:5, ]
 ```
 
