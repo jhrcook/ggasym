@@ -88,7 +88,7 @@ asymmetrize <- asymmetrise
 #'
 #' swap_cols(df, a, b)
 #'
-#' @importFrom rlang enquo eval_tidy !! :=
+#' @importFrom rlang enquo eval_tidy !! !!! :=
 #' @importFrom magrittr %>%
 #' @export swap_cols
 swap_cols <- function(.data, .x, .y) {
@@ -124,7 +124,7 @@ swap_cols <- function(.data, .x, .y) {
 #'
 #' add_missing_combinations(df, a, b)
 #'
-#' @importFrom rlang enquo eval_tidy !! :=
+#' @importFrom rlang enquo eval_tidy !! !!! :=
 #' @importFrom magrittr %>%
 #' @export add_missing_combinations
 add_missing_combinations <- function(.data, .x, .y) {
@@ -148,13 +148,15 @@ add_missing_combinations <- function(.data, .x, .y) {
     if (is_grouped(.data)) {
         # call function over all groups
         # purrr::nest() %>% mutate(data = my_function(data)
+        original_groups <- dplyr::groups(.data)
         new_data <- .data %>%
             tidyr::nest(.key = ".grp_nest") %>%
             dplyr::mutate(.grp_nest = purrr::map(.grp_nest,
                     function(df) {
                         new_df <- bind_missing_combs(df, !!.x, !!.y)
                     })) %>%
-            tidyr::unnest()
+            tidyr::unnest() %>%
+            dplyr::group_by(!!!original_groups)
     } else {
         new_data <- bind_missing_combs(.data, !!.x, !!.y)
     }
@@ -189,6 +191,8 @@ add_missing_combinations <- function(.data, .x, .y) {
 #'
 #' bind_missing_combs(df, a, b)
 #'
+#' @importFrom rlang !! := eval_tidy enquo
+#' @importFrom magrittr %>% %T>%
 #' @export bind_missing_combs
 bind_missing_combs <- function(.data, .x, .y)  {
     .x <- enquo(.x)
@@ -199,11 +203,11 @@ bind_missing_combs <- function(.data, .x, .y)  {
         data_cp <- make_fill_df(.data, n_rows = nrow(others_combs)) %>%
             dplyr::mutate(!!.x := others_combs$Var1,
                           !!.y := others_combs$Var2)
-
         new_data <- dplyr::bind_rows(.data, data_cp)
     } else {
         new_data <- .data
     }
+
     return(new_data)
 }
 

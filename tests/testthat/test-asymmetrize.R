@@ -31,6 +31,44 @@ test_that("factor levels are handeled correctly", {
 })
 
 
+test_that("all other combinations are made", {
+    a <- c("A", "B")
+    b <- c("A", "B")
+    df <- data.frame(Var1 = c("B", "A"), Var2 = c("A", "B"),
+                     stringsAsFactors = FALSE)
+    expect_true(nrow(get_other_combs(a,b)) == 2)
+    expect_true(all(colnames(get_other_combs(a,b)) == c("Var1", "Var2")))
+    expect_equal(get_other_combs(a,b), df)
+
+    a <- c(1, 2)
+    b <- c(1, 2)
+    df <- data.frame(Var1 = c(2, 1), Var2 = c(1, 2))
+    expect_true(nrow(get_other_combs(a,b)) == 2)
+    expect_true(all(colnames(get_other_combs(a,b)) == c("Var1", "Var2")))
+    expect_equal(get_other_combs(a,b), df)
+
+    a <- c(1, "A")
+    b <- c(1, "A")
+    df <- data.frame(Var1 = c("A", "1"), Var2 = c("1", "A"),
+                     stringsAsFactors = FALSE)
+    expect_true(nrow(get_other_combs(a,b)) == 2)
+    expect_true(all(colnames(get_other_combs(a,b)) == c("Var1", "Var2")))
+    expect_equal(get_other_combs(a,b), df)
+})
+
+
+test_that("properly determine if a df is grouped", {
+    library(tibble)
+    tib <- tibble(a = c(1,1,1,2,2,2))
+    expect_false(is_grouped(tib))
+    expect_true(is_grouped(dplyr::group_by(tib, a)))
+
+    tib <- data.frame(a = c(1,1,1,2,2,2))
+    expect_false(is_grouped(tib))
+    expect_true(is_grouped(dplyr::group_by(tib, a)))
+})
+
+
 test_that("adding all combinations", {
     complete_df <- data.frame(x = c("A", "A", "B", "B"),
                               y = c("A", "B", "A", "B"))
@@ -42,6 +80,32 @@ test_that("adding all combinations", {
                                val = c(1, 2, NA, NA))
     expect_equal(add_missing_combinations(complete_df, x, y), complete_df)
     expect_equal(add_missing_combinations(partial_df_1, x, y), partial_df_2)
+
+    df <- data.frame(a = c("A", "B"),
+                     b = c("B", "A"),
+                     grps = c(1, 2),
+                     stringsAsFactors = FALSE)
+    df <- dplyr::group_by(df, grps)
+    expect_equal(dim(add_missing_combinations(df, a, b)), c(8, 3))
+    expect_equal(add_missing_combinations(df, a, b)$grps, c(1,1,1,1,2,2,2,2))
+    expect_false(is.null(dplyr::groups(add_missing_combinations(df, a, b))))
+})
+
+
+test_that("additional columns are added", {
+    complete_df <- data.frame(x = c("A", "A", "B", "B"),
+                              y = c("A", "B", "A", "B"),
+                              stringsAsFactors = FALSE)
+    expect_equal(bind_missing_combs(complete_df, x, y), complete_df)
+    partial_df_1 <- data.frame(x = c("A", "B"),
+                               y = c("A", "B"),
+                               val = c(1, 2),
+                               stringsAsFactors = FALSE)
+    partial_df_2 <- data.frame(x = c("A", "B", "B", "A"),
+                               y = c("A", "B", "A", "B"),
+                               val = c(1, 2, NA, NA),
+                               stringsAsFactors = FALSE)
+    expect_equal(bind_missing_combs(partial_df_1, x, y), partial_df_2)
 })
 
 
@@ -77,6 +141,18 @@ test_that("data frame is asymmeterized", {
 
     expect_equal(asymmetrise(df_char, a, b), a_df)
     expect_equal(asymmetrize(df_char, a, b), a_df)
+
+    df_factors_grp <- rbind(df_factors, df_factors)
+    df_factors_grp$grps <- c(1,1,2,2)
+    df_factors_grp <- dplyr::group_by(df_factors_grp, grps)
+    b_df <- rbind(a_df, a_df)
+    b_df$grps <- c(rep(1, nrow(a_df)), rep(2, nrow(a_df)))
+
+    expect_false(is.null(dplyr::groups(asymmetrise(df_factors_grp, a, b))))
+    expect_false(is.null(dplyr::groups(asymmetrize(df_factors_grp, a, b))))
+
+    expect_equal(asymmetrise(df_factors_grp, a, b), dplyr::group_by(b_df, grps))
+    expect_equal(asymmetrize(df_factors_grp, a, b), dplyr::group_by(b_df, grps))
 })
 
 
