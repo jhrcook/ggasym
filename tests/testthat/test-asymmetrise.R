@@ -1,4 +1,4 @@
-context("test-asymmetrize")
+context("test-asymmetrise")
 
 test_that("create a single fill data frame", {
     expect_error(make_fill_df(data.frame(), 2),

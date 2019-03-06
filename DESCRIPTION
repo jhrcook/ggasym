@@ -40,4 +40,4 @@ Collate:
     'scale_continuous_asym.R'
     'utils.R'
     'scale_fill_gradient.R'
-    'asymmetrize.R'
+    'asymmetrise.R'
