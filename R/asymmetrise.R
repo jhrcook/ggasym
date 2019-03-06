@@ -229,6 +229,7 @@ get_other_combs <- function(x, y) {
     current_combs <- paste(x, y, sep = "_")
     all_vals <- unique(c(x, y))
     all_combs <- expand.grid(all_vals, all_vals, stringsAsFactors = FALSE) %>%
+        unique() %>%
         dplyr::mutate(comb = paste(Var1, Var2, sep = "_")) %>%
         dplyr::filter(!(comb %in% current_combs)) %>%
         dplyr::select(-comb)
