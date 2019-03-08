@@ -100,9 +100,6 @@
     <li>
       <a href="../articles/gene-coexpression.html">Gene Coexpression</a>
     </li>
-    <li>
-      <a href="../articles/ggasym-vignette.html">ggasym</a>
-    </li>
   </ul>
 </li>
 <li>
@@ -169,8 +166,8 @@ range the scale maps to.</p></td>
     </tr>
     <tr>
       <th>guide</th>
-      <td><p>A function used to create a guide or its name. See guides()
-for more info.</p></td>
+      <td><p>A function used to create a guide or its name. See
+<code>guides()</code> for more info.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -197,8 +194,8 @@ see <code><a href='https://ggplot2.tidyverse.org/reference/continuous_scale.html
 <span class='no'>tib</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='asymmetrise.html'>asymmetrise</a></span>(<span class='no'>tib</span>, <span class='no'>g1</span>, <span class='no'>g2</span>)
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>tib</span>) +
 <span class='fu'><a href='geom_asymmat.html'>geom_asymmat</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>g1</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>g2</span>, <span class='kw'>fill_tl</span> <span class='kw'>=</span> <span class='no'>val_1</span>, <span class='kw'>fill_br</span> <span class='kw'>=</span> <span class='no'>val_2</span>)) +
-    <span class='fu'><a href='scale_gradient.html'>scale_fill_br_gradient</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"lightblue1"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"dodgerblue"</span>) +
     <span class='fu'><a href='scale_gradient.html'>scale_fill_tl_gradient</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"lightpink"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"tomato"</span>) +
+    <span class='fu'><a href='scale_gradient.html'>scale_fill_br_gradient</a></span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"lightblue1"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"dodgerblue"</span>) +
     <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span>(<span class='kw'>fill_tl</span> <span class='kw'>=</span>  <span class='st'>"top-left fill"</span>, <span class='kw'>fill_br</span> <span class='kw'>=</span> <span class='st'>"bottom-right fill"</span>)</div><div class='img'><img src='continuous_scale_asym-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></span></pre>
   </div>

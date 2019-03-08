@@ -64,9 +64,6 @@
 <li>
       <a href="articles/gene-coexpression.html">Gene Coexpression</a>
     </li>
-    <li>
-      <a href="articles/ggasym-vignette.html">ggasym</a>
-    </li>
   </ul>
 </li>
 <li>
@@ -105,10 +102,11 @@
 <p><strong>date: 2019-02-22</strong></p>
 <p><strong>Asymmetric Matrix Plotting in ggplot</strong></p>
 <p>Checkout the documentation and vignettes at the pkgdown website <a href="https://jhrcook.github.io/ggasym/index.html">https://jhrcook.github.io/ggasym/</a></p>
+<p>For information on using ggplot2, start <a href="https://ggplot2.tidyverse.org/index.html">here</a>.</p>
 <div id="download-and-installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#download-and-installation" class="anchor"></a>Download and Installation</h2>
-<p>You can download and install from the GitHub repo.</p>
+<p>You can download and install from the GitHub repo. Eventually, this will hopefully be available on CRAN, too.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"jhrcook/ggasym"</span>)</code></pre></div>
 <p>And load the package with the standard <code>library</code> function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggasym)</code></pre></div>
@@ -129,6 +127,10 @@ tib<span class="op">$</span>val_<span class="dv">3</span> &lt;-<span class="st">
 <span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_br_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightblue1"</span>, <span class="dt">high =</span> <span class="st">"dodgerblue"</span>) <span class="op">+</span>
 <span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_diag_gradient</a></span>(<span class="dt">low =</span> <span class="st">"yellow"</span>, <span class="dt">high =</span> <span class="st">"orange3"</span>)</code></pre></div>
 <p><img src="index_files/figure-html/example1-1.png" width="700"></p>
+</div>
+<div id="new-aesthetics" class="section level2">
+<h2 class="hasAnchor">
+<a href="#new-aesthetics" class="anchor"></a>New Aesthetics</h2>
 <p>The new aesthetics <code>fill_tl</code>, <code>fill_br</code>, and <code>fill_diag</code> behave just like the normal <code>fill</code>, except that they correspond to the top-left (“tl”) and bottom-right (“br”) triangles of the matrix, respectively. This package also includes analogous functions for scaling the fill colors such as <code>scale_fill_tl_gradient2</code> and <code>scale_fill_br_gradientn</code> that operate just as expected when using ggplot2.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(tib, <span class="kw">aes</span>(<span class="dt">x =</span> g1, <span class="dt">y =</span> g2)) <span class="op">+</span>
 <span class="st">    </span><span class="kw"><a href="reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw">aes</span>(<span class="dt">fill_tl =</span> val_<span class="dv">1</span>, <span class="dt">fill_br =</span> val_<span class="dv">2</span>, <span class="dt">fill_diag =</span> val_<span class="dv">3</span>)) <span class="op">+</span>
@@ -136,7 +138,10 @@ tib<span class="op">$</span>val_<span class="dv">3</span> &lt;-<span class="st">
 <span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_br_gradient2</a></span>(<span class="dt">low =</span> <span class="st">"orange"</span>, <span class="dt">mid =</span> <span class="st">"white"</span>, <span class="dt">high =</span> <span class="st">"dodgerblue"</span>) <span class="op">+</span>
 <span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_diag_gradientn</a></span>(<span class="dt">colors =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/palettes">rainbow</a></span>(<span class="dv">25</span>))</code></pre></div>
 <p><img src="index_files/figure-html/example2-1.png" width="700"></p>
-<p>Of note, with three colorbars, it may be useful to control their position. This can be done just like normal in ggplot by passing the correct values to the <code>guide</code> paramter in <code>scale_fill_*_gradient</code> (<a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html">original documentation</a>). Below are a few of the options where I put the pars horizontal, adjust the ordering, and put the title above each.</p>
+<div id="adjusting-colorbars" class="section level3">
+<h3 class="hasAnchor">
+<a href="#adjusting-colorbars" class="anchor"></a>Adjusting Colorbars</h3>
+<p>Of note, with three colorbars, it may be useful to control their position. This can be done just like normal in ggplot by passing the correct values to the <code>guide</code> parameter in <code>scale_fill_*_gradient</code> (<a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html">original documentation</a>). Below are a few of the options where I put the pars horizontal, adjust the ordering, and put the title above each.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(tib, <span class="kw">aes</span>(<span class="dt">x =</span> g1, <span class="dt">y =</span> g2)) <span class="op">+</span>
 <span class="st">    </span><span class="kw"><a href="reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw">aes</span>(<span class="dt">fill_tl =</span> val_<span class="dv">1</span>, <span class="dt">fill_br =</span> val_<span class="dv">2</span>, <span class="dt">fill_diag =</span> val_<span class="dv">3</span>)) <span class="op">+</span>
 <span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_tl_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightpink"</span>, <span class="dt">high =</span> <span class="st">"tomato"</span>,
@@ -151,7 +156,12 @@ tib<span class="op">$</span>val_<span class="dv">3</span> &lt;-<span class="st">
                            <span class="dt">guide =</span> <span class="kw">guide_colourbar</span>(<span class="dt">direction =</span> <span class="st">"horizontal"</span>,
                                                    <span class="dt">order =</span> <span class="dv">2</span>,
                                                    <span class="dt">title.position =</span> <span class="st">"top"</span>))</code></pre></div>
-<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" width="700"></p>
+<p><img src="index_files/figure-html/adj_colorbars-1.png" width="700"></p>
+</div>
+</div>
+<div id="full-ggplot2-integration" class="section level2">
+<h2 class="hasAnchor">
+<a href="#full-ggplot2-integration" class="anchor"></a>Full ggplot2 integration</h2>
 <p>Since the new geom is a normal ggplot2 object, it can be introduced into a standard ggplot2 workflow. Note that the labels can be adjusted like normal using the <code>labs</code> function and using the <code>fill_tl</code> and <code>fill_br</code> arguments.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(tib, <span class="kw">aes</span>(<span class="dt">x =</span> g1, <span class="dt">y =</span> g2)) <span class="op">+</span>
 <span class="st">    </span><span class="kw"><a href="reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw">aes</span>(<span class="dt">fill_tl =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(val_<span class="dv">1</span>),
@@ -181,9 +191,10 @@ tib<span class="op">$</span>val_<span class="dv">3</span> &lt;-<span class="st">
 <span class="st">    </span><span class="kw">scale_x_discrete</span>(<span class="dt">expand =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span>
 <span class="st">    </span><span class="kw">scale_y_discrete</span>(<span class="dt">expand =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">0</span>))</code></pre></div>
 <p><img src="index_files/figure-html/example3-1.png" width="700"></p>
-<div id="facetting" class="section level3">
-<h3 class="hasAnchor">
-<a href="#facetting" class="anchor"></a>Facetting</h3>
+</div>
+<div id="facetting" class="section level2">
+<h2 class="hasAnchor">
+<a href="#facetting" class="anchor"></a>Facetting</h2>
 <p>If you have multiple categories, facetting works as expected. The only difference is in the preparation of the data table: you must <code>group_by</code> the value(s) you will facet by before passing to <code>asymmetrise</code>. This is shown below.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tib &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">g1 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>), <span class="dv">2</span>),
               <span class="dt">g2 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"C"</span>), <span class="dv">2</span>),
@@ -200,7 +211,7 @@ tib
 <span class="co">#&gt; 4 A     B         4 -0.0561     2</span>
 <span class="co">#&gt; 5 A     C         5 -0.156      2</span>
 <span class="co">#&gt; 6 B     C         6 -1.47       2</span></code></pre></div>
-<p>Grouping first by <code>grps</code>, the tibble is asymmetrized. I then added values to the diagonal.</p>
+<p>Grouping first by <code>grps</code>, the tibble is asymmetrized while retaining the <code>grps</code> assignments. I then added values to the diagonal.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tib &lt;-<span class="st"> </span>tib <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(grps) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/asymmetrise.html">asymmetrise</a></span>(g1, g2) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ungroup</span>()
 tib &lt;-<span class="st"> </span>tib <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">val_3 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ifelse">ifelse</a></span>(g1 <span class="op">==</span><span class="st"> </span>g2, <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(tib)), <span class="ot">NA</span>))
 tib
@@ -255,6 +266,9 @@ tib
 <span class="st">    </span><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>grps)</code></pre></div>
 <p><img src="index_files/figure-html/facetting_plot-1.png" width="700"></p>
 <hr>
+<div id="thank-yous" class="section level3">
+<h3 class="hasAnchor">
+<a href="#thank-yous" class="anchor"></a>Thank yous</h3>
 <p>I would like to thank the team behind <a href="https://ggplot2.tidyverse.org">ggplot2</a> for creating a flexible and powerful package for the R community.</p>
 <div>
 Logo made with <a href="https://www.designevo.com/en/" title="Free Online Logo Maker">DesignEvo</a>
@@ -293,8 +307,8 @@ Logo made with <a href="https://www.designevo.com/en/" title="Free Online Logo M
 <ul class="list-unstyled">
 <li><a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License: GPL v3"></a></li>
 <li><a href="https://jhrcook.github.io/ggasym/index.html"><img src="http://www.r-pkg.org/badges/version/ggasym" alt="CRAN_Release_Badge"></a></li>
-<li><a href="https://travis-ci.org/jhrcook/ggasym"><img src="https://travis-ci.org/jhrcook/ggasym.svg?branch=diagonal" alt="Travis build status"></a></li>
-<li><a href="https://codecov.io/github/jhrcook/ggasym?branch=diagonal"><img src="https://codecov.io/gh/jhrcook/ggasym/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
+<li><a href="https://travis-ci.org/jhrcook/ggasym"><img src="https://travis-ci.org/jhrcook/ggasym.svg?branch=master" alt="Travis build status"></a></li>
+<li><a href="https://codecov.io/github/jhrcook/ggasym?branch=master"><img src="https://codecov.io/gh/jhrcook/ggasym/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
 </ul>
 </div>
 </div>

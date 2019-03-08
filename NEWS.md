@@ -1,10 +1,10 @@
 # ggasym 0.0.0.9004
 
-* Another fill aesthetic has been implemented along the diagonal: `fill_diag`. It has the standard assortment of wrapper functions for the continous-scale fills.
+* Another fill aesthetic has been implemented along the diagonal: `fill_diag`. It has the standard assortment of wrapper functions for the continuous-scale fills.
 
 # ggasym 0.0.0.9003
 
-* The "asymmetrization" preparation step down includes the abilty to use `dplyr::group_by` to maintain a column(s) that will be used for facetting.
+* The "asymmetrization" preparation step down includes the ability to use `dplyr::group_by` to maintain a column(s) that will be used for facetting.
 
 # ggasym 0.0.0.9002
 

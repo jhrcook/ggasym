@@ -18,8 +18,8 @@ range the scale maps to.}
 
 \item{na.value}{Missing values will be replaced with this value.}
 
-\item{guide}{A function used to create a guide or its name. See guides()
-for more info.}
+\item{guide}{A function used to create a guide or its name. See
+\code{guides()} for more info.}
 
 \item{...}{other input is passed on to \code{ggplot2::continuous_scale()};
 see \code{?ggplot2::continuous_scale} for complete documentation}
@@ -43,8 +43,8 @@ tib
 tib <- asymmetrise(tib, g1, g2)
 ggplot(tib) +
 geom_asymmat(aes(x = g1, y = g2, fill_tl = val_1, fill_br = val_2)) +
-    scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue") +
     scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
+    scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue") +
     labs(fill_tl =  "top-left fill", fill_br = "bottom-right fill")
 
 }

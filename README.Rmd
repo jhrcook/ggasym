@@ -19,8 +19,8 @@ set.seed(0)
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![CRAN_Release_Badge](http://www.r-pkg.org/badges/version/ggasym)](https://jhrcook.github.io/ggasym/index.html)
-[![Travis build status](https://travis-ci.org/jhrcook/ggasym.svg?branch=diagonal)](https://travis-ci.org/jhrcook/ggasym) 
-[![Coverage status](https://codecov.io/gh/jhrcook/ggasym/branch/master/graph/badge.svg)](https://codecov.io/github/jhrcook/ggasym?branch=diagonal)
+[![Travis build status](https://travis-ci.org/jhrcook/ggasym.svg?branch=master)](https://travis-ci.org/jhrcook/ggasym) 
+[![Coverage status](https://codecov.io/gh/jhrcook/ggasym/branch/master/graph/badge.svg)](https://codecov.io/github/jhrcook/ggasym?branch=master)
 
 ggasym (pronounced "gg-awesome") plots a symmetric matrix with two different fill aesthetics for the top-left and bottom-right triangles. It operates within the Grammar of Graphics paradigm implemented in [ggplot2](https://ggplot2.tidyverse.org).
 
@@ -33,9 +33,11 @@ ggasym (pronounced "gg-awesome") plots a symmetric matrix with two different fil
 Checkout the documentation and vignettes at the pkgdown website
 [https://jhrcook.github.io/ggasym/](https://jhrcook.github.io/ggasym/index.html)
 
+For information on using ggplot2, start [here](https://ggplot2.tidyverse.org/index.html).
+
 ## Download and Installation
 
-You can download and install from the GitHub repo.
+You can download and install from the GitHub repo. Eventually, this will hopefully be available on CRAN, too.
 
 ```{r devtools_download, eval = FALSE}
 devtools::install_github("jhrcook/ggasym")
@@ -65,6 +67,8 @@ ggplot(tib, aes(x = g1, y = g2)) +
     scale_fill_diag_gradient(low = "yellow", high = "orange3")
 ```
 
+## New Aesthetics
+
 The new aesthetics `fill_tl`, `fill_br`, and `fill_diag` behave just like the normal `fill`, except that they correspond to the top-left ("tl") and bottom-right ("br") triangles of the matrix, respectively. This package also includes analogous functions for scaling the fill colors such as `scale_fill_tl_gradient2` and `scale_fill_br_gradientn` that operate just as expected when using ggplot2.
 
 ```{r example2}
@@ -75,9 +79,11 @@ ggplot(tib, aes(x = g1, y = g2)) +
     scale_fill_diag_gradientn(colors = rainbow(25))
 ```
 
-Of note, with three colorbars, it may be useful to control their position. This can be done just like normal in ggplot by passing the correct values to the `guide` paramter in `scale_fill_*_gradient` ([original documentation](https://ggplot2.tidyverse.org/reference/guide_colourbar.html)). Below are a few of the options where I put the pars horizontal, adjust the ordering, and put the title above each.
+### Adjusting Colorbars
 
-```{r}
+Of note, with three colorbars, it may be useful to control their position. This can be done just like normal in ggplot by passing the correct values to the `guide` parameter in `scale_fill_*_gradient` ([original documentation](https://ggplot2.tidyverse.org/reference/guide_colourbar.html)). Below are a few of the options where I put the pars horizontal, adjust the ordering, and put the title above each.
+
+```{r adj_colorbars}
 ggplot(tib, aes(x = g1, y = g2)) +
     geom_asymmat(aes(fill_tl = val_1, fill_br = val_2, fill_diag = val_3)) +
     scale_fill_tl_gradient(low = "lightpink", high = "tomato",
@@ -94,6 +100,7 @@ ggplot(tib, aes(x = g1, y = g2)) +
                                                    title.position = "top"))
 ```
 
+## Full ggplot2 integration
 
 Since the new geom is a normal ggplot2 object, it can be introduced into a standard ggplot2 workflow. Note that the labels can be adjusted like normal using the `labs` function and using the `fill_tl` and `fill_br` arguments.
 
@@ -128,7 +135,7 @@ ggplot(tib, aes(x = g1, y = g2)) +
 ```
 
 
-### Facetting
+## Facetting
 
 If you have multiple categories, facetting works as expected. The only difference is in the preparation of the data table: you must `group_by` the value(s) you will facet by before passing to `asymmetrise`. This is shown below.
 
@@ -141,14 +148,13 @@ tib <- tibble(g1 = rep(c("A", "A", "B"), 2),
 tib
 ```
 
-Grouping first by `grps`, the tibble is asymmetrized. I then added values to the diagonal.
+Grouping first by `grps`, the tibble is asymmetrized while retaining the `grps` assignments. I then added values to the diagonal.
 
 ```{r grouped_asymm}
 tib <- tib %>% group_by(grps) %>% asymmetrise(g1, g2) %>% ungroup()
 tib <- tib %>% mutate(val_3 = ifelse(g1 == g2, runif(nrow(tib)), NA))
 tib
 ```
-
 
 ```{r facetting_plot}
 ggplot(tib, aes(x = g1, y = g2)) +
@@ -182,6 +188,8 @@ ggplot(tib, aes(x = g1, y = g2)) +
 ```
 
 ---
+
+### Thank yous
 
 I would like to thank the team behind [ggplot2](https://ggplot2.tidyverse.org) for creating a flexible and powerful package for the R community.
 

@@ -11,7 +11,10 @@
 \alias{scale_fill_tl_gradientn}
 \alias{scale_fill_br_gradientn}
 \alias{scale_fill_diag_gradientn}
-\title{Gradient colour scales for top-left or bottom-right triangle in geom_asymmat}
+\alias{scale_fill_tl_distiller}
+\alias{scale_fill_br_distiller}
+\alias{scale_fill_diag_distiller}
+\title{Gradient colour scales geom_asymmat}
 \usage{
 scale_fill_tl_gradient(..., low = "#132B43", high = "#56B1F7",
   space = "Lab", na.value = "grey50", guide = "colourbar",
@@ -49,6 +52,18 @@ scale_fill_br_gradientn(..., colours, values = NULL, space = "Lab",
 scale_fill_diag_gradientn(..., colours, values = NULL, space = "Lab",
   na.value = "grey50", guide = "colourbar", aesthetics = "fill_diag",
   colors)
+
+scale_fill_tl_distiller(..., type = "seq", palette = 1,
+  direction = -1, values = NULL, space = "Lab",
+  na.value = "grey50", guide = "colourbar", aesthetics = "fill_tl")
+
+scale_fill_br_distiller(..., type = "seq", palette = 1,
+  direction = -1, values = NULL, space = "Lab",
+  na.value = "grey50", guide = "colourbar", aesthetics = "fill_br")
+
+scale_fill_diag_distiller(..., type = "seq", palette = 1,
+  direction = -1, values = NULL, space = "Lab",
+  na.value = "grey50", guide = "colourbar", aesthetics = "fill_diag")
 }
 \arguments{
 \item{...}{arguments passed on to \code{continuous_scale_asym}}
@@ -80,13 +95,24 @@ Defaults to 0.}
 this vector gives the position (between 0 and 1) for each colour in the
 colours vector. See \code{rescale()} for a convenience function to map an
 arbitrary range to between 0 and 1.}
+
+\item{type}{One of \code{"seq"} (sequential), \code{"div"} (diverging) or
+\code{"qual"} (qualitative)}
+
+\item{palette}{If a string, will use that named palette. If a number, will
+index into the list of palettes of appropriate type}
+
+\item{direction}{Sets the order of colours in the scale. If 1, the default,
+colours are as output by \code{RColorBrewer::brewer.pal()}. If -1, the
+order of colours is reversed.}
 }
 \description{
 This dictates a gradient colour scheme for the top-left
-    (\code{tl}) or  bottom_right (\code{br}) of a \code{geom_asymmat} ggplot geom.
-    \code{scale_*_tl/br_gradient} creates a two colour gradient (low-high),
-    \code{scale_*_tl/br_gradient2} creates a diverging colour gradient
-    (low-mid-high), \code{scale_*_tl/br_gradientn} creates a n-colour
+    (\code{tl}),  bottom_right (\code{br}), or diagonal (\code{diag})
+    of a \code{geom_asymmat} ggplot geom. \code{scale_*_tl/br_gradient}
+    creates a two colour gradient (low-high), \code{scale_*_tl/br_gradient2}
+    creates a diverging colour gradient (low-mid-high),
+    \code{scale_*_tl/br_gradientn} creates a n-colour
     gradient.
 }
 \examples{
@@ -116,10 +142,11 @@ g + scale_fill_tl_gradient2(low = "dodgerblue",
                               mid = "cornflowerblue", midpoint = 2.5,
                               high = "chartreuse")
 
-
-
 g + scale_fill_tl_gradientn(colours = terrain.colors(200)) +
     scale_fill_br_gradientn(colours = heat.colors(200)) +
     scale_fill_diag_gradientn(colours = rainbow(200))
 
+g + scale_fill_tl_distiller(type  = "seq", palette = "Greens") +
+    scale_fill_br_distiller(type  = "div", palette = "PuOr") +
+    scale_fill_diag_distiller(type  = "seq", palette = "Blues")
 }

@@ -41,13 +41,6 @@ reference:
 
 
 articles:
-- title: Basic use
-  desc: >
-    This vignettes gives a general overview of using `geom_asymmat` in a
-    ggplot2 assembly pipeline (spoiler alert: it's really easy!)
-  contents:
-  - '`ggasym-vignette`'
-
 - title: Examples of ggasym
   desc: >
     These vignettes provide examples of using ggasym in real analyses.

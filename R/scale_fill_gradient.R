@@ -1,10 +1,11 @@
-#' Gradient colour scales for top-left or bottom-right triangle in geom_asymmat
+#' Gradient colour scales geom_asymmat
 #'
 #' @description This dictates a gradient colour scheme for the top-left
-#'     (\code{tl}) or  bottom_right (\code{br}) of a \code{geom_asymmat} ggplot geom.
-#'     \code{scale_*_tl/br_gradient} creates a two colour gradient (low-high),
-#'     \code{scale_*_tl/br_gradient2} creates a diverging colour gradient
-#'     (low-mid-high), \code{scale_*_tl/br_gradientn} creates a n-colour
+#'     (\code{tl}),  bottom_right (\code{br}), or diagonal (\code{diag})
+#'     of a \code{geom_asymmat} ggplot geom. \code{scale_*_tl/br_gradient}
+#'     creates a two colour gradient (low-high), \code{scale_*_tl/br_gradient2}
+#'     creates a diverging colour gradient (low-mid-high),
+#'     \code{scale_*_tl/br_gradientn} creates a n-colour
 #'     gradient.
 #' @param ... arguments passed on to \code{continuous_scale_asym}
 #' @param low,high the colors to represent low and high values
@@ -54,12 +55,13 @@
 #'                               mid = "cornflowerblue", midpoint = 2.5,
 #'                               high = "chartreuse")
 #'
-#'
-#'
 #' g + scale_fill_tl_gradientn(colours = terrain.colors(200)) +
 #'     scale_fill_br_gradientn(colours = heat.colors(200)) +
 #'     scale_fill_diag_gradientn(colours = rainbow(200))
 #'
+#' g + scale_fill_tl_distiller(type  = "seq", palette = "Greens") +
+#'     scale_fill_br_distiller(type  = "div", palette = "PuOr") +
+#'     scale_fill_diag_distiller(type  = "seq", palette = "Blues")
 #' @name scale_gradient
 NULL
 
@@ -224,6 +226,91 @@ scale_fill_diag_gradientn <- function(..., colours,
     colours <- if (missing(colours)) colors else colours
     continuous_scale_asym(aesthetics, "gradientn",
                           scales::gradient_n_pal(colours, values, space),
+                          na.value = na.value,
+                          guide = guide,
+                          ...)
+}
+
+
+#' @param type One of \code{"seq"} (sequential), \code{"div"} (diverging) or
+#'     \code{"qual"} (qualitative)
+#' @param palette If a string, will use that named palette. If a number, will
+#'     index into the list of palettes of appropriate type
+#' @param direction Sets the order of colours in the scale. If 1, the default,
+#'     colours are as output by \code{RColorBrewer::brewer.pal()}. If -1, the
+#'     order of colours is reversed.
+#' @rdname scale_gradient
+#' @export scale_fill_tl_distiller
+scale_fill_tl_distiller <- function(...,
+                                    type = "seq",
+                                    palette = 1,
+                                    direction = -1,
+                                    values = NULL,
+                                    space = "Lab",
+                                    na.value = "grey50",
+                                    guide = "colourbar",
+                                    aesthetics = "fill_tl") {
+    type <- match.arg(type, c("seq", "div", "qual"))
+    if (type == "qual") {
+        warning("Using a discrete colour palette in a continuous scale.\n
+                Consider using type = \"seq\" or type = \"div\" instead",
+                call. = FALSE)
+    }
+    pal <- scales::brewer_pal(type, palette, direction)(7)
+    continuous_scale_asym(aesthetics, "distiller",
+                          scales::gradient_n_pal(pal, values, space),
+                          na.value = na.value,
+                          guide = guide,
+                          ...)
+}
+
+
+#' @rdname scale_gradient
+#' @export scale_fill_br_distiller
+scale_fill_br_distiller <- function(...,
+                                    type = "seq",
+                                    palette = 1,
+                                    direction = -1,
+                                    values = NULL,
+                                    space = "Lab",
+                                    na.value = "grey50",
+                                    guide = "colourbar",
+                                    aesthetics = "fill_br") {
+    type <- match.arg(type, c("seq", "div", "qual"))
+    if (type == "qual") {
+        warning("Using a discrete colour palette in a continuous scale.\n
+                Consider using type = \"seq\" or type = \"div\" instead",
+                call. = FALSE)
+    }
+    pal <- scales::brewer_pal(type, palette, direction)(7)
+    continuous_scale_asym(aesthetics, "distiller",
+                          scales::gradient_n_pal(pal, values, space),
+                          na.value = na.value,
+                          guide = guide,
+                          ...)
+}
+
+
+#' @rdname scale_gradient
+#' @export scale_fill_diag_distiller
+scale_fill_diag_distiller <- function(...,
+                                    type = "seq",
+                                    palette = 1,
+                                    direction = -1,
+                                    values = NULL,
+                                    space = "Lab",
+                                    na.value = "grey50",
+                                    guide = "colourbar",
+                                    aesthetics = "fill_diag") {
+    type <- match.arg(type, c("seq", "div", "qual"))
+    if (type == "qual") {
+        warning("Using a discrete colour palette in a continuous scale.\n
+                Consider using type = \"seq\" or type = \"div\" instead",
+                call. = FALSE)
+    }
+    pal <- scales::brewer_pal(type, palette, direction)(7)
+    continuous_scale_asym(aesthetics, "distiller",
+                          scales::gradient_n_pal(pal, values, space),
                           na.value = na.value,
                           guide = guide,
                           ...)
