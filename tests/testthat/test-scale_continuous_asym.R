@@ -346,6 +346,21 @@ test_that("scale_fill_tl/br/diag_distiller values populate properly", {
     expect_equal(g3_build$data[[3]]$fill_diag, diag_cols)
 })
 
+test_that("get a warning from using qual with distiller", {
+    tib <- data.frame(grp1 = c("A", "A", "A", "B", "B", "C", "A", "B"),
+                      grp2 = c("B", "C", "D", "C", "D", "D", "A", "B"),
+                      val_1 = c(1, 2, NA, 0, 10, 5, 5, 1),
+                      val_2 = c(-2, -1, 0, 1, 2, 3, 4, 5),
+                      val_3 = c(NA, NA, NA, NA, NA, NA, 1, 2))
+    atib <- asymmetrise(tib, grp1, grp2)
+    g <- ggplot(atib, aes(x = grp1, y = grp2)) +
+        geom_asymmat(aes(fill_tl = val_1, fill_br = val_2, fill_diag = val_3))
+
+    expect_warning(g + scale_fill_tl_distiller(type = "qual", palette = 1))
+    expect_warning(g + scale_fill_br_distiller(type = "qual", palette = 2))
+    expect_warning(g + scale_fill_diag_distiller(type = "qual", palette = 3))
+})
+
 
 test_that("ggplot's midrescaler is working", {
     num_scale <- mid_rescaler(mid = 5)
@@ -359,3 +374,19 @@ test_that("ggplot's midrescaler is working", {
     expect_true(is.null(num_scale(c())))
 })
 
+
+test_that("returns the correct aesthetic index", {
+    fake_cs_any <- list(guide = list(available_aes = "any"))
+    fake_cs_fill <- list(guide = list(available_aes = c("rand", "any", "fill")))
+    fake_cs_color <- list(guide = list(available_aes = c("rand", "any", "color")))
+
+    expect_equal(index_aesthetic(fake_cs_any, "fill"), 1)
+    expect_equal(index_aesthetic(fake_cs_any, "color"), 1)
+    expect_equal(index_aesthetic(fake_cs_any, "nonsense"), 1)
+
+    expect_equal(index_aesthetic(fake_cs_fill, "fill"), 3)
+    expect_equal(index_aesthetic(fake_cs_fill, "color"), integer(0))
+
+    expect_equal(index_aesthetic(fake_cs_color, "color"), 3)
+    expect_equal(index_aesthetic(fake_cs_color, "fill"), integer(0))
+})
