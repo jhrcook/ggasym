@@ -20,8 +20,10 @@
 asymmetrise_stats <- function(.data, comparison_sep = "-") {
     .data <- prepare_data(.data)
     new_data <- .data %>%
-        mutate(x = stringr::str_split_fixed(comparison, comparison_sep, 2)[, 1],
-               y = stringr::str_split_fixed(comparison, comparison_sep, 2)[, 2])
+        dplyr::mutate(x = stringr::str_split_fixed(comparison,
+                                                   comparison_sep, 2)[, 1],
+                      y = stringr::str_split_fixed(comparison,
+                                                   comparison_sep, 2)[, 2])
     new_data <- dplyr::bind_rows(new_data, swap_cols(new_data, x, y))
     return(asymmetrise(new_data, x, y))
 }

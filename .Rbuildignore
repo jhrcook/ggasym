@@ -1,5 +1,4 @@
 ^_R_archive$
-^R/scale_discrete_asym\.R$
 ^README\.Rmd$
 ^codecov\.yml$
 ^\.travis\.yml$
@@ -7,9 +6,7 @@
 ^doc$
 ^docs$
 ^_pkgdown\.yml$
-^data-raw$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^vignettes/enrichment_example.Rmd$
 ^pkgdown$
 ^README_files$
