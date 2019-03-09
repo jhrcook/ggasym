@@ -19,7 +19,7 @@ set.seed(0)
 
 ## Purpose
 
-One of the great uses of ggasym is to plot two values from the results of a multi-way statistical test. Each comparison is a cell, an two values can be used for the fill. Below I give breif examples and plot the differences in mean and the p-value on the symmetric matrix.
+One of the great uses of ggasym is to plot two values from the results of a multi-way statistical test. Each comparison is a cell, an two values can be used for the fill. Below I give brief examples and plot the differences in mean and the p-value on the symmetric matrix.
 
 ```{r load_libs, warning=FALSE, message=FALSE}
 library(dplyr)
@@ -70,7 +70,7 @@ tukey_res
 
 ## Plotting
 
-Now I want to plot the `estimate` in the top-left and `p adj` in the bottom right. First, I must prepare the data for use with `geom_asymmat` by passing the results of the Tukey post-hoc test to `asymmetrise_stats`. You can see that it returns the data in a tibble with new coluymns `x` and `y` rthat are the result of splitting `comparison`.
+Now I want to plot the `estimate` in the top-left and `p adj` in the bottom right. First, I must prepare the data for use with `geom_asymmat` by passing the results of the Tukey post-hoc test to `asymmetrise_stats`. You can see that it returns the data in a tibble with new columns `x` and `y` that are the result of splitting `comparison`.
 
 ```{r prep_results}
 asymmat_tib <- asymmetrise_stats(tukey_res)
@@ -86,7 +86,7 @@ ggplot(asymmat_tib, aes(x = x, y = y)) +
     scale_fill_br_distiller(type = "seq", palette = "Greens", direction = 1)
 ```
 
-And add a few styling changes with normal ggplot2 symantics.
+And add a few styling changes with normal ggplot2 semantics.
 
 ```{r plot_res_full}
 ggplot(asymmat_tib, aes(x = x, y = y)) +
@@ -107,7 +107,7 @@ ggplot(asymmat_tib, aes(x = x, y = y)) +
     scale_y_discrete(expand = c(0,0))
 ```
 
-One of the conlusions that can be drawn here is that the difference in expression of kindlin and FAK is the greatest and has a very low adjusted p-value. Thus, one of the conclusion is that kindlin is expressed at a lower level than FAK.
+One of the conclusions that can be drawn here is that the difference in expression of kindlin and FAK is the greatest and has a very low adjusted p-value. Thus, one of the conclusion is that kindlin is expressed at a lower level than FAK.
 
 ---
 

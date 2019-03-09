@@ -1,10 +1,18 @@
 
-ggasym <a href="https://jhrcook.github.io/ggasym/index.html"> <img src="man/figures/logo.png" align="right" alt="" width="120" /> </a>
-======================================================================================================================================
+# ggasym <a href="https://jhrcook.github.io/ggasym/index.html"> <img src="man/figures/logo.png" align="right" alt="" width="120" /> </a>
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version/ggasym)](https://jhrcook.github.io/ggasym/index.html) [![Travis build status](https://travis-ci.org/jhrcook/ggasym.svg?branch=master)](https://travis-ci.org/jhrcook/ggasym) [![Coverage status](https://codecov.io/gh/jhrcook/ggasym/branch/master/graph/badge.svg)](https://codecov.io/github/jhrcook/ggasym?branch=master)
+[![License: GPL
+v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version/ggasym)](https://jhrcook.github.io/ggasym/index.html)
+[![Travis build
+status](https://travis-ci.org/jhrcook/ggasym.svg?branch=master)](https://travis-ci.org/jhrcook/ggasym)
+[![Coverage
+status](https://codecov.io/gh/jhrcook/ggasym/branch/master/graph/badge.svg)](https://codecov.io/github/jhrcook/ggasym?branch=master)
 
-ggasym (pronounced "gg-awesome") plots a symmetric matrix with two different fill aesthetics for the top-left and bottom-right triangles. It operates within the Grammar of Graphics paradigm implemented in [ggplot2](https://ggplot2.tidyverse.org).
+ggasym (pronounced “gg-awesome”) plots a symmetric matrix with two
+different fill aesthetics for the top-left and bottom-right triangles.
+It operates within the Grammar of Graphics paradigm implemented in
+[ggplot2](https://ggplot2.tidyverse.org).
 
 **author: Joshua H. Cook**
 
@@ -12,12 +20,16 @@ ggasym (pronounced "gg-awesome") plots a symmetric matrix with two different fil
 
 **Asymmetric Matrix Plotting in ggplot**
 
-Checkout the documentation and vignettes at the pkgdown website [https://jhrcook.github.io/ggasym/](https://jhrcook.github.io/ggasym/index.html)
+Checkout the documentation and vignettes at the pkgdown website
+[https://jhrcook.github.io/ggasym/](https://jhrcook.github.io/ggasym/index.html)
 
-Download and Installation
--------------------------
+For information on using ggplot2, start
+[here](https://ggplot2.tidyverse.org/index.html).
 
-You can download and install from the GitHub repo.
+## Download and Installation
+
+You can download and install from the GitHub repo. Eventually, this will
+hopefully be available on CRAN, too.
 
 ``` r
 devtools::install_github("jhrcook/ggasym")
@@ -29,10 +41,17 @@ And load the package with the standard `library` function.
 library(ggasym)
 ```
 
-Basic Usage
------------
+## Basic Usage
 
-Here is a basic example. `tib` is a "tibble" (ie. fancy "data.frame") of comparisons between groups "A" through "E". There are two values to be plotted, `val_1` and `val_2`, that hold data on the comparison between `g1` and `g2`. `tib` is first passed to `asymmetrise` to fill in all the missing combinations between `g1` and `g2` such that the symmetric matrix can be built. All added values take the value `NA`. The modified data table is finally passed to `ggplot` and `geom_asymmat` is added on. Here, `asymmetrise` added the rows where `g1` and `g2` are equal, thus will fill the diagonal. I will set these values to `val_3`.
+Here is a basic example. `tib` is a “tibble” (ie. fancy “data.frame”) of
+comparisons between groups “A” through “E”. There are two values to be
+plotted, `val_1` and `val_2`, that hold data on the comparison between
+`g1` and `g2`. `tib` is first passed to `asymmetrise` to fill in all the
+missing combinations between `g1` and `g2` such that the symmetric
+matrix can be built. All added values take the value `NA`. The modified
+data table is finally passed to `ggplot` and `geom_asymmat` is added on.
+Here, `asymmetrise` added the rows where `g1` and `g2` are equal, thus
+will fill the diagonal. I will set these values to `val_3`.
 
 ``` r
 tib <- tibble(g1 = c("A", "A", "A", "A", "B", "B", "B", "C", "C", "D"),
@@ -48,9 +67,17 @@ ggplot(tib, aes(x = g1, y = g2)) +
     scale_fill_diag_gradient(low = "yellow", high = "orange3")
 ```
 
-![](README_files/figure-markdown_github/example1-1.png)
+![](README_files/figure-gfm/example1-1.png)<!-- -->
 
-The new aesthetics `fill_tl`, `fill_br`, and `fill_diag` behave just like the normal `fill`, except that they correspond to the top-left ("tl") and bottom-right ("br") triangles of the matrix, respectively. This package also includes analogous functions for scaling the fill colors such as `scale_fill_tl_gradient2` and `scale_fill_br_gradientn` that operate just as expected when using ggplot2.
+## New Aesthetics
+
+The new aesthetics `fill_tl`, `fill_br`, and `fill_diag` behave just
+like the normal `fill`, except that they correspond to the top-left
+(“tl”) and bottom-right (“br”) triangles of the matrix,
+respectively. This package also includes analogous functions for scaling
+the fill colors such as `scale_fill_tl_gradient2` and
+`scale_fill_br_gradientn` that operate just as expected when using
+ggplot2.
 
 ``` r
 ggplot(tib, aes(x = g1, y = g2)) +
@@ -60,9 +87,17 @@ ggplot(tib, aes(x = g1, y = g2)) +
     scale_fill_diag_gradientn(colors = rainbow(25))
 ```
 
-![](README_files/figure-markdown_github/example2-1.png)
+![](README_files/figure-gfm/example2-1.png)<!-- -->
 
-Of note, with three colorbars, it may be useful to control their position. This can be done just like normal in ggplot by passing the correct values to the `guide` paramter in `scale_fill_*_gradient` ([original documentation](https://ggplot2.tidyverse.org/reference/guide_colourbar.html)). Below are a few of the options where I put the pars horizontal, adjust the ordering, and put the title above each.
+### Adjusting Colorbars
+
+Of note, with three colorbars, it may be useful to control their
+position. This can be done just like normal in ggplot by passing the
+correct values to the `guide` parameter in `scale_fill_*_gradient`
+([original
+documentation](https://ggplot2.tidyverse.org/reference/guide_colourbar.html)).
+Below are a few of the options where I put the pars horizontal, adjust
+the ordering, and put the title above each.
 
 ``` r
 ggplot(tib, aes(x = g1, y = g2)) +
@@ -81,9 +116,14 @@ ggplot(tib, aes(x = g1, y = g2)) +
                                                    title.position = "top"))
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-1-1.png)
+![](README_files/figure-gfm/adj_colorbars-1.png)<!-- -->
 
-Since the new geom is a normal ggplot2 object, it can be introduced into a standard ggplot2 workflow. Note that the labels can be adjusted like normal using the `labs` function and using the `fill_tl` and `fill_br` arguments.
+## Full ggplot2 integration
+
+Since the new geom is a normal ggplot2 object, it can be introduced into
+a standard ggplot2 workflow. Note that the labels can be adjusted like
+normal using the `labs` function and using the `fill_tl` and `fill_br`
+arguments.
 
 ``` r
 ggplot(tib, aes(x = g1, y = g2)) +
@@ -115,11 +155,14 @@ ggplot(tib, aes(x = g1, y = g2)) +
     scale_y_discrete(expand = c(0, 0))
 ```
 
-![](README_files/figure-markdown_github/example3-1.png)
+![](README_files/figure-gfm/example3-1.png)<!-- -->
 
-### Facetting
+## Facetting
 
-If you have multiple categories, facetting works as expected. The only difference is in the preparation of the data table: you must `group_by` the value(s) you will facet by before passing to `asymmetrise`. This is shown below.
+If you have multiple categories, facetting works as expected. The only
+difference is in the preparation of the data table: you must `group_by`
+the value(s) you will facet by before passing to `asymmetrise`. This is
+shown below.
 
 ``` r
 tib <- tibble(g1 = rep(c("A", "A", "B"), 2),
@@ -139,7 +182,8 @@ tib
 #> 6 B     C         6 -1.47       2
 ```
 
-Grouping first by `grps`, the tibble is asymmetrized. I then added values to the diagonal.
+Grouping first by `grps`, the tibble is asymmetrized while retaining the
+`grps` assignments. I then added values to the diagonal.
 
 ``` r
 tib <- tib %>% group_by(grps) %>% asymmetrise(g1, g2) %>% ungroup()
@@ -199,10 +243,67 @@ ggplot(tib, aes(x = g1, y = g2)) +
     facet_grid(. ~ grps)
 ```
 
-![](README_files/figure-markdown_github/facetting_plot-1.png)
+![](README_files/figure-gfm/facetting_plot-1.png)<!-- -->
 
-------------------------------------------------------------------------
+-----
 
-I would like to thank the team behind [ggplot2](https://ggplot2.tidyverse.org) for creating a flexible and powerful package for the R community.
+## Statistical Test Wrapper
 
-Logo made with <a href="https://www.designevo.com/en/" title="Free Online Logo Maker">DesignEvo</a>
+I created a wrapper for handling the results of a statistical test to
+produce a tibble ready to be plotted with ggasym. Here is a brief
+example - a more detailed example is shown in the vignette [“Statistical
+Test
+Plotting”](https://jhrcook.github.io/ggasym/articles/ggasym-stats.html).
+Here I test if the median sale price of houses in Austin, Texas is
+different between any of the years (for more information on the data
+source: `?ggplot2::txhousing`).
+
+``` r
+tib <- ggplot2::txhousing %>%
+    filter(city == "Austin") %>%
+    mutate(year = as.character(year))
+aov_res <- aov(median ~ year, data = tib)
+broom::tidy(aov_res)
+#> # A tibble: 2 x 6
+#>   term         df         sumsq       meansq statistic    p.value
+#>   <chr>     <dbl>         <dbl>        <dbl>     <dbl>      <dbl>
+#> 1 year         15 169514394144. 11300959610.      213.  4.29e-102
+#> 2 Residuals   171   9077385000.    53084123.       NA  NA
+```
+
+Before plotting, the results of the Tukey post-hoc test are passed to
+`asymmetrise_stats` that prepares the data for `geom_asymmat`. The
+resulting tibble is then plotted and styled in ggplot2.
+
+``` r
+asymmat_tib <- asymmetrise_stats(TukeyHSD(aov_res))
+ggplot(asymmat_tib, aes(x = x, y = y)) +
+    geom_asymmat(aes(fill_tl = estimate,
+                     fill_br = -log10(adj.p.value + 0.0000001))) +
+    scale_fill_tl_gradient2(low = "dodgerblue", high = "tomato") +
+    scale_fill_br_distiller(type = "seq", palette = "Greens", direction = 1) +
+    labs(title = "Median House Prices in Austin",
+         fill_tl = "diff. in\nmean values",
+         fill_br = "-log10( adj. p-value )") +
+    theme(panel.background = element_rect(fill = "grey75"),
+          panel.grid = element_blank()) +
+    scale_x_discrete(expand = c(0, 0)) +
+    scale_y_discrete(expand = c(0, 0))
+```
+
+![](README_files/figure-gfm/stats_example_plot-1.png)<!-- -->
+
+-----
+
+### Thank yous
+
+I would like to thank the team behind
+[ggplot2](https://ggplot2.tidyverse.org) for creating a flexible and
+powerful package for the R community.
+
+<div>
+
+Logo made with
+<a href="https://www.designevo.com/en/" title="Free Online Logo Maker">DesignEvo</a>
+
+</div>

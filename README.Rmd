@@ -191,7 +191,7 @@ ggplot(tib, aes(x = g1, y = g2)) +
 
 ## Statistical Test Wrapper
 
-I created a wrapper for handlinng the results of a statistical test to produce a tibble ready to be plotted with ggasym. Here is a breif examples though a bit more is shown in the vignettte ["Statistical Test Plotting"](https://jhrcook.github.io/ggasym/articles/ggasym-stats.html). Here I test if the median sale price of houses in Austin, Texas is different between any of the years (for more information on the data source: `?ggplot2::txhousing`).
+I created a wrapper for handling the results of a statistical test to produce a tibble ready to be plotted with ggasym. Here is a brief example - a more detailed example is shown in the vignette ["Statistical Test Plotting"](https://jhrcook.github.io/ggasym/articles/ggasym-stats.html). Here I test if the median sale price of houses in Austin, Texas is different between any of the years (for more information on the data source: `?ggplot2::txhousing`).
 
 ```{r stats_example_prep}
 tib <- ggplot2::txhousing %>%

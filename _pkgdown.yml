@@ -17,12 +17,12 @@ reference:
   - '`scale_gradient`'
   - '`continuous_scale_asym`'
 
-- title: Data
+- title: Stats
   desc: >
-    These are the data used in the vignettes.
+    For preparing the results of statistical tests for `geom_asymmat`
   contents:
-  - '`enrichment_data`'
-  - '`moexpr_data`'
+  - '`asymmetrise_stats`'
+  - '`prepare_data`'
 
 - title: Utilities
   desc: >
@@ -41,8 +41,9 @@ reference:
 
 
 articles:
-- title: Examples of ggasym
+- title: Statistical Test Plotting
   desc: >
-    These vignettes provide examples of using ggasym in real analyses.
+    An example of using the `asymmetrise_stats` wrapper for preparing the
+    results of a statistical test for `geom_asymmat`
   contents:
-  - '`gene-coexpression`'
+  - '`ggasym-stats`'

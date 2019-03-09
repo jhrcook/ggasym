@@ -34,8 +34,8 @@ asymmetrize_stats <- asymmetrise_stats
 
 #' Prepares the input data into asymmetrise_stats
 #'
-#' @description Tries to make the data ready for use in the asymetrise_stats
-#'     function using \code{broom::tidy}
+#' @description Tries to make the data ready for use in the
+#'     \code{asymmetrise_stats} function using \code{broom::tidy}
 #'
 #' @param .data input data of either a tibble, data.frame, or results from a
 #'     statistical test
@@ -43,7 +43,7 @@ asymmetrize_stats <- asymmetrise_stats
 #' @return a tibble data table
 #'
 #' @section Warning:
-#'     If you repeatedly get errors, try prearing the data before hand using
+#'     If you repeatedly get errors, try preparing the data before hand using
 #'     \code{broom::tidy(.data)}
 #'
 #' @examples

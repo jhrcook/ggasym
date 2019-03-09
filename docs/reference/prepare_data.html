@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GeomAsymmat — GeomAsymmat • ggasym</title>
+<title>Prepares the input data into asymmetrise_stats — prepare_data • ggasym</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,9 +37,10 @@
 
 
 
-<meta property="og:title" content="GeomAsymmat — GeomAsymmat" />
+<meta property="og:title" content="Prepares the input data into asymmetrise_stats — prepare_data" />
 
-<meta property="og:description" content="A ggproto object for the ggasym package and used by geom_asymmat" />
+<meta property="og:description" content="Tries to make the data ready for use in the
+    asymmetrise_stats function using broom::tidy" />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -123,41 +124,62 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>GeomAsymmat</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jhrcook/ggasym/blob/master/R/geom_asymmat.R'><code>R/geom_asymmat.R</code></a></small>
-    <div class="hidden name"><code>GeomAsymmat.Rd</code></div>
+    <h1>Prepares the input data into asymmetrise_stats</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jhrcook/ggasym/blob/master/R/asymmetrise_stats.R'><code>R/asymmetrise_stats.R</code></a></small>
+    <div class="hidden name"><code>prepare_data.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>A ggproto object for the ggasym package and used by <code>geom_asymmat</code></p>
+    <p>Tries to make the data ready for use in the
+    <code>asymmetrise_stats</code> function using <code><a href='https://www.rdocumentation.org/packages/broom/topics/reexports'>broom::tidy</a></code></p>
     
     </div>
 
-    <pre class="usage"><span class='no'>GeomAsymmat</span></pre>
-        
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <pre class="usage"><span class='fu'>prepare_data</span>(<span class='no'>.data</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>.data</th>
+      <td><p>input data of either a tibble, data.frame, or results from a
+statistical test</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An object of class <code>GeomAsymmat</code> (inherits from <code>GeomRect</code>, <code>Geom</code>, <code>ggproto</code>, <code>gg</code>) of length 7.</p>
+    <p>a tibble data table</p>
     
     <h2 class="hasAnchor" id="warning"><a class="anchor" href="#warning"></a>Warning</h2>
 
     
-    <p>This <code>GeomAsymmat</code> is very much still in development and warrant to change
-    without notice. Use at your own risk. If dependent on <code>GeomAsymmat</code>
-    it is advisable to include tests with a cached version to test for
-    equivalence.</p>
+    <p>If you repeatedly get errors, try preparing the data before hand using
+    <code><a href='https://www.rdocumentation.org/packages/broom/topics/reexports'>broom::tidy(.data)</a></code></p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>a</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>10</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>1</span>)
+<span class='no'>b</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>10</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>1</span>)
+<span class='fu'>prepare_data</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/t.test'>t.test</a></span>(<span class='no'>a</span>, <span class='no'>b</span>))</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 10</span><span>
+#&gt;   estimate estimate1 estimate2 statistic p.value parameter conf.low conf.high
+#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>   -</span><span style='color: #BB0000;'>0.632</span><span>     0.786      1.42     -</span><span style='color: #BB0000;'>1.55</span><span>   0.143      14.1    -</span><span style='color: #BB0000;'>1.50</span><span>     0.240
+#&gt; </span><span style='color: #555555;'># … with 2 more variables: method </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, alternative </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span></div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#format">Format</a></li>
+      <li><a href="#value">Value</a></li>
 
       <li><a href="#warning">Warning</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

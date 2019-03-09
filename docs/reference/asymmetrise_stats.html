@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GeomAsymmat — GeomAsymmat • ggasym</title>
+<title>Prepare an asymmetric data table from a statistical test — asymmetrise_stats • ggasym</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,9 +37,11 @@
 
 
 
-<meta property="og:title" content="GeomAsymmat — GeomAsymmat" />
+<meta property="og:title" content="Prepare an asymmetric data table from a statistical test — asymmetrise_stats" />
 
-<meta property="og:description" content="A ggproto object for the ggasym package and used by geom_asymmat" />
+<meta property="og:description" content="This function prepares the results of a statistical test for
+    plotting using `geom_asymmat` from the ggasym package. For more
+    information, see vignette(ggasym-stats)" />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -123,40 +125,53 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>GeomAsymmat</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jhrcook/ggasym/blob/master/R/geom_asymmat.R'><code>R/geom_asymmat.R</code></a></small>
-    <div class="hidden name"><code>GeomAsymmat.Rd</code></div>
+    <h1>Prepare an asymmetric data table from a statistical test</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jhrcook/ggasym/blob/master/R/asymmetrise_stats.R'><code>R/asymmetrise_stats.R</code></a></small>
+    <div class="hidden name"><code>asymmetrise_stats.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>A ggproto object for the ggasym package and used by <code>geom_asymmat</code></p>
+    <p>This function prepares the results of a statistical test for
+    plotting using `geom_asymmat` from the ggasym package. For more
+    information, see <code>vignette(ggasym-stats)</code></p>
     
     </div>
 
-    <pre class="usage"><span class='no'>GeomAsymmat</span></pre>
-        
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <pre class="usage"><span class='fu'>asymmetrise_stats</span>(<span class='no'>.data</span>, <span class='kw'>comparison_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>)
 
-    <p>An object of class <code>GeomAsymmat</code> (inherits from <code>GeomRect</code>, <code>Geom</code>, <code>ggproto</code>, <code>gg</code>) of length 7.</p>
+<span class='fu'>asymmetrize_stats</span>(<span class='no'>.data</span>, <span class='kw'>comparison_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>)</pre>
     
-    <h2 class="hasAnchor" id="warning"><a class="anchor" href="#warning"></a>Warning</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>.data</th>
+      <td><p>either the results of a statistical test or the tidy tibble
+from using the <code><a href='https://www.rdocumentation.org/packages/broom/topics/reexports'>broom::tidy()</a></code> function</p></td>
+    </tr>
+    <tr>
+      <th>comparison_sep</th>
+      <td><p>the separation used between the names being compared;
+it is usually a hyphen (set as default here); since it is passed as the
+<code>pattern</code> parameter to <code><a href='https://stringr.tidyverse.org/reference/str_split.html'>stringr::str_split_fixed()</a></code>, this can
+be any regular expression that will reliably split <code>.comparison</code></p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
-    <p>This <code>GeomAsymmat</code> is very much still in development and warrant to change
-    without notice. Use at your own risk. If dependent on <code>GeomAsymmat</code>
-    it is advisable to include tests with a cached version to test for
-    equivalence.</p>
+    <p>a tibble object that can be used as direct input for ggplot2 for
+    use  with the <code>geom_asymmat</code> geom</p>
     
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#format">Format</a></li>
-
-      <li><a href="#warning">Warning</a></li>
+      <li><a href="#value">Value</a></li>
           </ul>
 
   </div>

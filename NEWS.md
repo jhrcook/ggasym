@@ -1,3 +1,7 @@
+# ggasym 0.0.0.9005
+
+* Introduced a wrapper for preparing the results of a statistical test for use in `geom_asymmat`
+
 # ggasym 0.0.0.9004
 
 * Another fill aesthetic has been implemented along the diagonal: `fill_diag`. It has the standard assortment of wrapper functions for the continuous-scale fills.
