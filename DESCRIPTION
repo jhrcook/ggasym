@@ -6,9 +6,10 @@ Authors@R: person(c("Joshua", "H"), "Cook", email = "joshuacook0023@gmail.com",
     role = c("aut", "cre"),
     comment = c(ORCID = "0000-0001-9815-6879"))
 URL: https://github.com/jhrcook/ggasym https://jhrcook.github.io/ggasym/
-Description: Plots a symmetric matrix with two different fill
-    aesthetics for the top-left and bottom-right triangles. It operates within
-    the Grammar of Graphics paradigm implemented in ggplot.
+Description: Plots a symmetric matrix with three different fill
+    aesthetics for the top-left and bottom-right triangles and along the
+    diagonal. It operates within the Grammar of Graphics paradigm implemented
+    in 'ggplot'.
 License: file LICENSE
 Encoding: UTF-8
 LazyData: true
