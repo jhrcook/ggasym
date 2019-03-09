@@ -103,117 +103,117 @@
 <h2 class="hasAnchor">
 <a href="#purpose" class="anchor"></a>Purpose</h2>
 <p>One of the great uses of ggasym is to plot two values from the results of a multi-way statistical test. Each comparison is a cell, an two values can be used for the fill. Below I give brief examples and plot the differences in mean and the p-value on the symmetric matrix.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tibble)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(purrr)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(broom)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggasym)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tibble)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(purrr)</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(broom)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggasym)</a></code></pre></div>
 </div>
 <div id="data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#data" class="anchor"></a>Data</h2>
 <p>The data will be modeled as expression values of 6 genes, each with 10 measurements. I will then as if any of them have different levels of expression.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n_reps &lt;-<span class="st"> </span><span class="dv">10</span>  <span class="co"># number of measurements per gene</span>
-expt_std_dev &lt;-<span class="st"> </span><span class="fl">1.5</span>  <span class="co"># std. dev. of measurements</span>
-genes &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"FAK"</span>, <span class="st">"talin"</span>, <span class="st">"paxillin"</span>, <span class="st">"vinculin"</span>, <span class="st">"B1integrin"</span>, <span class="st">"kindlin"</span>)
-<span class="co"># "real" expression levels to be used as the mean in `rnorm`</span>
-real_expression_levels &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="fl">0.1</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(genes), <span class="dt">replace =</span> <span class="ot">TRUE</span>)
-<span class="co"># create a tibble</span>
-expr_data &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">tibble</a></span>(<span class="dt">gene =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(genes, n_reps),
-                    <span class="dt">real_expr =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(real_expression_levels, n_reps),
-                    <span class="dt">rep_num =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sort">sort</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="dv">1</span><span class="op">:</span>n_reps, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(genes))))
-<span class="co"># add in the measured expression values as a normal distribution around the mean</span>
-expr_data &lt;-<span class="st"> </span>expr_data <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">expt_expr =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(expr_data),
-                             <span class="dt">mean =</span> real_expr,
-                             <span class="dt">sd =</span> expt_std_dev))
-<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(expr_data)
-<span class="co">#&gt; # A tibble: 6 x 4</span>
-<span class="co">#&gt;   gene       real_expr rep_num expt_expr</span>
-<span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 FAK              4.6       1     6.51 </span>
-<span class="co">#&gt; 2 talin            2         1     2.62 </span>
-<span class="co">#&gt; 3 paxillin         2.5       1     0.190</span>
-<span class="co">#&gt; 4 vinculin         3.3       1     1.91 </span>
-<span class="co">#&gt; 5 B1integrin       4.7       1     4.26 </span>
-<span class="co">#&gt; 6 kindlin          1.8       1     1.79</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">n_reps &lt;-<span class="st"> </span><span class="dv">10</span>  <span class="co"># number of measurements per gene</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">expt_std_dev &lt;-<span class="st"> </span><span class="fl">1.5</span>  <span class="co"># std. dev. of measurements</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">genes &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"FAK"</span>, <span class="st">"talin"</span>, <span class="st">"paxillin"</span>, <span class="st">"vinculin"</span>, <span class="st">"B1integrin"</span>, <span class="st">"kindlin"</span>)</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># "real" expression levels to be used as the mean in `rnorm`</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">real_expression_levels &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="fl">0.1</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(genes), <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co"># create a tibble</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">expr_data &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">tibble</a></span>(<span class="dt">gene =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(genes, n_reps),</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">                    <span class="dt">real_expr =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(real_expression_levels, n_reps),</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">                    <span class="dt">rep_num =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sort">sort</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="dv">1</span><span class="op">:</span>n_reps, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(genes))))</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co"># add in the measured expression values as a normal distribution around the mean</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">expr_data &lt;-<span class="st"> </span>expr_data <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">expt_expr =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(expr_data),</a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">                             <span class="dt">mean =</span> real_expr,</a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">                             <span class="dt">sd =</span> expt_std_dev))</a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(expr_data)</a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt; # A tibble: 6 x 4</span></a>
+<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt;   gene       real_expr rep_num expt_expr</span></a>
+<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co">#&gt; 1 FAK              4.6       1     6.51 </span></a>
+<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co">#&gt; 2 talin            2         1     2.62 </span></a>
+<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="co">#&gt; 3 paxillin         2.5       1     0.190</span></a>
+<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="co">#&gt; 4 vinculin         3.3       1     1.91 </span></a>
+<a class="sourceLine" id="cb2-23" data-line-number="23"><span class="co">#&gt; 5 B1integrin       4.7       1     4.26 </span></a>
+<a class="sourceLine" id="cb2-24" data-line-number="24"><span class="co">#&gt; 6 kindlin          1.8       1     1.79</span></a></code></pre></div>
 </div>
 <div id="statistical-tests" class="section level2">
 <h2 class="hasAnchor">
 <a href="#statistical-tests" class="anchor"></a>Statistical Tests</h2>
 <p>I then use an ANOVA to test if there are any differences between any of the comparisons of gene expression.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res_aov &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/aov">aov</a></span>(expt_expr <span class="op">~</span><span class="st"> </span>gene, <span class="dt">data =</span> expr_data)
-broom<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/broom/topics/reexports">tidy</a></span>(res_aov)
-<span class="co">#&gt; # A tibble: 2 x 6</span>
-<span class="co">#&gt;   term         df sumsq meansq statistic    p.value</span>
-<span class="co">#&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 gene          5  68.7  13.7       6.45  0.0000911</span>
-<span class="co">#&gt; 2 Residuals    54 115.    2.13     NA    NA</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">res_aov &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/aov">aov</a></span>(expt_expr <span class="op">~</span><span class="st"> </span>gene, <span class="dt">data =</span> expr_data)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">broom<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/broom/topics/reexports">tidy</a></span>(res_aov)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; # A tibble: 2 x 6</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt;   term         df sumsq meansq statistic    p.value</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; 1 gene          5  68.7  13.7       6.45  0.0000911</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; 2 Residuals    54 115.    2.13     NA    NA</span></a></code></pre></div>
 <p>With a very low p-value from the ANOVA, I run the Tukey post-hoc test to find which genes are at different levels.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tukey_res &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/TukeyHSD">TukeyHSD</a></span>(res_aov)
-tukey_res
-<span class="co">#&gt;   Tukey multiple comparisons of means</span>
-<span class="co">#&gt;     95% family-wise confidence level</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Fit: aov(formula = expt_expr ~ gene, data = expr_data)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $gene</span>
-<span class="co">#&gt;                            diff        lwr         upr     p adj</span>
-<span class="co">#&gt; FAK-B1integrin       0.42786034 -1.5000734  2.35579405 0.9859350</span>
-<span class="co">#&gt; kindlin-B1integrin  -2.41258042 -4.3405141 -0.48464671 0.0064520</span>
-<span class="co">#&gt; paxillin-B1integrin -1.96884001 -3.8967737 -0.04090630 0.0426958</span>
-<span class="co">#&gt; talin-B1integrin    -2.02075178 -3.9486855 -0.09281807 0.0347905</span>
-<span class="co">#&gt; vinculin-B1integrin -0.97209337 -2.9000271  0.95584034 0.6721614</span>
-<span class="co">#&gt; kindlin-FAK         -2.84044076 -4.7683745 -0.91250705 0.0008182</span>
-<span class="co">#&gt; paxillin-FAK        -2.39670035 -4.3246341 -0.46876664 0.0069377</span>
-<span class="co">#&gt; talin-FAK           -2.44861212 -4.3765458 -0.52067841 0.0054659</span>
-<span class="co">#&gt; vinculin-FAK        -1.39995371 -3.3278874  0.52798000 0.2803309</span>
-<span class="co">#&gt; paxillin-kindlin     0.44374040 -1.4841933  2.37167411 0.9834395</span>
-<span class="co">#&gt; talin-kindlin        0.39182864 -1.5361051  2.31976234 0.9905661</span>
-<span class="co">#&gt; vinculin-kindlin     1.44048704 -0.4874467  3.36842075 0.2513411</span>
-<span class="co">#&gt; talin-paxillin      -0.05191177 -1.9798455  1.87602194 0.9999995</span>
-<span class="co">#&gt; vinculin-paxillin    0.99674664 -0.9311871  2.92468035 0.6484209</span>
-<span class="co">#&gt; vinculin-talin       1.04865841 -0.8792753  2.97659211 0.5976093</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">tukey_res &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/TukeyHSD">TukeyHSD</a></span>(res_aov)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">tukey_res</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt;   Tukey multiple comparisons of means</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt;     95% family-wise confidence level</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt; Fit: aov(formula = expt_expr ~ gene, data = expr_data)</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt; $gene</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt;                            diff        lwr         upr     p adj</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">#&gt; FAK-B1integrin       0.42786034 -1.5000734  2.35579405 0.9859350</span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">#&gt; kindlin-B1integrin  -2.41258042 -4.3405141 -0.48464671 0.0064520</span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt; paxillin-B1integrin -1.96884001 -3.8967737 -0.04090630 0.0426958</span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt; talin-B1integrin    -2.02075178 -3.9486855 -0.09281807 0.0347905</span></a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt; vinculin-B1integrin -0.97209337 -2.9000271  0.95584034 0.6721614</span></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt; kindlin-FAK         -2.84044076 -4.7683745 -0.91250705 0.0008182</span></a>
+<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="co">#&gt; paxillin-FAK        -2.39670035 -4.3246341 -0.46876664 0.0069377</span></a>
+<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="co">#&gt; talin-FAK           -2.44861212 -4.3765458 -0.52067841 0.0054659</span></a>
+<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="co">#&gt; vinculin-FAK        -1.39995371 -3.3278874  0.52798000 0.2803309</span></a>
+<a class="sourceLine" id="cb4-19" data-line-number="19"><span class="co">#&gt; paxillin-kindlin     0.44374040 -1.4841933  2.37167411 0.9834395</span></a>
+<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">#&gt; talin-kindlin        0.39182864 -1.5361051  2.31976234 0.9905661</span></a>
+<a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co">#&gt; vinculin-kindlin     1.44048704 -0.4874467  3.36842075 0.2513411</span></a>
+<a class="sourceLine" id="cb4-22" data-line-number="22"><span class="co">#&gt; talin-paxillin      -0.05191177 -1.9798455  1.87602194 0.9999995</span></a>
+<a class="sourceLine" id="cb4-23" data-line-number="23"><span class="co">#&gt; vinculin-paxillin    0.99674664 -0.9311871  2.92468035 0.6484209</span></a>
+<a class="sourceLine" id="cb4-24" data-line-number="24"><span class="co">#&gt; vinculin-talin       1.04865841 -0.8792753  2.97659211 0.5976093</span></a></code></pre></div>
 </div>
 <div id="plotting" class="section level2">
 <h2 class="hasAnchor">
 <a href="#plotting" class="anchor"></a>Plotting</h2>
 <p>Now I want to plot the <code>estimate</code> in the top-left and <code>p adj</code> in the bottom right. First, I must prepare the data for use with <code>geom_asymmat</code> by passing the results of the Tukey post-hoc test to <code>asymmetrise_stats</code>. You can see that it returns the data in a tibble with new columns <code>x</code> and <code>y</code> that are the result of splitting <code>comparison</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">asymmat_tib &lt;-<span class="st"> </span><span class="kw"><a href="../reference/asymmetrise_stats.html">asymmetrise_stats</a></span>(tukey_res)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(asymmat_tib)
-<span class="co">#&gt; # A tibble: 6 x 8</span>
-<span class="co">#&gt;   term  comparison    estimate conf.low conf.high adj.p.value x      y     </span>
-<span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; </span>
-<span class="co">#&gt; 1 gene  FAK-B1integr…    0.428    -1.50    2.36      0.986    FAK    B1int…</span>
-<span class="co">#&gt; 2 gene  kindlin-B1in…   -2.41     -4.34   -0.485     0.00645  kindl… B1int…</span>
-<span class="co">#&gt; 3 gene  paxillin-B1i…   -1.97     -3.90   -0.0409    0.0427   paxil… B1int…</span>
-<span class="co">#&gt; 4 gene  talin-B1inte…   -2.02     -3.95   -0.0928    0.0348   talin  B1int…</span>
-<span class="co">#&gt; 5 gene  vinculin-B1i…   -0.972    -2.90    0.956     0.672    vincu… B1int…</span>
-<span class="co">#&gt; 6 gene  kindlin-FAK     -2.84     -4.77   -0.913     0.000818 kindl… FAK</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">asymmat_tib &lt;-<span class="st"> </span><span class="kw"><a href="../reference/asymmetrise_stats.html">asymmetrise_stats</a></span>(tukey_res)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(asymmat_tib)</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; # A tibble: 6 x 8</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt;   term  comparison    estimate conf.low conf.high adj.p.value x      y     </span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; </span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; 1 gene  FAK-B1integr…    0.428    -1.50    2.36      0.986    FAK    B1int…</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; 2 gene  kindlin-B1in…   -2.41     -4.34   -0.485     0.00645  kindl… B1int…</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; 3 gene  paxillin-B1i…   -1.97     -3.90   -0.0409    0.0427   paxil… B1int…</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; 4 gene  talin-B1inte…   -2.02     -3.95   -0.0928    0.0348   talin  B1int…</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; 5 gene  vinculin-B1i…   -0.972    -2.90    0.956     0.672    vincu… B1int…</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; 6 gene  kindlin-FAK     -2.84     -4.77   -0.913     0.000818 kindl… FAK</span></a></code></pre></div>
 <p>Finally, I can plot the data using <code>geom_asymmat</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(asymmat_tib, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span>
-<span class="st">    </span><span class="kw"><a href="../reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">fill_tl =</span> estimate, <span class="dt">fill_br =</span> <span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(adj.p.value))) <span class="op">+</span>
-<span class="st">    </span><span class="kw"><a href="../reference/scale_gradient.html">scale_fill_tl_gradient2</a></span>(<span class="dt">low =</span> <span class="st">"dodgerblue"</span>, <span class="dt">high =</span> <span class="st">"tomato"</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw"><a href="../reference/scale_gradient.html">scale_fill_br_distiller</a></span>(<span class="dt">type =</span> <span class="st">"seq"</span>, <span class="dt">palette =</span> <span class="st">"Greens"</span>, <span class="dt">direction =</span> <span class="dv">1</span>)</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(asymmat_tib, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">    </span><span class="kw"><a href="../reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">fill_tl =</span> estimate, <span class="dt">fill_br =</span> <span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(adj.p.value))) <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="../reference/scale_gradient.html">scale_fill_tl_gradient2</a></span>(<span class="dt">low =</span> <span class="st">"dodgerblue"</span>, <span class="dt">high =</span> <span class="st">"tomato"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="../reference/scale_gradient.html">scale_fill_br_distiller</a></span>(<span class="dt">type =</span> <span class="st">"seq"</span>, <span class="dt">palette =</span> <span class="st">"Greens"</span>, <span class="dt">direction =</span> <span class="dv">1</span>)</a></code></pre></div>
 <p><img src="ggasym-stats_files/figure-html/plot_res_basic-1.png" width="700"></p>
 <p>And add a few styling changes with normal ggplot2 semantics.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(asymmat_tib, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span>
-<span class="st">    </span><span class="kw"><a href="../reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">fill_tl =</span> estimate, <span class="dt">fill_br =</span> <span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(adj.p.value))) <span class="op">+</span>
-<span class="st">    </span><span class="kw"><a href="../reference/scale_gradient.html">scale_fill_tl_gradient2</a></span>(<span class="dt">low =</span> <span class="st">"dodgerblue"</span>, <span class="dt">high =</span> <span class="st">"tomato"</span>,
-                            <span class="dt">guide =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html">guide_colourbar</a></span>(<span class="dt">order =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">    </span><span class="kw"><a href="../reference/scale_gradient.html">scale_fill_br_distiller</a></span>(<span class="dt">type =</span> <span class="st">"seq"</span>, <span class="dt">palette =</span> <span class="st">"Greens"</span>, <span class="dt">direction =</span> <span class="dv">1</span>,
-                            <span class="dt">guide =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html">guide_colourbar</a></span>(<span class="dt">order =</span> <span class="dv">2</span>)) <span class="op">+</span>
-<span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>() <span class="op">+</span>
-<span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">panel.background =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span>(<span class="dt">fill =</span> <span class="st">"grey50"</span>),
-          <span class="dt">panel.grid =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span>(),
-          <span class="dt">axis.title =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span>(),
-          <span class="dt">plot.title =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>)) <span class="op">+</span>
-<span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">title =</span> <span class="st">"Differential Gene Expression"</span>,
-         <span class="dt">fill_tl =</span> <span class="st">"diff. in</span><span class="ch">\n</span><span class="st">mean expr."</span>,
-         <span class="dt">fill_br =</span> <span class="st">"-log( adj. p-value )"</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_x_discrete</a></span>(<span class="dt">expand =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span>
-<span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="dt">expand =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>,<span class="dv">0</span>))</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(asymmat_tib, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">    </span><span class="kw"><a href="../reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">fill_tl =</span> estimate, <span class="dt">fill_br =</span> <span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(adj.p.value))) <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="../reference/scale_gradient.html">scale_fill_tl_gradient2</a></span>(<span class="dt">low =</span> <span class="st">"dodgerblue"</span>, <span class="dt">high =</span> <span class="st">"tomato"</span>,</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">                            <span class="dt">guide =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html">guide_colourbar</a></span>(<span class="dt">order =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="../reference/scale_gradient.html">scale_fill_br_distiller</a></span>(<span class="dt">type =</span> <span class="st">"seq"</span>, <span class="dt">palette =</span> <span class="st">"Greens"</span>, <span class="dt">direction =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">                            <span class="dt">guide =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html">guide_colourbar</a></span>(<span class="dt">order =</span> <span class="dv">2</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">panel.background =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span>(<span class="dt">fill =</span> <span class="st">"grey50"</span>),</a>
+<a class="sourceLine" id="cb7-9" data-line-number="9">          <span class="dt">panel.grid =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span>(),</a>
+<a class="sourceLine" id="cb7-10" data-line-number="10">          <span class="dt">axis.title =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span>(),</a>
+<a class="sourceLine" id="cb7-11" data-line-number="11">          <span class="dt">plot.title =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">title =</span> <span class="st">"Differential Gene Expression"</span>,</a>
+<a class="sourceLine" id="cb7-13" data-line-number="13">         <span class="dt">fill_tl =</span> <span class="st">"diff. in</span><span class="ch">\n</span><span class="st">mean expr."</span>,</a>
+<a class="sourceLine" id="cb7-14" data-line-number="14">         <span class="dt">fill_br =</span> <span class="st">"-log( adj. p-value )"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_x_discrete</a></span>(<span class="dt">expand =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-16" data-line-number="16"><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="dt">expand =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>,<span class="dv">0</span>))</a></code></pre></div>
 <p><img src="ggasym-stats_files/figure-html/plot_res_full-1.png" width="700"></p>
 <p>One of the conclusions that can be drawn here is that the difference in expression of kindlin and FAK is the greatest and has a very low adjusted p-value. Thus, one of the conclusion is that kindlin is expressed at a lower level than FAK.</p>
 <hr>
