@@ -37,7 +37,6 @@ BugReports: https://github.com/jhrcook/ggasym/issues
 Collate:
     'asymmetrise.R'
     'asymmetrise_stats.R'
-    'data.R'
     'geom_asymmat.R'
     'ggasym.R'
     'scale_continuous_asym.R'
