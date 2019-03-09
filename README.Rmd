@@ -189,6 +189,38 @@ ggplot(tib, aes(x = g1, y = g2)) +
 
 ---
 
+## Statistical Test Wrapper
+
+I created a wrapper for handlinng the results of a statistical test to produce a tibble ready to be plotted with ggasym. Here is a breif examples though a bit more is shown in the vignettte ["Statistical Test Plotting"](https://jhrcook.github.io/ggasym/articles/ggasym-stats.html). Here I test if the median sale price of houses in Austin, Texas is different between any of the years (for more information on the data source: `?ggplot2::txhousing`).
+
+```{r stats_example_prep}
+tib <- ggplot2::txhousing %>%
+    filter(city == "Austin") %>%
+    mutate(year = as.character(year))
+aov_res <- aov(median ~ year, data = tib)
+broom::tidy(aov_res)
+```
+
+Before plotting, the results of the Tukey post-hoc test are passed to `asymmetrise_stats` that prepares the data for `geom_asymmat`. The resulting tibble is then plotted and styled in ggplot2.
+
+```{r stats_example_plot}
+asymmat_tib <- asymmetrise_stats(TukeyHSD(aov_res))
+ggplot(asymmat_tib, aes(x = x, y = y)) +
+    geom_asymmat(aes(fill_tl = estimate,
+                     fill_br = -log10(adj.p.value + 0.0000001))) +
+    scale_fill_tl_gradient2(low = "dodgerblue", high = "tomato") +
+    scale_fill_br_distiller(type = "seq", palette = "Greens", direction = 1) +
+    labs(title = "Median House Prices in Austin",
+         fill_tl = "diff. in\nmean values",
+         fill_br = "-log10( adj. p-value )") +
+    theme(panel.background = element_rect(fill = "grey75"),
+          panel.grid = element_blank()) +
+    scale_x_discrete(expand = c(0, 0)) +
+    scale_y_discrete(expand = c(0, 0))
+```
+
+---
+
 ### Thank yous
 
 I would like to thank the team behind [ggplot2](https://ggplot2.tidyverse.org) for creating a flexible and powerful package for the R community.
