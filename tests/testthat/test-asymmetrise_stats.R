@@ -16,5 +16,6 @@ test_that("stats asymmetrization works", {
     expect_s3_class(prepare_data(tukey), "tbl_df")
     expect_true(is_tibble(prepare_data(tukey)))
 
-    expect_equal(nrow(asymmetrise_stats(tukey)), 12)
+    expect_equal(nrow(asymmetrise_stats(tukey)), 15)
+    expect_equal(nrow(asymmetrize_stats(tukey)), 15)
 })

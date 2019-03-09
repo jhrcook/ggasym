@@ -2,18 +2,19 @@
 % Please edit documentation in R/asymmetrise_stats.R
 \name{asymmetrise_stats}
 \alias{asymmetrise_stats}
+\alias{asymmetrize_stats}
 \title{Prepare an asymmetric data table from a statistical test}
 \usage{
-asymmetrise_stats(.data, .comparison, sep = "-")
+asymmetrise_stats(.data, comparison_sep = "-")
+
+asymmetrize_stats(.data, comparison_sep = "-")
 }
 \arguments{
 \item{.data}{either the results of a statistical test or the tidy tibble
 from using the \code{broom::tidy()} function}
 
-\item{.comparison}{the column name of the comparison made for the row}
-
-\item{sep}{the separation used in the \code{.comparison} column; it is
-usually a hyphen (set as default here); since it is passed as the
+\item{comparison_sep}{the separation used between the names being compared;
+it is usually a hyphen (set as default here); since it is passed as the
 \code{pattern} parameter to \code{stringr::str_split_fixed()}, this can
 be any regular expression that will reliably split \code{.comparison}}
 }
