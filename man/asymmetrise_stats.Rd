@@ -16,10 +16,6 @@ from using the \code{broom::tidy()} function}
 usually a hyphen (set as default here); since it is passed as the
 \code{pattern} parameter to \code{stringr::str_split_fixed()}, this can
 be any regular expression that will reliably split \code{.comparison}}
-
-\item{.tl}{the column name of data for the top-left triangle}
-
-\item{.br}{the column name of data for the bottom-right triangle}
 }
 \value{
 a tibble object that can be used as direct input for ggplot2 for

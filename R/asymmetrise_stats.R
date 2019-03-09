@@ -7,8 +7,6 @@
 #' @param .data either the results of a statistical test or the tidy tibble
 #'     from using the \code{broom::tidy()} function
 #' @param .comparison the column name of the comparison made for the row
-#' @param .tl the column name of data for the top-left triangle
-#' @param .br the column name of data for the bottom-right triangle
 #' @param sep the separation used in the \code{.comparison} column; it is
 #'     usually a hyphen (set as default here); since it is passed as the
 #'     \code{pattern} parameter to \code{stringr::str_split_fixed()}, this can
