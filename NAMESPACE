@@ -3,6 +3,7 @@
 export(GeomAsymmat)
 export(add_missing_combinations)
 export(asymmetrise)
+export(asymmetrise_stats)
 export(asymmetrize)
 export(bind_missing_combs)
 export(continuous_scale_asym)

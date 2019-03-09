@@ -1,0 +1,80 @@
+---
+title: "Statistical Test Plotting"
+author: "Joshua H. Cook"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+set.seed(0)
+```
+
+```{r load_libs, warning=FALSE, message=FALSE}
+library(dplyr)
+library(ggplot2)
+library(tibble)
+library(purrr)
+library(broom)
+library(ggasym)
+```
+
+
+```{r make_data}
+n_reps <- 10
+expt_std_dev <- 1.5
+genes <- c("FAK", "talin", "paxillin", "vinculin", "integrin", "kindlin")
+real_expression_levels <- sample(seq(1, 5, 0.1), length(genes), replace = TRUE)
+expr_data <- tibble(gene = rep(genes, n_reps),
+                    real_expr = rep(real_expression_levels, n_reps),
+                    rep_num = sort(rep(1:n_reps, length(genes))))
+expr_data <- expr_data %>%
+    mutate(expt_expr = rnorm(nrow(expr_data), mean = real_expr, sd = expt_std_dev))
+head(expr_data)
+```
+
+```{r anova}
+res_aov <- aov(expt_expr ~ gene, data = expr_data)
+broom::tidy(res_aov)
+```
+
+```{r tucky}
+tukey_res <- tidy(TukeyHSD(res_aov))
+tukey_res
+```
+
+```{r prep_results}
+asymmat_tib <- asymmetrise_stats(tukey_res, comparison, sep = "-")
+head(asymmat_tib)
+```
+
+```{r plot_res_basic}
+ggplot(asymmat_tib, aes(x = x, y = y)) +
+    geom_asymmat(aes(fill_tl = estimate, fill_br = -log(adj.p.value))) +
+    scale_fill_tl_gradient2(low = "tomato", high = "dodgerblue") +
+    scale_fill_br_distiller(type = "seq", palette = "Greens", direction = 1)
+```
+
+```{r plot_res_full}
+ggplot(asymmat_tib, aes(x = x, y = y)) +
+    geom_asymmat(aes(fill_tl = estimate, fill_br = -log(adj.p.value))) +
+    scale_fill_tl_gradient2(low = "tomato", high = "dodgerblue") +
+    scale_fill_br_distiller(type = "seq", palette = "Greens", direction = 1) +
+    theme_bw() +
+    theme(panel.background = element_rect(fill = "grey50"),
+          panel.grid = element_blank(),
+          axis.title = element_blank(),
+          plot.title = element_text(hjust = 0.5)) +
+    labs(title = "Differential Gene Expression",
+         fill_tl = "diff. in\nmean expr.",
+         fill_br = "-log( adj. p-value )") +
+    scale_x_discrete(expand = c(0,0)) +
+    scale_y_discrete(expand = c(0,0))
+```
