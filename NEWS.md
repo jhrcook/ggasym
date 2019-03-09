@@ -1,3 +1,7 @@
+# ggasym 0.1.0
+
+* Package is ready for use! All major desired functions are implemented, tests are written and passing, and documentation is unified after the addition of the statistical test wrapper and diagonal fill.
+
 # ggasym 0.0.0.9005
 
 * Introduced a wrapper for preparing the results of a statistical test for use in `geom_asymmat`

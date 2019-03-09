@@ -225,6 +225,6 @@ ggplot(asymmat_tib, aes(x = x, y = y)) +
 
 I would like to thank the team behind [ggplot2](https://ggplot2.tidyverse.org) for creating a flexible and powerful package for the R community.
 
-<div>Logo made with <a href="https://www.designevo.com/en/" title="Free Online Logo Maker">DesignEvo</a></div>
+Logo made with [DesignEvo](https://www.designevo.com/en/).
 
 If you see any mistakes (including small typos) *please* open an [issue](https://github.com/jhrcook/ggasym/issues) and leave a quick statement. Do not worry about appearing annoying.
