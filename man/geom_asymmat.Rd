@@ -54,11 +54,13 @@ A ggplot object of an asymmetrically-colored \eqn{x \times y}
 }
 \description{
 Generate an asymmetric matrix with different fill values for top-left
-    and bottom-right triangles as a \code{ggplot} object
+    and bottom-right triangles and along the diagonal as a
+    \code{ggplot} object
 }
 \examples{
 library(tibble)
 library(ggplot2)
+suppressWarnings(library(dplyr))
 tib <- tibble(g1 = c("A", "A", "B"),
               g2 = c("B", "C", "C"),
               val_1 = c(1, 2, 3),
@@ -67,10 +69,13 @@ tib <- tibble(g1 = c("A", "A", "B"),
 tib
 
 tib <- asymmetrise(tib, g1, g2)
-ggplot(tib) +
-geom_asymmat(aes(x = g1, y = g2, fill_tl = val_1, fill_br = val_2)) +
+tib$val_3 <- NA
+tib$val_3[tib$g1 == tib$g2] <- c(1, 2, 3)
+ggplot(tib, aes(x = g1, y = g2)) +
+    geom_asymmat(aes(fill_tl = val_1, fill_br = val_2, fill_diag = val_3)) +
     scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue") +
     scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
+    scale_fill_diag_gradient(low = "aquamarine", high = "forestgreen") +
     labs(fill_tl =  "top-left fill", fill_br = "bottom-right fill")
 
 }
