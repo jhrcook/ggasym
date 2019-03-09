@@ -119,6 +119,7 @@ This dictates a gradient colour scheme for the top-left
 library(tibble)
 library(ggplot2)
 set.seed(0)
+
 tib <- tibble(g1 = c("A", "A", "A", "B", "B", "C", "A", "B", "C", "D"),
               g2 = c("B", "C", "D", "C", "D", "D", "A", "B", "C", "D"),
               val_1 = c(1:10),
