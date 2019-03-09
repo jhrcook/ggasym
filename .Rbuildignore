@@ -1,5 +1,6 @@
 ^_R_archive$
 ^README\.Rmd$
+^README\.md$
 ^codecov\.yml$
 ^\.travis\.yml$
 ^Meta$
@@ -9,4 +10,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^pkgdown$
+^README-.*\.png$
 ^README_files$
+^\.github$
