@@ -1,3 +1,5 @@
+^appveyor\.yml$
+^LICENSE\.md$
 ^_R_archive$
 ^README\.Rmd$
 ^README\.md$

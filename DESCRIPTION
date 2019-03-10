@@ -10,7 +10,7 @@ Description: Plots a symmetric matrix with three different fill
     aesthetics for the top-left and bottom-right triangles and along the
     diagonal. It operates within the Grammar of Graphics paradigm implemented
     in 'ggplot'.
-License: file LICENSE
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Depends: R (>= 3.5.0)

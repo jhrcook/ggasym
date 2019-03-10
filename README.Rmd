@@ -20,6 +20,7 @@ set.seed(0)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![CRAN status](https://www.r-pkg.org/badges/version/ggasym)](https://cran.r-project.org/package=ggasym)
 [![Travis build status](https://travis-ci.org/jhrcook/ggasym.svg?branch=master)](https://travis-ci.org/jhrcook/ggasym) 
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/jhrcook/ggasym?branch=master&svg=true)](https://ci.appveyor.com/project/jhrcook/ggasym)
 [![Coverage status](https://codecov.io/gh/jhrcook/ggasym/branch/master/graph/badge.svg)](https://codecov.io/github/jhrcook/ggasym?branch=master)
 
 ggasym (pronounced "gg-awesome") plots a symmetric matrix with two different fill aesthetics for the top-left and bottom-right triangles and along the diagonal. It operates within the Grammar of Graphics paradigm implemented in [ggplot2](https://ggplot2.tidyverse.org).
