@@ -334,3 +334,7 @@ organize_levels <- function(x, y, ...) {
 is_grouped <- function(.data) {
     !is.null(dplyr::groups(.data))
 }
+
+
+# for "get_other_combs"
+utils::globalVariables(c("Var1", "Var2", "comb", ".grp_nest"), add = TRUE)

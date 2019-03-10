@@ -68,3 +68,7 @@ prepare_data <- function(.data) {
         }
     }
 }
+
+
+# for "asymmetrise_stats"
+utils::globalVariables(c("comparison", "x", "y"), add = TRUE)

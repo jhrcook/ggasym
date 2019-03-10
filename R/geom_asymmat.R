@@ -232,6 +232,7 @@ organize_xy <- function(data, params) {
     return(data)
 }
 
+
 # check that data is symmetric
 check_all_combinations <- function(data) {
     if(!identical(data, add_missing_combinations(data, x, y))) {
@@ -240,3 +241,7 @@ check_all_combinations <- function(data) {
     }
     invisible(TRUE)
 }
+
+
+# for "check_all_combinations"
+utils::globalVariables(c("x", "y"), add = TRUE)
