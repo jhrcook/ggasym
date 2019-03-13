@@ -5,11 +5,17 @@
 
 ---
 
-## R CMD check results
+## R CMD check --as-cran results
 There were no ERRORs or WARNINGs. 
 
 There was 1 NOTE:
 
+```
+* checking CRAN incoming feasibility ... NOTE
+Maintainer: ‘Joshua H Cook <joshuacook0023@gmail.com>’
+
+New submission
+```
 
 ---
 
