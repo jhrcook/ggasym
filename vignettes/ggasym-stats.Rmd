@@ -70,14 +70,14 @@ tukey_res
 
 ## Plotting
 
-Now I want to plot the `estimate` in the top-left and `p adj` in the bottom right. First, I must prepare the data for use with `geom_asymmat` by passing the results of the Tukey post-hoc test to `asymmetrise_stats`. You can see that it returns the data in a tibble with new columns `x` and `y` that are the result of splitting `comparison`.
+Now I want to plot the `estimate` in the top-left and `p adj` in the bottom right. First, I must prepare the data for use with `geom_asymmat()` by passing the results of the Tukey post-hoc test to `asymmetrise_stats()`. You can see that it returns the data in a tibble with new columns `x` and `y` that are the result of splitting `comparison`.
 
 ```{r prep_results}
 asymmat_tib <- asymmetrise_stats(tukey_res)
 head(asymmat_tib)
 ```
 
-Finally, I can plot the data using `geom_asymmat`.
+Finally, I can plot the data using `geom_asymmat()`.
 
 ```{r plot_res_basic}
 ggplot(asymmat_tib, aes(x = x, y = y)) +

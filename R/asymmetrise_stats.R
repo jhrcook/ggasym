@@ -37,7 +37,7 @@ asymmetrize_stats <- asymmetrise_stats
 #' Prepares the input data into asymmetrise_stats
 #'
 #' @description Tries to make the data ready for use in the
-#'     \code{asymmetrise_stats} function using \code{broom::tidy}
+#'     \code{asymmetrise_stats()} function using \code{broom::tidy()}
 #'
 #' @param .data input data of either a \code{tibble}, \code{data.frame}, or results from a
 #'     statistical test

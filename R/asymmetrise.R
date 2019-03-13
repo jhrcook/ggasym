@@ -1,16 +1,16 @@
 #' Add all missing comparisons between two columns
 #'
-#' @description This function prepares input data for \code{geom_asymmat} by
+#' @description This function prepares input data for \code{geom_asymmat()} by
 #'     adding in any missing comparisons to be plotted. Note that this function
-#'     observes groups created with the \code{dplyr::group_by} function. For
+#'     observes groups created with the \code{dplyr::group_by()} function. For
 #'     the 'ggasym' package, this is useful for when you want to facet the plot:
-#'     before "asymmetrizing" the data table, use \code{dplyr::group_by},
+#'     before "asymmetrizing" the data table, use \code{dplyr::group_by()},
 #'     passing the column name you wish to later facet by. This functionality
 #'     is demonstrated in the second example, below.
 #'
 #' @param .data a tidy \code{data.frame} or \code{tibble}
 #' @param .x,.y the data to add all comparisons between (ie. will be the
-#'     x and y-axes for \code{geom_asymmat}
+#'     x and y-axes for \code{geom_asymmat()}
 #'
 #' @return a data table with new rows for the added comparisons
 #'
@@ -109,7 +109,7 @@ swap_cols <- function(.data, .x, .y) {
 #'
 #' @description Add rows to \code{.data} to complete all combinations of
 #'     columns \code{.x} and \code{.y}. Importantly, this function observes and
-#'     maintains any groups created by \code{dplyr::group_by}.
+#'     maintains any groups created by \code{dplyr::group_by()}.
 #'
 #' @param .data a data frame (or tibble) object
 #' @param .x,.y column names to make combinations of
@@ -272,7 +272,7 @@ make_fill_df <- function(df, n_rows = 1, fill_val = NA) {
 #'     for when one wants to merge two vectors that are factors. Ideally, they
 #'     have the same levels, in which case those are returned. If they have
 #'     overlapping levels, then the levels are merged and sorted (using
-#'     \code{sort}). Otherwise, the levels are dropped (returning \code{NULL})
+#'     \code{sort()}). Otherwise, the levels are dropped (returning \code{NULL})
 #'
 #' @param x,y Two factor vectors
 #' @param ... passed to \code{sort}; see \code{?sort} for options
@@ -318,7 +318,7 @@ organize_levels <- function(x, y, ...) {
 #' Is a data table grouped?
 #'
 #' @description Determines if the input data frame or tibble is grouped
-#'     (using \code{dplyr::group_by}
+#'     (using \code{dplyr::group_by()}
 #'
 #' @param .data input \code{data.frame} or \code{tibble}
 #'

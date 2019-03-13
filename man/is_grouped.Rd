@@ -14,7 +14,7 @@ boolean
 }
 \description{
 Determines if the input data frame or tibble is grouped
-    (using \code{dplyr::group_by}
+    (using \code{dplyr::group_by()}
 }
 \examples{
 df <- data.frame(x = c(1:5), g = c(1,1,2,2,2))

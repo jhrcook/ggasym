@@ -3,7 +3,8 @@
 #' @description This is a this wrapper around \code{continuous_scale()} from
 #'     the 'ggplot2' package. It is generally best to call this function
 #'     implicitly using one of the wrappers that have the general naming
-#'     scheme of \code{scale_*_tl/br_*} (such as \code{scale_fill_tl_gradient}).
+#'     scheme of \code{scale_*_tl/br_*()} (such as
+#'     \code{scale_fill_tl_gradient()}).
 #'
 #' @param aesthetics The names of the aesthetics that this scale works with
 #' @param scale_name The name of the scale

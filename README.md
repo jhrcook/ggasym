@@ -51,12 +51,12 @@ library(ggasym)
 Here is a basic example. `tib` is a “tibble” (ie. fancy “data.frame”) of
 comparisons between groups “A” through “E”. There are two values to be
 plotted, `val_1` and `val_2`, that hold data on the comparison between
-`g1` and `g2`. `tib` is first passed to `asymmetrise` to fill in all the
-missing combinations between `g1` and `g2` such that the symmetric
+`g1` and `g2`. `tib` is first passed to `asymmetrise()` to fill in all
+the missing combinations between `g1` and `g2` such that the symmetric
 matrix can be built. All added values take the value `NA`. The modified
-data table is finally passed to `ggplot` and `geom_asymmat` is added on.
-Here, `asymmetrise` added the rows where `g1` and `g2` are equal, thus
-will fill the diagonal. I set these values to `val_3`.
+data table is finally passed to `ggplot()` and `geom_asymmat()` is added
+on. Here, `asymmetrise()` added the rows where `g1` and `g2` are equal,
+thus will fill the diagonal. I set these values to `val_3`.
 
 ``` r
 tib <- tibble(g1 = c("A", "A", "A", "A", "B", "B", "B", "C", "C", "D"),
@@ -80,8 +80,8 @@ The new aesthetics `fill_tl`, `fill_br`, and `fill_diag` behave just
 like the normal `fill`, except that they correspond to the top-left
 (“tl”) and bottom-right (“br”) triangles of the matrix,
 respectively. This package also includes analogous functions for scaling
-the fill colors such as `scale_fill_tl_gradient2` and
-`scale_fill_br_gradientn` that operate just as expected when using
+the fill colors such as `scale_fill_tl_gradient2()` and
+`scale_fill_br_gradientn()` that operate just as expected when using
 ‘ggplot2’.
 
 ``` r
@@ -99,7 +99,7 @@ ggplot(tib, aes(x = g1, y = g2)) +
 Of note, with three colorbars, it may be useful to control their
 position and other properties. This can be done just like normal in
 ‘ggplot2’ by passing the correct values to the `guide` parameter in
-`scale_fill_*_gradient` ([original
+`scale_fill_*_gradient()` ([original
 documentation](https://ggplot2.tidyverse.org/reference/guide_colourbar.html)).
 Below are a few of the options where I put the bars horizontal, adjust
 the ordering, and put the title above each.
@@ -165,9 +165,9 @@ ggplot(tib, aes(x = g1, y = g2)) +
 ## Facetting
 
 If you have multiple categories, facetting works as expected. The only
-difference is in the preparation of the data table: you must `group_by`
-the value(s) you will facet by before passing to `asymmetrise`. This is
-shown below.
+difference is in the preparation of the data table: you must
+`group_by()` the value(s) you will facet by before passing to
+`asymmetrise()`. This is shown below.
 
 ``` r
 tib <- tibble(g1 = rep(c("A", "A", "B"), 2),
@@ -277,7 +277,7 @@ broom::tidy(aov_res)
 ```
 
 Before plotting, the results of the Tukey post-hoc test are passed to
-`asymmetrise_stats` that prepares the data for `geom_asymmat`. The
+`asymmetrise_stats()` that prepares the data for `geom_asymmat()`. The
 resulting tibble is then plotted and styled in ‘ggplot2’.
 
 ``` r

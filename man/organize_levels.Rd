@@ -19,7 +19,7 @@ Organizes the levels to use for the two inputs. This is useful
     for when one wants to merge two vectors that are factors. Ideally, they
     have the same levels, in which case those are returned. If they have
     overlapping levels, then the levels are merged and sorted (using
-    \code{sort}). Otherwise, the levels are dropped (returning \code{NULL})
+    \code{sort()}). Otherwise, the levels are dropped (returning \code{NULL})
 }
 \examples{
 set.seed(0)

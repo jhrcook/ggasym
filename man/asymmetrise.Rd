@@ -13,17 +13,17 @@ asymmetrize(.data, .x, .y)
 \item{.data}{a tidy \code{data.frame} or \code{tibble}}
 
 \item{.x, .y}{the data to add all comparisons between (ie. will be the
-x and y-axes for \code{geom_asymmat}}
+x and y-axes for \code{geom_asymmat()}}
 }
 \value{
 a data table with new rows for the added comparisons
 }
 \description{
-This function prepares input data for \code{geom_asymmat} by
+This function prepares input data for \code{geom_asymmat()} by
     adding in any missing comparisons to be plotted. Note that this function
-    observes groups created with the \code{dplyr::group_by} function. For
+    observes groups created with the \code{dplyr::group_by()} function. For
     the 'ggasym' package, this is useful for when you want to facet the plot:
-    before "asymmetrizing" the data table, use \code{dplyr::group_by},
+    before "asymmetrizing" the data table, use \code{dplyr::group_by()},
     passing the column name you wish to later facet by. This functionality
     is demonstrated in the second example, below.
 }

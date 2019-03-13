@@ -66,7 +66,7 @@ scale_fill_diag_distiller(..., type = "seq", palette = 1,
   na.value = "grey50", guide = "colourbar", aesthetics = "fill_diag")
 }
 \arguments{
-\item{...}{arguments passed on to \code{continuous_scale_asym}}
+\item{...}{arguments passed on to \code{continuous_scale_asym()}}
 
 \item{low, high}{the colors to represent low and high values}
 
@@ -109,10 +109,10 @@ order of colours is reversed.}
 \description{
 This dictates a gradient colour scheme for the top-left
     (\code{tl}),  bottom_right (\code{br}), or diagonal (\code{diag})
-    of a \code{geom_asymmat} geom. \code{scale_*_tl/br_gradient}
-    creates a two colour gradient (low-high), \code{scale_*_tl/br_gradient2}
-    creates a diverging colour gradient (low-mid-high),
-    \code{scale_*_tl/br_gradientn} creates a n-colour
+    of a \code{geom_asymmat()} geom. \code{scale_*_tl/br_gradient()}
+    creates a two colour gradient (low-high),
+    \code{scale_*_tl/br_gradient2()} creates a diverging colour gradient
+    (low-mid-high), \code{scale_*_tl/br_gradientn()} creates a n-colour
     gradient.
 }
 \examples{

@@ -47,12 +47,6 @@ than combining with them. This is most useful for helper functions that
 define both data and aesthetics and should not inherit behaviour from the
 default plot specification, e.g. \code{borders()}.}
 }
-\value{
-A \code{ggplot()} object of an asymmetrically-colored
-    \eqn{x \times y} matrix with \code{fill_tl} data coloring the top-left
-    triangle, \code{fill_br} coloring the bottom-left triangle, and
-    \code{fill_diag} coloring along the diagonal.
-}
 \description{
 Generate an asymmetric matrix with different fill values for top-left
     and bottom-right triangles and along the diagonal as a

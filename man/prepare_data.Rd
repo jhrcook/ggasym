@@ -15,7 +15,7 @@ a \code{tibble} data table
 }
 \description{
 Tries to make the data ready for use in the
-    \code{asymmetrise_stats} function using \code{broom::tidy}
+    \code{asymmetrise_stats()} function using \code{broom::tidy()}
 }
 \section{Warning}{
 

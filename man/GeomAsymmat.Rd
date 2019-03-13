@@ -9,7 +9,7 @@
 GeomAsymmat
 }
 \description{
-A 'ggproto' object for the 'ggasym' package and used by \code{geom_asymmat}
+A 'ggproto' object for the 'ggasym' package and used by \code{geom_asymmat()}
 }
 \section{Warning}{
 

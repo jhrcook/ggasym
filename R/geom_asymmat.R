@@ -35,11 +35,6 @@
 #'     define both data and aesthetics and should not inherit behaviour from the
 #'     default plot specification, e.g. \code{borders()}.
 #'
-#' @return A \code{ggplot()} object of an asymmetrically-colored
-#'     \eqn{x \times y} matrix with \code{fill_tl} data coloring the top-left
-#'     triangle, \code{fill_br} coloring the bottom-left triangle, and
-#'     \code{fill_diag} coloring along the diagonal.
-#'
 #' @examples
 #' library(tibble)
 #' library(ggplot2)
@@ -122,7 +117,7 @@ geom_asymmat <- function(mapping = NULL, data = NULL,
 
 #' GeomAsymmat
 #'
-#' A 'ggproto' object for the 'ggasym' package and used by \code{geom_asymmat}
+#' A 'ggproto' object for the 'ggasym' package and used by \code{geom_asymmat()}
 #'
 #' @section Warning:
 #' \code{GeomAsymmat} is subject to change in future versions.
@@ -204,14 +199,14 @@ GeomAsymmat <- ggproto(
 )
 
 
-# built-in to ggplot2, but not exported
+# not exported from 'ggplot2'
 ggname <- function(prefix, grob) {
     grob$name <- grid::grobName(grob, prefix)
     grob
 }
 
 
-# not exported from ggplot2
+# not exported from 'ggplot2'
 rect_to_poly <- function(xmin, xmax, ymin, ymax) {
     data.frame(
         y = c(ymax, ymax, ymin, ymin, ymax),
