@@ -19,7 +19,7 @@ it is usually a hyphen (set as default here); since it is passed as the
 be any regular expression that will reliably split \code{.comparison}}
 }
 \value{
-a tibble object that can be used as direct input for ggplot2 for
+a tibble object that can be used as direct input for 'ggplot2' for
     use  with the \code{geom_asymmat} geom
 }
 \description{

@@ -2,7 +2,7 @@
 #'
 #' @description This dictates a gradient colour scheme for the top-left
 #'     (\code{tl}),  bottom_right (\code{br}), or diagonal (\code{diag})
-#'     of a \code{geom_asymmat} ggplot geom. \code{scale_*_tl/br_gradient}
+#'     of a \code{geom_asymmat} geom. \code{scale_*_tl/br_gradient}
 #'     creates a two colour gradient (low-high), \code{scale_*_tl/br_gradient2}
 #'     creates a diverging colour gradient (low-mid-high),
 #'     \code{scale_*_tl/br_gradientn} creates a n-colour
@@ -25,8 +25,8 @@
 #'     "legend" for discrete colour legend.
 #' @param aesthetics Character string or vector of character strings listing
 #'     the name(s) of the aesthetic(s) that this scale works with. For now,
-#'     leave the default alone, though I plan to reinstate the standard ggplot
-#'     system here, eventually.
+#'     leave the default alone, though I plan to reinstate the standard
+#'     'ggplot2' system here, eventually.
 #'
 #' @examples
 #' library(tibble)
@@ -171,7 +171,7 @@ scale_fill_diag_gradient2 <- function(...,
 }
 
 
-# not exported from ggplot2
+# not exported from 'ggplot2'
 mid_rescaler <- function(mid) {
     function(x, to = c(0, 1), from = range(x, na.rm = TRUE)) {
         scales::rescale_mid(x, to, from, mid)

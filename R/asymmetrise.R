@@ -3,7 +3,7 @@
 #' @description This function prepares input data for \code{geom_asymmat} by
 #'     adding in any missing comparisons to be plotted. Note that this function
 #'     observes groups created with the \code{dplyr::group_by} function. For
-#'     the ggasym package, this is useful for when you want to facet the plot:
+#'     the 'ggasym' package, this is useful for when you want to facet the plot:
 #'     before "asymmetrizing" the data table, use \code{dplyr::group_by},
 #'     passing the column name you wish to later facet by. This functionality
 #'     is demonstrated in the second example, below.
@@ -71,7 +71,7 @@ asymmetrise <- function(.data, .x, .y) {
 asymmetrize <- asymmetrise
 
 
-#' Swap columns in a data.frame
+#' Swap columns in a data frame
 #'
 #' @description Swap columns \code{.x} and \code{.y} in \code{.data}.
 #'
@@ -105,16 +105,16 @@ swap_cols <- function(.data, .x, .y) {
 }
 
 
-#' Add missing combinations of x and y to a data.frame
+#' Add missing combinations of x and y to a data frame
 #'
 #' @description Add rows to \code{.data} to complete all combinations of
 #'     columns \code{.x} and \code{.y}. Importantly, this function observes and
 #'     maintains any groups created by \code{dplyr::group_by}.
 #'
-#' @param .data a data.frame (or tibble) object
+#' @param .data a data frame (or tibble) object
 #' @param .x,.y column names to make combinations of
 #'
-#' @return a data.frame (or tibble) with additional columns
+#' @return a data frame (or tibble) with additional columns
 #'
 #' @examples
 #' df <- data.frame(a = c("A", "B"),
@@ -214,7 +214,7 @@ bind_missing_combs <- function(.data, .x, .y)  {
 #' Get all combinations of values between two vectors
 #'
 #' @description Get all combinations of the values in vectors x and y that
-#'     aren't already there.
+#'     are not already there.
 #'
 #' @param x,y two vectors
 #'
@@ -236,16 +236,16 @@ get_other_combs <- function(x, y) {
     return(all_combs)
 }
 
-#' Make a data.frame of all a single value
+#' Make a data frame of all a single value
 #'
-#' @description Makes a data.frame with the same columns of \code{df} and
+#' @description Makes a data frame with the same columns of \code{df} and
 #'     \code{n_rows} number of rows and all values \code{fill_val}
 #'
 #' @param df a data.frame (or tibble) object
-#' @param n_rows number of rows for the final data.frame
-#' @param fill_val value to fill all cells of the data.frame
+#' @param n_rows number of rows for the final data frame
+#' @param fill_val value to fill all cells of the data frame
 #'
-#' @return a data.frame (or tibble) with the desired number of rows filled
+#' @return a data frame (or tibble) with the desired number of rows filled
 #'     with \code{fill_val}
 #'
 #' @examples
@@ -317,7 +317,7 @@ organize_levels <- function(x, y, ...) {
 
 #' Is a data table grouped?
 #'
-#' @description Determines if the input data.frame or tibble is grouped
+#' @description Determines if the input data frame or tibble is grouped
 #'     (using \code{dplyr::group_by}
 #'
 #' @param .data input \code{data.frame} or \code{tibble}

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Asymmetrically filled symmetric matrix (using ggplot) — geom_asymmat • ggasym</title>
+<title>Asymmetrically filled symmetric matrix (using 'ggplot2') — geom_asymmat • ggasym</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,11 +37,11 @@
 
 
 
-<meta property="og:title" content="Asymmetrically filled symmetric matrix (using ggplot) — geom_asymmat" />
+<meta property="og:title" content="Asymmetrically filled symmetric matrix (using 'ggplot2') — geom_asymmat" />
 
 <meta property="og:description" content="Generate an asymmetric matrix with different fill values for top-left
     and bottom-right triangles and along the diagonal as a
-    ggplot object" />
+    ggplot() object" />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -97,7 +97,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/ggasym-stats.html">Statistical Test Plotting</a>
+      <a href="../articles/ggasym-stats.html">Statistical Test Plotting with 'ggasym'</a>
     </li>
   </ul>
 </li>
@@ -125,7 +125,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Asymmetrically filled symmetric matrix (using ggplot)</h1>
+    <h1>Asymmetrically filled symmetric matrix (using 'ggplot2')</h1>
     <small class="dont-index">Source: <a href='https://github.com/jhrcook/ggasym/blob/master/R/geom_asymmat.R'><code>R/geom_asymmat.R</code></a></small>
     <div class="hidden name"><code>geom_asymmat.Rd</code></div>
     </div>
@@ -134,7 +134,7 @@
     
     <p>Generate an asymmetric matrix with different fill values for top-left
     and bottom-right triangles and along the diagonal as a
-    <code>ggplot</code> object</p>
+    <code>ggplot()</code> object</p>
     
     </div>
 
@@ -147,20 +147,20 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>mapping</th>
-      <td><p>Set of aesthetic mappings created by aes() or aes_(). If
-specified and <code>inherit.aes = TRUE</code> (the default), it is combined with
-the default mapping at the top level of the plot. You must supply
-mapping if there is no plot mapping.</p></td>
+      <td><p>Set of aesthetic mappings created by <code>aes()</code> or
+<code>aes_()</code>. If specified and <code>inherit.aes = TRUE</code> (the default),
+it is combined with the default mapping at the top level of the plot.
+You must supply mapping if there is no plot mapping.</p></td>
     </tr>
     <tr>
       <th>data</th>
       <td><p>The data to be displayed in this layer. There are three options:
-If NULL, the default, the data is inherited from the plot data as
-specified in the call to <code>ggplot()</code>. A data.frame, or other object,
+If <code>NULL</code> (the default) the data is inherited from the plot data as
+specified in the call to <code>ggplot()</code>. A data frame, or other object,
 will override the plot data. All objects will be fortified to produce
 a data frame. See <code>fortify()</code> for which variables will be created.
 A function will be called with a single argument, the plot data. The
-return value must be a data.frame, and will be used as the layer data.</p></td>
+return value must be a data frame, and will be used as the layer data.</p></td>
     </tr>
     <tr>
       <th>stat</th>
@@ -187,7 +187,7 @@ warning. If <code>TRUE</code>, missing values are silently removed.</p></td>
     <tr>
       <th>show.legend</th>
       <td><p>logical. Should this layer be included in the legends?
-<code>NA</code>, the default, includes if any aesthetics are mapped.
+<code>NA</code> (the default) includes if any aesthetics are mapped.
 <code>FALSE</code> never includes, and <code>TRUE</code> always includes. It can
 also be a named logical vector to finely select the aesthetics to
 display.</p></td>
@@ -196,16 +196,17 @@ display.</p></td>
       <th>inherit.aes</th>
       <td><p>If <code>FALSE</code>, overrides the default aesthetics, rather
 than combining with them. This is most useful for helper functions that
-define both data and aesthetics and shouldn't inherit behaviour from the
+define both data and aesthetics and should not inherit behaviour from the
 default plot specification, e.g. <code>borders()</code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A ggplot object of an asymmetrically-colored \(x \times y\)
-    matrix with <code>fill_tl</code> data coloring the top-left triangle and
-    <code>fill_br</code> coloring the bottom-left triangle.</p>
+    <p>A <code><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot()</a></code> object of an asymmetrically-colored
+    \(x \times y\) matrix with <code>fill_tl</code> data coloring the top-left
+    triangle, <code>fill_br</code> coloring the bottom-left triangle, and
+    <code>fill_diag</code> coloring along the diagonal.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -217,12 +218,12 @@ default plot specification, e.g. <code>borders()</code>.</p></td>
               <span class='kw'>val_1</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
               <span class='kw'>val_2</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(-<span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>1</span>))
 
-<span class='no'>tib</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 3 x 4</span><span>
+<span class='no'>tib</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 3 x 4</span><span>
 #&gt;   g1    g2    val_1 val_2
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> A     B         1    -</span><span style='color: #BB0000;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> A     C         2     0
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> B     C         3     1</div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> A     B         1    -</span><span style='color: #BB0000;'>1</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span> A     C         2     0
+#&gt; </span><span style='color: #555555;'>3</span><span> B     C         3     1</div><div class='input'>
 <span class='no'>tib</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='asymmetrise.html'>asymmetrise</a></span>(<span class='no'>tib</span>, <span class='no'>g1</span>, <span class='no'>g2</span>)
 <span class='no'>tib</span>$<span class='no'>val_3</span> <span class='kw'>&lt;-</span> <span class='fl'>NA</span>
 <span class='no'>tib</span>$<span class='no'>val_3</span>[<span class='no'>tib</span>$<span class='no'>g1</span> <span class='kw'>==</span> <span class='no'>tib</span>$<span class='no'>g2</span>] <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>)

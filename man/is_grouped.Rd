@@ -13,7 +13,7 @@ is_grouped(.data)
 boolean
 }
 \description{
-Determines if the input data.frame or tibble is grouped
+Determines if the input data frame or tibble is grouped
     (using \code{dplyr::group_by}
 }
 \examples{

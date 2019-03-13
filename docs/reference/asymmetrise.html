@@ -42,7 +42,7 @@
 <meta property="og:description" content="This function prepares input data for geom_asymmat by
     adding in any missing comparisons to be plotted. Note that this function
     observes groups created with the dplyr::group_by function. For
-    the ggasym package, this is useful for when you want to facet the plot:
+    the 'ggasym' package, this is useful for when you want to facet the plot:
     before &quot;asymmetrizing&quot; the data table, use dplyr::group_by,
     passing the column name you wish to later facet by. This functionality
     is demonstrated in the second example, below." />
@@ -101,7 +101,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/ggasym-stats.html">Statistical Test Plotting</a>
+      <a href="../articles/ggasym-stats.html">Statistical Test Plotting with 'ggasym'</a>
     </li>
   </ul>
 </li>
@@ -139,7 +139,7 @@
     <p>This function prepares input data for <code>geom_asymmat</code> by
     adding in any missing comparisons to be plotted. Note that this function
     observes groups created with the <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by</a></code> function. For
-    the ggasym package, this is useful for when you want to facet the plot:
+    the 'ggasym' package, this is useful for when you want to facet the plot:
     before "asymmetrizing" the data table, use <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by</a></code>,
     passing the column name you wish to later facet by. This functionality
     is demonstrated in the second example, below.</p>
@@ -201,23 +201,23 @@ x and y-axes for <code>geom_asymmat</code></p></td>
 #&gt; 8 B B        NA           &lt;NA&gt;
 #&gt; 9 C C        NA           &lt;NA&gt;</div><div class='input'>
 <span class='no'>grouped_df</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>df</span>, <span class='no'>grouping_value</span>)
-<span class='fu'>asymmetrise</span>(<span class='no'>grouped_df</span>, <span class='no'>a</span>, <span class='no'>b</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 13 x 4</span><span>
-#&gt; </span><span style='color: #949494;'># Groups:   grouping_value [2]</span><span>
+<span class='fu'>asymmetrise</span>(<span class='no'>grouped_df</span>, <span class='no'>a</span>, <span class='no'>b</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 13 x 4</span><span>
+#&gt; </span><span style='color: #555555;'># Groups:   grouping_value [2]</span><span>
 #&gt;    grouping_value a     b     untouched
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> group1         A     C             1
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> group1         B     A             2
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> group1         C     A             1
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> group1         A     B             2
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> group1         A     A            </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> group1         B     B            </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> group1         C     B            </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> group1         B     C            </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> group1         C     C            </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> group2         C     B             3
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> group2         B     C             3
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span> group2         C     C            </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>13</span><span> group2         B     B            </span><span style='color: #BB0000;'>NA</span><span></div><div class='input'>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> group1         A     C             1
+#&gt; </span><span style='color: #555555;'> 2</span><span> group1         B     A             2
+#&gt; </span><span style='color: #555555;'> 3</span><span> group1         C     A             1
+#&gt; </span><span style='color: #555555;'> 4</span><span> group1         A     B             2
+#&gt; </span><span style='color: #555555;'> 5</span><span> group1         A     A            </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'> 6</span><span> group1         B     B            </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'> 7</span><span> group1         C     B            </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'> 8</span><span> group1         B     C            </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'> 9</span><span> group1         C     C            </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'>10</span><span> group2         C     B             3
+#&gt; </span><span style='color: #555555;'>11</span><span> group2         B     C             3
+#&gt; </span><span style='color: #555555;'>12</span><span> group2         C     C            </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'>13</span><span> group2         B     B            </span><span style='color: #BB0000;'>NA</span><span></div><div class='input'>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

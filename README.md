@@ -1,4 +1,6 @@
 
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
 # ggasym <a href="https://jhrcook.github.io/ggasym/index.html"> <img src="man/figures/logo.png" align="right" alt="" width="120" /> </a>
 
 [![License: GPL
@@ -12,10 +14,10 @@ status](https://ci.appveyor.com/api/projects/status/github/jhrcook/ggasym?branch
 [![Coverage
 status](https://codecov.io/gh/jhrcook/ggasym/branch/master/graph/badge.svg)](https://codecov.io/github/jhrcook/ggasym?branch=master)
 
-ggasym (pronounced “gg-awesome”) plots a symmetric matrix with two
+‘ggasym’ (pronounced “gg-awesome”) plots a symmetric matrix with three
 different fill aesthetics for the top-left and bottom-right triangles
 and along the diagonal. It operates within the Grammar of Graphics
-paradigm implemented in [ggplot2](https://ggplot2.tidyverse.org).
+paradigm implemented in [‘ggplot2’](https://ggplot2.tidyverse.org).
 
 **author: Joshua H. Cook**
 
@@ -26,7 +28,7 @@ paradigm implemented in [ggplot2](https://ggplot2.tidyverse.org).
 Checkout the documentation and vignettes at the pkgdown website
 [https://jhrcook.github.io/ggasym/](https://jhrcook.github.io/ggasym/index.html)
 
-For information on using ggplot2, start
+For information on using ‘ggplot2’, start
 [here](https://ggplot2.tidyverse.org/index.html).
 
 ## Download and Installation
@@ -80,7 +82,7 @@ like the normal `fill`, except that they correspond to the top-left
 respectively. This package also includes analogous functions for scaling
 the fill colors such as `scale_fill_tl_gradient2` and
 `scale_fill_br_gradientn` that operate just as expected when using
-ggplot2.
+‘ggplot2’.
 
 ``` r
 ggplot(tib, aes(x = g1, y = g2)) +
@@ -96,7 +98,7 @@ ggplot(tib, aes(x = g1, y = g2)) +
 
 Of note, with three colorbars, it may be useful to control their
 position and other properties. This can be done just like normal in
-ggplot by passing the correct values to the `guide` parameter in
+‘ggplot2’ by passing the correct values to the `guide` parameter in
 `scale_fill_*_gradient` ([original
 documentation](https://ggplot2.tidyverse.org/reference/guide_colourbar.html)).
 Below are a few of the options where I put the bars horizontal, adjust
@@ -123,10 +125,10 @@ ggplot(tib, aes(x = g1, y = g2)) +
 
 ## Full ggplot2 integration
 
-Since the new geom is a normal ggplot2 object, it can be introduced into
-a standard ggplot2 workflow. Note that the labels can be adjusted like
-normal using the `labs` function and using the `fill_tl`, `fill_br`, and
-`fill_diag` arguments.
+Since the new geom is a normal ‘ggplot2’ object, it can be introduced
+into a standard ‘ggplot2’ workflow. Note that the labels can be adjusted
+like normal using the `labs` function and using the `fill_tl`,
+`fill_br`, and `fill_diag` arguments.
 
 ``` r
 ggplot(tib, aes(x = g1, y = g2)) +
@@ -276,7 +278,7 @@ broom::tidy(aov_res)
 
 Before plotting, the results of the Tukey post-hoc test are passed to
 `asymmetrise_stats` that prepares the data for `geom_asymmat`. The
-resulting tibble is then plotted and styled in ggplot2.
+resulting tibble is then plotted and styled in ‘ggplot2’.
 
 ``` r
 asymmat_tib <- asymmetrise_stats(TukeyHSD(aov_res))
@@ -301,8 +303,8 @@ ggplot(asymmat_tib, aes(x = x, y = y)) +
 ### Thank yous
 
 I would like to thank the team behind
-[ggplot2](https://ggplot2.tidyverse.org) for creating a flexible and
-powerful package for the R community.
+[‘ggplot2’](https://ggplot2.tidyverse.org) for creating a flexible
+and powerful package for the R community.
 
 Logo made with [DesignEvo](https://www.designevo.com/en/).
 

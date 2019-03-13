@@ -1,5 +1,5 @@
 ---
-title: "Statistical Test Plotting"
+title: "Statistical Test Plotting with 'ggasym'"
 author: "Joshua H. Cook"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -19,7 +19,7 @@ set.seed(0)
 
 ## Purpose
 
-One of the great uses of ggasym is to plot two values from the results of a multi-way statistical test. Each comparison is a cell, an two values can be used for the fill. Below I give brief examples and plot the differences in mean and the p-value on the symmetric matrix.
+One of the great uses of 'ggasym' is to plot two values from the results of a multi-way statistical test. Each comparison is a cell, and two values can be used for the fills. Below I give brief examples and plot the differences in mean and the p-value on the symmetric matrix.
 
 ```{r load_libs, warning=FALSE, message=FALSE}
 library(dplyr)
@@ -86,7 +86,7 @@ ggplot(asymmat_tib, aes(x = x, y = y)) +
     scale_fill_br_distiller(type = "seq", palette = "Greens", direction = 1)
 ```
 
-And add a few styling changes with normal ggplot2 semantics.
+And add a few styling changes with normal 'ggplot2' semantics.
 
 ```{r plot_res_full}
 ggplot(asymmat_tib, aes(x = x, y = y)) +
@@ -111,4 +111,4 @@ One of the conclusions that can be drawn here is that the difference in expressi
 
 ---
 
-For more information, see the complete documentation at the [ggasym](https://jhrcook.github.io/ggasym/index.html) site.
+For more information, see the complete documentation at the ['ggasym'](https://jhrcook.github.io/ggasym/index.html) site.

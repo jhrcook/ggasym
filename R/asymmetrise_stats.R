@@ -11,7 +11,7 @@
 #'     \code{pattern} parameter to \code{stringr::str_split_fixed()}, this can
 #'     be any regular expression that will reliably split \code{.comparison}
 #'
-#' @return a tibble object that can be used as direct input for ggplot2 for
+#' @return a tibble object that can be used as direct input for 'ggplot2' for
 #'     use  with the \code{geom_asymmat} geom
 #'
 #' @importFrom rlang enquo !! :=
@@ -39,13 +39,13 @@ asymmetrize_stats <- asymmetrise_stats
 #' @description Tries to make the data ready for use in the
 #'     \code{asymmetrise_stats} function using \code{broom::tidy}
 #'
-#' @param .data input data of either a tibble, data.frame, or results from a
+#' @param .data input data of either a \code{tibble}, \code{data.frame}, or results from a
 #'     statistical test
 #'
-#' @return a tibble data table
+#' @return a \code{tibble} data table
 #'
 #' @section Warning:
-#'     If you repeatedly get errors, try preparing the data before hand using
+#'     If you repeatedly get errors, try preparing the data before-hand using
 #'     \code{broom::tidy(.data)}
 #'
 #' @examples

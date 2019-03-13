@@ -15,7 +15,7 @@ data.frame of other possible combinations stored in \code{Var1} and
 }
 \description{
 Get all combinations of the values in vectors x and y that
-    aren't already there.
+    are not already there.
 }
 \examples{
 get_other_combs(LETTERS[1:2], LETTERS[1:2])

@@ -2,23 +2,23 @@
 % Please edit documentation in R/asymmetrise.R
 \name{make_fill_df}
 \alias{make_fill_df}
-\title{Make a data.frame of all a single value}
+\title{Make a data frame of all a single value}
 \usage{
 make_fill_df(df, n_rows = 1, fill_val = NA)
 }
 \arguments{
 \item{df}{a data.frame (or tibble) object}
 
-\item{n_rows}{number of rows for the final data.frame}
+\item{n_rows}{number of rows for the final data frame}
 
-\item{fill_val}{value to fill all cells of the data.frame}
+\item{fill_val}{value to fill all cells of the data frame}
 }
 \value{
-a data.frame (or tibble) with the desired number of rows filled
+a data frame (or tibble) with the desired number of rows filled
     with \code{fill_val}
 }
 \description{
-Makes a data.frame with the same columns of \code{df} and
+Makes a data frame with the same columns of \code{df} and
     \code{n_rows} number of rows and all values \code{fill_val}
 }
 \examples{

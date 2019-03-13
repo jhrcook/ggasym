@@ -2,7 +2,7 @@
 % Please edit documentation in R/scale_continuous_asym.R
 \name{continuous_scale_asym}
 \alias{continuous_scale_asym}
-\title{Continuous scale constructor for ggasym}
+\title{Continuous scale constructor for 'ggasym'}
 \usage{
 continuous_scale_asym(aesthetics, scale_name, palette, na.value, guide,
   ...)
@@ -26,7 +26,7 @@ see \code{?ggplot2::continuous_scale} for complete documentation}
 }
 \description{
 This is a this wrapper around \code{continuous_scale()} from
-    the ggplot2 package. It is generally best to call this function
+    the 'ggplot2' package. It is generally best to call this function
     implicitly using one of the wrappers that have the general naming
     scheme of \code{scale_*_tl/br_*} (such as \code{scale_fill_tl_gradient}).
 }

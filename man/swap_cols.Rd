@@ -2,7 +2,7 @@
 % Please edit documentation in R/asymmetrise.R
 \name{swap_cols}
 \alias{swap_cols}
-\title{Swap columns in a data.frame}
+\title{Swap columns in a data frame}
 \usage{
 swap_cols(.data, .x, .y)
 }

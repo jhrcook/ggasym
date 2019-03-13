@@ -1,6 +1,6 @@
 Package: ggasym
 Type: Package
-Title: Asymmetric Matrix Plotting in ggplot
+Title: Asymmetric Matrix Plotting in 'ggplot2'
 Version: 0.1.0
 Authors@R: person(c("Joshua", "H"), "Cook", email = "joshuacook0023@gmail.com",
     role = c("aut", "cre"),
@@ -9,7 +9,7 @@ URL: https://github.com/jhrcook/ggasym https://jhrcook.github.io/ggasym/
 Description: Plots a symmetric matrix with three different fill
     aesthetics for the top-left and bottom-right triangles and along the
     diagonal. It operates within the Grammar of Graphics paradigm implemented
-    in 'ggplot'.
+    in 'ggplot2'.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

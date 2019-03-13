@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Continuous scale constructor for ggasym — continuous_scale_asym • ggasym</title>
+<title>Continuous scale constructor for 'ggasym' — continuous_scale_asym • ggasym</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -37,10 +37,10 @@
 
 
 
-<meta property="og:title" content="Continuous scale constructor for ggasym — continuous_scale_asym" />
+<meta property="og:title" content="Continuous scale constructor for 'ggasym' — continuous_scale_asym" />
 
 <meta property="og:description" content="This is a this wrapper around continuous_scale() from
-    the ggplot2 package. It is generally best to call this function
+    the 'ggplot2' package. It is generally best to call this function
     implicitly using one of the wrappers that have the general naming
     scheme of scale_*_tl/br_* (such as scale_fill_tl_gradient)." />
 
@@ -98,7 +98,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/ggasym-stats.html">Statistical Test Plotting</a>
+      <a href="../articles/ggasym-stats.html">Statistical Test Plotting with 'ggasym'</a>
     </li>
   </ul>
 </li>
@@ -126,7 +126,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Continuous scale constructor for ggasym</h1>
+    <h1>Continuous scale constructor for 'ggasym'</h1>
     <small class="dont-index">Source: <a href='https://github.com/jhrcook/ggasym/blob/master/R/scale_continuous_asym.R'><code>R/scale_continuous_asym.R</code></a></small>
     <div class="hidden name"><code>continuous_scale_asym.Rd</code></div>
     </div>
@@ -134,7 +134,7 @@
     <div class="ref-description">
     
     <p>This is a this wrapper around <code>continuous_scale()</code> from
-    the ggplot2 package. It is generally best to call this function
+    the 'ggplot2' package. It is generally best to call this function
     implicitly using one of the wrappers that have the general naming
     scheme of <code>scale_*_tl/br_*</code> (such as <code>scale_fill_tl_gradient</code>).</p>
     
@@ -185,12 +185,12 @@ see <code><a href='https://ggplot2.tidyverse.org/reference/continuous_scale.html
               <span class='kw'>val_1</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
               <span class='kw'>val_2</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(-<span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>1</span>))
 
-<span class='no'>tib</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 3 x 4</span><span>
+<span class='no'>tib</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 3 x 4</span><span>
 #&gt;   g1    g2    val_1 val_2
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> A     B         1    -</span><span style='color: #BB0000;'>1</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> A     C         2     0
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> B     C         3     1</div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> A     B         1    -</span><span style='color: #BB0000;'>1</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span> A     C         2     0
+#&gt; </span><span style='color: #555555;'>3</span><span> B     C         3     1</div><div class='input'>
 <span class='no'>tib</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='asymmetrise.html'>asymmetrise</a></span>(<span class='no'>tib</span>, <span class='no'>g1</span>, <span class='no'>g2</span>)
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>tib</span>) +
 <span class='fu'><a href='geom_asymmat.html'>geom_asymmat</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>g1</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>g2</span>, <span class='kw'>fill_tl</span> <span class='kw'>=</span> <span class='no'>val_1</span>, <span class='kw'>fill_br</span> <span class='kw'>=</span> <span class='no'>val_2</span>)) +

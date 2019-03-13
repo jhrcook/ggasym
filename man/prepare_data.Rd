@@ -7,11 +7,11 @@
 prepare_data(.data)
 }
 \arguments{
-\item{.data}{input data of either a tibble, data.frame, or results from a
+\item{.data}{input data of either a \code{tibble}, \code{data.frame}, or results from a
 statistical test}
 }
 \value{
-a tibble data table
+a \code{tibble} data table
 }
 \description{
 Tries to make the data ready for use in the
@@ -19,7 +19,7 @@ Tries to make the data ready for use in the
 }
 \section{Warning}{
 
-    If you repeatedly get errors, try preparing the data before hand using
+    If you repeatedly get errors, try preparing the data before-hand using
     \code{broom::tidy(.data)}
 }
 

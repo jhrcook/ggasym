@@ -2,17 +2,17 @@
 % Please edit documentation in R/asymmetrise.R
 \name{add_missing_combinations}
 \alias{add_missing_combinations}
-\title{Add missing combinations of x and y to a data.frame}
+\title{Add missing combinations of x and y to a data frame}
 \usage{
 add_missing_combinations(.data, .x, .y)
 }
 \arguments{
-\item{.data}{a data.frame (or tibble) object}
+\item{.data}{a data frame (or tibble) object}
 
 \item{.x, .y}{column names to make combinations of}
 }
 \value{
-a data.frame (or tibble) with additional columns
+a data frame (or tibble) with additional columns
 }
 \description{
 Add rows to \code{.data} to complete all combinations of

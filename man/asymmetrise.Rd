@@ -22,7 +22,7 @@ a data table with new rows for the added comparisons
 This function prepares input data for \code{geom_asymmat} by
     adding in any missing comparisons to be plotted. Note that this function
     observes groups created with the \code{dplyr::group_by} function. For
-    the ggasym package, this is useful for when you want to facet the plot:
+    the 'ggasym' package, this is useful for when you want to facet the plot:
     before "asymmetrizing" the data table, use \code{dplyr::group_by},
     passing the column name you wish to later facet by. This functionality
     is demonstrated in the second example, below.
