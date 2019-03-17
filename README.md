@@ -7,6 +7,8 @@
 v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/ggasym)](https://cran.r-project.org/package=ggasym)
+[![CRAN
+downloads](http://cranlogs.r-pkg.org/badges/grand-total/ggasym)](https://cran.r-project.org/package=ggasym)
 [![Travis build
 status](https://travis-ci.org/jhrcook/ggasym.svg?branch=master)](https://travis-ci.org/jhrcook/ggasym)
 [![AppVeyor build

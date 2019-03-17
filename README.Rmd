@@ -21,6 +21,7 @@ set.seed(0)
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![CRAN status](https://www.r-pkg.org/badges/version/ggasym)](https://cran.r-project.org/package=ggasym)
+[![CRAN downloads](http://cranlogs.r-pkg.org/badges/grand-total/ggasym)](https://cran.r-project.org/package=ggasym)
 [![Travis build status](https://travis-ci.org/jhrcook/ggasym.svg?branch=master)](https://travis-ci.org/jhrcook/ggasym) 
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/jhrcook/ggasym?branch=master&svg=true)](https://ci.appveyor.com/project/jhrcook/ggasym)
 [![Coverage status](https://codecov.io/gh/jhrcook/ggasym/branch/master/graph/badge.svg)](https://codecov.io/github/jhrcook/ggasym?branch=master)
@@ -227,7 +228,5 @@ ggplot(asymmat_tib, aes(x = x, y = y)) +
 ### Thank yous
 
 I would like to thank the team behind ['ggplot2'](https://ggplot2.tidyverse.org) for creating a flexible and powerful package for the R community.
-
-Logo made with [DesignEvo](https://www.designevo.com/en/).
 
 If you see any mistakes (including small typos) *please* open an [issue](https://github.com/jhrcook/ggasym/issues) and leave a quick statement. Do not worry about appearing annoying.
