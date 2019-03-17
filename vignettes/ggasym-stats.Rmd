@@ -4,22 +4,25 @@ author: "Joshua H. Cook"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Statistical Test Plotting with 'ggasym'}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
+    collapse = TRUE,
+    comment = "#>",
+    fig.width = 7,
+    fig.height = 5,
+    fig.align = "center"
 )
 set.seed(0)
 ```
 
 ## Purpose
 
-One of the great uses of 'ggasym' is to plot two values from the results of a multi-way statistical test. Each comparison is a cell, and two values can be used for the fills. Below I give brief examples and plot the differences in mean and the p-value on the symmetric matrix.
+One of the great uses of 'ggasym' is to plot two values from the results of a multi-way statistical test. Each comparison is a cell, and two values can be used for the fills. Below I give brief examples and plot the differences in mean and the *p*-value on the symmetric matrix.
 
 ```{r load_libs, warning=FALSE, message=FALSE}
 library(dplyr)
