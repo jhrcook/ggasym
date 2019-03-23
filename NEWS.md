@@ -1,3 +1,7 @@
+# ggasym 0.1.1
+
+* Minor cosmetic fixes (i.e. wrong file names, typos) - no changes to functionality or use of the package.
+
 # ggasym 0.1.0
 
 * Package is ready for use! All major desired functions are implemented, tests are written and passing, and documentation is unified after the addition of the statistical test wrapper and diagonal fill.

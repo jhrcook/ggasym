@@ -35,8 +35,14 @@ For information on using ‘ggplot2’, start
 
 ## Download and Installation
 
-You can download and install from the GitHub repo. Eventually, this will
-hopefully be available on CRAN, too.
+‘ggasym’ is available on CRAN. Use the following command to install.
+
+``` r
+install.packages("ggasym")
+```
+
+You can download and install the latestest development version from the
+GitHub repo.
 
 ``` r
 devtools::install_github("jhrcook/ggasym")
@@ -307,8 +313,6 @@ ggplot(asymmat_tib, aes(x = x, y = y)) +
 I would like to thank the team behind
 [‘ggplot2’](https://ggplot2.tidyverse.org) for creating a flexible
 and powerful package for the R community.
-
-Logo made with [DesignEvo](https://www.designevo.com/en/).
 
 If you see any mistakes (including small typos) *please* open an
 [issue](https://github.com/jhrcook/ggasym/issues) and leave a quick

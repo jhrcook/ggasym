@@ -78,7 +78,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggasym</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -278,8 +278,8 @@ order of colours is reversed.</p></td>
               <span class='kw'>val_2</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span>(-<span class='fl'>10</span>:<span class='fl'>10</span>, <span class='fl'>10</span>),
               <span class='kw'>val_3</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>NA</span>, <span class='fl'>6</span>), <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>4</span>))
 <span class='no'>tib</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='asymmetrise.html'>asymmetrise</a></span>(<span class='no'>tib</span>, <span class='no'>g1</span>, <span class='no'>g2</span>)
-<span class='no'>g</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>tib</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>g1</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>g2</span>)) +
-    <span class='fu'><a href='geom_asymmat.html'>geom_asymmat</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>fill_tl</span> <span class='kw'>=</span> <span class='no'>val_1</span>, <span class='kw'>fill_br</span> <span class='kw'>=</span> <span class='no'>val_2</span>, <span class='kw'>fill_diag</span> <span class='kw'>=</span> <span class='no'>val_3</span>))
+<span class='no'>g</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='no'>tib</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>g1</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>g2</span>)) +
+    <span class='fu'><a href='geom_asymmat.html'>geom_asymmat</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>fill_tl</span> <span class='kw'>=</span> <span class='no'>val_1</span>, <span class='kw'>fill_br</span> <span class='kw'>=</span> <span class='no'>val_2</span>, <span class='kw'>fill_diag</span> <span class='kw'>=</span> <span class='no'>val_3</span>))
 
 <span class='no'>g</span> + <span class='fu'>scale_fill_tl_gradient</span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"lightpink"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"tomato"</span>) +
     <span class='fu'>scale_fill_br_gradient</span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"lightblue"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"dodgerblue"</span>) +
