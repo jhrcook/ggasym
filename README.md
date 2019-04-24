@@ -41,7 +41,7 @@ For information on using ‘ggplot2’, start
 install.packages("ggasym")
 ```
 
-You can download and install the latestest development version from the
+You can download and install the latest development version from the
 GitHub repo.
 
 ``` r

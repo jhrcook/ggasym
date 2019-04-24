@@ -48,7 +48,7 @@ install.packages("ggasym")
 ```
 
 
-You can download and install the latestest development version from the GitHub repo.
+You can download and install the latest development version from the GitHub repo.
 
 ```{r devtools_download, eval = FALSE}
 devtools::install_github("jhrcook/ggasym")
