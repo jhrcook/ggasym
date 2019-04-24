@@ -1,5 +1,7 @@
 ---
 title: "Using 'ggasym' with 'corrr' for Studying Correlations"
+author: "Joshua H. Cook"
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Using 'ggasym' with 'corrr' for Studying Correlations}
@@ -30,6 +32,8 @@ library(corrr)
 library(ggplot2)
 library(dplyr)
 ```
+
+## Preparing data with 'corrr'
 
 I used the `mtcars` from 'datasets' for this example.
 
@@ -68,6 +72,8 @@ Joining the two resultant tibbles is easy using [`full_join`](https://dplyr.tidy
 df <- dplyr::full_join(pear, spear, by = c("x", "y")) %>%
     ggasym::asymmetrise(x, y)
 ```
+
+## Plotting with 'ggasym'
 
 Finally, everything is ready to plot using `ggasym::geom_asymmat()`. Here is the bare-bones version:
 

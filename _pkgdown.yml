@@ -1,3 +1,42 @@
+template:
+  params:
+    bootswatch: flatly
+
+navbar:
+  structure:
+    left:
+    - home
+    - intro
+    - reference
+    - articles
+    right:
+    - news
+    - github
+    - twitter
+  components:
+    home:
+      icon: fa-home fa-lg
+      href: index.html
+    reference:
+      text: Reference
+      href: reference/index.html
+    articles:
+      text: Vignettes
+      menu:
+      - text: Statistical Test Plotting with 'ggasym'
+        href: articles/ggasym-stats.html
+      - text: Using 'ggasym' with 'corrr' for Studying Correlations
+        href: articles/ggasym-corrr.html
+    news:
+      text: Versions
+      href: news/index.html
+    github:
+      icon: fa-github fa-lg
+      href: https://github.com/jhrcook/ggasym
+    twitter:
+      icon: fab fa-twitter fa-lg
+      href: https://twitter.com/JoshDoesa
+
 reference:
 - title: Geom
   desc: >
@@ -47,3 +86,9 @@ articles:
     results of a statistical test for `geom_asymmat`
   contents:
   - '`ggasym-stats`'
+- title: Studying Correlations
+  desc: >
+    Using 'ggasym' with the 'corrr' package to study the different correlation
+    methods.
+  contents:
+  - '`ggasym-corrr`'
