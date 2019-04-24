@@ -1,3 +1,9 @@
+# ggasym 0.1.2
+
+* Changed theme of the pkgdown site (to "flatly").
+* Adjusted the navigation bar to be more aesthetically pleasing and linked to my Twitter ([@JoshDoesa](https://twitter.com/JoshDoesa)).
+* Added a vignette for the use of the ['corrr'](https://cran.r-project.org/web/packages/corrr/index.html) package with 'ggasym' to compare the results of different correlation methods.
+
 # ggasym 0.1.1
 
 * Minor cosmetic fixes (i.e. wrong file names, typos) - no changes to functionality or use of the package.
