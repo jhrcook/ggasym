@@ -27,9 +27,11 @@ Network Trash Folder
 Temporary Items
 .apdisk
 # End of https://www.gitignore.io/api/macos
+
 # --- Other --- #
 inst/doc
 .Rproj.user/
 data-raw/*.rds
 .Rhistory
 .Rproj.user
+revdep/*
