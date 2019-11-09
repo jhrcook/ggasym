@@ -1,30 +1,17 @@
 # 'ggasym' 0.1.2
 
-submitted April 24, 2019
+submitted November 09, 2019
 
 ## Test environments
-* (developed on) OS X Mojave install, R 3.5.2 
-* Ubuntu 14.04.5 LTS (on Travis-CI), R version 3.5.3
-* Windows Server 2012 R2 x64 (build 9600) (on Appveyor), R 3.5.3 Patched (2019-03-11 r76275)
-* Windows Server x86_64-w64-mingw32 (64-bit) (`build_win()`), using R version 3.5.3 (2019-03-11)
+* (developed on) OS X Mojave install, R 3.6.1 (2019-07-05)
+* Ubuntu 16.04.6 LTS (on Travis-CI), R 3.6.1 (2017-01-27)
+* Windows Server 2012 R2 x64 (build 9600) (on Appveyor), R 3.6.1 Patched (2019-11-07 r77386)
 
 ## R CMD check --as-cran results
 There were no ERRORs, WARNINGs, or NOTEs.
 
+## Changes
 
----
-
-
-# 'ggasym' 0.1.1
-
-submitted March 23, 2019
-
-## Test environments
-* (developed on) OS X Mojave install, R 3.5.2
-* Ubuntu 14.04 (on Travis-CI), R 3.5.2
-* Windows Server 2012 R2 x64 (build 9600) (on Appveyor), R 3.5.2 Patched (2019-02-27 r76167)
-
-## R CMD check --as-cran results
-There were no ERRORs, WARNINGs, or NOTEs.
-
----
+In this version I added a vignette showing how this package, 'ggasym', works great with 'corrr'.
+I also updated the tests to adjust for the version of 'scales' the user has. 
+'scales' is getting updated and the gradient calculations have changed slightly.
