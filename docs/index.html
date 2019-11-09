@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Asymmetric Matrix Plotting in 'ggplot2' • ggasym</title>
+<title>Asymmetric Matrix Plotting in ggplot2 • ggasym</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -13,13 +13,14 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Asymmetric Matrix Plotting in 'ggplot2'">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<script src="pkgdown.js"></script><meta property="og:title" content="Asymmetric Matrix Plotting in ggplot2">
 <meta property="og:description" content="Plots a symmetric matrix with three different fill
     aesthetics for the top-left and bottom-right triangles and along the
     diagonal. It operates within the Grammar of Graphics paradigm implemented
-    in 'ggplot2'.">
+    in ggplot2.">
 <meta property="og:image" content="/logo.png">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -28,7 +29,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-article">
+    <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -63,10 +64,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/ggasym-corrr.html">Using 'ggasym' with 'corrr' for Studying Correlations</a>
+      <a href="articles/ggasym-stats.html">Statistical Test Plotting with 'ggasym'</a>
     </li>
     <li>
-      <a href="articles/ggasym-stats.html">Statistical Test Plotting with 'ggasym'</a>
+      <a href="articles/ggasym-corrr.html">Using 'ggasym' with 'corrr' for Studying Correlations</a>
     </li>
   </ul>
 </li>
@@ -96,16 +97,12 @@
 <!--/.navbar -->
 
       
-      </header><div class="row">
-  <div class="col-md-9 contents">
-    
 
-    
-    
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-<div id="ggasym" class="section level1">
+      </header><div class="row">
+  <div class="contents col-md-9">
+<div id="ggasym---" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#ggasym" class="anchor"></a>ggasym <a href="https://jhrcook.github.io/ggasym/index.html"> <img src="reference/figures/logo.png" align="right" alt="" width="120"></a>
+<a href="#ggasym---" class="anchor"></a>ggasym <a href="https://jhrcook.github.io/ggasym/index.html"> <img src="reference/figures/logo.png" align="right" alt="" width="120"></a>
 </h1></div>
 
 <p>‘ggasym’ (pronounced “gg-awesome”) plots a symmetric matrix with three different fill aesthetics for the top-left and bottom-right triangles and along the diagonal. It operates within the Grammar of Graphics paradigm implemented in <a href="https://ggplot2.tidyverse.org">‘ggplot2’</a>.</p>
@@ -118,197 +115,197 @@
 <h2 class="hasAnchor">
 <a href="#download-and-installation" class="anchor"></a>Download and Installation</h2>
 <p>‘ggasym’ is available on CRAN. Use the following command to install.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"ggasym"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"ggasym"</span>)</span></code></pre></div>
 <p>You can download and install the latest development version from the GitHub repo.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"jhrcook/ggasym"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"jhrcook/ggasym"</span>)</span></code></pre></div>
 <p>And load the package with the standard <code>library</code> function.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggasym)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggasym)</span></code></pre></div>
 </div>
 <div id="basic-usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#basic-usage" class="anchor"></a>Basic Usage</h2>
 <p>Here is a basic example. <code>tib</code> is a “tibble” (ie. fancy “data.frame”) of comparisons between groups “A” through “E”. There are two values to be plotted, <code>val_1</code> and <code>val_2</code>, that hold data on the comparison between <code>g1</code> and <code>g2</code>. <code>tib</code> is first passed to <code><a href="reference/asymmetrise.html">asymmetrise()</a></code> to fill in all the missing combinations between <code>g1</code> and <code>g2</code> such that the symmetric matrix can be built. All added values take the value <code>NA</code>. The modified data table is finally passed to <code>ggplot()</code> and <code><a href="reference/geom_asymmat.html">geom_asymmat()</a></code> is added on. Here, <code><a href="reference/asymmetrise.html">asymmetrise()</a></code> added the rows where <code>g1</code> and <code>g2</code> are equal, thus will fill the diagonal. I set these values to <code>val_3</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">tib &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">g1 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"B"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>),</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">              <span class="dt">g2 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"E"</span>),</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">              <span class="dt">val_1 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">              <span class="dt">val_2 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">3</span>))</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">tib &lt;-<span class="st"> </span><span class="kw"><a href="reference/asymmetrise.html">asymmetrise</a></span>(tib, g1, g2)</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">tib<span class="op">$</span>val_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(tib))</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="kw">ggplot</span>(tib, <span class="kw">aes</span>(<span class="dt">x =</span> g1, <span class="dt">y =</span> g2)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="st">    </span><span class="kw"><a href="reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw">aes</span>(<span class="dt">fill_tl =</span> val_<span class="dv">1</span>, <span class="dt">fill_br =</span> val_<span class="dv">2</span>, <span class="dt">fill_diag =</span> val_<span class="dv">3</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_tl_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightpink"</span>, <span class="dt">high =</span> <span class="st">"tomato"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_br_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightblue1"</span>, <span class="dt">high =</span> <span class="st">"dodgerblue"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_diag_gradient</a></span>(<span class="dt">low =</span> <span class="st">"yellow"</span>, <span class="dt">high =</span> <span class="st">"orange3"</span>)</a></code></pre></div>
-<p><img src="index_files/figure-html/example1-1.png" width="700"></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>tib &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">g1 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"B"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>),</span>
+<span id="cb4-2"><a href="#cb4-2"></a>              <span class="dt">g2 =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"E"</span>),</span>
+<span id="cb4-3"><a href="#cb4-3"></a>              <span class="dt">val_1 =</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">1</span>),</span>
+<span id="cb4-4"><a href="#cb4-4"></a>              <span class="dt">val_2 =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">3</span>))</span>
+<span id="cb4-5"><a href="#cb4-5"></a>tib &lt;-<span class="st"> </span><span class="kw"><a href="reference/asymmetrise.html">asymmetrise</a></span>(tib, g1, g2)</span>
+<span id="cb4-6"><a href="#cb4-6"></a>tib<span class="op">$</span>val_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(tib))</span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="kw">ggplot</span>(tib, <span class="kw">aes</span>(<span class="dt">x =</span> g1, <span class="dt">y =</span> g2)) <span class="op">+</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="st">    </span><span class="kw"><a href="reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw">aes</span>(<span class="dt">fill_tl =</span> val_<span class="dv">1</span>, <span class="dt">fill_br =</span> val_<span class="dv">2</span>, <span class="dt">fill_diag =</span> val_<span class="dv">3</span>)) <span class="op">+</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_tl_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightpink"</span>, <span class="dt">high =</span> <span class="st">"tomato"</span>) <span class="op">+</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_br_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightblue1"</span>, <span class="dt">high =</span> <span class="st">"dodgerblue"</span>) <span class="op">+</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_diag_gradient</a></span>(<span class="dt">low =</span> <span class="st">"yellow"</span>, <span class="dt">high =</span> <span class="st">"orange3"</span>)</span></code></pre></div>
+<p><img src="README_files/figure-gfm/example1-1.png"><!-- --></p>
 </div>
 <div id="new-aesthetics" class="section level2">
 <h2 class="hasAnchor">
 <a href="#new-aesthetics" class="anchor"></a>New Aesthetics</h2>
 <p>The new aesthetics <code>fill_tl</code>, <code>fill_br</code>, and <code>fill_diag</code> behave just like the normal <code>fill</code>, except that they correspond to the top-left (“tl”) and bottom-right (“br”) triangles of the matrix, respectively. This package also includes analogous functions for scaling the fill colors such as <code><a href="reference/scale_gradient.html">scale_fill_tl_gradient2()</a></code> and <code><a href="reference/scale_gradient.html">scale_fill_br_gradientn()</a></code> that operate just as expected when using ‘ggplot2’.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">ggplot</span>(tib, <span class="kw">aes</span>(<span class="dt">x =</span> g1, <span class="dt">y =</span> g2)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">    </span><span class="kw"><a href="reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw">aes</span>(<span class="dt">fill_tl =</span> val_<span class="dv">1</span>, <span class="dt">fill_br =</span> val_<span class="dv">2</span>, <span class="dt">fill_diag =</span> val_<span class="dv">3</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_tl_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightpink"</span>, <span class="dt">high =</span> <span class="st">"tomato"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_br_gradient2</a></span>(<span class="dt">low =</span> <span class="st">"orange"</span>, <span class="dt">mid =</span> <span class="st">"white"</span>, <span class="dt">high =</span> <span class="st">"dodgerblue"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_diag_gradientn</a></span>(<span class="dt">colors =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/palettes">rainbow</a></span>(<span class="dv">25</span>))</a></code></pre></div>
-<p><img src="index_files/figure-html/example2-1.png" width="700"></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">ggplot</span>(tib, <span class="kw">aes</span>(<span class="dt">x =</span> g1, <span class="dt">y =</span> g2)) <span class="op">+</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="st">    </span><span class="kw"><a href="reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw">aes</span>(<span class="dt">fill_tl =</span> val_<span class="dv">1</span>, <span class="dt">fill_br =</span> val_<span class="dv">2</span>, <span class="dt">fill_diag =</span> val_<span class="dv">3</span>)) <span class="op">+</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_tl_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightpink"</span>, <span class="dt">high =</span> <span class="st">"tomato"</span>) <span class="op">+</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_br_gradient2</a></span>(<span class="dt">low =</span> <span class="st">"orange"</span>, <span class="dt">mid =</span> <span class="st">"white"</span>, <span class="dt">high =</span> <span class="st">"dodgerblue"</span>) <span class="op">+</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_diag_gradientn</a></span>(<span class="dt">colors =</span> <span class="kw"><a href="https://rdrr.io/r/grDevices/palettes.html">rainbow</a></span>(<span class="dv">25</span>))</span></code></pre></div>
+<p><img src="README_files/figure-gfm/example2-1.png"><!-- --></p>
 <div id="adjusting-colorbars" class="section level3">
 <h3 class="hasAnchor">
 <a href="#adjusting-colorbars" class="anchor"></a>Adjusting Colorbars</h3>
 <p>Of note, with three colorbars, it may be useful to control their position and other properties. This can be done just like normal in ‘ggplot2’ by passing the correct values to the <code>guide</code> parameter in <code>scale_fill_*_gradient()</code> (<a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html">original documentation</a>). Below are a few of the options where I put the bars horizontal, adjust the ordering, and put the title above each.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">ggplot</span>(tib, <span class="kw">aes</span>(<span class="dt">x =</span> g1, <span class="dt">y =</span> g2)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">    </span><span class="kw"><a href="reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw">aes</span>(<span class="dt">fill_tl =</span> val_<span class="dv">1</span>, <span class="dt">fill_br =</span> val_<span class="dv">2</span>, <span class="dt">fill_diag =</span> val_<span class="dv">3</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_tl_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightpink"</span>, <span class="dt">high =</span> <span class="st">"tomato"</span>,</a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">                           <span class="dt">guide =</span> <span class="kw">guide_colourbar</span>(<span class="dt">direction =</span> <span class="st">"horizontal"</span>,</a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">                                                   <span class="dt">order =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6">                                                   <span class="dt">title.position =</span> <span class="st">"top"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_br_gradient2</a></span>(<span class="dt">low =</span> <span class="st">"orange"</span>, <span class="dt">mid =</span> <span class="st">"white"</span>, <span class="dt">high =</span> <span class="st">"dodgerblue"</span>,</a>
-<a class="sourceLine" id="cb6-8" data-line-number="8">                           <span class="dt">guide =</span> <span class="kw">guide_colourbar</span>(<span class="dt">direction =</span> <span class="st">"horizontal"</span>,</a>
-<a class="sourceLine" id="cb6-9" data-line-number="9">                                                   <span class="dt">order =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb6-10" data-line-number="10">                                                   <span class="dt">title.position =</span> <span class="st">"top"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_diag_gradientn</a></span>(<span class="dt">colors =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/palettes">rainbow</a></span>(<span class="dv">25</span>),</a>
-<a class="sourceLine" id="cb6-12" data-line-number="12">                           <span class="dt">guide =</span> <span class="kw">guide_colourbar</span>(<span class="dt">direction =</span> <span class="st">"horizontal"</span>,</a>
-<a class="sourceLine" id="cb6-13" data-line-number="13">                                                   <span class="dt">order =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb6-14" data-line-number="14">                                                   <span class="dt">title.position =</span> <span class="st">"top"</span>))</a></code></pre></div>
-<p><img src="index_files/figure-html/adj_colorbars-1.png" width="700"></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">ggplot</span>(tib, <span class="kw">aes</span>(<span class="dt">x =</span> g1, <span class="dt">y =</span> g2)) <span class="op">+</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="st">    </span><span class="kw"><a href="reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw">aes</span>(<span class="dt">fill_tl =</span> val_<span class="dv">1</span>, <span class="dt">fill_br =</span> val_<span class="dv">2</span>, <span class="dt">fill_diag =</span> val_<span class="dv">3</span>)) <span class="op">+</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_tl_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightpink"</span>, <span class="dt">high =</span> <span class="st">"tomato"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4"></a>                           <span class="dt">guide =</span> <span class="kw">guide_colourbar</span>(<span class="dt">direction =</span> <span class="st">"horizontal"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5"></a>                                                   <span class="dt">order =</span> <span class="dv">1</span>,</span>
+<span id="cb6-6"><a href="#cb6-6"></a>                                                   <span class="dt">title.position =</span> <span class="st">"top"</span>)) <span class="op">+</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_br_gradient2</a></span>(<span class="dt">low =</span> <span class="st">"orange"</span>, <span class="dt">mid =</span> <span class="st">"white"</span>, <span class="dt">high =</span> <span class="st">"dodgerblue"</span>,</span>
+<span id="cb6-8"><a href="#cb6-8"></a>                           <span class="dt">guide =</span> <span class="kw">guide_colourbar</span>(<span class="dt">direction =</span> <span class="st">"horizontal"</span>,</span>
+<span id="cb6-9"><a href="#cb6-9"></a>                                                   <span class="dt">order =</span> <span class="dv">3</span>,</span>
+<span id="cb6-10"><a href="#cb6-10"></a>                                                   <span class="dt">title.position =</span> <span class="st">"top"</span>)) <span class="op">+</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_diag_gradientn</a></span>(<span class="dt">colors =</span> <span class="kw"><a href="https://rdrr.io/r/grDevices/palettes.html">rainbow</a></span>(<span class="dv">25</span>),</span>
+<span id="cb6-12"><a href="#cb6-12"></a>                           <span class="dt">guide =</span> <span class="kw">guide_colourbar</span>(<span class="dt">direction =</span> <span class="st">"horizontal"</span>,</span>
+<span id="cb6-13"><a href="#cb6-13"></a>                                                   <span class="dt">order =</span> <span class="dv">2</span>,</span>
+<span id="cb6-14"><a href="#cb6-14"></a>                                                   <span class="dt">title.position =</span> <span class="st">"top"</span>))</span></code></pre></div>
+<p><img src="README_files/figure-gfm/adj_colorbars-1.png"><!-- --></p>
 </div>
 </div>
 <div id="full-ggplot2-integration" class="section level2">
 <h2 class="hasAnchor">
 <a href="#full-ggplot2-integration" class="anchor"></a>Full ggplot2 integration</h2>
 <p>Since the new geom is a normal ‘ggplot2’ object, it can be introduced into a standard ‘ggplot2’ workflow. Note that the labels can be adjusted like normal using the <code>labs</code> function and using the <code>fill_tl</code>, <code>fill_br</code>, and <code>fill_diag</code> arguments.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">ggplot</span>(tib, <span class="kw">aes</span>(<span class="dt">x =</span> g1, <span class="dt">y =</span> g2)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">    </span><span class="kw"><a href="reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw">aes</span>(<span class="dt">fill_tl =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(val_<span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">                     <span class="dt">fill_br =</span> val_<span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">                     <span class="dt">fill_diag =</span> val_<span class="dv">3</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_tl_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightpink"</span>, <span class="dt">high =</span> <span class="st">"tomato"</span>,</a>
-<a class="sourceLine" id="cb7-6" data-line-number="6">                           <span class="dt">guide =</span> <span class="kw">guide_colourbar</span>(<span class="dt">direction =</span> <span class="st">"horizontal"</span>,</a>
-<a class="sourceLine" id="cb7-7" data-line-number="7">                                                   <span class="dt">order =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb7-8" data-line-number="8">                                                   <span class="dt">title.position =</span> <span class="st">"top"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_br_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightblue1"</span>, <span class="dt">high =</span> <span class="st">"dodgerblue"</span>,</a>
-<a class="sourceLine" id="cb7-10" data-line-number="10">                           <span class="dt">guide =</span> <span class="kw">guide_colourbar</span>(<span class="dt">direction =</span> <span class="st">"horizontal"</span>,</a>
-<a class="sourceLine" id="cb7-11" data-line-number="11">                                                   <span class="dt">order =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb7-12" data-line-number="12">                                                   <span class="dt">title.position =</span> <span class="st">"top"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_diag_gradient</a></span>(<span class="dt">low =</span> <span class="st">"grey80"</span>, <span class="dt">high =</span> <span class="st">"grey20"</span>,</a>
-<a class="sourceLine" id="cb7-14" data-line-number="14">                           <span class="dt">guide =</span> <span class="kw">guide_colourbar</span>(<span class="dt">direction =</span> <span class="st">"horizontal"</span>,</a>
-<a class="sourceLine" id="cb7-15" data-line-number="15">                                                   <span class="dt">order =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb7-16" data-line-number="16">                                                   <span class="dt">title.position =</span> <span class="st">"top"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-17" data-line-number="17"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">fill_tl =</span> <span class="st">"top-left fill"</span>,</a>
-<a class="sourceLine" id="cb7-18" data-line-number="18">         <span class="dt">fill_br =</span> <span class="st">"bottom-right fill"</span>,</a>
-<a class="sourceLine" id="cb7-19" data-line-number="19">         <span class="dt">fill_diag =</span> <span class="st">"diagonal fill"</span>,</a>
-<a class="sourceLine" id="cb7-20" data-line-number="20">         <span class="dt">title =</span> <span class="st">"Example of ggasym"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-21" data-line-number="21"><span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-22" data-line-number="22"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.title =</span> <span class="kw">element_blank</span>(),</a>
-<a class="sourceLine" id="cb7-23" data-line-number="23">          <span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>),</a>
-<a class="sourceLine" id="cb7-24" data-line-number="24">          <span class="dt">panel.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">"grey70"</span>),</a>
-<a class="sourceLine" id="cb7-25" data-line-number="25">          <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-26" data-line-number="26"><span class="st">    </span><span class="kw">scale_x_discrete</span>(<span class="dt">expand =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-27" data-line-number="27"><span class="st">    </span><span class="kw">scale_y_discrete</span>(<span class="dt">expand =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">0</span>))</a></code></pre></div>
-<p><img src="index_files/figure-html/example3-1.png" width="700"></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">ggplot</span>(tib, <span class="kw">aes</span>(<span class="dt">x =</span> g1, <span class="dt">y =</span> g2)) <span class="op">+</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="st">    </span><span class="kw"><a href="reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw">aes</span>(<span class="dt">fill_tl =</span> <span class="kw"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(val_<span class="dv">1</span>),</span>
+<span id="cb7-3"><a href="#cb7-3"></a>                     <span class="dt">fill_br =</span> val_<span class="dv">2</span>,</span>
+<span id="cb7-4"><a href="#cb7-4"></a>                     <span class="dt">fill_diag =</span> val_<span class="dv">3</span>)) <span class="op">+</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_tl_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightpink"</span>, <span class="dt">high =</span> <span class="st">"tomato"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6"></a>                           <span class="dt">guide =</span> <span class="kw">guide_colourbar</span>(<span class="dt">direction =</span> <span class="st">"horizontal"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7"></a>                                                   <span class="dt">order =</span> <span class="dv">1</span>,</span>
+<span id="cb7-8"><a href="#cb7-8"></a>                                                   <span class="dt">title.position =</span> <span class="st">"top"</span>)) <span class="op">+</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_br_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightblue1"</span>, <span class="dt">high =</span> <span class="st">"dodgerblue"</span>,</span>
+<span id="cb7-10"><a href="#cb7-10"></a>                           <span class="dt">guide =</span> <span class="kw">guide_colourbar</span>(<span class="dt">direction =</span> <span class="st">"horizontal"</span>,</span>
+<span id="cb7-11"><a href="#cb7-11"></a>                                                   <span class="dt">order =</span> <span class="dv">3</span>,</span>
+<span id="cb7-12"><a href="#cb7-12"></a>                                                   <span class="dt">title.position =</span> <span class="st">"top"</span>)) <span class="op">+</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_diag_gradient</a></span>(<span class="dt">low =</span> <span class="st">"grey80"</span>, <span class="dt">high =</span> <span class="st">"grey20"</span>,</span>
+<span id="cb7-14"><a href="#cb7-14"></a>                           <span class="dt">guide =</span> <span class="kw">guide_colourbar</span>(<span class="dt">direction =</span> <span class="st">"horizontal"</span>,</span>
+<span id="cb7-15"><a href="#cb7-15"></a>                                                   <span class="dt">order =</span> <span class="dv">2</span>,</span>
+<span id="cb7-16"><a href="#cb7-16"></a>                                                   <span class="dt">title.position =</span> <span class="st">"top"</span>)) <span class="op">+</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">fill_tl =</span> <span class="st">"top-left fill"</span>,</span>
+<span id="cb7-18"><a href="#cb7-18"></a>         <span class="dt">fill_br =</span> <span class="st">"bottom-right fill"</span>,</span>
+<span id="cb7-19"><a href="#cb7-19"></a>         <span class="dt">fill_diag =</span> <span class="st">"diagonal fill"</span>,</span>
+<span id="cb7-20"><a href="#cb7-20"></a>         <span class="dt">title =</span> <span class="st">"Example of ggasym"</span>) <span class="op">+</span></span>
+<span id="cb7-21"><a href="#cb7-21"></a><span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb7-22"><a href="#cb7-22"></a><span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.title =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb7-23"><a href="#cb7-23"></a>          <span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb7-24"><a href="#cb7-24"></a>          <span class="dt">panel.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">"grey70"</span>),</span>
+<span id="cb7-25"><a href="#cb7-25"></a>          <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()) <span class="op">+</span></span>
+<span id="cb7-26"><a href="#cb7-26"></a><span class="st">    </span><span class="kw">scale_x_discrete</span>(<span class="dt">expand =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></span>
+<span id="cb7-27"><a href="#cb7-27"></a><span class="st">    </span><span class="kw">scale_y_discrete</span>(<span class="dt">expand =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">0</span>, <span class="dv">0</span>))</span></code></pre></div>
+<p><img src="README_files/figure-gfm/example3-1.png"><!-- --></p>
 </div>
 <div id="facetting" class="section level2">
 <h2 class="hasAnchor">
 <a href="#facetting" class="anchor"></a>Facetting</h2>
 <p>If you have multiple categories, facetting works as expected. The only difference is in the preparation of the data table: you must <code>group_by()</code> the value(s) you will facet by before passing to <code><a href="reference/asymmetrise.html">asymmetrise()</a></code>. This is shown below.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">tib &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">g1 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>), <span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">              <span class="dt">g2 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"C"</span>), <span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3">              <span class="dt">val_1 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dv">1</span>, <span class="dv">6</span>),</a>
-<a class="sourceLine" id="cb8-4" data-line-number="4">              <span class="dt">val_2 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">6</span>),</a>
-<a class="sourceLine" id="cb8-5" data-line-number="5">              <span class="dt">grps =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb8-6" data-line-number="6">tib</a>
-<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="co">#&gt; # A tibble: 6 x 5</span></a>
-<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="co">#&gt;   g1    g2    val_1   val_2  grps</span></a>
-<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt; &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="co">#&gt; 1 A     B         1  0.0746     1</span></a>
-<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="co">#&gt; 2 A     C         2 -1.99       1</span></a>
-<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="co">#&gt; 3 B     C         3  0.620      1</span></a>
-<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="co">#&gt; 4 A     B         4 -0.0561     2</span></a>
-<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="co">#&gt; 5 A     C         5 -0.156      2</span></a>
-<a class="sourceLine" id="cb8-15" data-line-number="15"><span class="co">#&gt; 6 B     C         6 -1.47       2</span></a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>tib &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">g1 =</span> <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>), <span class="dv">2</span>),</span>
+<span id="cb8-2"><a href="#cb8-2"></a>              <span class="dt">g2 =</span> <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"C"</span>), <span class="dv">2</span>),</span>
+<span id="cb8-3"><a href="#cb8-3"></a>              <span class="dt">val_1 =</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dv">1</span>, <span class="dv">6</span>),</span>
+<span id="cb8-4"><a href="#cb8-4"></a>              <span class="dt">val_2 =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">6</span>),</span>
+<span id="cb8-5"><a href="#cb8-5"></a>              <span class="dt">grps =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb8-6"><a href="#cb8-6"></a>tib</span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="co">#&gt; # A tibble: 6 x 5</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="co">#&gt;   g1    g2    val_1   val_2  grps</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt; &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a><span class="co">#&gt; 1 A     B         1  0.0746     1</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="co">#&gt; 2 A     C         2 -1.99       1</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a><span class="co">#&gt; 3 B     C         3  0.620      1</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a><span class="co">#&gt; 4 A     B         4 -0.0561     2</span></span>
+<span id="cb8-14"><a href="#cb8-14"></a><span class="co">#&gt; 5 A     C         5 -0.156      2</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a><span class="co">#&gt; 6 B     C         6 -1.47       2</span></span></code></pre></div>
 <p>Grouping first by <code>grps</code>, the tibble is asymmetrized while retaining the <code>grps</code> assignments. I then added values to the diagonal.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">tib &lt;-<span class="st"> </span>tib <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(grps) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/asymmetrise.html">asymmetrise</a></span>(g1, g2) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ungroup</span>()</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">tib &lt;-<span class="st"> </span>tib <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">val_3 =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ifelse">ifelse</a></span>(g1 <span class="op">==</span><span class="st"> </span>g2, <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(tib)), <span class="ot">NA</span>))</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3">tib</a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co">#&gt; # A tibble: 18 x 6</span></a>
-<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co">#&gt;     grps g1    g2    val_1    val_2  val_3</span></a>
-<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co">#&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt;    &lt;dbl&gt;  &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="co">#&gt;  1     1 A     B         1   0.0746 NA    </span></a>
-<a class="sourceLine" id="cb9-8" data-line-number="8"><span class="co">#&gt;  2     1 A     C         2  -1.99   NA    </span></a>
-<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="co">#&gt;  3     1 B     C         3   0.620  NA    </span></a>
-<a class="sourceLine" id="cb9-10" data-line-number="10"><span class="co">#&gt;  4     1 B     A         1   0.0746 NA    </span></a>
-<a class="sourceLine" id="cb9-11" data-line-number="11"><span class="co">#&gt;  5     1 C     A         2  -1.99   NA    </span></a>
-<a class="sourceLine" id="cb9-12" data-line-number="12"><span class="co">#&gt;  6     1 C     B         3   0.620  NA    </span></a>
-<a class="sourceLine" id="cb9-13" data-line-number="13"><span class="co">#&gt;  7     1 A     A        NA  NA       0.459</span></a>
-<a class="sourceLine" id="cb9-14" data-line-number="14"><span class="co">#&gt;  8     1 B     B        NA  NA       0.332</span></a>
-<a class="sourceLine" id="cb9-15" data-line-number="15"><span class="co">#&gt;  9     1 C     C        NA  NA       0.651</span></a>
-<a class="sourceLine" id="cb9-16" data-line-number="16"><span class="co">#&gt; 10     2 A     B         4  -0.0561 NA    </span></a>
-<a class="sourceLine" id="cb9-17" data-line-number="17"><span class="co">#&gt; 11     2 A     C         5  -0.156  NA    </span></a>
-<a class="sourceLine" id="cb9-18" data-line-number="18"><span class="co">#&gt; 12     2 B     C         6  -1.47   NA    </span></a>
-<a class="sourceLine" id="cb9-19" data-line-number="19"><span class="co">#&gt; 13     2 B     A         4  -0.0561 NA    </span></a>
-<a class="sourceLine" id="cb9-20" data-line-number="20"><span class="co">#&gt; 14     2 C     A         5  -0.156  NA    </span></a>
-<a class="sourceLine" id="cb9-21" data-line-number="21"><span class="co">#&gt; 15     2 C     B         6  -1.47   NA    </span></a>
-<a class="sourceLine" id="cb9-22" data-line-number="22"><span class="co">#&gt; 16     2 A     A        NA  NA       0.839</span></a>
-<a class="sourceLine" id="cb9-23" data-line-number="23"><span class="co">#&gt; 17     2 B     B        NA  NA       0.347</span></a>
-<a class="sourceLine" id="cb9-24" data-line-number="24"><span class="co">#&gt; 18     2 C     C        NA  NA       0.334</span></a></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">ggplot</span>(tib, <span class="kw">aes</span>(<span class="dt">x =</span> g1, <span class="dt">y =</span> g2)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">    </span><span class="kw"><a href="reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw">aes</span>(<span class="dt">fill_tl =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(val_<span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3">                     <span class="dt">fill_br =</span> val_<span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb10-4" data-line-number="4">                     <span class="dt">fill_diag =</span> val_<span class="dv">3</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_tl_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightpink"</span>, <span class="dt">high =</span> <span class="st">"tomato"</span>,</a>
-<a class="sourceLine" id="cb10-6" data-line-number="6">                           <span class="dt">guide =</span> <span class="kw">guide_colourbar</span>(<span class="dt">direction =</span> <span class="st">"horizontal"</span>,</a>
-<a class="sourceLine" id="cb10-7" data-line-number="7">                                                   <span class="dt">order =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb10-8" data-line-number="8">                                                   <span class="dt">title.position =</span> <span class="st">"top"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb10-9" data-line-number="9"><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_br_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightblue1"</span>, <span class="dt">high =</span> <span class="st">"dodgerblue"</span>,</a>
-<a class="sourceLine" id="cb10-10" data-line-number="10">                           <span class="dt">guide =</span> <span class="kw">guide_colourbar</span>(<span class="dt">direction =</span> <span class="st">"horizontal"</span>,</a>
-<a class="sourceLine" id="cb10-11" data-line-number="11">                                                   <span class="dt">order =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb10-12" data-line-number="12">                                                   <span class="dt">title.position =</span> <span class="st">"top"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb10-13" data-line-number="13"><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_diag_gradient</a></span>(<span class="dt">low =</span> <span class="st">"grey80"</span>, <span class="dt">high =</span> <span class="st">"grey20"</span>,</a>
-<a class="sourceLine" id="cb10-14" data-line-number="14">                           <span class="dt">guide =</span> <span class="kw">guide_colourbar</span>(<span class="dt">direction =</span> <span class="st">"horizontal"</span>,</a>
-<a class="sourceLine" id="cb10-15" data-line-number="15">                                                   <span class="dt">order =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb10-16" data-line-number="16">                                                   <span class="dt">title.position =</span> <span class="st">"top"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb10-17" data-line-number="17"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">fill_tl =</span> <span class="st">"top-left fill"</span>,</a>
-<a class="sourceLine" id="cb10-18" data-line-number="18">         <span class="dt">fill_br =</span> <span class="st">"bottom-right fill"</span>,</a>
-<a class="sourceLine" id="cb10-19" data-line-number="19">         <span class="dt">fill_diag =</span> <span class="st">"diagonal fill"</span>,</a>
-<a class="sourceLine" id="cb10-20" data-line-number="20">         <span class="dt">title =</span> <span class="st">"Example of facetting with ggasym"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb10-21" data-line-number="21"><span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb10-22" data-line-number="22"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.title =</span> <span class="kw">element_blank</span>(),</a>
-<a class="sourceLine" id="cb10-23" data-line-number="23">          <span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>),</a>
-<a class="sourceLine" id="cb10-24" data-line-number="24">          <span class="dt">panel.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">"grey70"</span>),</a>
-<a class="sourceLine" id="cb10-25" data-line-number="25">          <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()) <span class="op">+</span></a>
-<a class="sourceLine" id="cb10-26" data-line-number="26"><span class="st">    </span><span class="kw">scale_x_discrete</span>(<span class="dt">expand =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb10-27" data-line-number="27"><span class="st">    </span><span class="kw">scale_y_discrete</span>(<span class="dt">expand =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb10-28" data-line-number="28"><span class="st">    </span><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>grps)</a></code></pre></div>
-<p><img src="index_files/figure-html/facetting_plot-1.png" width="700"></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>tib &lt;-<span class="st"> </span>tib <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(grps) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/asymmetrise.html">asymmetrise</a></span>(g1, g2) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ungroup</span>()</span>
+<span id="cb9-2"><a href="#cb9-2"></a>tib &lt;-<span class="st"> </span>tib <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">val_3 =</span> <span class="kw"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(g1 <span class="op">==</span><span class="st"> </span>g2, <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(tib)), <span class="ot">NA</span>))</span>
+<span id="cb9-3"><a href="#cb9-3"></a>tib</span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="co">#&gt; # A tibble: 18 x 6</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="co">#&gt;     grps g1    g2    val_1   val_2  val_3</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="co">#&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="co">#&gt;  1     1 A     B         1  0.0746 NA    </span></span>
+<span id="cb9-8"><a href="#cb9-8"></a><span class="co">#&gt;  2     1 A     C         2 -1.99   NA    </span></span>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="co">#&gt;  3     1 B     C         3  0.620  NA    </span></span>
+<span id="cb9-10"><a href="#cb9-10"></a><span class="co">#&gt;  4     1 B     A         1  0.0746 NA    </span></span>
+<span id="cb9-11"><a href="#cb9-11"></a><span class="co">#&gt;  5     1 C     A         2 -1.99   NA    </span></span>
+<span id="cb9-12"><a href="#cb9-12"></a><span class="co">#&gt;  6     1 C     B         3  0.620  NA    </span></span>
+<span id="cb9-13"><a href="#cb9-13"></a><span class="co">#&gt;  7     1 A     A        NA NA       0.459</span></span>
+<span id="cb9-14"><a href="#cb9-14"></a><span class="co">#&gt;  8     1 B     B        NA NA       0.332</span></span>
+<span id="cb9-15"><a href="#cb9-15"></a><span class="co">#&gt;  9     1 C     C        NA NA       0.651</span></span>
+<span id="cb9-16"><a href="#cb9-16"></a><span class="co">#&gt; 10     2 A     B         4 -0.0561 NA    </span></span>
+<span id="cb9-17"><a href="#cb9-17"></a><span class="co">#&gt; 11     2 A     C         5 -0.156  NA    </span></span>
+<span id="cb9-18"><a href="#cb9-18"></a><span class="co">#&gt; 12     2 B     C         6 -1.47   NA    </span></span>
+<span id="cb9-19"><a href="#cb9-19"></a><span class="co">#&gt; 13     2 B     A         4 -0.0561 NA    </span></span>
+<span id="cb9-20"><a href="#cb9-20"></a><span class="co">#&gt; 14     2 C     A         5 -0.156  NA    </span></span>
+<span id="cb9-21"><a href="#cb9-21"></a><span class="co">#&gt; 15     2 C     B         6 -1.47   NA    </span></span>
+<span id="cb9-22"><a href="#cb9-22"></a><span class="co">#&gt; 16     2 A     A        NA NA       0.839</span></span>
+<span id="cb9-23"><a href="#cb9-23"></a><span class="co">#&gt; 17     2 B     B        NA NA       0.347</span></span>
+<span id="cb9-24"><a href="#cb9-24"></a><span class="co">#&gt; 18     2 C     C        NA NA       0.334</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">ggplot</span>(tib, <span class="kw">aes</span>(<span class="dt">x =</span> g1, <span class="dt">y =</span> g2)) <span class="op">+</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="st">    </span><span class="kw"><a href="reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw">aes</span>(<span class="dt">fill_tl =</span> <span class="kw"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(val_<span class="dv">1</span>),</span>
+<span id="cb10-3"><a href="#cb10-3"></a>                     <span class="dt">fill_br =</span> val_<span class="dv">2</span>,</span>
+<span id="cb10-4"><a href="#cb10-4"></a>                     <span class="dt">fill_diag =</span> val_<span class="dv">3</span>)) <span class="op">+</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_tl_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightpink"</span>, <span class="dt">high =</span> <span class="st">"tomato"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6"></a>                           <span class="dt">guide =</span> <span class="kw">guide_colourbar</span>(<span class="dt">direction =</span> <span class="st">"horizontal"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7"></a>                                                   <span class="dt">order =</span> <span class="dv">1</span>,</span>
+<span id="cb10-8"><a href="#cb10-8"></a>                                                   <span class="dt">title.position =</span> <span class="st">"top"</span>)) <span class="op">+</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_br_gradient</a></span>(<span class="dt">low =</span> <span class="st">"lightblue1"</span>, <span class="dt">high =</span> <span class="st">"dodgerblue"</span>,</span>
+<span id="cb10-10"><a href="#cb10-10"></a>                           <span class="dt">guide =</span> <span class="kw">guide_colourbar</span>(<span class="dt">direction =</span> <span class="st">"horizontal"</span>,</span>
+<span id="cb10-11"><a href="#cb10-11"></a>                                                   <span class="dt">order =</span> <span class="dv">3</span>,</span>
+<span id="cb10-12"><a href="#cb10-12"></a>                                                   <span class="dt">title.position =</span> <span class="st">"top"</span>)) <span class="op">+</span></span>
+<span id="cb10-13"><a href="#cb10-13"></a><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_diag_gradient</a></span>(<span class="dt">low =</span> <span class="st">"grey80"</span>, <span class="dt">high =</span> <span class="st">"grey20"</span>,</span>
+<span id="cb10-14"><a href="#cb10-14"></a>                           <span class="dt">guide =</span> <span class="kw">guide_colourbar</span>(<span class="dt">direction =</span> <span class="st">"horizontal"</span>,</span>
+<span id="cb10-15"><a href="#cb10-15"></a>                                                   <span class="dt">order =</span> <span class="dv">2</span>,</span>
+<span id="cb10-16"><a href="#cb10-16"></a>                                                   <span class="dt">title.position =</span> <span class="st">"top"</span>)) <span class="op">+</span></span>
+<span id="cb10-17"><a href="#cb10-17"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">fill_tl =</span> <span class="st">"top-left fill"</span>,</span>
+<span id="cb10-18"><a href="#cb10-18"></a>         <span class="dt">fill_br =</span> <span class="st">"bottom-right fill"</span>,</span>
+<span id="cb10-19"><a href="#cb10-19"></a>         <span class="dt">fill_diag =</span> <span class="st">"diagonal fill"</span>,</span>
+<span id="cb10-20"><a href="#cb10-20"></a>         <span class="dt">title =</span> <span class="st">"Example of facetting with ggasym"</span>) <span class="op">+</span></span>
+<span id="cb10-21"><a href="#cb10-21"></a><span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb10-22"><a href="#cb10-22"></a><span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.title =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb10-23"><a href="#cb10-23"></a>          <span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb10-24"><a href="#cb10-24"></a>          <span class="dt">panel.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">"grey70"</span>),</span>
+<span id="cb10-25"><a href="#cb10-25"></a>          <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()) <span class="op">+</span></span>
+<span id="cb10-26"><a href="#cb10-26"></a><span class="st">    </span><span class="kw">scale_x_discrete</span>(<span class="dt">expand =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></span>
+<span id="cb10-27"><a href="#cb10-27"></a><span class="st">    </span><span class="kw">scale_y_discrete</span>(<span class="dt">expand =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></span>
+<span id="cb10-28"><a href="#cb10-28"></a><span class="st">    </span><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>grps)</span></code></pre></div>
+<p><img src="README_files/figure-gfm/facetting_plot-1.png"><!-- --></p>
 <hr>
 </div>
 <div id="statistical-test-wrapper" class="section level2">
 <h2 class="hasAnchor">
 <a href="#statistical-test-wrapper" class="anchor"></a>Statistical Test Wrapper</h2>
-<p>I created a wrapper for handling the results of a statistical test to produce a tibble ready to be plotted with ggasym. Here is a brief example - a more detailed example is shown in the vignette <a href="https://jhrcook.github.io/ggasym/articles/ggasym-stats.html">“Statistical Test Plotting”</a>. Here I test if the median sale price of houses in Austin, Texas is different between any of the years (for more information on the data source: <code><a href="https://www.rdocumentation.org/packages/ggplot2/topics/txhousing">?ggplot2::txhousing</a></code>).</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">tib &lt;-<span class="st"> </span>ggplot2<span class="op">::</span>txhousing <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(city <span class="op">==</span><span class="st"> "Austin"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/character">as.character</a></span>(year))</a>
-<a class="sourceLine" id="cb11-4" data-line-number="4">aov_res &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/aov">aov</a></span>(median <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> tib)</a>
-<a class="sourceLine" id="cb11-5" data-line-number="5">broom<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/broom/topics/reexports">tidy</a></span>(aov_res)</a>
-<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co">#&gt; # A tibble: 2 x 6</span></a>
-<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">#&gt;   term         df         sumsq       meansq statistic    p.value</span></a>
-<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#&gt;   &lt;chr&gt;     &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="co">#&gt; 1 year         15 169514394144. 11300959610.      213.  4.29e-102</span></a>
-<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="co">#&gt; 2 Residuals   171   9077385000.    53084123.       NA  NA</span></a></code></pre></div>
+<p>I created a wrapper for handling the results of a statistical test to produce a tibble ready to be plotted with ggasym. Here is a brief example - a more detailed example is shown in the vignette <a href="https://jhrcook.github.io/ggasym/articles/ggasym-stats.html">“Statistical Test Plotting”</a>. Here I test if the median sale price of houses in Austin, Texas is different between any of the years (for more information on the data source: <code><a href="https://ggplot2.tidyverse.org/reference/txhousing.html">?ggplot2::txhousing</a></code>).</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>tib &lt;-<span class="st"> </span>ggplot2<span class="op">::</span>txhousing <span class="op">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="st">    </span><span class="kw"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(city <span class="op">==</span><span class="st"> "Austin"</span>) <span class="op">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw"><a href="https://rdrr.io/r/base/character.html">as.character</a></span>(year))</span>
+<span id="cb11-4"><a href="#cb11-4"></a>aov_res &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span>(median <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> tib)</span>
+<span id="cb11-5"><a href="#cb11-5"></a>broom<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/broom/man/reexports.html">tidy</a></span>(aov_res)</span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="co">#&gt; # A tibble: 2 x 6</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="co">#&gt;   term         df         sumsq       meansq statistic    p.value</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="co">#&gt;   &lt;chr&gt;     &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a><span class="co">#&gt; 1 year         15 169514394144. 11300959610.      213.  4.29e-102</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a><span class="co">#&gt; 2 Residuals   171   9077385000.    53084123.       NA  NA</span></span></code></pre></div>
 <p>Before plotting, the results of the Tukey post-hoc test are passed to <code><a href="reference/asymmetrise_stats.html">asymmetrise_stats()</a></code> that prepares the data for <code><a href="reference/geom_asymmat.html">geom_asymmat()</a></code>. The resulting tibble is then plotted and styled in ‘ggplot2’.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">asymmat_tib &lt;-<span class="st"> </span><span class="kw"><a href="reference/asymmetrise_stats.html">asymmetrise_stats</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/TukeyHSD">TukeyHSD</a></span>(aov_res))</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw">ggplot</span>(asymmat_tib, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw">aes</span>(<span class="dt">fill_tl =</span> estimate,</a>
-<a class="sourceLine" id="cb12-4" data-line-number="4">                     <span class="dt">fill_br =</span> <span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log10</a></span>(adj.p.value <span class="op">+</span><span class="st"> </span><span class="fl">0.0000001</span>))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_tl_gradient2</a></span>(<span class="dt">low =</span> <span class="st">"dodgerblue"</span>, <span class="dt">high =</span> <span class="st">"tomato"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_br_distiller</a></span>(<span class="dt">type =</span> <span class="st">"seq"</span>, <span class="dt">palette =</span> <span class="st">"Greens"</span>, <span class="dt">direction =</span> <span class="dv">1</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"Median House Prices in Austin"</span>,</a>
-<a class="sourceLine" id="cb12-8" data-line-number="8">         <span class="dt">fill_tl =</span> <span class="st">"diff. in</span><span class="ch">\n</span><span class="st">mean values"</span>,</a>
-<a class="sourceLine" id="cb12-9" data-line-number="9">         <span class="dt">fill_br =</span> <span class="st">"-log10( adj. p-value )"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">panel.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">"grey75"</span>),</a>
-<a class="sourceLine" id="cb12-11" data-line-number="11">          <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()) <span class="op">+</span></a>
-<a class="sourceLine" id="cb12-12" data-line-number="12"><span class="st">    </span><span class="kw">scale_x_discrete</span>(<span class="dt">expand =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb12-13" data-line-number="13"><span class="st">    </span><span class="kw">scale_y_discrete</span>(<span class="dt">expand =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">0</span>))</a></code></pre></div>
-<p><img src="index_files/figure-html/stats_example_plot-1.png" width="700"></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>asymmat_tib &lt;-<span class="st"> </span><span class="kw"><a href="reference/asymmetrise_stats.html">asymmetrise_stats</a></span>(<span class="kw"><a href="https://rdrr.io/r/stats/TukeyHSD.html">TukeyHSD</a></span>(aov_res))</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="kw">ggplot</span>(asymmat_tib, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="st">    </span><span class="kw"><a href="reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="kw">aes</span>(<span class="dt">fill_tl =</span> estimate,</span>
+<span id="cb12-4"><a href="#cb12-4"></a>                     <span class="dt">fill_br =</span> <span class="op">-</span><span class="kw"><a href="https://rdrr.io/r/base/Log.html">log10</a></span>(adj.p.value <span class="op">+</span><span class="st"> </span><span class="fl">0.0000001</span>))) <span class="op">+</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_tl_gradient2</a></span>(<span class="dt">low =</span> <span class="st">"dodgerblue"</span>, <span class="dt">high =</span> <span class="st">"tomato"</span>) <span class="op">+</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a><span class="st">    </span><span class="kw"><a href="reference/scale_gradient.html">scale_fill_br_distiller</a></span>(<span class="dt">type =</span> <span class="st">"seq"</span>, <span class="dt">palette =</span> <span class="st">"Greens"</span>, <span class="dt">direction =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"Median House Prices in Austin"</span>,</span>
+<span id="cb12-8"><a href="#cb12-8"></a>         <span class="dt">fill_tl =</span> <span class="st">"diff. in</span><span class="ch">\n</span><span class="st">mean values"</span>,</span>
+<span id="cb12-9"><a href="#cb12-9"></a>         <span class="dt">fill_br =</span> <span class="st">"-log10( adj. p-value )"</span>) <span class="op">+</span></span>
+<span id="cb12-10"><a href="#cb12-10"></a><span class="st">    </span><span class="kw">theme</span>(<span class="dt">panel.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">"grey75"</span>),</span>
+<span id="cb12-11"><a href="#cb12-11"></a>          <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>()) <span class="op">+</span></span>
+<span id="cb12-12"><a href="#cb12-12"></a><span class="st">    </span><span class="kw">scale_x_discrete</span>(<span class="dt">expand =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a><span class="st">    </span><span class="kw">scale_y_discrete</span>(<span class="dt">expand =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">0</span>, <span class="dv">0</span>))</span></code></pre></div>
+<p><img src="README_files/figure-gfm/stats_example_plot-1.png"><!-- --></p>
 <hr>
 <div id="thank-yous" class="section level3">
 <h3 class="hasAnchor">
@@ -342,11 +339,11 @@
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Joshua H Cook <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-9815-6879" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" alt="ORCID" height="16"></a> </li>
+<li>Joshua H Cook <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-9815-6879" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" alt="ORCID"></a> </li>
 </ul>
 </div>
 
-      <div class="dev-status">
+  <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License: GPL v3"></a></li>
@@ -358,7 +355,6 @@
 </ul>
 </div>
 </div>
-
 </div>
 
 
@@ -367,12 +363,14 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

@@ -203,26 +203,26 @@ tib <- tib %>% group_by(grps) %>% asymmetrise(g1, g2) %>% ungroup()
 tib <- tib %>% mutate(val_3 = ifelse(g1 == g2, runif(nrow(tib)), NA))
 tib
 #> # A tibble: 18 x 6
-#>     grps g1    g2    val_1    val_2  val_3
-#>    <dbl> <chr> <chr> <int>    <dbl>  <dbl>
-#>  1     1 A     B         1   0.0746 NA    
-#>  2     1 A     C         2  -1.99   NA    
-#>  3     1 B     C         3   0.620  NA    
-#>  4     1 B     A         1   0.0746 NA    
-#>  5     1 C     A         2  -1.99   NA    
-#>  6     1 C     B         3   0.620  NA    
-#>  7     1 A     A        NA  NA       0.459
-#>  8     1 B     B        NA  NA       0.332
-#>  9     1 C     C        NA  NA       0.651
-#> 10     2 A     B         4  -0.0561 NA    
-#> 11     2 A     C         5  -0.156  NA    
-#> 12     2 B     C         6  -1.47   NA    
-#> 13     2 B     A         4  -0.0561 NA    
-#> 14     2 C     A         5  -0.156  NA    
-#> 15     2 C     B         6  -1.47   NA    
-#> 16     2 A     A        NA  NA       0.839
-#> 17     2 B     B        NA  NA       0.347
-#> 18     2 C     C        NA  NA       0.334
+#>     grps g1    g2    val_1   val_2  val_3
+#>    <dbl> <chr> <chr> <int>   <dbl>  <dbl>
+#>  1     1 A     B         1  0.0746 NA    
+#>  2     1 A     C         2 -1.99   NA    
+#>  3     1 B     C         3  0.620  NA    
+#>  4     1 B     A         1  0.0746 NA    
+#>  5     1 C     A         2 -1.99   NA    
+#>  6     1 C     B         3  0.620  NA    
+#>  7     1 A     A        NA NA       0.459
+#>  8     1 B     B        NA NA       0.332
+#>  9     1 C     C        NA NA       0.651
+#> 10     2 A     B         4 -0.0561 NA    
+#> 11     2 A     C         5 -0.156  NA    
+#> 12     2 B     C         6 -1.47   NA    
+#> 13     2 B     A         4 -0.0561 NA    
+#> 14     2 C     A         5 -0.156  NA    
+#> 15     2 C     B         6 -1.47   NA    
+#> 16     2 A     A        NA NA       0.839
+#> 17     2 B     B        NA NA       0.347
+#> 18     2 C     C        NA NA       0.334
 ```
 
 ``` r
