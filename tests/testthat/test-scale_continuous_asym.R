@@ -19,6 +19,7 @@ test_that("get core aesthetic name", {
 })
 
 test_that("scale_fill_tl/br/diag_gradient values populate properly", {
+
     tib <- data.frame(grp1 = c("A", "A", "B", "A", "B", "C"),
                       grp2 = c("B", "C", "C", "A", "B", "C"),
                       val_1 = c(1, 2, NA),
@@ -51,6 +52,7 @@ test_that("scale_fill_tl/br/diag_gradient values populate properly", {
     expect_true(g3$scales$has_scale("fill_tl"))
     expect_true(g3$scales$has_scale("fill_br"))
     expect_true(g3$scales$has_scale("fill_diag"))
+
 
     tl_cols <- c("#FFB6C1", "#FF0000", "green")
     br_cols <- c("#BFEFFF", "#86BEFF", "#1E90FF")
@@ -137,6 +139,7 @@ test_that("scale_fill_tl/br/diag_gradient2 values populate properly", {
     expect_true(g3$scales$has_scale("fill_br"))
     expect_true(g3$scales$has_scale("fill_diag"))
 
+
     tl_cols <- c("#FFECE5", "#FFD9CB", "green",
                  "#FFFFFF", "#FF0000", "#FF9E81")
     br_cols <- c("#AAC8D3", "#95A3A8", "#7F7F7F",
@@ -144,6 +147,11 @@ test_that("scale_fill_tl/br/diag_gradient2 values populate properly", {
     diag_cols <- c("#E30081", "#FF0000", "#E30081",
                    "#FF0000", "grey50", "grey50" )
 
+    # If user is using the most recent version of 'scales'
+    if (packageVersion("scales") > "1.0.0") {
+        diag_cols <- c("#E40081", "#FF0000", "#E40081",
+                       "#FF0000", "grey50", "grey50")
+    }
 
     # g1_build
     expect_equal(g1_build$data[[1]]$fill_tl, tl_cols)
@@ -218,6 +226,7 @@ test_that("scale_fill_tl/br/diag_gradientn values populate properly", {
     expect_true(g3$scales$has_scale("fill_tl"))
     expect_true(g3$scales$has_scale("fill_br"))
     expect_true(g3$scales$has_scale("fill_diag"))
+
 
     tl_cols <- c("#2AB400", "#5AC300", "grey50",
                  "#00A600", "#F2F2F2", "#E7D520")
@@ -298,6 +307,7 @@ test_that("scale_fill_tl/br/diag_distiller values populate properly", {
     expect_true(g3$scales$has_scale("fill_tl"))
     expect_true(g3$scales$has_scale("fill_br"))
     expect_true(g3$scales$has_scale("fill_diag"))
+
 
     tl_cols <- c("#16773D", "#29914A", "grey50",
                  "#005A32", "#EDF8E9", "#74C476")
