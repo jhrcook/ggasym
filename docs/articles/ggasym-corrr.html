@@ -145,7 +145,7 @@
 <li>
 <code><a href="https://dplyr.tidyverse.org/reference/select.html">rename()</a></code>: change the column name to distinguish between the two correlations</li>
 </ol>
-<p>More information can be found in the <a href="https://cran.r-project.org/web/packages/corrr/vignettes/using-corrr.html">“Using corrr”</a> vignette.</p>
+<p>More information can be found in the <a href="https://CRAN.R-project.org/package=corrr/vignettes/using-corrr.html">“Using corrr”</a> vignette.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Pearson correlation</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>pear &lt;-<span class="st"> </span>corrr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/corrr/man/correlate.html">correlate</a></span>(mtcars, <span class="dt">method =</span> <span class="st">"pearson"</span>, <span class="dt">quiet=</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="st">    </span>corrr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/corrr/man/shave.html">shave</a></span>(<span class="dt">upper =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>

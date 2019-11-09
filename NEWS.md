@@ -2,7 +2,7 @@
 
 * Changed theme of the pkgdown site (to "flatly").
 * Adjusted the navigation bar to be more aesthetically pleasing and linked to my Twitter ([@JoshDoesa](https://twitter.com/JoshDoesa)).
-* Added a vignette for the use of the ['corrr'](https://cran.r-project.org/web/packages/corrr/index.html) package with 'ggasym' to compare the results of different correlation methods.
+* Added a vignette for the use of the ['corrr'](https://CRAN.R-project.org/package=corrr) package with 'ggasym' to compare the results of different correlation methods.
 * The testing of `scale_fill/color_*()` now adjusts to the version of 'scales'.
 
 # ggasym 0.1.1

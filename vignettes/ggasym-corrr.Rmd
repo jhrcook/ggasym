@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 
 ## Purpose
 
-The ['corrr'](https://cran.r-project.org/web/packages/corrr/index.html) package is designed to make exploring correlations easy in the tidyverse. Instead of switching from handling tidy data in a tibble to making correlation in a matrix and then reshaping the results into a tibble for 'ggplot2', 'corrr' makes it simple to calculate the correlations between all columns of a tibble in a single pipeline.
+The ['corrr'](https://CRAN.R-project.org/package=corrr) package is designed to make exploring correlations easy in the tidyverse. Instead of switching from handling tidy data in a tibble to making correlation in a matrix and then reshaping the results into a tibble for 'ggplot2', 'corrr' makes it simple to calculate the correlations between all columns of a tibble in a single pipeline.
 
 As calculate correlations will naturally result in a square matrix, I figured there must be a use case for 'ggasym' with 'corrr'. Here, I demonstrate how to compare the results of two different correlation methods in one plot.
 
@@ -49,7 +49,7 @@ My goal is to compare the values of correlations between each column when using 
 4. `na.omit()`: remove rows with `NA` values
 5. `rename()`: change the column name to distinguish between the two correlations
 
-More information can be found in the ["Using corrr"](https://cran.r-project.org/web/packages/corrr/vignettes/using-corrr.html) vignette.
+More information can be found in the ["Using corrr"](https://CRAN.R-project.org/package=corrr/vignettes/using-corrr.html) vignette.
 
 ```{r}
 # Pearson correlation
