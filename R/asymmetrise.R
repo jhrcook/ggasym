@@ -8,7 +8,7 @@
 #'     passing the column name you wish to later facet by. This functionality
 #'     is demonstrated in the second example, below.
 #'
-#' @param .data a tidy \code{data.frame} or \code{tibble}
+#' @param df a tidy \code{data.frame} or \code{tibble}
 #' @param .x,.y the data to add all comparisons between (ie. will be the
 #'     x and y-axes for \code{geom_asymmat()}
 #'
@@ -39,30 +39,30 @@
 #' @importFrom rlang enquo eval_tidy !! :=
 #' @importFrom magrittr %>%
 #' @export asymmetrise
-asymmetrise <- function(.data, .x, .y) {
+asymmetrise <- function(df, .x, .y) {
     .x <- enquo(.x)
     .y <- enquo(.y)
-    .x_data <- eval_tidy(.x, .data)
-    .y_data <- eval_tidy(.y, .data)
+    .x_data <- eval_tidy(.x, df)
+    .y_data <- eval_tidy(.y, df)
 
     if (class(.x_data) == "factor" | class(.y_data) == "factor") {
         data_levels <- organize_levels(.x_data, .y_data)
-        .data <- .data %>%
+        df <- df %>%
             dplyr::mutate(!!.x := as.character(!!.x),
                           !!.y := as.character(!!.y))
     } else {
         data_levels <- NULL
     }
-    new_data <- dplyr::bind_rows(.data, swap_cols(.data, !!.x, !!.y)) %>%
+    new_df <- dplyr::bind_rows(df, swap_cols(df, !!.x, !!.y)) %>%
         add_missing_combinations(!!.x, !!.y)
 
     if (!is.null(data_levels)) {
-        new_data <- new_data %>%
+        new_df <- new_df %>%
             dplyr::mutate(!!.x := factor(!!.x, levels = data_levels),
                           !!.y := factor(!!.y, levels = data_levels))
     }
 
-    return(new_data)
+    return(new_df)
 }
 
 
@@ -73,9 +73,9 @@ asymmetrize <- asymmetrise
 
 #' Swap columns in a data frame
 #'
-#' @description Swap columns \code{.x} and \code{.y} in \code{.data}.
+#' @description Swap columns \code{.x} and \code{.y} in \code{df}.
 #'
-#' @param .data a data.frame (or tibble) object
+#' @param df a data.frame (or tibble) object
 #' @param .x,.y column names to switch
 #'
 #' @return a data.frame (or tibble) object with \code{.x} and \code{.y} swapped
@@ -91,27 +91,27 @@ asymmetrize <- asymmetrise
 #' @importFrom rlang enquo eval_tidy !! !!! :=
 #' @importFrom magrittr %>%
 #' @export swap_cols
-swap_cols <- function(.data, .x, .y) {
-    groups <- dplyr::groups(.data)
-    .data <- dplyr::ungroup(.data)
+swap_cols <- function(df, .x, .y) {
+    groups <- dplyr::groups(df)
+    df <- dplyr::ungroup(df)
     .x <- enquo(.x)
     .y <- enquo(.y)
-    .x_data <- eval_tidy(.x, .data)
-    .y_data <- eval_tidy(.y, .data)
-    new_data <- .data %>%
+    .x_data <- eval_tidy(.x, df)
+    .y_data <- eval_tidy(.y, df)
+    new_df <- df %>%
         dplyr::mutate(!!.x := .y_data,
                       !!.y := .x_data)
-    return(dplyr::group_by(new_data, !!!groups))
+    return(dplyr::group_by(new_df, !!!groups))
 }
 
 
 #' Add missing combinations of x and y to a data frame
 #'
-#' @description Add rows to \code{.data} to complete all combinations of
+#' @description Add rows to \code{df} to complete all combinations of
 #'     columns \code{.x} and \code{.y}. Importantly, this function observes and
 #'     maintains any groups created by \code{dplyr::group_by()}.
 #'
-#' @param .data a data frame (or tibble) object
+#' @param df a data frame (or tibble) object
 #' @param .x,.y column names to make combinations of
 #'
 #' @return a data frame (or tibble) with additional columns
@@ -127,16 +127,16 @@ swap_cols <- function(.data, .x, .y) {
 #' @importFrom rlang enquo eval_tidy !! !!! :=
 #' @importFrom magrittr %>%
 #' @export add_missing_combinations
-add_missing_combinations <- function(.data, .x, .y) {
+add_missing_combinations <- function(df, .x, .y) {
     .x <- enquo(.x)
     .y <- enquo(.y)
-    .x_data <- eval_tidy(.x, .data)
-    .y_data <- eval_tidy(.y, .data)
+    .x_data <- eval_tidy(.x, df)
+    .y_data <- eval_tidy(.y, df)
 
     # handle levels if x or y is a factor
     if (class(.x_data) == "factor" | class(.y_data) == "factor") {
         data_levels <- organize_levels(.x_data, .y_data)
-        .data <- .data %>%
+        df <- df %>%
             dplyr::mutate(!!.x := as.character(!!.x),
                           !!.y := as.character(!!.y))
         .x_data <- as.character(.x_data)
@@ -145,30 +145,30 @@ add_missing_combinations <- function(.data, .x, .y) {
         data_levels <- NULL
     }
 
-    if (is_grouped(.data)) {
+    if (is_grouped(df)) {
         # call function over all groups
         # purrr::nest() %>% mutate(data = my_function(data)
-        original_groups <- dplyr::groups(.data)
-        new_data <- .data %>%
-            tidyr::nest(.key = ".grp_nest") %>%
-            dplyr::mutate(.grp_nest = purrr::map(.grp_nest,
-                    function(df) {
-                        new_df <- bind_missing_combs(df, !!.x, !!.y)
+        original_groups <- dplyr::groups(df)
+        new_df <- df %>%
+            tidyr::nest() %>%
+            dplyr::mutate(data = purrr::map(data,
+                    function(a) {
+                        b <- bind_missing_combs(a, !!.x, !!.y)
                     })) %>%
-            tidyr::unnest() %>%
+            tidyr::unnest(data) %>%
             dplyr::group_by(!!!original_groups)
     } else {
-        new_data <- bind_missing_combs(.data, !!.x, !!.y)
+        new_df <- bind_missing_combs(df, !!.x, !!.y)
     }
 
     # if necessary, reinstate levels
     if (!is.null(data_levels)) {
-        new_data <- new_data %>%
+        new_df <- new_df %>%
             dplyr::mutate(!!.x := factor(!!.x, levels = data_levels),
                           !!.y := factor(!!.y, levels = data_levels))
     }
 
-    return(new_data)
+    return(new_df)
 }
 
 #' Add the missing combinations of x and y
@@ -177,7 +177,7 @@ add_missing_combinations <- function(.data, .x, .y) {
 #'     of \code{.x} and \code{.y} that are not already present. All other
 #'     columns (if any) are set to \code{NA}
 #'
-#' @param .data input data table
+#' @param df input data table
 #' @param .x,.y names of the columns for which to add missing comparisons
 #'
 #' @return a data table with the new rows
@@ -194,21 +194,21 @@ add_missing_combinations <- function(.data, .x, .y) {
 #' @importFrom rlang !! := eval_tidy enquo
 #' @importFrom magrittr %>% %T>%
 #' @export bind_missing_combs
-bind_missing_combs <- function(.data, .x, .y)  {
+bind_missing_combs <- function(df, .x, .y)  {
     .x <- enquo(.x)
     .y <- enquo(.y)
-    others_combs <- get_other_combs(eval_tidy(.x, .data),
-                                    eval_tidy(.y, .data))
+    others_combs <- get_other_combs(eval_tidy(.x, df),
+                                    eval_tidy(.y, df))
     if (nrow(others_combs) > 0) {
-        data_cp <- make_fill_df(.data, n_rows = nrow(others_combs)) %>%
+        df_cp <- make_fill_df(df, n_rows = nrow(others_combs)) %>%
             dplyr::mutate(!!.x := others_combs$Var1,
                           !!.y := others_combs$Var2)
-        new_data <- dplyr::bind_rows(.data, data_cp)
+        new_df <- dplyr::bind_rows(df, df_cp)
     } else {
-        new_data <- .data
+        new_df <- df
     }
 
-    return(new_data)
+    return(new_df)
 }
 
 #' Get all combinations of values between two vectors
@@ -320,7 +320,7 @@ organize_levels <- function(x, y, ...) {
 #' @description Determines if the input data frame or tibble is grouped
 #'     (using \code{dplyr::group_by()}
 #'
-#' @param .data input \code{data.frame} or \code{tibble}
+#' @param data input \code{data.frame} or \code{tibble}
 #'
 #' @return boolean
 #'
@@ -331,10 +331,11 @@ organize_levels <- function(x, y, ...) {
 #' is_grouped(dplyr::group_by(df, g))
 #'
 #' @export is_grouped
-is_grouped <- function(.data) {
-    !is.null(dplyr::groups(.data))
+is_grouped <- function(data) {
+    !is.null(dplyr::groups(data))
 }
 
 
 # for "get_other_combs"
-utils::globalVariables(c("Var1", "Var2", "comb", ".grp_nest"), add = TRUE)
+utils::globalVariables(c("Var1", "Var2", "comb", ".grp_nest", "data"),
+                       add = TRUE)

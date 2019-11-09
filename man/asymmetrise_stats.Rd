@@ -5,12 +5,12 @@
 \alias{asymmetrize_stats}
 \title{Prepare an asymmetric data table from a statistical test}
 \usage{
-asymmetrise_stats(.data, comparison_sep = "-")
+asymmetrise_stats(df, comparison_sep = "-")
 
-asymmetrize_stats(.data, comparison_sep = "-")
+asymmetrize_stats(df, comparison_sep = "-")
 }
 \arguments{
-\item{.data}{either the results of a statistical test or the tidy tibble
+\item{df}{either the results of a statistical test or the tidy tibble
 from using the \code{broom::tidy()} function}
 
 \item{comparison_sep}{the separation used between the names being compared;

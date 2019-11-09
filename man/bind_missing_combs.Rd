@@ -4,10 +4,10 @@
 \alias{bind_missing_combs}
 \title{Add the missing combinations of x and y}
 \usage{
-bind_missing_combs(.data, .x, .y)
+bind_missing_combs(df, .x, .y)
 }
 \arguments{
-\item{.data}{input data table}
+\item{df}{input data table}
 
 \item{.x, .y}{names of the columns for which to add missing comparisons}
 }

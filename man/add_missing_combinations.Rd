@@ -4,10 +4,10 @@
 \alias{add_missing_combinations}
 \title{Add missing combinations of x and y to a data frame}
 \usage{
-add_missing_combinations(.data, .x, .y)
+add_missing_combinations(df, .x, .y)
 }
 \arguments{
-\item{.data}{a data frame (or tibble) object}
+\item{df}{a data frame (or tibble) object}
 
 \item{.x, .y}{column names to make combinations of}
 }
@@ -15,7 +15,7 @@ add_missing_combinations(.data, .x, .y)
 a data frame (or tibble) with additional columns
 }
 \description{
-Add rows to \code{.data} to complete all combinations of
+Add rows to \code{df} to complete all combinations of
     columns \code{.x} and \code{.y}. Importantly, this function observes and
     maintains any groups created by \code{dplyr::group_by()}.
 }

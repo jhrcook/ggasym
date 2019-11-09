@@ -4,10 +4,10 @@
 \alias{is_grouped}
 \title{Is a data table grouped?}
 \usage{
-is_grouped(.data)
+is_grouped(data)
 }
 \arguments{
-\item{.data}{input \code{data.frame} or \code{tibble}}
+\item{data}{input \code{data.frame} or \code{tibble}}
 }
 \value{
 boolean

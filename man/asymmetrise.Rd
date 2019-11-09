@@ -5,12 +5,12 @@
 \alias{asymmetrize}
 \title{Add all missing comparisons between two columns}
 \usage{
-asymmetrise(.data, .x, .y)
+asymmetrise(df, .x, .y)
 
-asymmetrize(.data, .x, .y)
+asymmetrize(df, .x, .y)
 }
 \arguments{
-\item{.data}{a tidy \code{data.frame} or \code{tibble}}
+\item{df}{a tidy \code{data.frame} or \code{tibble}}
 
 \item{.x, .y}{the data to add all comparisons between (ie. will be the
 x and y-axes for \code{geom_asymmat()}}

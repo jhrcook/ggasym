@@ -4,10 +4,10 @@
 \alias{swap_cols}
 \title{Swap columns in a data frame}
 \usage{
-swap_cols(.data, .x, .y)
+swap_cols(df, .x, .y)
 }
 \arguments{
-\item{.data}{a data.frame (or tibble) object}
+\item{df}{a data.frame (or tibble) object}
 
 \item{.x, .y}{column names to switch}
 }
@@ -15,7 +15,7 @@ swap_cols(.data, .x, .y)
 a data.frame (or tibble) object with \code{.x} and \code{.y} swapped
 }
 \description{
-Swap columns \code{.x} and \code{.y} in \code{.data}.
+Swap columns \code{.x} and \code{.y} in \code{df}.
 }
 \examples{
 df <- data.frame(a = c("A", "B"),

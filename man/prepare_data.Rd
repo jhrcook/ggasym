@@ -4,10 +4,10 @@
 \alias{prepare_data}
 \title{Prepares the input data into asymmetrise_stats}
 \usage{
-prepare_data(.data)
+prepare_data(df)
 }
 \arguments{
-\item{.data}{input data of either a \code{tibble}, \code{data.frame}, or results from a
+\item{df}{input data of either a \code{tibble}, \code{data.frame}, or results from a
 statistical test}
 }
 \value{
@@ -20,7 +20,7 @@ Tries to make the data ready for use in the
 \section{Warning}{
 
     If you repeatedly get errors, try preparing the data before-hand using
-    \code{broom::tidy(.data)}
+    \code{broom::tidy(df)}
 }
 
 \examples{
