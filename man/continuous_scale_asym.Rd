@@ -4,8 +4,7 @@
 \alias{continuous_scale_asym}
 \title{Continuous scale constructor for 'ggasym'}
 \usage{
-continuous_scale_asym(aesthetics, scale_name, palette, na.value, guide,
-  ...)
+continuous_scale_asym(aesthetics, scale_name, palette, na.value, guide, ...)
 }
 \arguments{
 \item{aesthetics}{The names of the aesthetics that this scale works with}

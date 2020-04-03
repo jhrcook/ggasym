@@ -3,7 +3,6 @@
 \docType{package}
 \name{ggasym}
 \alias{ggasym}
-\alias{ggasym-package}
 \title{ggasym: Asymmetric Matrix Plotting in ggplot}
 \description{
 This package plots a symmetric matrix with two different fill

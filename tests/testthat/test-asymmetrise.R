@@ -119,7 +119,7 @@ test_that("columns are swapped",  {
                              y = c(LETTERS[1:4]),
                              val = c(1, 2, NA, NA),
                              grp = c(1, 1, 2, 2))
-    expect_equal(swap_cols(df, x, y), df_swapped)
+    expect_equal(as.data.frame(swap_cols(df, x, y)), df_swapped)
     expect_equal(swap_cols(grouped_df, x, y),
                  dplyr::group_by(df_swapped, grp))
 })
@@ -136,17 +136,18 @@ test_that("data frame is asymmeterized", {
                        b = c("C", "D", "A", "B", "A", "A", "A", "B", "B", "B",
                              "C", "C", "C", "D", "D", "D"),
                        stringsAsFactors = FALSE)
-    expect_equal(asymmetrise(df_factors, a, b), a_df)
-    expect_equal(asymmetrize(df_factors, a, b), a_df)
+    expect_equal(as.data.frame(asymmetrise(df_factors, a, b)), a_df)
+    expect_equal(as.data.frame(asymmetrize(df_factors, a, b)), a_df)
 
-    expect_equal(asymmetrise(df_char, a, b), a_df)
-    expect_equal(asymmetrize(df_char, a, b), a_df)
+    expect_equal(as.data.frame(asymmetrise(df_char, a, b)), a_df)
+    expect_equal(as.data.frame(asymmetrize(df_char, a, b)), a_df)
 
     df_factors_grp <- rbind(df_factors, df_factors)
     df_factors_grp$grps <- c(1,1,2,2)
     df_factors_grp <- dplyr::group_by(df_factors_grp, grps)
     b_df <- rbind(a_df, a_df)
     b_df$grps <- c(rep(1, nrow(a_df)), rep(2, nrow(a_df)))
+    b_df <- b_df[, c("grps", "a", "b")]
 
     expect_false(is.null(dplyr::groups(asymmetrise(df_factors_grp, a, b))))
     expect_false(is.null(dplyr::groups(asymmetrize(df_factors_grp, a, b))))

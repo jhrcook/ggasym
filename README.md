@@ -9,6 +9,8 @@ v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/li
 status](https://www.r-pkg.org/badges/version/ggasym)](https://cran.r-project.org/package=ggasym)
 [![CRAN
 downloads](http://cranlogs.r-pkg.org/badges/grand-total/ggasym)](https://cran.r-project.org/package=ggasym)
+[![R build
+status](https://github.com/jhrcook/ggasym/workflows/R-CMD-check/badge.svg)](https://github.com/jhrcook/ggasym/actions)
 [![Travis build
 status](https://travis-ci.org/jhrcook/ggasym.svg?branch=master)](https://travis-ci.org/jhrcook/ggasym)
 [![AppVeyor build
@@ -16,16 +18,12 @@ status](https://ci.appveyor.com/api/projects/status/github/jhrcook/ggasym?branch
 [![Coverage
 status](https://codecov.io/gh/jhrcook/ggasym/branch/master/graph/badge.svg)](https://codecov.io/github/jhrcook/ggasym?branch=master)
 
+## Asymmetric Matrix Plotting in ‘ggplot’
+
 ‘ggasym’ (pronounced “gg-awesome”) plots a symmetric matrix with three
 different fill aesthetics for the top-left and bottom-right triangles
 and along the diagonal. It operates within the Grammar of Graphics
 paradigm implemented in [‘ggplot2’](https://ggplot2.tidyverse.org).
-
-**author: Joshua H. Cook**
-
-**date: 2019-02-22**
-
-**Asymmetric Matrix Plotting in ggplot**
 
 Checkout the documentation and vignettes at the pkgdown website
 [https://jhrcook.github.io/ggasym/](https://jhrcook.github.io/ggasym/index.html)
@@ -56,15 +54,15 @@ library(ggasym)
 
 ## Basic Usage
 
-Here is a basic example. `tib` is a “tibble” (ie. fancy “data.frame”) of
-comparisons between groups “A” through “E”. There are two values to be
-plotted, `val_1` and `val_2`, that hold data on the comparison between
-`g1` and `g2`. `tib` is first passed to `asymmetrise()` to fill in all
-the missing combinations between `g1` and `g2` such that the symmetric
-matrix can be built. All added values take the value `NA`. The modified
-data table is finally passed to `ggplot()` and `geom_asymmat()` is added
-on. Here, `asymmetrise()` added the rows where `g1` and `g2` are equal,
-thus will fill the diagonal. I set these values to `val_3`.
+Here is a basic example. `tib` is a “tibble” (i.e.. fancy “data.frame”)
+of comparisons between groups “A” through “E”. There are two values to
+be plotted, `val_1` and `val_2`, that hold data on the comparison
+between `g1` and `g2`. `tib` is first passed to `asymmetrise()` to fill
+in all the missing combinations between `g1` and `g2` such that the
+symmetric matrix can be built. All added values take the value `NA`. The
+modified data table is finally passed to `ggplot()` and `geom_asymmat()`
+is added on. Here, `asymmetrise()` added the rows where `g1` and `g2`
+are equal, thus will fill the diagonal. I set these values to `val_3`.
 
 ``` r
 tib <- tibble(g1 = c("A", "A", "A", "A", "B", "B", "B", "C", "C", "D"),
@@ -170,9 +168,9 @@ ggplot(tib, aes(x = g1, y = g2)) +
 
 ![](README_files/figure-gfm/example3-1.png)<!-- -->
 
-## Facetting
+## Faceting
 
-If you have multiple categories, facetting works as expected. The only
+If you have multiple categories, faceting works as expected. The only
 difference is in the preparation of the data table: you must
 `group_by()` the value(s) you will facet by before passing to
 `asymmetrise()`. This is shown below.
@@ -245,7 +243,7 @@ ggplot(tib, aes(x = g1, y = g2)) +
     labs(fill_tl = "top-left fill",
          fill_br = "bottom-right fill",
          fill_diag = "diagonal fill",
-         title = "Example of facetting with ggasym") +
+         title = "Example of faceting with ggasym") +
     theme_bw() +
     theme(axis.title = element_blank(),
           plot.title = element_text(hjust = 0.5),
@@ -256,7 +254,7 @@ ggplot(tib, aes(x = g1, y = g2)) +
     facet_grid(. ~ grps)
 ```
 
-![](README_files/figure-gfm/facetting_plot-1.png)<!-- -->
+![](README_files/figure-gfm/faceting_plot-1.png)<!-- -->
 
 -----
 

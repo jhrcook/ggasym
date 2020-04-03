@@ -332,7 +332,7 @@ organize_levels <- function(x, y, ...) {
 #'
 #' @export is_grouped
 is_grouped <- function(data) {
-    !is.null(dplyr::groups(data))
+    dplyr::n_groups(data) > 1
 }
 
 
