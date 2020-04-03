@@ -9,6 +9,8 @@ v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/li
 status](https://www.r-pkg.org/badges/version/ggasym)](https://cran.r-project.org/package=ggasym)
 [![CRAN
 downloads](http://cranlogs.r-pkg.org/badges/grand-total/ggasym)](https://cran.r-project.org/package=ggasym)
+[![R build
+status](https://github.com/jhrcook/ggasym/workflows/R-CMD-check/badge.svg)](https://github.com/jhrcook/ggasym/actions)
 [![Travis build
 status](https://travis-ci.org/jhrcook/ggasym.svg?branch=master)](https://travis-ci.org/jhrcook/ggasym)
 [![AppVeyor build
@@ -184,17 +186,16 @@ tib <- tibble(g1 = rep(c("A", "A", "B"), 2),
               val_2 = rnorm(6),
               grps = c(1, 1, 1, 2, 2, 2))
 tib
+#> # A tibble: 6 x 5
+#>   g1    g2    val_1   val_2  grps
+#>   <chr> <chr> <int>   <dbl> <dbl>
+#> 1 A     B         1  0.0746     1
+#> 2 A     C         2 -1.99       1
+#> 3 B     C         3  0.620      1
+#> 4 A     B         4 -0.0561     2
+#> 5 A     C         5 -0.156      2
+#> 6 B     C         6 -1.47       2
 ```
-
-    #> # A tibble: 6 x 5
-    #>   g1    g2    val_1   val_2  grps
-    #>   <chr> <chr> <int>   <dbl> <dbl>
-    #> 1 A     B         1  0.0746     1
-    #> 2 A     C         2 -1.99       1
-    #> 3 B     C         3  0.620      1
-    #> 4 A     B         4 -0.0561     2
-    #> 5 A     C         5 -0.156      2
-    #> 6 B     C         6 -1.47       2
 
 Grouping first by `grps`, the tibble is asymmetrized while retaining the
 `grps` assignments. I then added values to the diagonal.
@@ -203,29 +204,28 @@ Grouping first by `grps`, the tibble is asymmetrized while retaining the
 tib <- tib %>% group_by(grps) %>% asymmetrise(g1, g2) %>% ungroup()
 tib <- tib %>% mutate(val_3 = ifelse(g1 == g2, runif(nrow(tib)), NA))
 tib
+#> # A tibble: 18 x 6
+#>     grps g1    g2    val_1   val_2  val_3
+#>    <dbl> <chr> <chr> <int>   <dbl>  <dbl>
+#>  1     1 A     B         1  0.0746 NA    
+#>  2     1 A     C         2 -1.99   NA    
+#>  3     1 B     C         3  0.620  NA    
+#>  4     1 B     A         1  0.0746 NA    
+#>  5     1 C     A         2 -1.99   NA    
+#>  6     1 C     B         3  0.620  NA    
+#>  7     1 A     A        NA NA       0.459
+#>  8     1 B     B        NA NA       0.332
+#>  9     1 C     C        NA NA       0.651
+#> 10     2 A     B         4 -0.0561 NA    
+#> 11     2 A     C         5 -0.156  NA    
+#> 12     2 B     C         6 -1.47   NA    
+#> 13     2 B     A         4 -0.0561 NA    
+#> 14     2 C     A         5 -0.156  NA    
+#> 15     2 C     B         6 -1.47   NA    
+#> 16     2 A     A        NA NA       0.839
+#> 17     2 B     B        NA NA       0.347
+#> 18     2 C     C        NA NA       0.334
 ```
-
-    #> # A tibble: 18 x 6
-    #>     grps g1    g2    val_1   val_2  val_3
-    #>    <dbl> <chr> <chr> <int>   <dbl>  <dbl>
-    #>  1     1 A     B         1  0.0746 NA    
-    #>  2     1 A     C         2 -1.99   NA    
-    #>  3     1 B     C         3  0.620  NA    
-    #>  4     1 B     A         1  0.0746 NA    
-    #>  5     1 C     A         2 -1.99   NA    
-    #>  6     1 C     B         3  0.620  NA    
-    #>  7     1 A     A        NA NA       0.459
-    #>  8     1 B     B        NA NA       0.332
-    #>  9     1 C     C        NA NA       0.651
-    #> 10     2 A     B         4 -0.0561 NA    
-    #> 11     2 A     C         5 -0.156  NA    
-    #> 12     2 B     C         6 -1.47   NA    
-    #> 13     2 B     A         4 -0.0561 NA    
-    #> 14     2 C     A         5 -0.156  NA    
-    #> 15     2 C     B         6 -1.47   NA    
-    #> 16     2 A     A        NA NA       0.839
-    #> 17     2 B     B        NA NA       0.347
-    #> 18     2 C     C        NA NA       0.334
 
 ``` r
 ggplot(tib, aes(x = g1, y = g2)) +
@@ -279,13 +279,12 @@ tib <- ggplot2::txhousing %>%
     mutate(year = as.character(year))
 aov_res <- aov(median ~ year, data = tib)
 broom::tidy(aov_res)
+#> # A tibble: 2 x 6
+#>   term         df         sumsq       meansq statistic    p.value
+#>   <chr>     <dbl>         <dbl>        <dbl>     <dbl>      <dbl>
+#> 1 year         15 169514394144. 11300959610.      213.  4.29e-102
+#> 2 Residuals   171   9077385000.    53084123.       NA  NA
 ```
-
-    #> # A tibble: 2 x 6
-    #>   term         df         sumsq       meansq statistic    p.value
-    #>   <chr>     <dbl>         <dbl>        <dbl>     <dbl>      <dbl>
-    #> 1 year         15 169514394144. 11300959610.      213.  4.29e-102
-    #> 2 Residuals   171   9077385000.    53084123.       NA  NA
 
 Before plotting, the results of the Tukey post-hoc test are passed to
 `asymmetrise_stats()` that prepares the data for `geom_asymmat()`. The
