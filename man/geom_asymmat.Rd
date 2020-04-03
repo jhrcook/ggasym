@@ -4,9 +4,16 @@
 \alias{geom_asymmat}
 \title{Asymmetrically filled symmetric matrix (using 'ggplot2')}
 \usage{
-geom_asymmat(mapping = NULL, data = NULL, stat = "identity",
-  position = "identity", ..., na.rm = FALSE, show.legend = NA,
-  inherit.aes = TRUE)
+geom_asymmat(
+  mapping = NULL,
+  data = NULL,
+  stat = "identity",
+  position = "identity",
+  ...,
+  na.rm = FALSE,
+  show.legend = NA,
+  inherit.aes = TRUE
+)
 }
 \arguments{
 \item{mapping}{Set of aesthetic mappings created by \code{aes()} or

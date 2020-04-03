@@ -16,54 +16,140 @@
 \alias{scale_fill_diag_distiller}
 \title{Gradient colour scales geom_asymmat}
 \usage{
-scale_fill_tl_gradient(..., low = "#132B43", high = "#56B1F7",
-  space = "Lab", na.value = "grey50", guide = "colourbar",
-  aesthetics = "fill_tl")
+scale_fill_tl_gradient(
+  ...,
+  low = "#132B43",
+  high = "#56B1F7",
+  space = "Lab",
+  na.value = "grey50",
+  guide = "colourbar",
+  aesthetics = "fill_tl"
+)
 
-scale_fill_br_gradient(..., low = "#132B43", high = "#56B1F7",
-  space = "Lab", na.value = "grey50", guide = "colourbar",
-  aesthetics = "fill_br")
+scale_fill_br_gradient(
+  ...,
+  low = "#132B43",
+  high = "#56B1F7",
+  space = "Lab",
+  na.value = "grey50",
+  guide = "colourbar",
+  aesthetics = "fill_br"
+)
 
-scale_fill_diag_gradient(..., low = "#132B43", high = "#56B1F7",
-  space = "Lab", na.value = "grey50", guide = "colourbar",
-  aesthetics = "fill_diag")
+scale_fill_diag_gradient(
+  ...,
+  low = "#132B43",
+  high = "#56B1F7",
+  space = "Lab",
+  na.value = "grey50",
+  guide = "colourbar",
+  aesthetics = "fill_diag"
+)
 
-scale_fill_tl_gradient2(..., low = scales::muted("red"), mid = "white",
-  high = scales::muted("blue"), midpoint = 0, space = "Lab",
-  na.value = "grey50", guide = "colourbar", aesthetics = "fill_tl")
+scale_fill_tl_gradient2(
+  ...,
+  low = scales::muted("red"),
+  mid = "white",
+  high = scales::muted("blue"),
+  midpoint = 0,
+  space = "Lab",
+  na.value = "grey50",
+  guide = "colourbar",
+  aesthetics = "fill_tl"
+)
 
-scale_fill_br_gradient2(..., low = scales::muted("red"), mid = "white",
-  high = scales::muted("blue"), midpoint = 0, space = "Lab",
-  na.value = "grey50", guide = "colourbar", aesthetics = "fill_br")
+scale_fill_br_gradient2(
+  ...,
+  low = scales::muted("red"),
+  mid = "white",
+  high = scales::muted("blue"),
+  midpoint = 0,
+  space = "Lab",
+  na.value = "grey50",
+  guide = "colourbar",
+  aesthetics = "fill_br"
+)
 
-scale_fill_diag_gradient2(..., low = scales::muted("red"),
-  mid = "white", high = scales::muted("blue"), midpoint = 0,
-  space = "Lab", na.value = "grey50", guide = "colourbar",
-  aesthetics = "fill_diag")
+scale_fill_diag_gradient2(
+  ...,
+  low = scales::muted("red"),
+  mid = "white",
+  high = scales::muted("blue"),
+  midpoint = 0,
+  space = "Lab",
+  na.value = "grey50",
+  guide = "colourbar",
+  aesthetics = "fill_diag"
+)
 
-scale_fill_tl_gradientn(..., colours, values = NULL, space = "Lab",
-  na.value = "grey50", guide = "colourbar", aesthetics = "fill_tl",
-  colors)
+scale_fill_tl_gradientn(
+  ...,
+  colours,
+  values = NULL,
+  space = "Lab",
+  na.value = "grey50",
+  guide = "colourbar",
+  aesthetics = "fill_tl",
+  colors
+)
 
-scale_fill_br_gradientn(..., colours, values = NULL, space = "Lab",
-  na.value = "grey50", guide = "colourbar", aesthetics = "fill_br",
-  colors)
+scale_fill_br_gradientn(
+  ...,
+  colours,
+  values = NULL,
+  space = "Lab",
+  na.value = "grey50",
+  guide = "colourbar",
+  aesthetics = "fill_br",
+  colors
+)
 
-scale_fill_diag_gradientn(..., colours, values = NULL, space = "Lab",
-  na.value = "grey50", guide = "colourbar", aesthetics = "fill_diag",
-  colors)
+scale_fill_diag_gradientn(
+  ...,
+  colours,
+  values = NULL,
+  space = "Lab",
+  na.value = "grey50",
+  guide = "colourbar",
+  aesthetics = "fill_diag",
+  colors
+)
 
-scale_fill_tl_distiller(..., type = "seq", palette = 1,
-  direction = -1, values = NULL, space = "Lab",
-  na.value = "grey50", guide = "colourbar", aesthetics = "fill_tl")
+scale_fill_tl_distiller(
+  ...,
+  type = "seq",
+  palette = 1,
+  direction = -1,
+  values = NULL,
+  space = "Lab",
+  na.value = "grey50",
+  guide = "colourbar",
+  aesthetics = "fill_tl"
+)
 
-scale_fill_br_distiller(..., type = "seq", palette = 1,
-  direction = -1, values = NULL, space = "Lab",
-  na.value = "grey50", guide = "colourbar", aesthetics = "fill_br")
+scale_fill_br_distiller(
+  ...,
+  type = "seq",
+  palette = 1,
+  direction = -1,
+  values = NULL,
+  space = "Lab",
+  na.value = "grey50",
+  guide = "colourbar",
+  aesthetics = "fill_br"
+)
 
-scale_fill_diag_distiller(..., type = "seq", palette = 1,
-  direction = -1, values = NULL, space = "Lab",
-  na.value = "grey50", guide = "colourbar", aesthetics = "fill_diag")
+scale_fill_diag_distiller(
+  ...,
+  type = "seq",
+  palette = 1,
+  direction = -1,
+  values = NULL,
+  space = "Lab",
+  na.value = "grey50",
+  guide = "colourbar",
+  aesthetics = "fill_diag"
+)
 }
 \arguments{
 \item{...}{arguments passed on to \code{continuous_scale_asym()}}
