@@ -1,3 +1,8 @@
+# ggasym 0.1.3
+
+* Minor update to fix failing test with release of 'dplyr' v1.0.0.
+* Increased the amount of CI testing using GitHub Actions.
+
 # ggasym 0.1.2
 
 * Changed theme of the pkgdown site (to "flatly").
