@@ -8,7 +8,8 @@ output: github_document
 library(knitr)
 knitr::opts_chunk$set(echo = TRUE,
                       collapse = TRUE,
-                      comment = "#>")
+                      comment = "#>",
+                      fig.path = "man/figures/README-")
 library(dplyr)
 library(magrittr)
 library(tibble)

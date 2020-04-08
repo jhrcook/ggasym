@@ -137,7 +137,7 @@
     <span class="fu"><a href="reference/scale_gradient.html">scale_fill_tl_gradient</a></span>(<span class="kw">low</span> <span class="kw">=</span> <span class="st">"lightpink"</span>, <span class="kw">high</span> <span class="kw">=</span> <span class="st">"tomato"</span>) +
     <span class="fu"><a href="reference/scale_gradient.html">scale_fill_br_gradient</a></span>(<span class="kw">low</span> <span class="kw">=</span> <span class="st">"lightblue1"</span>, <span class="kw">high</span> <span class="kw">=</span> <span class="st">"dodgerblue"</span>) +
     <span class="fu"><a href="reference/scale_gradient.html">scale_fill_diag_gradient</a></span>(<span class="kw">low</span> <span class="kw">=</span> <span class="st">"yellow"</span>, <span class="kw">high</span> <span class="kw">=</span> <span class="st">"orange3"</span>)</pre></div>
-<p><img src="README_files/figure-gfm/example1-1.png"><!-- --></p>
+<p><img src="reference/figures/README-example1-1.png"><!-- --></p>
 </div>
 <div id="new-aesthetics" class="section level2">
 <h2 class="hasAnchor">
@@ -148,7 +148,7 @@
     <span class="fu"><a href="reference/scale_gradient.html">scale_fill_tl_gradient</a></span>(<span class="kw">low</span> <span class="kw">=</span> <span class="st">"lightpink"</span>, <span class="kw">high</span> <span class="kw">=</span> <span class="st">"tomato"</span>) +
     <span class="fu"><a href="reference/scale_gradient.html">scale_fill_br_gradient2</a></span>(<span class="kw">low</span> <span class="kw">=</span> <span class="st">"orange"</span>, <span class="kw">mid</span> <span class="kw">=</span> <span class="st">"white"</span>, <span class="kw">high</span> <span class="kw">=</span> <span class="st">"dodgerblue"</span>) +
     <span class="fu"><a href="reference/scale_gradient.html">scale_fill_diag_gradientn</a></span>(<span class="kw">colors</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">rainbow</a></span>(<span class="fl">25</span>))</pre></div>
-<p><img src="README_files/figure-gfm/example2-1.png"><!-- --></p>
+<p><img src="reference/figures/README-example2-1.png"><!-- --></p>
 <div id="adjusting-colorbars" class="section level3">
 <h3 class="hasAnchor">
 <a href="#adjusting-colorbars" class="anchor"></a>Adjusting Colorbars</h3>
@@ -167,7 +167,7 @@
                            <span class="kw">guide</span> <span class="kw">=</span> <span class="fu">guide_colourbar</span>(<span class="kw">direction</span> <span class="kw">=</span> <span class="st">"horizontal"</span>,
                                                    <span class="kw">order</span> <span class="kw">=</span> <span class="fl">2</span>,
                                                    <span class="kw">title.position</span> <span class="kw">=</span> <span class="st">"top"</span>))</pre></div>
-<p><img src="README_files/figure-gfm/adj_colorbars-1.png"><!-- --></p>
+<p><img src="reference/figures/README-adj_colorbars-1.png"><!-- --></p>
 </div>
 </div>
 <div id="full-ggplot2-integration" class="section level2">
@@ -201,7 +201,7 @@
           <span class="kw">panel.grid</span> <span class="kw">=</span> <span class="fu">element_blank</span>()) +
     <span class="fu">scale_x_discrete</span>(<span class="kw">expand</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">0</span>)) +
     <span class="fu">scale_y_discrete</span>(<span class="kw">expand</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">0</span>))</pre></div>
-<p><img src="README_files/figure-gfm/example3-1.png"><!-- --></p>
+<p><img src="reference/figures/README-example3-1.png"><!-- --></p>
 </div>
 <div id="faceting" class="section level2">
 <h2 class="hasAnchor">
@@ -275,7 +275,7 @@
     <span class="fu">scale_x_discrete</span>(<span class="kw">expand</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">0</span>)) +
     <span class="fu">scale_y_discrete</span>(<span class="kw">expand</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">0</span>)) +
     <span class="fu">facet_grid</span>(<span class="no">.</span> ~ <span class="no">grps</span>)</pre></div>
-<p><img src="README_files/figure-gfm/faceting_plot-1.png"><!-- --></p>
+<p><img src="reference/figures/README-faceting_plot-1.png"><!-- --></p>
 <hr>
 </div>
 <div id="statistical-test-wrapper" class="section level2">
@@ -306,7 +306,7 @@
           <span class="kw">panel.grid</span> <span class="kw">=</span> <span class="fu">element_blank</span>()) +
     <span class="fu">scale_x_discrete</span>(<span class="kw">expand</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">0</span>)) +
     <span class="fu">scale_y_discrete</span>(<span class="kw">expand</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">0</span>))</pre></div>
-<p><img src="README_files/figure-gfm/stats_example_plot-1.png"><!-- --></p>
+<p><img src="reference/figures/README-stats_example_plot-1.png"><!-- --></p>
 <hr>
 <div id="thank-yous" class="section level3">
 <h3 class="hasAnchor">

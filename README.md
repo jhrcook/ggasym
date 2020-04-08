@@ -78,7 +78,7 @@ ggplot(tib, aes(x = g1, y = g2)) +
     scale_fill_diag_gradient(low = "yellow", high = "orange3")
 ```
 
-![](README_files/figure-gfm/example1-1.png)<!-- -->
+![](man/figures/README-example1-1.png)<!-- -->
 
 ## New Aesthetics
 
@@ -98,7 +98,7 @@ ggplot(tib, aes(x = g1, y = g2)) +
     scale_fill_diag_gradientn(colors = rainbow(25))
 ```
 
-![](README_files/figure-gfm/example2-1.png)<!-- -->
+![](man/figures/README-example2-1.png)<!-- -->
 
 ### Adjusting Colorbars
 
@@ -127,7 +127,7 @@ ggplot(tib, aes(x = g1, y = g2)) +
                                                    title.position = "top"))
 ```
 
-![](README_files/figure-gfm/adj_colorbars-1.png)<!-- -->
+![](man/figures/README-adj_colorbars-1.png)<!-- -->
 
 ## Full ggplot2 integration
 
@@ -166,7 +166,7 @@ ggplot(tib, aes(x = g1, y = g2)) +
     scale_y_discrete(expand = c(0, 0))
 ```
 
-![](README_files/figure-gfm/example3-1.png)<!-- -->
+![](man/figures/README-example3-1.png)<!-- -->
 
 ## Faceting
 
@@ -254,7 +254,7 @@ ggplot(tib, aes(x = g1, y = g2)) +
     facet_grid(. ~ grps)
 ```
 
-![](README_files/figure-gfm/faceting_plot-1.png)<!-- -->
+![](man/figures/README-faceting_plot-1.png)<!-- -->
 
 -----
 
@@ -302,7 +302,7 @@ ggplot(asymmat_tib, aes(x = x, y = y)) +
     scale_y_discrete(expand = c(0, 0))
 ```
 
-![](README_files/figure-gfm/stats_example_plot-1.png)<!-- -->
+![](man/figures/README-stats_example_plot-1.png)<!-- -->
 
 -----
 
