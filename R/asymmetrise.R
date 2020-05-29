@@ -45,7 +45,7 @@ asymmetrise <- function(df, .x, .y) {
     .x_data <- eval_tidy(.x, df)
     .y_data <- eval_tidy(.y, df)
 
-    if (class(.x_data) == "factor" | class(.y_data) == "factor") {
+    if (inherits(.x_data, "factor") | inherits(.y_data, "factor")) {
         data_levels <- organize_levels(.x_data, .y_data)
         df <- df %>%
             dplyr::mutate(!!.x := as.character(!!.x),
@@ -134,7 +134,7 @@ add_missing_combinations <- function(df, .x, .y) {
     .y_data <- eval_tidy(.y, df)
 
     # handle levels if x or y is a factor
-    if (class(.x_data) == "factor" | class(.y_data) == "factor") {
+    if (inherits(.x_data, "factor") | inherits(.y_data, "factor")) {
         data_levels <- organize_levels(.x_data, .y_data)
         df <- df %>%
             dplyr::mutate(!!.x := as.character(!!.x),
