@@ -17,13 +17,13 @@
 #' @importFrom rlang enquo !! :=
 #' @importFrom magrittr %>%
 #' @export asymmetrise_stats
-asymmetrise_stats <- function(df, comparison_sep = "-") {
+asymmetrise_stats <- function(df, contrast_sep = "-") {
     df <- prepare_data(df)
     new_df <- df %>%
-        dplyr::mutate(x = stringr::str_split_fixed(comparison,
-                                                   comparison_sep, 2)[, 1],
-                      y = stringr::str_split_fixed(comparison,
-                                                   comparison_sep, 2)[, 2])
+        dplyr::mutate(x = stringr::str_split_fixed(contrast,
+                                                   contrast_sep, 2)[, 1],
+                      y = stringr::str_split_fixed(contrast,
+                                                   contrast_sep, 2)[, 2])
     new_df <- dplyr::bind_rows(new_df, swap_cols(new_df, x, y))
     return(asymmetrise(new_df, x, y))
 }
@@ -58,10 +58,14 @@ prepare_data <- function(df) {
     if (is.data.frame(df) | tibble::is_tibble(df)) {
         return(df)
     } else {
-        new_df <- try(broom::tidy(df))
-        if ("try-error" %in% class(new_df)) {
-            stop("Could not handle input data; try turning into a tibble using the broom package")
-        } else if (tibble::is_tibble(new_df)) {
+        new_df <- tryCatch(
+            broom::tidy(df),
+            error = function(x) {
+                stop("Could not handle input data; try turning into a tibble using the broom package")
+            }
+        )
+
+        if (tibble::is_tibble(new_df)) {
             return(new_df)
         } else {
             stop("Unable to parse data")
