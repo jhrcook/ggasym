@@ -1,3 +1,7 @@
+# ggasym 0.1.4
+
+* This minor update was necessary to maintain compatibility with the latest versions of ['broom'](https://CRAN.R-project.org/package=broom) and ['ggplot2'](https://CRAN.R-project.org/package=ggplot2).
+
 # ggasym 0.1.3
 
 * Minor update to fix failing test with release of 'dplyr' v1.0.0.

@@ -5,25 +5,27 @@
 \alias{asymmetrize_stats}
 \title{Prepare an asymmetric data table from a statistical test}
 \usage{
-asymmetrise_stats(df, comparison_sep = "-")
+asymmetrise_stats(df, contrast_sep = "-")
 
-asymmetrize_stats(df, comparison_sep = "-")
+asymmetrize_stats(df, contrast_sep = "-")
 }
 \arguments{
-\item{df}{either the results of a statistical test or the tidy tibble
-from using the \code{broom::tidy()} function}
+\item{df}{either the results of a statistical test or the tidy tibble from
+using the \code{broom::tidy()} function}
 
-\item{comparison_sep}{the separation used between the names being compared;
-it is usually a hyphen (set as default here); since it is passed as the
-\code{pattern} parameter to \code{stringr::str_split_fixed()}, this can
-be any regular expression that will reliably split \code{.comparison}}
+\item{contrast_sep}{the separation used between the names being compared; it
+is usually a hyphen (set as default here); since it is passed as the
+\code{pattern} parameter to \code{stringr::str_split_fixed()}, this can be
+any regular expression that will reliably split the \code{"contrast"} (or
+\code{"comparison"} in 'broom' version <0.70) column returned by
+\code{broom::tidy()}.}
 }
 \value{
 a tibble object that can be used as direct input for 'ggplot2' for
-    use  with the \code{geom_asymmat} geom
+  use  with the \code{geom_asymmat} geom
 }
 \description{
 This function prepares the results of a statistical test for
-    plotting using `geom_asymmat` from the ggasym package. For more
-    information, see \code{vignette(ggasym-stats)}
+  plotting using `geom_asymmat` from the ggasym package. For more
+  information, see \code{vignette(ggasym-stats)}
 }

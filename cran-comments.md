@@ -1,6 +1,6 @@
-# 'ggasym' 0.1.3
+# 'ggasym' 0.1.4
 
-April 03, 2020
+May 29, 2020
 
 
 ## Test environments
@@ -18,6 +18,5 @@ There were no ERRORs, WARNINGs, nor NOTEs
 
 ## Changes
 
-This update to 'ggasym' addresses failed tests when using 'dplyr' 1.0.0 (soon to be released).
-GitHub Actions were added to the CI system.
+This update to 'ggasym' addresses failed tests when using 'broom' 0.7.0 and 'ggplot2' 3.3.1 (soon to be released).
 There are no new functionalities.

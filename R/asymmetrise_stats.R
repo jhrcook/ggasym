@@ -1,29 +1,45 @@
 #' Prepare an asymmetric data table from a statistical test
 #'
 #' @description This function prepares the results of a statistical test for
-#'     plotting using `geom_asymmat` from the ggasym package. For more
-#'     information, see \code{vignette(ggasym-stats)}
+#'   plotting using `geom_asymmat` from the ggasym package. For more
+#'   information, see \code{vignette(ggasym-stats)}
 #'
-#' @param df either the results of a statistical test or the tidy tibble
-#'     from using the \code{broom::tidy()} function
-#' @param comparison_sep the separation used between the names being compared;
-#'     it is usually a hyphen (set as default here); since it is passed as the
-#'     \code{pattern} parameter to \code{stringr::str_split_fixed()}, this can
-#'     be any regular expression that will reliably split \code{.comparison}
+#' @param df either the results of a statistical test or the tidy tibble from
+#'   using the \code{broom::tidy()} function
+#' @param contrast_sep the separation used between the names being compared; it
+#'   is usually a hyphen (set as default here); since it is passed as the
+#'   \code{pattern} parameter to \code{stringr::str_split_fixed()}, this can be
+#'   any regular expression that will reliably split the \code{"contrast"} (or
+#'   \code{"comparison"} in 'broom' version <0.70) column returned by
+#'   \code{broom::tidy()}.
 #'
 #' @return a tibble object that can be used as direct input for 'ggplot2' for
-#'     use  with the \code{geom_asymmat} geom
+#'   use  with the \code{geom_asymmat} geom
 #'
 #' @importFrom rlang enquo !! :=
 #' @importFrom magrittr %>%
 #' @export asymmetrise_stats
-asymmetrise_stats <- function(df, comparison_sep = "-") {
+asymmetrise_stats <- function(df, contrast_sep = "-") {
     df <- prepare_data(df)
-    new_df <- df %>%
-        dplyr::mutate(x = stringr::str_split_fixed(comparison,
-                                                   comparison_sep, 2)[, 1],
-                      y = stringr::str_split_fixed(comparison,
-                                                   comparison_sep, 2)[, 2])
+
+    # Remove the code for version 0.5.6 of 'broom' when 0.7.0 has been out
+    # for awhile. This comment was left on May 29, 2020. The code can likely be
+    # removed 6 months from now. Also remove the "comparison" at the bottom
+    # of this file.
+    if (utils::packageVersion("broom") > 0.6) {
+        new_df <- df %>%
+            dplyr::mutate(x = stringr::str_split_fixed(contrast,
+                                                       contrast_sep, 2)[, 1],
+                          y = stringr::str_split_fixed(contrast,
+                                                       contrast_sep, 2)[, 2])
+    } else {
+        new_df <- df %>%
+            dplyr::mutate(x = stringr::str_split_fixed(comparison,
+                                                       contrast_sep, 2)[, 1],
+                          y = stringr::str_split_fixed(comparison,
+                                                       contrast_sep, 2)[, 2])
+    }
+
     new_df <- dplyr::bind_rows(new_df, swap_cols(new_df, x, y))
     return(asymmetrise(new_df, x, y))
 }
@@ -58,10 +74,14 @@ prepare_data <- function(df) {
     if (is.data.frame(df) | tibble::is_tibble(df)) {
         return(df)
     } else {
-        new_df <- try(broom::tidy(df))
-        if ("try-error" %in% class(new_df)) {
-            stop("Could not handle input data; try turning into a tibble using the broom package")
-        } else if (tibble::is_tibble(new_df)) {
+        new_df <- tryCatch(
+            broom::tidy(df),
+            error = function(x) {
+                stop("Could not handle input data; try turning into a tibble using the broom package")
+            }
+        )
+
+        if (tibble::is_tibble(new_df)) {
             return(new_df)
         } else {
             stop("Unable to parse data")
@@ -71,4 +91,4 @@ prepare_data <- function(df) {
 
 
 # for "asymmetrise_stats"
-utils::globalVariables(c("comparison", "x", "y"), add = TRUE)
+utils::globalVariables(c("contrast", "comparison", "x", "y"), add = TRUE)

@@ -29,7 +29,7 @@ which_level <- function(x) {
 #'
 #'@export factor_is_greater
 factor_is_greater <- function(a, b) {
-    stopifnot(class(a) == "factor" & class(b) == "factor")
+    stopifnot(inherits(a, "factor") & inherits(b, "factor"))
     ai <- which_level(a)
     bi <- which_level(b)
     return(ai > bi)
