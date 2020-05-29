@@ -48,8 +48,8 @@
 
 <meta property="og:title" content="Prepare an asymmetric data table from a statistical test — asymmetrise_stats" />
 <meta property="og:description" content="This function prepares the results of a statistical test for
-    plotting using `geom_asymmat` from the ggasym package. For more
-    information, see vignette(ggasym-stats)" />
+  plotting using `geom_asymmat` from the ggasym package. For more
+  information, see vignette(ggasym-stats)" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -149,8 +149,8 @@
 
     <div class="ref-description">
     <p>This function prepares the results of a statistical test for
-    plotting using `geom_asymmat` from the ggasym package. For more
-    information, see <code>vignette(ggasym-stats)</code></p>
+  plotting using `geom_asymmat` from the ggasym package. For more
+  information, see <code>vignette(ggasym-stats)</code></p>
     </div>
 
     <pre class="usage"><span class='fu'>asymmetrise_stats</span>(<span class='no'>df</span>, <span class='kw'>contrast_sep</span> <span class='kw'>=</span> <span class='st'>"-"</span>)
@@ -162,23 +162,24 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>df</th>
-      <td><p>either the results of a statistical test or the tidy tibble
-from using the <code><a href='https://broom.tidymodels.org/reference/reexports.html'>broom::tidy()</a></code> function</p></td>
+      <td><p>either the results of a statistical test or the tidy tibble from
+using the <code><a href='https://broom.tidymodels.org/reference/reexports.html'>broom::tidy()</a></code> function</p></td>
     </tr>
     <tr>
       <th>contrast_sep</th>
-      <td><p>the separation used between the names being compared;
-it is usually a hyphen (set as default here); since it is passed as the
-<code>pattern</code> parameter to <code><a href='https://stringr.tidyverse.org/reference/str_split.html'>stringr::str_split_fixed()</a></code>, this can
-be any regular expression that will reliably split the <code>"contrast"</code>
-column returned by <code><a href='https://broom.tidymodels.org/reference/reexports.html'>broom::tidy()</a></code>.</p></td>
+      <td><p>the separation used between the names being compared; it
+is usually a hyphen (set as default here); since it is passed as the
+<code>pattern</code> parameter to <code><a href='https://stringr.tidyverse.org/reference/str_split.html'>stringr::str_split_fixed()</a></code>, this can be
+any regular expression that will reliably split the <code>"contrast"</code> (or
+<code>"comparison"</code> in 'broom' version &lt;0.70) column returned by
+<code><a href='https://broom.tidymodels.org/reference/reexports.html'>broom::tidy()</a></code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a tibble object that can be used as direct input for 'ggplot2' for
-    use  with the <code>geom_asymmat</code> geom</p>
+  use  with the <code>geom_asymmat</code> geom</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
