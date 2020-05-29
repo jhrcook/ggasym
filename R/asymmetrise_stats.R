@@ -6,10 +6,11 @@
 #'
 #' @param df either the results of a statistical test or the tidy tibble
 #'     from using the \code{broom::tidy()} function
-#' @param comparison_sep the separation used between the names being compared;
+#' @param contrast_sep the separation used between the names being compared;
 #'     it is usually a hyphen (set as default here); since it is passed as the
 #'     \code{pattern} parameter to \code{stringr::str_split_fixed()}, this can
-#'     be any regular expression that will reliably split \code{.comparison}
+#'     be any regular expression that will reliably split the \code{"contrast"}
+#'     column returned by \code{broom::tidy()}.
 #'
 #' @return a tibble object that can be used as direct input for 'ggplot2' for
 #'     use  with the \code{geom_asymmat} geom
@@ -75,4 +76,4 @@ prepare_data <- function(df) {
 
 
 # for "asymmetrise_stats"
-utils::globalVariables(c("comparison", "x", "y"), add = TRUE)
+utils::globalVariables(c("contrast", "x", "y"), add = TRUE)
