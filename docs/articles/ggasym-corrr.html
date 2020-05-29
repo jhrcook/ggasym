@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggasym</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4</span>
       </span>
     </div>
 
@@ -95,13 +95,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="ggasym-corrr_files/header-attrs-2.1/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Using ‘ggasym’ with ‘corrr’ for Studying Correlations</h1>
                         <h4 class="author">Joshua H. Cook</h4>
             
-            <h4 class="date">2020-04-08</h4>
+            <h4 class="date">2020-05-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jhrcook/ggasym/blob/master/vignettes/ggasym-corrr.Rmd"><code>vignettes/ggasym-corrr.Rmd</code></a></small>
       <div class="hidden name"><code>ggasym-corrr.Rmd</code></div>
@@ -143,7 +143,7 @@
 <li>
 <code><a href="https://rdrr.io/r/stats/na.fail.html">na.omit()</a></code>: remove rows with <code>NA</code> values</li>
 <li>
-<code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code>: change the column name to distinguish between the two correlations</li>
+<code><a href="https://dplyr.tidyverse.org/reference/select.html">rename()</a></code>: change the column name to distinguish between the two correlations</li>
 </ol>
 <p>More information can be found in the <a href="https://CRAN.R-project.org/package=corrr/vignettes/using-corrr.html">“Using corrr”</a> vignette.</p>
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># Pearson correlation</span>
@@ -151,15 +151,15 @@
     <span class="kw pkg">corrr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/corrr/man/shave.html">shave</a></span>(<span class="kw">upper</span> <span class="kw">=</span> <span class="fl">TRUE</span>) <span class="kw">%&gt;%</span>
     <span class="kw pkg">corrr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/corrr/man/stretch.html">stretch</a></span>() <span class="kw">%&gt;%</span>
     <span class="kw pkg">stats</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span>() <span class="kw">%&gt;%</span>
-    <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span>(<span class="kw">pearson_r</span> <span class="kw">=</span> <span class="st">"r"</span>)
+    <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="kw">pearson_r</span> <span class="kw">=</span> <span class="st">"r"</span>)
 <span class="co"># Spearman correlation</span>
 <span class="no">spear</span> <span class="kw">&lt;-</span> <span class="kw pkg">corrr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/corrr/man/correlate.html">correlate</a></span>(<span class="no">mtcars</span>, <span class="kw">method</span> <span class="kw">=</span> <span class="st">"spearman"</span>, <span class="kw">quiet</span><span class="kw">=</span> <span class="fl">TRUE</span>) <span class="kw">%&gt;%</span>
     <span class="kw pkg">corrr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/corrr/man/shave.html">shave</a></span>(<span class="kw">upper</span> <span class="kw">=</span> <span class="fl">TRUE</span>) <span class="kw">%&gt;%</span>
     <span class="kw pkg">corrr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/corrr/man/stretch.html">stretch</a></span>() <span class="kw">%&gt;%</span>
     <span class="kw pkg">stats</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span>() <span class="kw">%&gt;%</span>
-    <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span>(<span class="kw">spearman_r</span> <span class="kw">=</span> <span class="st">"r"</span>)</pre></body></html></div>
+    <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="kw">spearman_r</span> <span class="kw">=</span> <span class="st">"r"</span>)</pre></body></html></div>
 <p>Joining the two resultant tibbles is easy using <a href="https://dplyr.tidyverse.org/reference/join.html"><code>full_join</code></a> from <a href="https://dplyr.tidyverse.org/index.html">‘dplyr’</a>. The last preparation step is to <code><a href="../reference/asymmetrise.html">asymmetrise()</a></code> the tibble (in this case it only adds <code>NA</code> values to the diagonal).</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span>(<span class="no">pear</span>, <span class="no">spear</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"x"</span>, <span class="st">"y"</span>)) <span class="kw">%&gt;%</span>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/join.html">full_join</a></span>(<span class="no">pear</span>, <span class="no">spear</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"x"</span>, <span class="st">"y"</span>)) <span class="kw">%&gt;%</span>
     <span class="kw pkg">ggasym</span><span class="kw ns">::</span><span class="fu"><a href="../reference/asymmetrise.html">asymmetrise</a></span>(<span class="no">x</span>, <span class="no">y</span>)</pre></body></html></div>
 </div>
 <div id="plotting-with-ggasym" class="section level2">
@@ -217,7 +217,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
