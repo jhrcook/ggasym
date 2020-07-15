@@ -9,7 +9,7 @@ test_that("stats asymmetrization works", {
                           val = rnorm(n_reps * length(grps)))
     tukey <- TukeyHSD(aov(val ~ grp, data = tib))
 
-    if (utils::packageVersion("broom") > 0.6) {
+    if (utils::packageVersion("broom") > 0.7) {
         expect_error(prepare_data(grps),
                      "Could not handle input data; try turning into a tibble using the broom package")
     } else {
