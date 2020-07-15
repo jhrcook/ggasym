@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggasym</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.5</span>
       </span>
     </div>
 
@@ -95,13 +95,13 @@
 
       
 
-      </header><script src="ggasym-stats_files/header-attrs-2.1/header-attrs.js"></script><div class="row">
+      </header><script src="ggasym-stats_files/header-attrs-2.3/header-attrs.js"></script><script src="ggasym-stats_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Statistical Test Plotting with ‘ggasym’</h1>
                         <h4 class="author">Joshua H. Cook</h4>
             
-            <h4 class="date">2020-05-29</h4>
+            <h4 class="date">2020-07-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jhrcook/ggasym/blob/master/vignettes/ggasym-stats.Rmd"><code>vignettes/ggasym-stats.Rmd</code></a></small>
       <div class="hidden name"><code>ggasym-stats.Rmd</code></div>
@@ -129,7 +129,7 @@
 <span class="no">expt_std_dev</span> <span class="kw">&lt;-</span> <span class="fl">1.5</span>  <span class="co"># std. dev. of measurements</span>
 <span class="no">genes</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"FAK"</span>, <span class="st">"talin"</span>, <span class="st">"paxillin"</span>, <span class="st">"vinculin"</span>, <span class="st">"B1integrin"</span>, <span class="st">"kindlin"</span>)
 <span class="co"># "real" expression levels to be used as the mean in `rnorm`</span>
-<span class="no">real_expression_levels</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">0.1</span>), <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">genes</span>), <span class="kw">replace</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<span class="no">real_expression_levels</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">0.1</span>), <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">genes</span>), <span class="kw">replace</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 <span class="co"># create a tibble</span>
 <span class="no">expr_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">tibble</a></span>(<span class="kw">gene</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="no">genes</span>, <span class="no">n_reps</span>),
                     <span class="kw">real_expr</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="no">real_expression_levels</span>, <span class="no">n_reps</span>),

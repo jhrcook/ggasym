@@ -1,7 +1,7 @@
 Package: ggasym
 Type: Package
 Title: Asymmetric Matrix Plotting in 'ggplot2'
-Version: 0.1.4
+Version: 0.1.5
 Authors@R: person(c("Joshua", "H"), "Cook", email = "joshuacook0023@gmail.com",
     role = c("aut", "cre"),
     comment = c(ORCID = "0000-0001-9815-6879"))
@@ -24,7 +24,7 @@ Imports:
     stringr (>= 1.4.0),
     tibble (>= 2.0.0),
     tidyr (>= 0.8.0)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Suggests: 
     knitr,
     rmarkdown,
