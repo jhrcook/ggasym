@@ -16,18 +16,19 @@
 #'
 #' @examples
 #'
-#' df <- data.frame(a = c("A", "B", "C"),
-#'                  b = c("C", "A", "B"),
-#'                  untouched = c(1, 2, 3),
-#'                  grouping_value = c("group1", "group1", "group2"),
-#'                  stringsAsFactors = FALSE)
+#' df <- data.frame(
+#'   a = c("A", "B", "C"),
+#'   b = c("C", "A", "B"),
+#'   untouched = c(1, 2, 3),
+#'   grouping_value = c("group1", "group1", "group2"),
+#'   stringsAsFactors = FALSE
+#' )
 #' df
 #'
 #' asymmetrise(df, a, b)
 #'
 #' grouped_df <- dplyr::group_by(df, grouping_value)
 #' asymmetrise(grouped_df, a, b)
-#'
 #' @section Warning:
 #' This function does it's best when \code{x} or \code{y} are factors. If they
 #'     have the same levels, then they are maintained. If the levels partially
@@ -40,29 +41,33 @@
 #' @importFrom magrittr %>%
 #' @export asymmetrise
 asymmetrise <- function(df, .x, .y) {
-    .x <- enquo(.x)
-    .y <- enquo(.y)
-    .x_data <- eval_tidy(.x, df)
-    .y_data <- eval_tidy(.y, df)
+  .x <- enquo(.x)
+  .y <- enquo(.y)
+  .x_data <- eval_tidy(.x, df)
+  .y_data <- eval_tidy(.y, df)
 
-    if (inherits(.x_data, "factor") | inherits(.y_data, "factor")) {
-        data_levels <- organize_levels(.x_data, .y_data)
-        df <- df %>%
-            dplyr::mutate(!!.x := as.character(!!.x),
-                          !!.y := as.character(!!.y))
-    } else {
-        data_levels <- NULL
-    }
-    new_df <- dplyr::bind_rows(df, swap_cols(df, !!.x, !!.y)) %>%
-        add_missing_combinations(!!.x, !!.y)
+  if (inherits(.x_data, "factor") | inherits(.y_data, "factor")) {
+    data_levels <- organize_levels(.x_data, .y_data)
+    df <- df %>%
+      dplyr::mutate(
+        !!.x := as.character(!!.x),
+        !!.y := as.character(!!.y)
+      )
+  } else {
+    data_levels <- NULL
+  }
+  new_df <- dplyr::bind_rows(df, swap_cols(df, !!.x, !!.y)) %>%
+    add_missing_combinations(!!.x, !!.y)
 
-    if (!is.null(data_levels)) {
-        new_df <- new_df %>%
-            dplyr::mutate(!!.x := factor(!!.x, levels = data_levels),
-                          !!.y := factor(!!.y, levels = data_levels))
-    }
+  if (!is.null(data_levels)) {
+    new_df <- new_df %>%
+      dplyr::mutate(
+        !!.x := factor(!!.x, levels = data_levels),
+        !!.y := factor(!!.y, levels = data_levels)
+      )
+  }
 
-    return(new_df)
+  return(new_df)
 }
 
 
@@ -81,27 +86,30 @@ asymmetrize <- asymmetrise
 #' @return a data.frame (or tibble) object with \code{.x} and \code{.y} swapped
 #'
 #' @examples
-#' df <- data.frame(a = c("A", "B"),
-#'                  b = c("C", "D"),
-#'                  untouched = c(1, 2))
+#' df <- data.frame(
+#'   a = c("A", "B"),
+#'   b = c("C", "D"),
+#'   untouched = c(1, 2)
+#' )
 #' df
 #'
 #' swap_cols(df, a, b)
-#'
 #' @importFrom rlang enquo eval_tidy !! !!! :=
 #' @importFrom magrittr %>%
 #' @export swap_cols
 swap_cols <- function(df, .x, .y) {
-    groups <- dplyr::groups(df)
-    df <- dplyr::ungroup(df)
-    .x <- enquo(.x)
-    .y <- enquo(.y)
-    .x_data <- eval_tidy(.x, df)
-    .y_data <- eval_tidy(.y, df)
-    new_df <- df %>%
-        dplyr::mutate(!!.x := .y_data,
-                      !!.y := .x_data)
-    return(dplyr::group_by(new_df, !!!groups))
+  groups <- dplyr::groups(df)
+  df <- dplyr::ungroup(df)
+  .x <- enquo(.x)
+  .y <- enquo(.y)
+  .x_data <- eval_tidy(.x, df)
+  .y_data <- eval_tidy(.y, df)
+  new_df <- df %>%
+    dplyr::mutate(
+      !!.x := .y_data,
+      !!.y := .x_data
+    )
+  return(dplyr::group_by(new_df, !!!groups))
 }
 
 
@@ -117,58 +125,65 @@ swap_cols <- function(df, .x, .y) {
 #' @return a data frame (or tibble) with additional columns
 #'
 #' @examples
-#' df <- data.frame(a = c("A", "B"),
-#'                  b = c("C", "D"),
-#'                  untouched = c(1, 2))
+#' df <- data.frame(
+#'   a = c("A", "B"),
+#'   b = c("C", "D"),
+#'   untouched = c(1, 2)
+#' )
 #' df
 #'
 #' add_missing_combinations(df, a, b)
-#'
 #' @importFrom rlang enquo eval_tidy !! !!! :=
 #' @importFrom magrittr %>%
 #' @export add_missing_combinations
 add_missing_combinations <- function(df, .x, .y) {
-    .x <- enquo(.x)
-    .y <- enquo(.y)
-    .x_data <- eval_tidy(.x, df)
-    .y_data <- eval_tidy(.y, df)
+  .x <- enquo(.x)
+  .y <- enquo(.y)
+  .x_data <- eval_tidy(.x, df)
+  .y_data <- eval_tidy(.y, df)
 
-    # handle levels if x or y is a factor
-    if (inherits(.x_data, "factor") | inherits(.y_data, "factor")) {
-        data_levels <- organize_levels(.x_data, .y_data)
-        df <- df %>%
-            dplyr::mutate(!!.x := as.character(!!.x),
-                          !!.y := as.character(!!.y))
-        .x_data <- as.character(.x_data)
-        .y_data <- as.character(.y_data)
-    } else {
-        data_levels <- NULL
-    }
+  # handle levels if x or y is a factor
+  if (inherits(.x_data, "factor") | inherits(.y_data, "factor")) {
+    data_levels <- organize_levels(.x_data, .y_data)
+    df <- df %>%
+      dplyr::mutate(
+        !!.x := as.character(!!.x),
+        !!.y := as.character(!!.y)
+      )
+    .x_data <- as.character(.x_data)
+    .y_data <- as.character(.y_data)
+  } else {
+    data_levels <- NULL
+  }
 
-    if (is_grouped(df)) {
-        # call function over all groups
-        # purrr::nest() %>% mutate(data = my_function(data)
-        original_groups <- dplyr::groups(df)
-        new_df <- df %>%
-            tidyr::nest() %>%
-            dplyr::mutate(data = purrr::map(data,
-                    function(a) {
-                        b <- bind_missing_combs(a, !!.x, !!.y)
-                    })) %>%
-            tidyr::unnest(data) %>%
-            dplyr::group_by(!!!original_groups)
-    } else {
-        new_df <- bind_missing_combs(df, !!.x, !!.y)
-    }
+  if (is_grouped(df)) {
+    # call function over all groups
+    # purrr::nest() %>% mutate(data = my_function(data)
+    original_groups <- dplyr::groups(df)
+    new_df <- df %>%
+      tidyr::nest() %>%
+      dplyr::mutate(data = purrr::map(
+        data,
+        function(a) {
+          b <- bind_missing_combs(a, !!.x, !!.y)
+        }
+      )) %>%
+      tidyr::unnest(data) %>%
+      dplyr::group_by(!!!original_groups)
+  } else {
+    new_df <- bind_missing_combs(df, !!.x, !!.y)
+  }
 
-    # if necessary, reinstate levels
-    if (!is.null(data_levels)) {
-        new_df <- new_df %>%
-            dplyr::mutate(!!.x := factor(!!.x, levels = data_levels),
-                          !!.y := factor(!!.y, levels = data_levels))
-    }
+  # if necessary, reinstate levels
+  if (!is.null(data_levels)) {
+    new_df <- new_df %>%
+      dplyr::mutate(
+        !!.x := factor(!!.x, levels = data_levels),
+        !!.y := factor(!!.y, levels = data_levels)
+      )
+  }
 
-    return(new_df)
+  return(new_df)
 }
 
 #' Add the missing combinations of x and y
@@ -183,32 +198,37 @@ add_missing_combinations <- function(df, .x, .y) {
 #' @return a data table with the new rows
 #'
 #' @examples
-#' df <- data.frame(a = c("A", "B"),
-#'                  b = c("C", "A"),
-#'                  untouched = c(1, 2),
-#'                  stringsAsFactors = FALSE)
+#' df <- data.frame(
+#'   a = c("A", "B"),
+#'   b = c("C", "A"),
+#'   untouched = c(1, 2),
+#'   stringsAsFactors = FALSE
+#' )
 #' df
 #'
 #' bind_missing_combs(df, a, b)
-#'
 #' @importFrom rlang !! := eval_tidy enquo
 #' @importFrom magrittr %>% %T>%
 #' @export bind_missing_combs
-bind_missing_combs <- function(df, .x, .y)  {
-    .x <- enquo(.x)
-    .y <- enquo(.y)
-    others_combs <- get_other_combs(eval_tidy(.x, df),
-                                    eval_tidy(.y, df))
-    if (nrow(others_combs) > 0) {
-        df_cp <- make_fill_df(df, n_rows = nrow(others_combs)) %>%
-            dplyr::mutate(!!.x := others_combs$Var1,
-                          !!.y := others_combs$Var2)
-        new_df <- dplyr::bind_rows(df, df_cp)
-    } else {
-        new_df <- df
-    }
+bind_missing_combs <- function(df, .x, .y) {
+  .x <- enquo(.x)
+  .y <- enquo(.y)
+  others_combs <- get_other_combs(
+    eval_tidy(.x, df),
+    eval_tidy(.y, df)
+  )
+  if (nrow(others_combs) > 0) {
+    df_cp <- make_fill_df(df, n_rows = nrow(others_combs)) %>%
+      dplyr::mutate(
+        !!.x := others_combs$Var1,
+        !!.y := others_combs$Var2
+      )
+    new_df <- dplyr::bind_rows(df, df_cp)
+  } else {
+    new_df <- df
+  }
 
-    return(new_df)
+  return(new_df)
 }
 
 #' Get all combinations of values between two vectors
@@ -223,17 +243,16 @@ bind_missing_combs <- function(df, .x, .y)  {
 #'
 #' @examples
 #' get_other_combs(LETTERS[1:2], LETTERS[1:2])
-#'
 #' @export get_other_combs
 get_other_combs <- function(x, y) {
-    current_combs <- paste(x, y, sep = "_")
-    all_vals <- unique(c(x, y))
-    all_combs <- expand.grid(all_vals, all_vals, stringsAsFactors = FALSE) %>%
-        unique() %>%
-        dplyr::mutate(comb = paste(Var1, Var2, sep = "_")) %>%
-        dplyr::filter(!(comb %in% current_combs)) %>%
-        dplyr::select(-comb)
-    return(all_combs)
+  current_combs <- paste(x, y, sep = "_")
+  all_vals <- unique(c(x, y))
+  all_combs <- expand.grid(all_vals, all_vals, stringsAsFactors = FALSE) %>%
+    unique() %>%
+    dplyr::mutate(comb = paste(Var1, Var2, sep = "_")) %>%
+    dplyr::filter(!(comb %in% current_combs)) %>%
+    dplyr::select(-comb)
+  return(all_combs)
 }
 
 #' Make a data frame of all a single value
@@ -249,20 +268,23 @@ get_other_combs <- function(x, y) {
 #'     with \code{fill_val}
 #'
 #' @examples
-#' df <- data.frame(col_a = c("A", "B"),
-#'                  col_b = c("C", "D"))
+#' df <- data.frame(
+#'   col_a = c("A", "B"),
+#'   col_b = c("C", "D")
+#' )
 #' df
 #'
 #' make_fill_df(df, 5)
-#'
 #' @importFrom magrittr %>%
 #' @export make_fill_df
 make_fill_df <- function(df, n_rows = 1, fill_val = NA) {
-    if (ncol(df) < 1) stop("df must have at least 1 column")
-    if (n_rows < 1) stop("must request at least one row")
-    na_df <- df %>% dplyr::slice(1) %>% dplyr::mutate_all(function(i) fill_val)
-    na_df <- dplyr::bind_rows(purrr::map(seq_len(n_rows), ~ na_df))
-    return(na_df)
+  if (ncol(df) < 1) stop("df must have at least 1 column")
+  if (n_rows < 1) stop("must request at least one row")
+  na_df <- df %>%
+    dplyr::slice(1) %>%
+    dplyr::mutate_all(function(i) fill_val)
+  na_df <- dplyr::bind_rows(purrr::map(seq_len(n_rows), ~na_df))
+  return(na_df)
 }
 
 
@@ -289,29 +311,28 @@ make_fill_df <- function(df, n_rows = 1, fill_val = NA) {
 #' b
 #'
 #' organize_levels(a, b)
-#'
-#'@export organize_levels
+#' @export organize_levels
 organize_levels <- function(x, y, ...) {
-    x_levels <- levels(x)
-    y_levels <- levels(y)
-    if (is.null(x_levels) | is.null(y_levels)) {
-        # at leat x or y has no levels
-        message("x and/or y have no levels, both coerced to char")
-        return(NULL)
-    } else if (identical(x_levels, y_levels)) {
-        # identical levels
-        return(x_levels)
-    } else if (identical(intersect(x_levels, y_levels), character(0))) {
-        # no overlap in levels
-        message("completely different levels for x and y, coerced to char")
-        return(NULL)
-    } else if (length(intersect(x_levels, y_levels)) >= 1) {
-        # partial overlap in levels
-        message("partial overlap of levels, merging levels of x and y")
-        return(sort(unique(c(x_levels, y_levels)), ...))
-    } else {
-        stop("Unforeseen condition in organizing levels --> open an Issue")
-    }
+  x_levels <- levels(x)
+  y_levels <- levels(y)
+  if (is.null(x_levels) | is.null(y_levels)) {
+    # at leat x or y has no levels
+    message("x and/or y have no levels, both coerced to char")
+    return(NULL)
+  } else if (identical(x_levels, y_levels)) {
+    # identical levels
+    return(x_levels)
+  } else if (identical(intersect(x_levels, y_levels), character(0))) {
+    # no overlap in levels
+    message("completely different levels for x and y, coerced to char")
+    return(NULL)
+  } else if (length(intersect(x_levels, y_levels)) >= 1) {
+    # partial overlap in levels
+    message("partial overlap of levels, merging levels of x and y")
+    return(sort(unique(c(x_levels, y_levels)), ...))
+  } else {
+    stop("Unforeseen condition in organizing levels --> open an Issue")
+  }
 }
 
 
@@ -325,17 +346,17 @@ organize_levels <- function(x, y, ...) {
 #' @return boolean
 #'
 #' @examples
-#' df <- data.frame(x = c(1:5), g = c(1,1,2,2,2))
+#' df <- data.frame(x = c(1:5), g = c(1, 1, 2, 2, 2))
 #' is_grouped(df)
 #'
 #' is_grouped(dplyr::group_by(df, g))
-#'
 #' @export is_grouped
 is_grouped <- function(data) {
-    dplyr::n_groups(data) > 1
+  dplyr::n_groups(data) > 1
 }
 
 
 # for "get_other_combs"
 utils::globalVariables(c("Var1", "Var2", "comb", ".grp_nest", "data"),
-                       add = TRUE)
+  add = TRUE
+)

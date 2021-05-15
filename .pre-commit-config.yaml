@@ -1,0 +1,46 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+    -   id: trailing-whitespace
+        exclude: >
+              (?x)^(
+              data/.*|
+              docs/.*|
+              renv/.*|
+              .*\.feather|
+              .*\.rds|
+              .*\.Rds|
+              .*\.RData
+              )$
+    -   id: end-of-file-fixer
+        exclude: >
+              (?x)^(
+              data/.*|
+              docs/.*|
+              renv/.*|
+              .*\.feather|
+              .*\.rds|
+              .*\.Rds|
+              .*\.RData
+              )$
+    -   id: check-yaml
+        exclude: >
+              (?x)^(
+              data/.*|
+              docs/.*|
+              renv/.*|
+              )$
+    -   id: check-added-large-files
+    -   id: no-commit-to-branch
+        args: [--branch, master, --branch, main]
+-   repo: https://github.com/lorenzwalthert/precommit
+    rev: v0.1.3
+    hooks:
+    -   id: no-browser-statement
+    -   id: parsable-R
+    -   id: style-files
+        files: '(\.R|\.Rmd|\.Rnw|\.r|\.rmd|\.rnw)$'
+        exclude: 'renv/activate\.R'
