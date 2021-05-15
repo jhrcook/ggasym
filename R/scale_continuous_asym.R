@@ -20,20 +20,21 @@
 #' @examples
 #' library(tibble)
 #' library(ggplot2)
-#' tib <- tibble(g1 = c("A", "A", "B"),
-#'               g2 = c("B", "C", "C"),
-#'               val_1 = c(1, 2, 3),
-#'               val_2 = c(-1, 0, 1))
+#' tib <- tibble(
+#'   g1 = c("A", "A", "B"),
+#'   g2 = c("B", "C", "C"),
+#'   val_1 = c(1, 2, 3),
+#'   val_2 = c(-1, 0, 1)
+#' )
 #'
 #' tib
 #'
 #' tib <- asymmetrise(tib, g1, g2)
 #' ggplot(tib) +
-#' geom_asymmat(aes(x = g1, y = g2, fill_tl = val_1, fill_br = val_2)) +
-#'     scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
-#'     scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue") +
-#'     labs(fill_tl =  "top-left fill", fill_br = "bottom-right fill")
-#'
+#'   geom_asymmat(aes(x = g1, y = g2, fill_tl = val_1, fill_br = val_2)) +
+#'   scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
+#'   scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue") +
+#'   labs(fill_tl = "top-left fill", fill_br = "bottom-right fill")
 #' @import ggplot2
 #' @export continuous_scale_asym
 continuous_scale_asym <- function(aesthetics,
@@ -42,43 +43,45 @@ continuous_scale_asym <- function(aesthetics,
                                   na.value,
                                   guide,
                                   ...) {
-    cs <- continuous_scale(aesthetics = aesthetics,
-                           scale_name = scale_name,
-                           palette = palette,
-                           na.value = na.value,
-                           guide = guide,
-                           ...)
-    cs <- add_extras_to_colorscale(cs, aesthetics)
-    return(cs)
+  cs <- continuous_scale(
+    aesthetics = aesthetics,
+    scale_name = scale_name,
+    palette = palette,
+    na.value = na.value,
+    guide = guide,
+    ...
+  )
+  cs <- add_extras_to_colorscale(cs, aesthetics)
+  return(cs)
 }
 
 
 # adds on the extras required for geom_asymmat
 add_extras_to_colorscale <- function(cs, aesthetics) {
-    core_aes <- get_core_aes(aesthetics)
-    if (is.character(cs$guide)) {
-        cs$guide <- match.fun(paste0("guide_", cs$guide))()
-    }
-    available_aes_idx <- index_aesthetic(cs, core_aes)
-    cs$guide$available_aes[available_aes_idx] <- aesthetics
-    return(cs)
+  core_aes <- get_core_aes(aesthetics)
+  if (is.character(cs$guide)) {
+    cs$guide <- match.fun(paste0("guide_", cs$guide))()
+  }
+  available_aes_idx <- index_aesthetic(cs, core_aes)
+  cs$guide$available_aes[available_aes_idx] <- aesthetics
+  return(cs)
 }
 
 # return the location for the new aesthetic to replace
 index_aesthetic <- function(cs, aesthetic) {
-    available_aes <- cs$guide$available_aes
-    if (identical(available_aes, "any")) {
-        return(1)
-    } else {
-        return(stringr::str_which(available_aes, aesthetic))
-    }
+  available_aes <- cs$guide$available_aes
+  if (identical(available_aes, "any")) {
+    return(1)
+  } else {
+    return(stringr::str_which(available_aes, aesthetic))
+  }
 }
 
 # gets the original aesthetic (colour, color, or fill)
 get_core_aes <- function(aesthetics) {
-    a <- stringr::str_extract(aesthetics, "fill|color|colour")
-    if (is.na(a)) {
-        warning(paste("core aesthetic not found; input:", aesthetics))
-    }
-    return(a)
+  a <- stringr::str_extract(aesthetics, "fill|color|colour")
+  if (is.na(a)) {
+    warning(paste("core aesthetic not found; input:", aesthetics))
+  }
+  return(a)
 }

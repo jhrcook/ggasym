@@ -20,28 +20,40 @@
 #' @importFrom magrittr %>%
 #' @export asymmetrise_stats
 asymmetrise_stats <- function(df, contrast_sep = "-") {
-    df <- prepare_data(df)
+  df <- prepare_data(df)
 
-    # Remove the code for version 0.5.6 of 'broom' when 0.7.0 has been out
-    # for awhile. This comment was left on May 29, 2020. The code can likely be
-    # removed 6 months from now. Also remove the "comparison" at the bottom
-    # of this file.
-    if (utils::packageVersion("broom") > 0.6) {
-        new_df <- df %>%
-            dplyr::mutate(x = stringr::str_split_fixed(contrast,
-                                                       contrast_sep, 2)[, 1],
-                          y = stringr::str_split_fixed(contrast,
-                                                       contrast_sep, 2)[, 2])
-    } else {
-        new_df <- df %>%
-            dplyr::mutate(x = stringr::str_split_fixed(comparison,
-                                                       contrast_sep, 2)[, 1],
-                          y = stringr::str_split_fixed(comparison,
-                                                       contrast_sep, 2)[, 2])
-    }
+  # Remove the code for version 0.5.6 of 'broom' when 0.7.0 has been out
+  # for awhile. This comment was left on May 29, 2020. The code can likely be
+  # removed 6 months from now. Also remove the "comparison" at the bottom
+  # of this file.
+  if (utils::packageVersion("broom") > 0.6) {
+    new_df <- df %>%
+      dplyr::mutate(
+        x = stringr::str_split_fixed(
+          contrast,
+          contrast_sep, 2
+        )[, 1],
+        y = stringr::str_split_fixed(
+          contrast,
+          contrast_sep, 2
+        )[, 2]
+      )
+  } else {
+    new_df <- df %>%
+      dplyr::mutate(
+        x = stringr::str_split_fixed(
+          comparison,
+          contrast_sep, 2
+        )[, 1],
+        y = stringr::str_split_fixed(
+          comparison,
+          contrast_sep, 2
+        )[, 2]
+      )
+  }
 
-    new_df <- dplyr::bind_rows(new_df, swap_cols(new_df, x, y))
-    return(asymmetrise(new_df, x, y))
+  new_df <- dplyr::bind_rows(new_df, swap_cols(new_df, x, y))
+  return(asymmetrise(new_df, x, y))
 }
 
 
@@ -68,25 +80,24 @@ asymmetrize_stats <- asymmetrise_stats
 #' a <- rnorm(10, mean = 1, sd = 1)
 #' b <- rnorm(10, mean = 1.5, sd = 1)
 #' prepare_data(t.test(a, b))
-#'
 #' @export prepare_data
 prepare_data <- function(df) {
-    if (is.data.frame(df) | tibble::is_tibble(df)) {
-        return(df)
-    } else {
-        new_df <- tryCatch(
-            broom::tidy(df),
-            error = function(x) {
-                stop("Could not handle input data; try turning into a tibble using the broom package")
-            }
-        )
+  if (is.data.frame(df) | tibble::is_tibble(df)) {
+    return(df)
+  } else {
+    new_df <- tryCatch(
+      broom::tidy(df),
+      error = function(x) {
+        stop("Could not handle input data; try turning into a tibble using the broom package")
+      }
+    )
 
-        if (tibble::is_tibble(new_df)) {
-            return(new_df)
-        } else {
-            stop("Unable to parse data")
-        }
+    if (tibble::is_tibble(new_df)) {
+      return(new_df)
+    } else {
+      stop("Unable to parse data")
     }
+  }
 }
 
 

@@ -20,20 +20,21 @@
 #' @examples
 #' library(tibble)
 #' library(ggplot2)
-#' tib <- tibble(g1 = c("A", "A", "B"),
-#'               g2 = c("B", "C", "C"),
-#'               val_1 = c(1, 2, 3),
-#'               val_2 = c(-1, 0, 1))
+#' tib <- tibble(
+#'   g1 = c("A", "A", "B"),
+#'   g2 = c("B", "C", "C"),
+#'   val_1 = c(1, 2, 3),
+#'   val_2 = c(-1, 0, 1)
+#' )
 #'
 #' tib
 #'
 #' tib <- asymmetrise(tib, g1, g2)
 #' ggplot(tib) +
-#' geom_asymmat(aes(x = g1, y = g2, fill_tl = val_1, fill_br = val_2)) +
-#'     scale_fill_tl_brewer()
-#'     scale_fill_br_gradient(low = "lightpink", high = "tomato") +
-#'     labs(fill_tl =  "top-left fill", fill_br = "bottom-right fill")
-#'
+#'   geom_asymmat(aes(x = g1, y = g2, fill_tl = val_1, fill_br = val_2)) +
+#'   scale_fill_tl_brewer()
+#' scale_fill_br_gradient(low = "lightpink", high = "tomato") +
+#'   labs(fill_tl = "top-left fill", fill_br = "bottom-right fill")
 #' @import ggplot2
 #' @export discrete_scale_asym
 discrete_scale_asym <- function(aesthetics,
@@ -42,15 +43,16 @@ discrete_scale_asym <- function(aesthetics,
                                 na.value = NA,
                                 guide = "legend",
                                 ...) {
-
-    cs <- discrete_scale(aesthetics = aesthetics,
-                         scale_name = scale_name,
-                         palette = palette,
-                         na.value = na.value,
-                         guide = guide,
-                         ...)
-    cs <- add_extras_to_colorscale(cs, aesthetics)
-    return(cs)
+  cs <- discrete_scale(
+    aesthetics = aesthetics,
+    scale_name = scale_name,
+    palette = palette,
+    na.value = na.value,
+    guide = guide,
+    ...
+  )
+  cs <- add_extras_to_colorscale(cs, aesthetics)
+  return(cs)
 }
 
 #' Discrete colour scales geom_asymmat
@@ -72,15 +74,16 @@ discrete_scale_asym <- function(aesthetics,
 #'     \code{aesthetics = c("fill_tl", "fill_br")}.
 #' @examples
 #' # TODO
-#'
 #' @export scale_fill_tl_brewer
 scale_fill_tl_brewer <- function(...,
                                  type = "seq",
                                  palette = 1,
                                  direction = 1,
                                  aesthetics = "fill_tl") {
-    discrete_scale_asym(aesthetics,
-                        "brewer",
-                        scales::brewer_pal(type, palette, direction),
-                        ...)
+  discrete_scale_asym(
+    aesthetics,
+    "brewer",
+    scales::brewer_pal(type, palette, direction),
+    ...
+  )
 }

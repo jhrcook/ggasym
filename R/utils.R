@@ -7,10 +7,9 @@
 #' @examples
 #' first <- factor(c("J", "O", "S", "H"), LETTERS)
 #' which_level(first)
-#'
 #' @export which_level
 which_level <- function(x) {
-    purrr::map_int(x, ~ stringr::str_which(levels(x), as.character(.x)))
+  purrr::map_int(x, ~ stringr::str_which(levels(x), as.character(.x)))
 }
 
 
@@ -26,11 +25,10 @@ which_level <- function(x) {
 #' first <- factor(first, LETTERS)
 #' last <- factor(last, LETTERS)
 #' factor_is_greater(first, last)
-#'
-#'@export factor_is_greater
+#' @export factor_is_greater
 factor_is_greater <- function(a, b) {
-    stopifnot(inherits(a, "factor") & inherits(b, "factor"))
-    ai <- which_level(a)
-    bi <- which_level(b)
-    return(ai > bi)
+  stopifnot(inherits(a, "factor") & inherits(b, "factor"))
+  ai <- which_level(a)
+  bi <- which_level(b)
+  return(ai > bi)
 }

@@ -1,3 +1,5 @@
+^renv$
+^renv\.lock$
 ^appveyor\.yml$
 ^LICENSE\.md$
 ^_R_archive$
@@ -21,3 +23,4 @@
 ^.DS_Store$
 ^.Rhistory$
 ^\.git$
+^R-packages\.R$

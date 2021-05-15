@@ -8,7 +8,7 @@ v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/li
 [![CRAN
 status](https://www.r-pkg.org/badges/version/ggasym)](https://cran.r-project.org/package=ggasym)
 [![CRAN
-downloads](http://cranlogs.r-pkg.org/badges/grand-total/ggasym)](https://cran.r-project.org/package=ggasym)  
+downloads](http://cranlogs.r-pkg.org/badges/grand-total/ggasym)](https://cran.r-project.org/package=ggasym)
 [![R build
 status](https://github.com/jhrcook/ggasym/workflows/R-CMD-check/badge.svg)](https://github.com/jhrcook/ggasym/actions)
 [![Travis build
@@ -203,21 +203,21 @@ tib
 #> # A tibble: 18 x 6
 #>     grps g1    g2    val_1   val_2  val_3
 #>    <dbl> <chr> <chr> <int>   <dbl>  <dbl>
-#>  1     1 A     B         1  0.0746 NA    
-#>  2     1 A     C         2 -1.99   NA    
-#>  3     1 B     C         3  0.620  NA    
-#>  4     1 B     A         1  0.0746 NA    
-#>  5     1 C     A         2 -1.99   NA    
-#>  6     1 C     B         3  0.620  NA    
+#>  1     1 A     B         1  0.0746 NA
+#>  2     1 A     C         2 -1.99   NA
+#>  3     1 B     C         3  0.620  NA
+#>  4     1 B     A         1  0.0746 NA
+#>  5     1 C     A         2 -1.99   NA
+#>  6     1 C     B         3  0.620  NA
 #>  7     1 A     A        NA NA       0.459
 #>  8     1 B     B        NA NA       0.332
 #>  9     1 C     C        NA NA       0.651
-#> 10     2 A     B         4 -0.0561 NA    
-#> 11     2 A     C         5 -0.156  NA    
-#> 12     2 B     C         6 -1.47   NA    
-#> 13     2 B     A         4 -0.0561 NA    
-#> 14     2 C     A         5 -0.156  NA    
-#> 15     2 C     B         6 -1.47   NA    
+#> 10     2 A     B         4 -0.0561 NA
+#> 11     2 A     C         5 -0.156  NA
+#> 12     2 B     C         6 -1.47   NA
+#> 13     2 B     A         4 -0.0561 NA
+#> 14     2 C     A         5 -0.156  NA
+#> 15     2 C     B         6 -1.47   NA
 #> 16     2 A     A        NA NA       0.839
 #> 17     2 B     B        NA NA       0.347
 #> 18     2 C     C        NA NA       0.334
