@@ -1,3 +1,10 @@
+# ggasym 0.1.6
+
+* This minor update was necessary to maintain compatibility with the latest versions of ['dplyr'](https://CRAN.R-project.org/package=dplyr).
+* Increment supported version of R from `R (>= 3.5.0)` to `R (>= 3.6.0)`
+* Also minor tooling changes to add [pre-commit](https://pre-commit.com) and ['renv'](https://CRAN.R-project.org/package=renv) and remove AppVeyor and Travis CI (only using GitHub Actions, now).
+* Add code coverage report CI as a GitHub Action (based on implementation by ['ggplot2'](https://github.com/tidyverse/ggplot2/blob/master/.github/workflows/test-coverage.yaml))
+
 # ggasym 0.1.5
 
 * This minor update was necessary to maintain compatibility with the latest versions of ['broom'](https://CRAN.R-project.org/package=broom).

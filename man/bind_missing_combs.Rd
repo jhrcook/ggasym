@@ -20,12 +20,13 @@ Adds rows to the input data table to include any combinations
     columns (if any) are set to \code{NA}
 }
 \examples{
-df <- data.frame(a = c("A", "B"),
-                 b = c("C", "A"),
-                 untouched = c(1, 2),
-                 stringsAsFactors = FALSE)
+df <- data.frame(
+  a = c("A", "B"),
+  b = c("C", "A"),
+  untouched = c(1, 2),
+  stringsAsFactors = FALSE
+)
 df
 
 bind_missing_combs(df, a, b)
-
 }

@@ -86,7 +86,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggasym</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6</span>
       </span>
     </div>
 
@@ -94,7 +94,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -123,13 +123,13 @@
 </li>
 <li>
   <a href="https://github.com/jhrcook/ggasym">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/JoshDoesa">
-    <span class="fab fa fab fa-twitter fa-lg"></span>
+    <span class="fab fa-twitter fa-lg"></span>
      
   </a>
 </li>
@@ -161,140 +161,140 @@
     gradient.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>scale_fill_tl_gradient</span>(
-  <span class='no'>...</span>,
-  <span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"#132B43"</span>,
-  <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"#56B1F7"</span>,
-  <span class='kw'>space</span> <span class='kw'>=</span> <span class='st'>"Lab"</span>,
-  <span class='kw'>na.value</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>,
-  <span class='kw'>guide</span> <span class='kw'>=</span> <span class='st'>"colourbar"</span>,
-  <span class='kw'>aesthetics</span> <span class='kw'>=</span> <span class='st'>"fill_tl"</span>
-)
+    <pre class="usage"><span class='fu'>scale_fill_tl_gradient</span><span class='op'>(</span>
+  <span class='va'>...</span>,
+  low <span class='op'>=</span> <span class='st'>"#132B43"</span>,
+  high <span class='op'>=</span> <span class='st'>"#56B1F7"</span>,
+  space <span class='op'>=</span> <span class='st'>"Lab"</span>,
+  na.value <span class='op'>=</span> <span class='st'>"grey50"</span>,
+  guide <span class='op'>=</span> <span class='st'>"colourbar"</span>,
+  aesthetics <span class='op'>=</span> <span class='st'>"fill_tl"</span>
+<span class='op'>)</span>
 
-<span class='fu'>scale_fill_br_gradient</span>(
-  <span class='no'>...</span>,
-  <span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"#132B43"</span>,
-  <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"#56B1F7"</span>,
-  <span class='kw'>space</span> <span class='kw'>=</span> <span class='st'>"Lab"</span>,
-  <span class='kw'>na.value</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>,
-  <span class='kw'>guide</span> <span class='kw'>=</span> <span class='st'>"colourbar"</span>,
-  <span class='kw'>aesthetics</span> <span class='kw'>=</span> <span class='st'>"fill_br"</span>
-)
+<span class='fu'>scale_fill_br_gradient</span><span class='op'>(</span>
+  <span class='va'>...</span>,
+  low <span class='op'>=</span> <span class='st'>"#132B43"</span>,
+  high <span class='op'>=</span> <span class='st'>"#56B1F7"</span>,
+  space <span class='op'>=</span> <span class='st'>"Lab"</span>,
+  na.value <span class='op'>=</span> <span class='st'>"grey50"</span>,
+  guide <span class='op'>=</span> <span class='st'>"colourbar"</span>,
+  aesthetics <span class='op'>=</span> <span class='st'>"fill_br"</span>
+<span class='op'>)</span>
 
-<span class='fu'>scale_fill_diag_gradient</span>(
-  <span class='no'>...</span>,
-  <span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"#132B43"</span>,
-  <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"#56B1F7"</span>,
-  <span class='kw'>space</span> <span class='kw'>=</span> <span class='st'>"Lab"</span>,
-  <span class='kw'>na.value</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>,
-  <span class='kw'>guide</span> <span class='kw'>=</span> <span class='st'>"colourbar"</span>,
-  <span class='kw'>aesthetics</span> <span class='kw'>=</span> <span class='st'>"fill_diag"</span>
-)
+<span class='fu'>scale_fill_diag_gradient</span><span class='op'>(</span>
+  <span class='va'>...</span>,
+  low <span class='op'>=</span> <span class='st'>"#132B43"</span>,
+  high <span class='op'>=</span> <span class='st'>"#56B1F7"</span>,
+  space <span class='op'>=</span> <span class='st'>"Lab"</span>,
+  na.value <span class='op'>=</span> <span class='st'>"grey50"</span>,
+  guide <span class='op'>=</span> <span class='st'>"colourbar"</span>,
+  aesthetics <span class='op'>=</span> <span class='st'>"fill_diag"</span>
+<span class='op'>)</span>
 
-<span class='fu'>scale_fill_tl_gradient2</span>(
-  <span class='no'>...</span>,
-  <span class='kw'>low</span> <span class='kw'>=</span> <span class='kw pkg'>scales</span><span class='kw ns'>::</span><span class='fu'><a href='https://scales.r-lib.org//reference/muted.html'>muted</a></span>(<span class='st'>"red"</span>),
-  <span class='kw'>mid</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
-  <span class='kw'>high</span> <span class='kw'>=</span> <span class='kw pkg'>scales</span><span class='kw ns'>::</span><span class='fu'><a href='https://scales.r-lib.org//reference/muted.html'>muted</a></span>(<span class='st'>"blue"</span>),
-  <span class='kw'>midpoint</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>space</span> <span class='kw'>=</span> <span class='st'>"Lab"</span>,
-  <span class='kw'>na.value</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>,
-  <span class='kw'>guide</span> <span class='kw'>=</span> <span class='st'>"colourbar"</span>,
-  <span class='kw'>aesthetics</span> <span class='kw'>=</span> <span class='st'>"fill_tl"</span>
-)
+<span class='fu'>scale_fill_tl_gradient2</span><span class='op'>(</span>
+  <span class='va'>...</span>,
+  low <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='fu'><a href='https://scales.r-lib.org/reference/muted.html'>muted</a></span><span class='op'>(</span><span class='st'>"red"</span><span class='op'>)</span>,
+  mid <span class='op'>=</span> <span class='st'>"white"</span>,
+  high <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='fu'><a href='https://scales.r-lib.org/reference/muted.html'>muted</a></span><span class='op'>(</span><span class='st'>"blue"</span><span class='op'>)</span>,
+  midpoint <span class='op'>=</span> <span class='fl'>0</span>,
+  space <span class='op'>=</span> <span class='st'>"Lab"</span>,
+  na.value <span class='op'>=</span> <span class='st'>"grey50"</span>,
+  guide <span class='op'>=</span> <span class='st'>"colourbar"</span>,
+  aesthetics <span class='op'>=</span> <span class='st'>"fill_tl"</span>
+<span class='op'>)</span>
 
-<span class='fu'>scale_fill_br_gradient2</span>(
-  <span class='no'>...</span>,
-  <span class='kw'>low</span> <span class='kw'>=</span> <span class='kw pkg'>scales</span><span class='kw ns'>::</span><span class='fu'><a href='https://scales.r-lib.org//reference/muted.html'>muted</a></span>(<span class='st'>"red"</span>),
-  <span class='kw'>mid</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
-  <span class='kw'>high</span> <span class='kw'>=</span> <span class='kw pkg'>scales</span><span class='kw ns'>::</span><span class='fu'><a href='https://scales.r-lib.org//reference/muted.html'>muted</a></span>(<span class='st'>"blue"</span>),
-  <span class='kw'>midpoint</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>space</span> <span class='kw'>=</span> <span class='st'>"Lab"</span>,
-  <span class='kw'>na.value</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>,
-  <span class='kw'>guide</span> <span class='kw'>=</span> <span class='st'>"colourbar"</span>,
-  <span class='kw'>aesthetics</span> <span class='kw'>=</span> <span class='st'>"fill_br"</span>
-)
+<span class='fu'>scale_fill_br_gradient2</span><span class='op'>(</span>
+  <span class='va'>...</span>,
+  low <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='fu'><a href='https://scales.r-lib.org/reference/muted.html'>muted</a></span><span class='op'>(</span><span class='st'>"red"</span><span class='op'>)</span>,
+  mid <span class='op'>=</span> <span class='st'>"white"</span>,
+  high <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='fu'><a href='https://scales.r-lib.org/reference/muted.html'>muted</a></span><span class='op'>(</span><span class='st'>"blue"</span><span class='op'>)</span>,
+  midpoint <span class='op'>=</span> <span class='fl'>0</span>,
+  space <span class='op'>=</span> <span class='st'>"Lab"</span>,
+  na.value <span class='op'>=</span> <span class='st'>"grey50"</span>,
+  guide <span class='op'>=</span> <span class='st'>"colourbar"</span>,
+  aesthetics <span class='op'>=</span> <span class='st'>"fill_br"</span>
+<span class='op'>)</span>
 
-<span class='fu'>scale_fill_diag_gradient2</span>(
-  <span class='no'>...</span>,
-  <span class='kw'>low</span> <span class='kw'>=</span> <span class='kw pkg'>scales</span><span class='kw ns'>::</span><span class='fu'><a href='https://scales.r-lib.org//reference/muted.html'>muted</a></span>(<span class='st'>"red"</span>),
-  <span class='kw'>mid</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
-  <span class='kw'>high</span> <span class='kw'>=</span> <span class='kw pkg'>scales</span><span class='kw ns'>::</span><span class='fu'><a href='https://scales.r-lib.org//reference/muted.html'>muted</a></span>(<span class='st'>"blue"</span>),
-  <span class='kw'>midpoint</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>space</span> <span class='kw'>=</span> <span class='st'>"Lab"</span>,
-  <span class='kw'>na.value</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>,
-  <span class='kw'>guide</span> <span class='kw'>=</span> <span class='st'>"colourbar"</span>,
-  <span class='kw'>aesthetics</span> <span class='kw'>=</span> <span class='st'>"fill_diag"</span>
-)
+<span class='fu'>scale_fill_diag_gradient2</span><span class='op'>(</span>
+  <span class='va'>...</span>,
+  low <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='fu'><a href='https://scales.r-lib.org/reference/muted.html'>muted</a></span><span class='op'>(</span><span class='st'>"red"</span><span class='op'>)</span>,
+  mid <span class='op'>=</span> <span class='st'>"white"</span>,
+  high <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='fu'><a href='https://scales.r-lib.org/reference/muted.html'>muted</a></span><span class='op'>(</span><span class='st'>"blue"</span><span class='op'>)</span>,
+  midpoint <span class='op'>=</span> <span class='fl'>0</span>,
+  space <span class='op'>=</span> <span class='st'>"Lab"</span>,
+  na.value <span class='op'>=</span> <span class='st'>"grey50"</span>,
+  guide <span class='op'>=</span> <span class='st'>"colourbar"</span>,
+  aesthetics <span class='op'>=</span> <span class='st'>"fill_diag"</span>
+<span class='op'>)</span>
 
-<span class='fu'>scale_fill_tl_gradientn</span>(
-  <span class='no'>...</span>,
-  <span class='no'>colours</span>,
-  <span class='kw'>values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>space</span> <span class='kw'>=</span> <span class='st'>"Lab"</span>,
-  <span class='kw'>na.value</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>,
-  <span class='kw'>guide</span> <span class='kw'>=</span> <span class='st'>"colourbar"</span>,
-  <span class='kw'>aesthetics</span> <span class='kw'>=</span> <span class='st'>"fill_tl"</span>,
-  <span class='no'>colors</span>
-)
+<span class='fu'>scale_fill_tl_gradientn</span><span class='op'>(</span>
+  <span class='va'>...</span>,
+  <span class='va'>colours</span>,
+  values <span class='op'>=</span> <span class='cn'>NULL</span>,
+  space <span class='op'>=</span> <span class='st'>"Lab"</span>,
+  na.value <span class='op'>=</span> <span class='st'>"grey50"</span>,
+  guide <span class='op'>=</span> <span class='st'>"colourbar"</span>,
+  aesthetics <span class='op'>=</span> <span class='st'>"fill_tl"</span>,
+  <span class='va'>colors</span>
+<span class='op'>)</span>
 
-<span class='fu'>scale_fill_br_gradientn</span>(
-  <span class='no'>...</span>,
-  <span class='no'>colours</span>,
-  <span class='kw'>values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>space</span> <span class='kw'>=</span> <span class='st'>"Lab"</span>,
-  <span class='kw'>na.value</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>,
-  <span class='kw'>guide</span> <span class='kw'>=</span> <span class='st'>"colourbar"</span>,
-  <span class='kw'>aesthetics</span> <span class='kw'>=</span> <span class='st'>"fill_br"</span>,
-  <span class='no'>colors</span>
-)
+<span class='fu'>scale_fill_br_gradientn</span><span class='op'>(</span>
+  <span class='va'>...</span>,
+  <span class='va'>colours</span>,
+  values <span class='op'>=</span> <span class='cn'>NULL</span>,
+  space <span class='op'>=</span> <span class='st'>"Lab"</span>,
+  na.value <span class='op'>=</span> <span class='st'>"grey50"</span>,
+  guide <span class='op'>=</span> <span class='st'>"colourbar"</span>,
+  aesthetics <span class='op'>=</span> <span class='st'>"fill_br"</span>,
+  <span class='va'>colors</span>
+<span class='op'>)</span>
 
-<span class='fu'>scale_fill_diag_gradientn</span>(
-  <span class='no'>...</span>,
-  <span class='no'>colours</span>,
-  <span class='kw'>values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>space</span> <span class='kw'>=</span> <span class='st'>"Lab"</span>,
-  <span class='kw'>na.value</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>,
-  <span class='kw'>guide</span> <span class='kw'>=</span> <span class='st'>"colourbar"</span>,
-  <span class='kw'>aesthetics</span> <span class='kw'>=</span> <span class='st'>"fill_diag"</span>,
-  <span class='no'>colors</span>
-)
+<span class='fu'>scale_fill_diag_gradientn</span><span class='op'>(</span>
+  <span class='va'>...</span>,
+  <span class='va'>colours</span>,
+  values <span class='op'>=</span> <span class='cn'>NULL</span>,
+  space <span class='op'>=</span> <span class='st'>"Lab"</span>,
+  na.value <span class='op'>=</span> <span class='st'>"grey50"</span>,
+  guide <span class='op'>=</span> <span class='st'>"colourbar"</span>,
+  aesthetics <span class='op'>=</span> <span class='st'>"fill_diag"</span>,
+  <span class='va'>colors</span>
+<span class='op'>)</span>
 
-<span class='fu'>scale_fill_tl_distiller</span>(
-  <span class='no'>...</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"seq"</span>,
-  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>direction</span> <span class='kw'>=</span> -<span class='fl'>1</span>,
-  <span class='kw'>values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>space</span> <span class='kw'>=</span> <span class='st'>"Lab"</span>,
-  <span class='kw'>na.value</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>,
-  <span class='kw'>guide</span> <span class='kw'>=</span> <span class='st'>"colourbar"</span>,
-  <span class='kw'>aesthetics</span> <span class='kw'>=</span> <span class='st'>"fill_tl"</span>
-)
+<span class='fu'>scale_fill_tl_distiller</span><span class='op'>(</span>
+  <span class='va'>...</span>,
+  type <span class='op'>=</span> <span class='st'>"seq"</span>,
+  palette <span class='op'>=</span> <span class='fl'>1</span>,
+  direction <span class='op'>=</span> <span class='op'>-</span><span class='fl'>1</span>,
+  values <span class='op'>=</span> <span class='cn'>NULL</span>,
+  space <span class='op'>=</span> <span class='st'>"Lab"</span>,
+  na.value <span class='op'>=</span> <span class='st'>"grey50"</span>,
+  guide <span class='op'>=</span> <span class='st'>"colourbar"</span>,
+  aesthetics <span class='op'>=</span> <span class='st'>"fill_tl"</span>
+<span class='op'>)</span>
 
-<span class='fu'>scale_fill_br_distiller</span>(
-  <span class='no'>...</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"seq"</span>,
-  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>direction</span> <span class='kw'>=</span> -<span class='fl'>1</span>,
-  <span class='kw'>values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>space</span> <span class='kw'>=</span> <span class='st'>"Lab"</span>,
-  <span class='kw'>na.value</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>,
-  <span class='kw'>guide</span> <span class='kw'>=</span> <span class='st'>"colourbar"</span>,
-  <span class='kw'>aesthetics</span> <span class='kw'>=</span> <span class='st'>"fill_br"</span>
-)
+<span class='fu'>scale_fill_br_distiller</span><span class='op'>(</span>
+  <span class='va'>...</span>,
+  type <span class='op'>=</span> <span class='st'>"seq"</span>,
+  palette <span class='op'>=</span> <span class='fl'>1</span>,
+  direction <span class='op'>=</span> <span class='op'>-</span><span class='fl'>1</span>,
+  values <span class='op'>=</span> <span class='cn'>NULL</span>,
+  space <span class='op'>=</span> <span class='st'>"Lab"</span>,
+  na.value <span class='op'>=</span> <span class='st'>"grey50"</span>,
+  guide <span class='op'>=</span> <span class='st'>"colourbar"</span>,
+  aesthetics <span class='op'>=</span> <span class='st'>"fill_br"</span>
+<span class='op'>)</span>
 
-<span class='fu'>scale_fill_diag_distiller</span>(
-  <span class='no'>...</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"seq"</span>,
-  <span class='kw'>palette</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>direction</span> <span class='kw'>=</span> -<span class='fl'>1</span>,
-  <span class='kw'>values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>space</span> <span class='kw'>=</span> <span class='st'>"Lab"</span>,
-  <span class='kw'>na.value</span> <span class='kw'>=</span> <span class='st'>"grey50"</span>,
-  <span class='kw'>guide</span> <span class='kw'>=</span> <span class='st'>"colourbar"</span>,
-  <span class='kw'>aesthetics</span> <span class='kw'>=</span> <span class='st'>"fill_diag"</span>
-)</pre>
+<span class='fu'>scale_fill_diag_distiller</span><span class='op'>(</span>
+  <span class='va'>...</span>,
+  type <span class='op'>=</span> <span class='st'>"seq"</span>,
+  palette <span class='op'>=</span> <span class='fl'>1</span>,
+  direction <span class='op'>=</span> <span class='op'>-</span><span class='fl'>1</span>,
+  values <span class='op'>=</span> <span class='cn'>NULL</span>,
+  space <span class='op'>=</span> <span class='st'>"Lab"</span>,
+  na.value <span class='op'>=</span> <span class='st'>"grey50"</span>,
+  guide <span class='op'>=</span> <span class='st'>"colourbar"</span>,
+  aesthetics <span class='op'>=</span> <span class='st'>"fill_diag"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -330,7 +330,7 @@ leave the default alone, though I plan to reinstate the standard
     </tr>
     <tr>
       <th>mid</th>
-      <td><p>color for mid point (see <code><a href='https://scales.r-lib.org//reference/div_gradient_pal.html'>?scales::div_gradient_pal</a></code> for
+      <td><p>color for mid point (see <code><a href='https://scales.r-lib.org/reference/div_gradient_pal.html'>?scales::div_gradient_pal</a></code> for
 more documentation of how colors are calculated)</p></td>
     </tr>
     <tr>
@@ -369,37 +369,49 @@ order of colours is reversed.</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>tibble</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>0</span>)
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tibble.tidyverse.org/'>tibble</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span>
 
-<span class='no'>tib</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span>(<span class='kw'>g1</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"A"</span>, <span class='st'>"A"</span>, <span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span>, <span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span>, <span class='st'>"D"</span>),
-              <span class='kw'>g2</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"B"</span>, <span class='st'>"C"</span>, <span class='st'>"D"</span>, <span class='st'>"C"</span>, <span class='st'>"D"</span>, <span class='st'>"D"</span>, <span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span>, <span class='st'>"D"</span>),
-              <span class='kw'>val_1</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>10</span>),
-              <span class='kw'>val_2</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(-<span class='fl'>10</span>:<span class='fl'>10</span>, <span class='fl'>10</span>),
-              <span class='kw'>val_3</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>NA</span>, <span class='fl'>6</span>), <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>4</span>))
-<span class='no'>tib</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='asymmetrise.html'>asymmetrise</a></span>(<span class='no'>tib</span>, <span class='no'>g1</span>, <span class='no'>g2</span>)
-<span class='no'>g</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>tib</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>g1</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>g2</span>)) +
-    <span class='fu'><a href='geom_asymmat.html'>geom_asymmat</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>fill_tl</span> <span class='kw'>=</span> <span class='no'>val_1</span>, <span class='kw'>fill_br</span> <span class='kw'>=</span> <span class='no'>val_2</span>, <span class='kw'>fill_diag</span> <span class='kw'>=</span> <span class='no'>val_3</span>))
+<span class='va'>tib</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>
+  g1 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"A"</span>, <span class='st'>"A"</span>, <span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span>, <span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span>, <span class='st'>"D"</span><span class='op'>)</span>,
+  g2 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"B"</span>, <span class='st'>"C"</span>, <span class='st'>"D"</span>, <span class='st'>"C"</span>, <span class='st'>"D"</span>, <span class='st'>"D"</span>, <span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span>, <span class='st'>"D"</span><span class='op'>)</span>,
+  val_1 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span>,
+  val_2 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>10</span><span class='op'>:</span><span class='fl'>10</span>, <span class='fl'>10</span><span class='op'>)</span>,
+  val_3 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='cn'>NA</span>, <span class='fl'>6</span><span class='op'>)</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>4</span><span class='op'>)</span>
+<span class='op'>)</span>
+<span class='va'>tib</span> <span class='op'>&lt;-</span> <span class='fu'><a href='asymmetrise.html'>asymmetrise</a></span><span class='op'>(</span><span class='va'>tib</span>, <span class='va'>g1</span>, <span class='va'>g2</span><span class='op'>)</span>
+<span class='va'>g</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>tib</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>g1</span>, y <span class='op'>=</span> <span class='va'>g2</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='geom_asymmat.html'>geom_asymmat</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>fill_tl <span class='op'>=</span> <span class='va'>val_1</span>, fill_br <span class='op'>=</span> <span class='va'>val_2</span>, fill_diag <span class='op'>=</span> <span class='va'>val_3</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='no'>g</span> + <span class='fu'>scale_fill_tl_gradient</span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"lightpink"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"tomato"</span>) +
-    <span class='fu'>scale_fill_br_gradient</span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"lightblue"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"dodgerblue"</span>) +
-    <span class='fu'>scale_fill_diag_gradient</span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"yellow"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"orange3"</span>)</div><div class='img'><img src='scale_gradient-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='no'>g</span> + <span class='fu'>scale_fill_tl_gradient2</span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"dodgerblue"</span>,
-                            <span class='kw'>mid</span> <span class='kw'>=</span> <span class='st'>"white"</span>, <span class='kw'>midpoint</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-                            <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"tomato"</span>) +
-    <span class='fu'>scale_fill_br_gradient2</span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"seagreen4"</span>,
-                            <span class='kw'>mid</span> <span class='kw'>=</span> <span class='st'>"white"</span>, <span class='kw'>midpoint</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-                            <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"orange"</span>) +
-    <span class='fu'>scale_fill_diag_gradient2</span>(<span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"magenta"</span>,
-                              <span class='kw'>mid</span> <span class='kw'>=</span> <span class='st'>"cornflowerblue"</span>, <span class='kw'>midpoint</span> <span class='kw'>=</span> <span class='fl'>2.5</span>,
-                              <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"chartreuse"</span>)</div><div class='img'><img src='scale_gradient-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='no'>g</span> + <span class='fu'>scale_fill_tl_gradientn</span>(<span class='kw'>colours</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>terrain.colors</a></span>(<span class='fl'>200</span>)) +
-    <span class='fu'>scale_fill_br_gradientn</span>(<span class='kw'>colours</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>heat.colors</a></span>(<span class='fl'>200</span>)) +
-    <span class='fu'>scale_fill_diag_gradientn</span>(<span class='kw'>colours</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>rainbow</a></span>(<span class='fl'>200</span>))</div><div class='img'><img src='scale_gradient-3.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='no'>g</span> + <span class='fu'>scale_fill_tl_distiller</span>(<span class='kw'>type</span>  <span class='kw'>=</span> <span class='st'>"seq"</span>, <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Greens"</span>) +
-    <span class='fu'>scale_fill_br_distiller</span>(<span class='kw'>type</span>  <span class='kw'>=</span> <span class='st'>"div"</span>, <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"PuOr"</span>) +
-    <span class='fu'>scale_fill_diag_distiller</span>(<span class='kw'>type</span>  <span class='kw'>=</span> <span class='st'>"seq"</span>, <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Blues"</span>)</div><div class='img'><img src='scale_gradient-4.png' alt='' width='700' height='433' /></div></pre>
+<span class='va'>g</span> <span class='op'>+</span> <span class='fu'>scale_fill_tl_gradient</span><span class='op'>(</span>low <span class='op'>=</span> <span class='st'>"lightpink"</span>, high <span class='op'>=</span> <span class='st'>"tomato"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_fill_br_gradient</span><span class='op'>(</span>low <span class='op'>=</span> <span class='st'>"lightblue"</span>, high <span class='op'>=</span> <span class='st'>"dodgerblue"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_fill_diag_gradient</span><span class='op'>(</span>low <span class='op'>=</span> <span class='st'>"yellow"</span>, high <span class='op'>=</span> <span class='st'>"orange3"</span><span class='op'>)</span>
+</div><div class='img'><img src='scale_gradient-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>g</span> <span class='op'>+</span> <span class='fu'>scale_fill_tl_gradient2</span><span class='op'>(</span>
+  low <span class='op'>=</span> <span class='st'>"dodgerblue"</span>,
+  mid <span class='op'>=</span> <span class='st'>"white"</span>, midpoint <span class='op'>=</span> <span class='fl'>5</span>,
+  high <span class='op'>=</span> <span class='st'>"tomato"</span>
+<span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_fill_br_gradient2</span><span class='op'>(</span>
+    low <span class='op'>=</span> <span class='st'>"seagreen4"</span>,
+    mid <span class='op'>=</span> <span class='st'>"white"</span>, midpoint <span class='op'>=</span> <span class='fl'>0</span>,
+    high <span class='op'>=</span> <span class='st'>"orange"</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_fill_diag_gradient2</span><span class='op'>(</span>
+    low <span class='op'>=</span> <span class='st'>"magenta"</span>,
+    mid <span class='op'>=</span> <span class='st'>"cornflowerblue"</span>, midpoint <span class='op'>=</span> <span class='fl'>2.5</span>,
+    high <span class='op'>=</span> <span class='st'>"chartreuse"</span>
+  <span class='op'>)</span>
+</div><div class='img'><img src='scale_gradient-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>g</span> <span class='op'>+</span> <span class='fu'>scale_fill_tl_gradientn</span><span class='op'>(</span>colours <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>terrain.colors</a></span><span class='op'>(</span><span class='fl'>200</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_fill_br_gradientn</span><span class='op'>(</span>colours <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>heat.colors</a></span><span class='op'>(</span><span class='fl'>200</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_fill_diag_gradientn</span><span class='op'>(</span>colours <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>rainbow</a></span><span class='op'>(</span><span class='fl'>200</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='scale_gradient-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>g</span> <span class='op'>+</span> <span class='fu'>scale_fill_tl_distiller</span><span class='op'>(</span>type <span class='op'>=</span> <span class='st'>"seq"</span>, palette <span class='op'>=</span> <span class='st'>"Greens"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_fill_br_distiller</span><span class='op'>(</span>type <span class='op'>=</span> <span class='st'>"div"</span>, palette <span class='op'>=</span> <span class='st'>"PuOr"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_fill_diag_distiller</span><span class='op'>(</span>type <span class='op'>=</span> <span class='st'>"seq"</span>, palette <span class='op'>=</span> <span class='st'>"Blues"</span><span class='op'>)</span>
+</div><div class='img'><img src='scale_gradient-4.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -415,7 +427,7 @@ order of colours is reversed.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

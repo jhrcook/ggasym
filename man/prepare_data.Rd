@@ -27,5 +27,4 @@ Tries to make the data ready for use in the
 a <- rnorm(10, mean = 1, sd = 1)
 b <- rnorm(10, mean = 1.5, sd = 1)
 prepare_data(t.test(a, b))
-
 }

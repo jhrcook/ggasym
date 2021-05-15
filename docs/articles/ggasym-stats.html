@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggasym</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6</span>
       </span>
     </div>
 
@@ -46,7 +46,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -75,13 +75,13 @@
 </li>
 <li>
   <a href="https://github.com/jhrcook/ggasym">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/JoshDoesa">
-    <span class="fab fa fab fa-twitter fa-lg"></span>
+    <span class="fab fa-twitter fa-lg"></span>
      
   </a>
 </li>
@@ -95,13 +95,13 @@
 
       
 
-      </header><script src="ggasym-stats_files/header-attrs-2.3/header-attrs.js"></script><script src="ggasym-stats_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="ggasym-stats_files/header-attrs-2.8/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Statistical Test Plotting with ‘ggasym’</h1>
                         <h4 class="author">Joshua H. Cook</h4>
             
-            <h4 class="date">2020-07-15</h4>
+            <h4 class="date">2021-05-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jhrcook/ggasym/blob/master/vignettes/ggasym-stats.Rmd"><code>vignettes/ggasym-stats.Rmd</code></a></small>
       <div class="hidden name"><code>ggasym-stats.Rmd</code></div>
@@ -114,32 +114,37 @@
 <h2 class="hasAnchor">
 <a href="#purpose" class="anchor"></a>Purpose</h2>
 <p>One of the great uses of ‘ggasym’ is to plot two values from the results of a multi-way statistical test. Each comparison is a cell, and two values can be used for the fills. Below I give brief examples and plot the differences in mean and the <em>p</em>-value on the symmetric matrix.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">tibble</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">purrr</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">broom</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggasym</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org">purrr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jhrcook/ggasym">ggasym</a></span><span class="op">)</span></code></pre></div>
 </div>
 <div id="data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#data" class="anchor"></a>Data</h2>
 <p>The data will be modeled as expression values of 6 genes, each with 10 measurements. I will then as if any of them have different levels of expression.</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">n_reps</span> <span class="kw">&lt;-</span> <span class="fl">10</span>  <span class="co"># number of measurements per gene</span>
-<span class="no">expt_std_dev</span> <span class="kw">&lt;-</span> <span class="fl">1.5</span>  <span class="co"># std. dev. of measurements</span>
-<span class="no">genes</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"FAK"</span>, <span class="st">"talin"</span>, <span class="st">"paxillin"</span>, <span class="st">"vinculin"</span>, <span class="st">"B1integrin"</span>, <span class="st">"kindlin"</span>)
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">n_reps</span> <span class="op">&lt;-</span> <span class="fl">10</span> <span class="co"># number of measurements per gene</span>
+<span class="va">expt_std_dev</span> <span class="op">&lt;-</span> <span class="fl">1.5</span> <span class="co"># std. dev. of measurements</span>
+<span class="va">genes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"FAK"</span>, <span class="st">"talin"</span>, <span class="st">"paxillin"</span>, <span class="st">"vinculin"</span>, <span class="st">"B1integrin"</span>, <span class="st">"kindlin"</span><span class="op">)</span>
 <span class="co"># "real" expression levels to be used as the mean in `rnorm`</span>
-<span class="no">real_expression_levels</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">0.1</span>), <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">genes</span>), <span class="kw">replace</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<span class="va">real_expression_levels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">0.1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">genes</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co"># create a tibble</span>
-<span class="no">expr_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">tibble</a></span>(<span class="kw">gene</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="no">genes</span>, <span class="no">n_reps</span>),
-                    <span class="kw">real_expr</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="no">real_expression_levels</span>, <span class="no">n_reps</span>),
-                    <span class="kw">rep_num</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fl">1</span>:<span class="no">n_reps</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">genes</span>))))
+<span class="va">expr_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
+  gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">genes</span>, <span class="va">n_reps</span><span class="op">)</span>,
+  real_expr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">real_expression_levels</span>, <span class="va">n_reps</span><span class="op">)</span>,
+  rep_num <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">n_reps</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">genes</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="op">)</span>
 <span class="co"># add in the measured expression values as a normal distribution around the mean</span>
-<span class="no">expr_data</span> <span class="kw">&lt;-</span> <span class="no">expr_data</span> <span class="kw">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">expt_expr</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">expr_data</span>),
-                             <span class="kw">mean</span> <span class="kw">=</span> <span class="no">real_expr</span>,
-                             <span class="kw">sd</span> <span class="kw">=</span> <span class="no">expt_std_dev</span>))
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">expr_data</span>)
+<span class="va">expr_data</span> <span class="op">&lt;-</span> <span class="va">expr_data</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>expt_expr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">expr_data</span><span class="op">)</span>,
+    mean <span class="op">=</span> <span class="va">real_expr</span>,
+    sd <span class="op">=</span> <span class="va">expt_std_dev</span>
+  <span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">expr_data</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 4</span>
 <span class="co">#&gt;   gene       real_expr rep_num expt_expr</span>
 <span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;</span>
@@ -148,22 +153,24 @@
 <span class="co">#&gt; 3 paxillin         4.8       1     3.41 </span>
 <span class="co">#&gt; 4 vinculin         1         1     0.558</span>
 <span class="co">#&gt; 5 B1integrin       4.3       1     4.29 </span>
-<span class="co">#&gt; 6 kindlin          3.2       1     6.81</span></pre></body></html></div>
+<span class="co">#&gt; 6 kindlin          3.2       1     6.81</span></code></pre></div>
 </div>
 <div id="statistical-tests" class="section level2">
 <h2 class="hasAnchor">
 <a href="#statistical-tests" class="anchor"></a>Statistical Tests</h2>
 <p>I then use an ANOVA to test if there are any differences between any of the comparisons of gene expression.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">res_aov</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span>(<span class="no">expt_expr</span> ~ <span class="no">gene</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">expr_data</span>)
-<span class="kw pkg">broom</span><span class="kw ns">::</span><span class="fu"><a href="https://broom.tidymodels.org/reference/reexports.html">tidy</a></span>(<span class="no">res_aov</span>)
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">res_aov</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">expt_expr</span> <span class="op">~</span> <span class="va">gene</span>, data <span class="op">=</span> <span class="va">expr_data</span><span class="op">)</span>
+<span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">res_aov</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 2 x 6</span>
 <span class="co">#&gt;   term         df sumsq meansq statistic  p.value</span>
 <span class="co">#&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 gene          5  144.  28.8       14.0  8.99e-9</span>
-<span class="co">#&gt; 2 Residuals    54  111.   2.06      NA   NA</span></pre></body></html></div>
+<span class="co">#&gt; 2 Residuals    54  111.   2.06      NA   NA</span></code></pre></div>
 <p>With a very low p-value from the ANOVA, I run the Tukey post-hoc test to find which genes are at different levels.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">tukey_res</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TukeyHSD.html">TukeyHSD</a></span>(<span class="no">res_aov</span>)
-<span class="no">tukey_res</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tukey_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TukeyHSD.html">TukeyHSD</a></span><span class="op">(</span><span class="va">res_aov</span><span class="op">)</span>
+<span class="va">tukey_res</span>
 <span class="co">#&gt;   Tukey multiple comparisons of means</span>
 <span class="co">#&gt;     95% family-wise confidence level</span>
 <span class="co">#&gt; </span>
@@ -185,14 +192,15 @@
 <span class="co">#&gt; vinculin-kindlin    -2.5196221 -4.4155012 -0.62374308 0.0032062</span>
 <span class="co">#&gt; talin-paxillin      -3.6967466 -5.5926257 -1.80086758 0.0000060</span>
 <span class="co">#&gt; vinculin-paxillin   -4.2279066 -6.1237857 -2.33202757 0.0000003</span>
-<span class="co">#&gt; vinculin-talin      -0.5311600 -2.4270390  1.36471907 0.9610525</span></pre></body></html></div>
+<span class="co">#&gt; vinculin-talin      -0.5311600 -2.4270390  1.36471907 0.9610525</span></code></pre></div>
 </div>
 <div id="plotting" class="section level2">
 <h2 class="hasAnchor">
 <a href="#plotting" class="anchor"></a>Plotting</h2>
 <p>Now I want to plot the <code>estimate</code> in the top-left and <code>p adj</code> in the bottom right. First, I must prepare the data for use with <code><a href="../reference/geom_asymmat.html">geom_asymmat()</a></code> by passing the results of the Tukey post-hoc test to <code><a href="../reference/asymmetrise_stats.html">asymmetrise_stats()</a></code>. You can see that it returns the data in a tibble with new columns <code>x</code> and <code>y</code> that are the result of splitting <code>comparison</code>.</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">asymmat_tib</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/asymmetrise_stats.html">asymmetrise_stats</a></span>(<span class="no">tukey_res</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">asymmat_tib</span>)
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">asymmat_tib</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/asymmetrise_stats.html">asymmetrise_stats</a></span><span class="op">(</span><span class="va">tukey_res</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">asymmat_tib</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 9</span>
 <span class="co">#&gt;   term  contrast  null.value estimate conf.low conf.high adj.p.value x     y    </span>
 <span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;          &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;</span>
@@ -201,30 +209,40 @@
 <span class="co">#&gt; 3 gene  paxillin…          0    0.440    -1.46    2.34    0.983      paxi… B1in…</span>
 <span class="co">#&gt; 4 gene  talin-B1…          0   -3.26     -5.15   -1.36    0.0000698  talin B1in…</span>
 <span class="co">#&gt; 5 gene  vinculin…          0   -3.79     -5.68   -1.89    0.00000356 vinc… B1in…</span>
-<span class="co">#&gt; 6 gene  kindlin-…          0    0.540    -1.36    2.44    0.958      kind… FAK</span></pre></body></html></div>
+<span class="co">#&gt; 6 gene  kindlin-…          0    0.540    -1.36    2.44    0.958      kind… FAK</span></code></pre></div>
 <p>Finally, I can plot the data using <code><a href="../reference/geom_asymmat.html">geom_asymmat()</a></code>.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">asymmat_tib</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">x</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">y</span>)) +
-    <span class="fu"><a href="../reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">fill_tl</span> <span class="kw">=</span> <span class="no">estimate</span>, <span class="kw">fill_br</span> <span class="kw">=</span> -<span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(<span class="no">adj.p.value</span>))) +
-    <span class="fu"><a href="../reference/scale_gradient.html">scale_fill_tl_gradient2</a></span>(<span class="kw">low</span> <span class="kw">=</span> <span class="st">"dodgerblue"</span>, <span class="kw">high</span> <span class="kw">=</span> <span class="st">"tomato"</span>) +
-    <span class="fu"><a href="../reference/scale_gradient.html">scale_fill_br_distiller</a></span>(<span class="kw">type</span> <span class="kw">=</span> <span class="st">"seq"</span>, <span class="kw">palette</span> <span class="kw">=</span> <span class="st">"Greens"</span>, <span class="kw">direction</span> <span class="kw">=</span> <span class="fl">1</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">asymmat_tib</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="../reference/geom_asymmat.html">geom_asymmat</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill_tl <span class="op">=</span> <span class="va">estimate</span>, fill_br <span class="op">=</span> <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">adj.p.value</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="../reference/scale_gradient.html">scale_fill_tl_gradient2</a></span><span class="op">(</span>low <span class="op">=</span> <span class="st">"dodgerblue"</span>, high <span class="op">=</span> <span class="st">"tomato"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="../reference/scale_gradient.html">scale_fill_br_distiller</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"seq"</span>, palette <span class="op">=</span> <span class="st">"Greens"</span>, direction <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <p><img src="ggasym-stats_files/figure-html/plot_res_basic-1.png" width="672" style="display: block; margin: auto;"></p>
 <p>And add a few styling changes with normal ‘ggplot2’ semantics.</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">asymmat_tib</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">x</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">y</span>)) +
-    <span class="fu"><a href="../reference/geom_asymmat.html">geom_asymmat</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">fill_tl</span> <span class="kw">=</span> <span class="no">estimate</span>, <span class="kw">fill_br</span> <span class="kw">=</span> -<span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(<span class="no">adj.p.value</span>))) +
-    <span class="fu"><a href="../reference/scale_gradient.html">scale_fill_tl_gradient2</a></span>(<span class="kw">low</span> <span class="kw">=</span> <span class="st">"dodgerblue"</span>, <span class="kw">high</span> <span class="kw">=</span> <span class="st">"tomato"</span>,
-                            <span class="kw">guide</span> <span class="kw">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html">guide_colourbar</a></span>(<span class="kw">order</span> <span class="kw">=</span> <span class="fl">1</span>)) +
-    <span class="fu"><a href="../reference/scale_gradient.html">scale_fill_br_distiller</a></span>(<span class="kw">type</span> <span class="kw">=</span> <span class="st">"seq"</span>, <span class="kw">palette</span> <span class="kw">=</span> <span class="st">"Greens"</span>, <span class="kw">direction</span> <span class="kw">=</span> <span class="fl">1</span>,
-                            <span class="kw">guide</span> <span class="kw">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html">guide_colourbar</a></span>(<span class="kw">order</span> <span class="kw">=</span> <span class="fl">2</span>)) +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>() +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="kw">panel.background</span> <span class="kw">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span>(<span class="kw">fill</span> <span class="kw">=</span> <span class="st">"grey50"</span>),
-          <span class="kw">panel.grid</span> <span class="kw">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span>(),
-          <span class="kw">axis.title</span> <span class="kw">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span>(),
-          <span class="kw">plot.title</span> <span class="kw">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="kw">hjust</span> <span class="kw">=</span> <span class="fl">0.5</span>)) +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="kw">title</span> <span class="kw">=</span> <span class="st">"Differential Gene Expression"</span>,
-         <span class="kw">fill_tl</span> <span class="kw">=</span> <span class="st">"diff. in\nmean expr."</span>,
-         <span class="kw">fill_br</span> <span class="kw">=</span> <span class="st">"-log( adj. p-value )"</span>) +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_x_discrete</a></span>(<span class="kw">expand</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">0</span>)) +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span>(<span class="kw">expand</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">0</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">asymmat_tib</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="../reference/geom_asymmat.html">geom_asymmat</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill_tl <span class="op">=</span> <span class="va">estimate</span>, fill_br <span class="op">=</span> <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">adj.p.value</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="../reference/scale_gradient.html">scale_fill_tl_gradient2</a></span><span class="op">(</span>
+    low <span class="op">=</span> <span class="st">"dodgerblue"</span>, high <span class="op">=</span> <span class="st">"tomato"</span>,
+    guide <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html">guide_colourbar</a></span><span class="op">(</span>order <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+  <span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="../reference/scale_gradient.html">scale_fill_br_distiller</a></span><span class="op">(</span>
+    type <span class="op">=</span> <span class="st">"seq"</span>, palette <span class="op">=</span> <span class="st">"Greens"</span>, direction <span class="op">=</span> <span class="fl">1</span>,
+    guide <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html">guide_colourbar</a></span><span class="op">(</span>order <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+  <span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
+    panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"grey50"</span><span class="op">)</span>,
+    panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
+    axis.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
+    plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
+  <span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>
+    title <span class="op">=</span> <span class="st">"Differential Gene Expression"</span>,
+    fill_tl <span class="op">=</span> <span class="st">"diff. in\nmean expr."</span>,
+    fill_br <span class="op">=</span> <span class="st">"-log( adj. p-value )"</span>
+  <span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_x_discrete</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="ggasym-stats_files/figure-html/plot_res_full-1.png" width="672" style="display: block; margin: auto;"></p>
 <p>One of the conclusions that can be drawn here is that the difference in expression of kindlin and FAK is the greatest and has a very low adjusted p-value. Thus, one of the conclusion is that kindlin is expressed at a lower level than FAK.</p>
 <hr>
@@ -247,7 +265,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

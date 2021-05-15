@@ -22,10 +22,11 @@ Makes a data frame with the same columns of \code{df} and
     \code{n_rows} number of rows and all values \code{fill_val}
 }
 \examples{
-df <- data.frame(col_a = c("A", "B"),
-                 col_b = c("C", "D"))
+df <- data.frame(
+  col_a = c("A", "B"),
+  col_b = c("C", "D")
+)
 df
 
 make_fill_df(df, 5)
-
 }

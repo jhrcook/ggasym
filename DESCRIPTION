@@ -1,7 +1,7 @@
 Package: ggasym
 Type: Package
 Title: Asymmetric Matrix Plotting in 'ggplot2'
-Version: 0.1.5
+Version: 0.1.6
 Authors@R: person(c("Joshua", "H"), "Cook", email = "joshuacook0023@gmail.com",
     role = c("aut", "cre"),
     comment = c(ORCID = "0000-0001-9815-6879"))
@@ -13,7 +13,7 @@ Description: Plots a symmetric matrix with three different fill
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Depends: R (>= 3.5.0)
+Depends: R (>= 3.6.0)
 Imports:
     dplyr (>= 0.8.0),
     ggplot2 (>= 3.1.0),
