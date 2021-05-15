@@ -39,16 +39,17 @@ This function does it's best when \code{x} or \code{y} are factors. If they
 
 \examples{
 
-df <- data.frame(a = c("A", "B", "C"),
-                 b = c("C", "A", "B"),
-                 untouched = c(1, 2, 3),
-                 grouping_value = c("group1", "group1", "group2"),
-                 stringsAsFactors = FALSE)
+df <- data.frame(
+  a = c("A", "B", "C"),
+  b = c("C", "A", "B"),
+  untouched = c(1, 2, 3),
+  grouping_value = c("group1", "group1", "group2"),
+  stringsAsFactors = FALSE
+)
 df
 
 asymmetrise(df, a, b)
 
 grouped_df <- dplyr::group_by(df, grouping_value)
 asymmetrise(grouped_df, a, b)
-
 }

@@ -11,10 +11,6 @@ status](https://www.r-pkg.org/badges/version/ggasym)](https://cran.r-project.org
 downloads](http://cranlogs.r-pkg.org/badges/grand-total/ggasym)](https://cran.r-project.org/package=ggasym)
 [![R build
 status](https://github.com/jhrcook/ggasym/workflows/R-CMD-check/badge.svg)](https://github.com/jhrcook/ggasym/actions)
-[![Travis build
-status](https://travis-ci.org/jhrcook/ggasym.svg?branch=master)](https://travis-ci.org/jhrcook/ggasym)
-[![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/jhrcook/ggasym?branch=master&svg=true)](https://ci.appveyor.com/project/jhrcook/ggasym)
 [![Coverage
 status](https://codecov.io/gh/jhrcook/ggasym/branch/master/graph/badge.svg)](https://codecov.io/github/jhrcook/ggasym?branch=master)
 
@@ -65,17 +61,19 @@ is added on. Here, `asymmetrise()` added the rows where `g1` and `g2`
 are equal, thus will fill the diagonal. I set these values to `val_3`.
 
 ``` r
-tib <- tibble(g1 = c("A", "A", "A", "A", "B", "B", "B", "C", "C", "D"),
-              g2 = c("B", "C", "D", "E", "C", "D", "E", "D", "E", "E"),
-              val_1 = seq(1, 10, 1),
-              val_2 = rnorm(10, mean = 0, sd = 3))
+tib <- tibble(
+  g1 = c("A", "A", "A", "A", "B", "B", "B", "C", "C", "D"),
+  g2 = c("B", "C", "D", "E", "C", "D", "E", "D", "E", "E"),
+  val_1 = seq(1, 10, 1),
+  val_2 = rnorm(10, mean = 0, sd = 3)
+)
 tib <- asymmetrise(tib, g1, g2)
 tib$val_3 <- runif(nrow(tib))
 ggplot(tib, aes(x = g1, y = g2)) +
-    geom_asymmat(aes(fill_tl = val_1, fill_br = val_2, fill_diag = val_3)) +
-    scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
-    scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue") +
-    scale_fill_diag_gradient(low = "yellow", high = "orange3")
+  geom_asymmat(aes(fill_tl = val_1, fill_br = val_2, fill_diag = val_3)) +
+  scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
+  scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue") +
+  scale_fill_diag_gradient(low = "yellow", high = "orange3")
 ```
 
 ![](man/figures/README-example1-1.png)<!-- -->
@@ -84,18 +82,18 @@ ggplot(tib, aes(x = g1, y = g2)) +
 
 The new aesthetics `fill_tl`, `fill_br`, and `fill_diag` behave just
 like the normal `fill`, except that they correspond to the top-left
-(“tl”) and bottom-right (“br”) triangles of the matrix,
-respectively. This package also includes analogous functions for scaling
-the fill colors such as `scale_fill_tl_gradient2()` and
+(“tl”) and bottom-right (“br”) triangles of the matrix, respectively.
+This package also includes analogous functions for scaling the fill
+colors such as `scale_fill_tl_gradient2()` and
 `scale_fill_br_gradientn()` that operate just as expected when using
 ‘ggplot2’.
 
 ``` r
 ggplot(tib, aes(x = g1, y = g2)) +
-    geom_asymmat(aes(fill_tl = val_1, fill_br = val_2, fill_diag = val_3)) +
-    scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
-    scale_fill_br_gradient2(low = "orange", mid = "white", high = "dodgerblue") +
-    scale_fill_diag_gradientn(colors = rainbow(25))
+  geom_asymmat(aes(fill_tl = val_1, fill_br = val_2, fill_diag = val_3)) +
+  scale_fill_tl_gradient(low = "lightpink", high = "tomato") +
+  scale_fill_br_gradient2(low = "orange", mid = "white", high = "dodgerblue") +
+  scale_fill_diag_gradientn(colors = rainbow(25))
 ```
 
 ![](man/figures/README-example2-1.png)<!-- -->
@@ -112,19 +110,31 @@ the ordering, and put the title above each.
 
 ``` r
 ggplot(tib, aes(x = g1, y = g2)) +
-    geom_asymmat(aes(fill_tl = val_1, fill_br = val_2, fill_diag = val_3)) +
-    scale_fill_tl_gradient(low = "lightpink", high = "tomato",
-                           guide = guide_colourbar(direction = "horizontal",
-                                                   order = 1,
-                                                   title.position = "top")) +
-    scale_fill_br_gradient2(low = "orange", mid = "white", high = "dodgerblue",
-                           guide = guide_colourbar(direction = "horizontal",
-                                                   order = 3,
-                                                   title.position = "top")) +
-    scale_fill_diag_gradientn(colors = rainbow(25),
-                           guide = guide_colourbar(direction = "horizontal",
-                                                   order = 2,
-                                                   title.position = "top"))
+  geom_asymmat(aes(fill_tl = val_1, fill_br = val_2, fill_diag = val_3)) +
+  scale_fill_tl_gradient(
+    low = "lightpink", high = "tomato",
+    guide = guide_colourbar(
+      direction = "horizontal",
+      order = 1,
+      title.position = "top"
+    )
+  ) +
+  scale_fill_br_gradient2(
+    low = "orange", mid = "white", high = "dodgerblue",
+    guide = guide_colourbar(
+      direction = "horizontal",
+      order = 3,
+      title.position = "top"
+    )
+  ) +
+  scale_fill_diag_gradientn(
+    colors = rainbow(25),
+    guide = guide_colourbar(
+      direction = "horizontal",
+      order = 2,
+      title.position = "top"
+    )
+  )
 ```
 
 ![](man/figures/README-adj_colorbars-1.png)<!-- -->
@@ -138,32 +148,50 @@ like normal using the `labs` function and using the `fill_tl`,
 
 ``` r
 ggplot(tib, aes(x = g1, y = g2)) +
-    geom_asymmat(aes(fill_tl = log(val_1),
-                     fill_br = val_2,
-                     fill_diag = val_3)) +
-    scale_fill_tl_gradient(low = "lightpink", high = "tomato",
-                           guide = guide_colourbar(direction = "horizontal",
-                                                   order = 1,
-                                                   title.position = "top")) +
-    scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue",
-                           guide = guide_colourbar(direction = "horizontal",
-                                                   order = 3,
-                                                   title.position = "top")) +
-    scale_fill_diag_gradient(low = "grey80", high = "grey20",
-                           guide = guide_colourbar(direction = "horizontal",
-                                                   order = 2,
-                                                   title.position = "top")) +
-    labs(fill_tl = "top-left fill",
-         fill_br = "bottom-right fill",
-         fill_diag = "diagonal fill",
-         title = "Example of ggasym") +
-    theme_bw() +
-    theme(axis.title = element_blank(),
-          plot.title = element_text(hjust = 0.5),
-          panel.background = element_rect(fill = "grey70"),
-          panel.grid = element_blank()) +
-    scale_x_discrete(expand = c(0, 0)) +
-    scale_y_discrete(expand = c(0, 0))
+  geom_asymmat(aes(
+    fill_tl = log(val_1),
+    fill_br = val_2,
+    fill_diag = val_3
+  )) +
+  scale_fill_tl_gradient(
+    low = "lightpink", high = "tomato",
+    guide = guide_colourbar(
+      direction = "horizontal",
+      order = 1,
+      title.position = "top"
+    )
+  ) +
+  scale_fill_br_gradient(
+    low = "lightblue1", high = "dodgerblue",
+    guide = guide_colourbar(
+      direction = "horizontal",
+      order = 3,
+      title.position = "top"
+    )
+  ) +
+  scale_fill_diag_gradient(
+    low = "grey80", high = "grey20",
+    guide = guide_colourbar(
+      direction = "horizontal",
+      order = 2,
+      title.position = "top"
+    )
+  ) +
+  labs(
+    fill_tl = "top-left fill",
+    fill_br = "bottom-right fill",
+    fill_diag = "diagonal fill",
+    title = "Example of ggasym"
+  ) +
+  theme_bw() +
+  theme(
+    axis.title = element_blank(),
+    plot.title = element_text(hjust = 0.5),
+    panel.background = element_rect(fill = "grey70"),
+    panel.grid = element_blank()
+  ) +
+  scale_x_discrete(expand = c(0, 0)) +
+  scale_y_discrete(expand = c(0, 0))
 ```
 
 ![](man/figures/README-example3-1.png)<!-- -->
@@ -176,11 +204,13 @@ difference is in the preparation of the data table: you must
 `asymmetrise()`. This is shown below.
 
 ``` r
-tib <- tibble(g1 = rep(c("A", "A", "B"), 2),
-              g2 = rep(c("B", "C", "C"), 2),
-              val_1 = seq(1, 6),
-              val_2 = rnorm(6),
-              grps = c(1, 1, 1, 2, 2, 2))
+tib <- tibble(
+  g1 = rep(c("A", "A", "B"), 2),
+  g2 = rep(c("B", "C", "C"), 2),
+  val_1 = seq(1, 6),
+  val_2 = rnorm(6),
+  grps = c(1, 1, 1, 2, 2, 2)
+)
 tib
 #> # A tibble: 6 x 5
 #>   g1    g2    val_1   val_2  grps
@@ -197,7 +227,10 @@ Grouping first by `grps`, the tibble is asymmetrized while retaining the
 `grps` assignments. I then added values to the diagonal.
 
 ``` r
-tib <- tib %>% group_by(grps) %>% asymmetrise(g1, g2) %>% ungroup()
+tib <- tib %>%
+  group_by(grps) %>%
+  asymmetrise(g1, g2) %>%
+  ungroup()
 tib <- tib %>% mutate(val_3 = ifelse(g1 == g2, runif(nrow(tib)), NA))
 tib
 #> # A tibble: 18 x 6
@@ -225,38 +258,56 @@ tib
 
 ``` r
 ggplot(tib, aes(x = g1, y = g2)) +
-    geom_asymmat(aes(fill_tl = log(val_1),
-                     fill_br = val_2,
-                     fill_diag = val_3)) +
-    scale_fill_tl_gradient(low = "lightpink", high = "tomato",
-                           guide = guide_colourbar(direction = "horizontal",
-                                                   order = 1,
-                                                   title.position = "top")) +
-    scale_fill_br_gradient(low = "lightblue1", high = "dodgerblue",
-                           guide = guide_colourbar(direction = "horizontal",
-                                                   order = 3,
-                                                   title.position = "top")) +
-    scale_fill_diag_gradient(low = "grey80", high = "grey20",
-                           guide = guide_colourbar(direction = "horizontal",
-                                                   order = 2,
-                                                   title.position = "top")) +
-    labs(fill_tl = "top-left fill",
-         fill_br = "bottom-right fill",
-         fill_diag = "diagonal fill",
-         title = "Example of faceting with ggasym") +
-    theme_bw() +
-    theme(axis.title = element_blank(),
-          plot.title = element_text(hjust = 0.5),
-          panel.background = element_rect(fill = "grey70"),
-          panel.grid = element_blank()) +
-    scale_x_discrete(expand = c(0, 0)) +
-    scale_y_discrete(expand = c(0, 0)) +
-    facet_grid(. ~ grps)
+  geom_asymmat(aes(
+    fill_tl = log(val_1),
+    fill_br = val_2,
+    fill_diag = val_3
+  )) +
+  scale_fill_tl_gradient(
+    low = "lightpink", high = "tomato",
+    guide = guide_colourbar(
+      direction = "horizontal",
+      order = 1,
+      title.position = "top"
+    )
+  ) +
+  scale_fill_br_gradient(
+    low = "lightblue1", high = "dodgerblue",
+    guide = guide_colourbar(
+      direction = "horizontal",
+      order = 3,
+      title.position = "top"
+    )
+  ) +
+  scale_fill_diag_gradient(
+    low = "grey80", high = "grey20",
+    guide = guide_colourbar(
+      direction = "horizontal",
+      order = 2,
+      title.position = "top"
+    )
+  ) +
+  labs(
+    fill_tl = "top-left fill",
+    fill_br = "bottom-right fill",
+    fill_diag = "diagonal fill",
+    title = "Example of faceting with ggasym"
+  ) +
+  theme_bw() +
+  theme(
+    axis.title = element_blank(),
+    plot.title = element_text(hjust = 0.5),
+    panel.background = element_rect(fill = "grey70"),
+    panel.grid = element_blank()
+  ) +
+  scale_x_discrete(expand = c(0, 0)) +
+  scale_y_discrete(expand = c(0, 0)) +
+  facet_grid(. ~ grps)
 ```
 
 ![](man/figures/README-faceting_plot-1.png)<!-- -->
 
------
+------------------------------------------------------------------------
 
 ## Statistical Test Wrapper
 
@@ -271,8 +322,8 @@ source: `?ggplot2::txhousing`).
 
 ``` r
 tib <- ggplot2::txhousing %>%
-    filter(city == "Austin") %>%
-    mutate(year = as.character(year))
+  filter(city == "Austin") %>%
+  mutate(year = as.character(year))
 aov_res <- aov(median ~ year, data = tib)
 broom::tidy(aov_res)
 #> # A tibble: 2 x 6
@@ -289,28 +340,34 @@ resulting tibble is then plotted and styled in ‘ggplot2’.
 ``` r
 asymmat_tib <- asymmetrise_stats(TukeyHSD(aov_res))
 ggplot(asymmat_tib, aes(x = x, y = y)) +
-    geom_asymmat(aes(fill_tl = estimate,
-                     fill_br = -log10(adj.p.value + 0.0000001))) +
-    scale_fill_tl_gradient2(low = "dodgerblue", high = "tomato") +
-    scale_fill_br_distiller(type = "seq", palette = "Greens", direction = 1) +
-    labs(title = "Median House Prices in Austin",
-         fill_tl = "diff. in\nmean values",
-         fill_br = "-log10( adj. p-value )") +
-    theme(panel.background = element_rect(fill = "grey75"),
-          panel.grid = element_blank()) +
-    scale_x_discrete(expand = c(0, 0)) +
-    scale_y_discrete(expand = c(0, 0))
+  geom_asymmat(aes(
+    fill_tl = estimate,
+    fill_br = -log10(adj.p.value + 0.0000001)
+  )) +
+  scale_fill_tl_gradient2(low = "dodgerblue", high = "tomato") +
+  scale_fill_br_distiller(type = "seq", palette = "Greens", direction = 1) +
+  labs(
+    title = "Median House Prices in Austin",
+    fill_tl = "diff. in\nmean values",
+    fill_br = "-log10( adj. p-value )"
+  ) +
+  theme(
+    panel.background = element_rect(fill = "grey75"),
+    panel.grid = element_blank()
+  ) +
+  scale_x_discrete(expand = c(0, 0)) +
+  scale_y_discrete(expand = c(0, 0))
 ```
 
 ![](man/figures/README-stats_example_plot-1.png)<!-- -->
 
------
+------------------------------------------------------------------------
 
 ### Thank yous
 
 I would like to thank the team behind
-[‘ggplot2’](https://ggplot2.tidyverse.org) for creating a flexible
-and powerful package for the R community.
+[‘ggplot2’](https://ggplot2.tidyverse.org) for creating a flexible and
+powerful package for the R community.
 
 If you see any mistakes (including small typos) *please* open an
 [issue](https://github.com/jhrcook/ggasym/issues) and leave a quick

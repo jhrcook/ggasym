@@ -20,11 +20,12 @@ Add rows to \code{df} to complete all combinations of
     maintains any groups created by \code{dplyr::group_by()}.
 }
 \examples{
-df <- data.frame(a = c("A", "B"),
-                 b = c("C", "D"),
-                 untouched = c(1, 2))
+df <- data.frame(
+  a = c("A", "B"),
+  b = c("C", "D"),
+  untouched = c(1, 2)
+)
 df
 
 add_missing_combinations(df, a, b)
-
 }

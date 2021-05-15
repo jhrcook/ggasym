@@ -24,3 +24,4 @@
 ^.Rhistory$
 ^\.git$
 ^R-packages\.R$
+^.pre-commit-config.yaml$

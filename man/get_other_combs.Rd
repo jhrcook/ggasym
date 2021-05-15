@@ -19,5 +19,4 @@ Get all combinations of the values in vectors x and y that
 }
 \examples{
 get_other_combs(LETTERS[1:2], LETTERS[1:2])
-
 }

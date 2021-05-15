@@ -31,5 +31,4 @@ a
 b
 
 organize_levels(a, b)
-
 }

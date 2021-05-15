@@ -18,11 +18,12 @@ a data.frame (or tibble) object with \code{.x} and \code{.y} swapped
 Swap columns \code{.x} and \code{.y} in \code{df}.
 }
 \examples{
-df <- data.frame(a = c("A", "B"),
-                 b = c("C", "D"),
-                 untouched = c(1, 2))
+df <- data.frame(
+  a = c("A", "B"),
+  b = c("C", "D"),
+  untouched = c(1, 2)
+)
 df
 
 swap_cols(df, a, b)
-
 }

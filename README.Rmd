@@ -26,8 +26,6 @@ set.seed(0)
 [![CRAN status](https://www.r-pkg.org/badges/version/ggasym)](https://cran.r-project.org/package=ggasym)
 [![CRAN downloads](http://cranlogs.r-pkg.org/badges/grand-total/ggasym)](https://cran.r-project.org/package=ggasym)
 [![R build status](https://github.com/jhrcook/ggasym/workflows/R-CMD-check/badge.svg)](https://github.com/jhrcook/ggasym/actions)
-[![Travis build status](https://travis-ci.org/jhrcook/ggasym.svg?branch=master)](https://travis-ci.org/jhrcook/ggasym)
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/jhrcook/ggasym?branch=master&svg=true)](https://ci.appveyor.com/project/jhrcook/ggasym)
 [![Coverage status](https://codecov.io/gh/jhrcook/ggasym/branch/master/graph/badge.svg)](https://codecov.io/github/jhrcook/ggasym?branch=master)
 
 ## Asymmetric Matrix Plotting in 'ggplot' ##
