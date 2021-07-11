@@ -35,3 +35,4 @@ data-raw/*.rds
 .Rhistory
 .Rproj.user
 revdep/*
+tests/spelling.Rout.save
